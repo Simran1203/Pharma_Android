@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_55sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_5sdp"
+    android:paddingLeft="@dimen/_30sdp"
+    android:paddingRight="@dimen/_30sdp"
+    android:background="@drawable/choose_game_friend_request_bg"
+    android:orientation="horizontal">
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtTurnName"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_gravity="center_vertical"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@color/white"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:text="Michel" />
+
+     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_gravity="center_vertical"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@color/white"
+        android:gravity="center_vertical|end"
+        android:textStyle="bold"
+        android:text="07:14" />
+
+
+</LinearLayout>

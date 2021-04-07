@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".main.view.mainActivities.FreeRewardsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/linOption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:background="@drawable/square_bg"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_50sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_110sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_150sdp"
+            android:orientation="horizontal">
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Watch Ad\n250 Free Pills"
+                android:background="@drawable/btn_yellow"/>
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:id="@+id/txtDailyBonus"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Daily\nBonus"
+                android:background="@drawable/btn_yellow"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Submit Your\nOwn Questions"
+                android:background="@drawable/btn_yellow"/>
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="High Value\nRewards"
+                android:background="@drawable/btn_yellow"/>
+        </LinearLayout>
+
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:textSize="@dimen/_13sdp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Invite a Friend Earn 5000 Pills\nFor you and Your Friend"
+                android:background="@drawable/btn_yellow"/>
+
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:src="@drawable/trophy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

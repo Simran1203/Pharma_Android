@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="dove_grey">#6C6C6C</color>
+    <color name="solid_black">#000000</color>
+    <color name="clay_creek">#89815F</color>
+    <color name="limed_spruce">#3E4F54</color>
+    <color name="wild_strawberry">#FF48AF</color>
+    <color name="desert">#A2511F</color>
+    <color name="rose_pink">#FF0091</color>
+    <color name="wine_berry">#461732</color>
+    <color name="scorpion_grey">#606060</color>
+    <color name="dodger_blue">#5648FD</color>
+    <color name="leader_board_shadow">#8C5E14</color>
+    <color name="time_remain_color">#461732</color>
+
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ADADAD</color>
+
+    //////////// Sign up Color /////
+
+    <color name="name">#FFF773</color>
+    <color name="email">#FFFF7F</color>
+    <color name="password">#FFFF8D</color>
+    <color name="confirmPass">#FFFFB2</color>
+    <color name="date">#FFFFA7</color>
+    <color name="month">#FFFFCF</color>
+    <color name="year">#FFFFA4</color>
+    <color name="state">#FBFB95</color>
+    <color name="player">#F5ED7E</color>
+    <color name="speciality">#EFD671</color>
+    <color name="college">#E9BA65</color>
+    <color name="stroke_color">#ADADAD</color>
+
+
+    /////////////// Submit Question Color //////////
+    <color name="category">#FFFC7C</color>
+    <color name="type_que">#FFFF92</color>
+    <color name="wrong_ans1">#FFFD95</color>
+    <color name="wrong_ans2">#FDEA7C</color>
+    <color name="wrong_ans3">#F8CD6D</color>
+
+</resources>

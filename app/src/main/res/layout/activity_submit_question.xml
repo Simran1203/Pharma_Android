@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    tools:context=".main.view.SubmitQuestionActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintQuest"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <LinearLayout
+            android:id="@+id/toolbarM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingTop="@dimen/_30sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgBackQuest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/back_arrow" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtToolLime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="  Submit Your"
+                    android:gravity="center"
+                    android:textColor="@color/limed_spruce"
+                    android:textSize="@dimen/_30sdp" />
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtToolWlidStraw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:text="Own Question"
+                    android:textColor="@color/wild_strawberry"
+                    android:textSize="@dimen/_30sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarM"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:orientation="vertical">
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtCont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp" />
+
+            <RelativeLayout
+                android:id="@+id/relCat"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/round_edit"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/_10sdp">
+
+                <Spinner
+                    android:id="@+id/spinnerCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dropdown_arrow" />
+
+            </RelativeLayout>
+
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Type Questions Here.."
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxStrokeColor="@color/wild_strawberry"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="@color/name">
+
+                <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                    android:id="@+id/edtTypeQue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="start"
+                    android:textCursorDrawable="@drawable/cursor_edit"
+                    android:textColor="@color/desert" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="20 minimum Char"
+                android:textColor="@color/dove_grey"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtInfo" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Correct Ans Here"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxStrokeColor="@color/wild_strawberry"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="@color/wrong_ans1">
+
+                <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                    android:id="@+id/edtCorrectAns"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/cursor_edit"
+                    android:textColor="@color/desert" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Wrong 01 Ans Here"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxStrokeColor="@color/wild_strawberry"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="@color/wrong_ans1">
+
+                <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                    android:id="@+id/edtCorrectAns1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/cursor_edit"
+                    android:textColor="@color/desert" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Wrong 02 Ans Here"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxStrokeColor="@color/wild_strawberry"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="@color/wrong_ans2">
+
+                <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                    android:id="@+id/edtCorrectAns2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/cursor_edit"
+                    android:textColor="@color/desert" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Wrong 03 Ans Here"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:boxCornerRadiusTopStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:boxStrokeColor="@color/wild_strawberry"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                app:boxBackgroundColor="@color/wrong_ans3">
+
+                <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                    android:id="@+id/edtCorrectAns3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:textCursorDrawable="@drawable/cursor_edit"
+                    android:textColor="@color/desert" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtSubmitQueston"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_gravity="bottom|center"
+                android:layout_margin="@dimen/_20sdp"
+                android:background="@drawable/btn_default"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="Submit Earn 250 Pills"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/dove_grey"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

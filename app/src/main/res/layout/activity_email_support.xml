@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    tools:context=".main.view.SettingActivities.EmailSupportActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constantEmail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imgCassey"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:src="@drawable/cassy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardMessage"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/imgCassey">
+
+            <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:gravity="start"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:hint="Type Your Message Here"
+                android:background="@null"/>
+        </androidx.cardview.widget.CardView>
+
+
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    app:layout_constraintStart_toStartOf="@id/cardMessage"
+                    app:layout_constraintEnd_toEndOf="@id/cardMessage"
+                    app:layout_constraintTop_toBottomOf="@id/cardMessage"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/clay_creek"
+                    android:gravity="center"
+                    android:text="Submit"
+                    android:background="@drawable/btn_default"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

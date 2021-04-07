@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".main.view.QuestionActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/_20sdp">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"/>
+
+        <LinearLayout
+            android:id="@+id/linearRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+           <LinearLayout
+               android:layout_weight="1"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:paddingStart="@dimen/_20sdp"
+               android:orientation="horizontal">
+               <ImageView
+                   android:layout_width="@dimen/_30sdp"
+                   android:layout_height="@dimen/_30sdp"
+                   android:src="@drawable/stopwatch"/>
+
+               <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                   android:id="@+id/txtTimeQue"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:layout_marginStart="@dimen/_5sdp"
+                   android:layout_marginEnd="@dimen/_20sdp"
+                   android:gravity="start"
+                   android:text="00:20"
+                   android:textColor="@color/solid_black"
+                   android:textSize="@dimen/_15sdp" />
+           </LinearLayout>
+
+            <LinearLayout
+               android:layout_weight="1"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+                android:gravity="end"
+               android:orientation="vertical">
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtTimeQue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:gravity="start"
+                    android:text="Level 1"
+                    android:textColor="@color/solid_black"
+                    android:textSize="@dimen/_15sdp" />
+
+                <androidx.appcompat.widget.AppCompatRatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:numStars="3"/>
+           </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearQuest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/square_bg"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearRating">
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="start"
+                android:text="NEUROLOGY &amp; PSYCHOLOGY"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"/>
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtQue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="start"
+                android:textColor="@color/solid_black"
+                android:text="Choose the best preventive treatment option for a 23 year old female suffering from chronic migraines &amp; obesity"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_20sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/linearQuest"
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/btn_yellow"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingStart="@dimen/_30sdp"
+                android:text="A)  topiramate"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/btn_yellow"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingStart="@dimen/_30sdp"
+                android:text="B)  topiramate"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/btn_yellow"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingStart="@dimen/_30sdp"
+                android:text="C)  Propanolol"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/btn_yellow"
+                android:gravity="start|center_vertical"
+                android:paddingBottom="@dimen/_10sdp"
+                android:paddingStart="@dimen/_30sdp"
+                android:text="D)  Valproic acid"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/linearOption"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/btn_yellow"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/fifty_fifty"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/btn_yellow"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_10sdp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:src="@drawable/stopwatch"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

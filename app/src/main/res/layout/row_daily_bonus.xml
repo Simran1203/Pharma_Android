@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/imgBackgroud"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@drawable/bonus_item_bg"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtBonustitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        app:layout_constraintStart_toStartOf="@id/imgBackgroud"
+        app:layout_constraintTop_toTopOf="@id/imgBackgroud"
+        app:layout_constraintEnd_toEndOf="@id/imgBackgroud"
+        android:textColor="@color/rose_pink"
+        android:textSize="@dimen/_14sdp"
+        android:text="Mystery"/>
+    <ImageView
+        android:id="@+id/imgMainBonus"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintStart_toStartOf="@id/txtBonustitle"
+        app:layout_constraintTop_toBottomOf="@id/txtBonustitle"
+        app:layout_constraintEnd_toEndOf="@id/txtBonustitle"
+        android:src="@drawable/pills"/>
+
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtBonusDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/imgMainBonus"
+        app:layout_constraintTop_toBottomOf="@id/imgMainBonus"
+        app:layout_constraintEnd_toEndOf="@id/imgMainBonus"
+        android:textColor="@color/scorpion_grey"
+        android:textSize="@dimen/_12sdp"
+        android:text="Day 1"/>
+
+    <ImageView
+        android:id="@+id/imgClaimed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:visibility="gone"
+        android:src="@drawable/bonus_claimed"
+        app:layout_constraintStart_toEndOf="@id/imgMainBonus"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fitsSystemWindows="true"
+    tools:context=".main.view.rewardsActivity.DailyBonusActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constarintProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+
+        <include layout="@layout/toolbar"
+            android:id="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <RelativeLayout
+            android:id="@+id/relProfilr"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_140sdp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_130sdp"
+                android:src="@drawable/profile_img"
+                android:layout_marginTop="@dimen/_20sdp" />
+
+            <ImageView
+                android:id="@+id/imgEditProfile"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit_profile"
+                android:layout_marginTop="@dimen/_30sdp" />
+
+        </RelativeLayout>
+
+
+
+
+   <LinearLayout
+       android:id="@+id/linearCurrentUserName"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="@dimen/_10sdp"
+       app:layout_constraintTop_toBottomOf="@id/relProfilr"
+       android:orientation="vertical">
+
+       <com.pharmacy.crack.utils.viewUtils.RegularTextView
+           android:id="@+id/txtFullName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/_15sdp"
+           android:layout_marginLeft="@dimen/_10sdp"
+           android:drawableLeft="@drawable/user_icon_drawable"
+           android:gravity="center_vertical"
+           android:drawablePadding="@dimen/_15sdp"
+           android:text="Current User-Name"
+           android:textColor="@color/solid_black"
+           android:textSize="@dimen/_12sdp"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/txtInfo" />
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/edtPasswordTextInput"
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_55sdp"
+           android:layout_marginTop="@dimen/_5sdp"
+           app:boxCornerRadiusTopStart="@dimen/_10sdp"
+           app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+           app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+           app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+           app:boxStrokeColor="@color/wild_strawberry"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           app:boxStrokeWidth="1dp"
+           app:boxBackgroundColor="@color/confirmPass"
+           app:layout_constraintTop_toBottomOf="@id/txtPassword">
+
+           <com.pharmacy.crack.utils.viewUtils.RegularEditText
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_50sdp"
+               android:singleLine="true"
+               android:textCursorDrawable="@drawable/cursor_edit"
+               android:textColor="@color/desert" />
+       </com.google.android.material.textfield.TextInputLayout>
+
+   </LinearLayout>
+
+   <LinearLayout
+       android:id="@+id/linearNewUserName"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toBottomOf="@id/linearCurrentUserName"
+       android:orientation="vertical">
+
+       <com.pharmacy.crack.utils.viewUtils.RegularTextView
+           android:id="@+id/txtNewName"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/_15sdp"
+           android:layout_marginLeft="@dimen/_10sdp"
+           android:drawableLeft="@drawable/user_icon_drawable"
+           android:gravity="center_vertical"
+           android:drawablePadding="@dimen/_15sdp"
+           android:text="New User-Name"
+           android:textColor="@color/solid_black"
+           android:textSize="@dimen/_12sdp" />
+
+       <com.google.android.material.textfield.TextInputLayout
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/_55sdp"
+           android:layout_marginTop="@dimen/_5sdp"
+           app:boxCornerRadiusTopStart="@dimen/_10sdp"
+           app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+           app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+           app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+           app:boxStrokeColor="@color/wild_strawberry"
+           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+           app:boxStrokeWidth="1dp"
+           app:boxBackgroundColor="@color/confirmPass"
+           app:layout_constraintTop_toBottomOf="@id/txtPassword">
+
+           <com.pharmacy.crack.utils.viewUtils.RegularEditText
+               android:id="@+id/editPasswordSignUp"
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/_50sdp"
+               android:singleLine="true"
+               android:textCursorDrawable="@drawable/cursor_edit"
+               android:textColor="@color/desert" />
+       </com.google.android.material.textfield.TextInputLayout>
+
+   </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearMatchHistory"
+            app:layout_constraintTop_toBottomOf="@id/linearNewUserName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:background="@drawable/match_histroy_bg"
+            android:layout_height="@dimen/_150sdp">
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@color/solid_black"
+                android:text="Match History"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="top"
+                        android:textSize="@dimen/_20sdp"
+                        android:textColor="@color/dove_grey"
+                        android:text="Wins"/>
+
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="bottom"
+                        android:textSize="@dimen/_20sdp"
+                        android:textColor="@color/dodger_blue"
+                        android:text="48"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/dove_grey"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="top"
+                        android:textSize="@dimen/_20sdp"
+                        android:textColor="@color/dove_grey"
+                        android:text="Losses"/>
+
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="bottom"
+                        android:textSize="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:textColor="@color/wild_strawberry"
+                        android:text="48"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            app:layout_constraintStart_toStartOf="@id/linearMatchHistory"
+            app:layout_constraintEnd_toEndOf="@id/linearMatchHistory"
+            app:layout_constraintTop_toBottomOf="@id/linearMatchHistory"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/clay_creek"
+            android:gravity="center"
+            android:text="Save"
+            android:background="@drawable/btn_default"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

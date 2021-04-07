@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="@dimen/_15sdp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/square_bg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_50sdp"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_30sdp"
+        android:background="@drawable/square_bg"
+        android:orientation="vertical">
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/password_reset_email_sent"
+            android:textColor="@color/solid_black"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/_18sdp" />
+
+       <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+           android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="@string/an_email_has_been_sent_to_your_registered_email_address"
+            android:textColor="@color/dove_grey"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+            android:id="@+id/txtEmailDialog"
+           android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="xyz@gmail.com."
+            android:layout_gravity="center"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Follow the directions in the email to reset your password."
+            android:textColor="@color/dove_grey"
+            android:textSize="@dimen/_16sdp" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtForgotSubmitDialog"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:textSize="@dimen/_17sdp"
+            android:textColor="@color/clay_creek"
+            android:gravity="center"
+            android:text="Done"
+            android:background="@drawable/btn_default"/>
+
+    </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".main.view.mainActivities.LeaderBoardActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/stopwatch" />
+
+            <RelativeLayout
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/square_bg" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/square_bg" />
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="2d"
+                    android:textColor="@color/time_remain_color"
+                    android:textSize="@dimen/_18sdp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/square_bg" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/square_bg" />
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="2h"
+                    android:textColor="@color/time_remain_color"
+                    android:textSize="@dimen/_18sdp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginLeft="@dimen/_5sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/square_bg" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/square_bg" />
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="22min"
+                    android:textColor="@color/time_remain_color"
+                    android:textSize="@dimen/_18sdp" />
+            </RelativeLayout>
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="left"
+                android:textColor="@color/time_remain_color"
+                android:textSize="@dimen/_18sdp" />
+        </LinearLayout>
+
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtFriends"
+            android:layout_width="@dimen/_126sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/btn_default"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Friends"
+            android:textColor="@color/clay_creek"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintRight_toLeftOf="@id/txtWorld"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearTime" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtWorld"
+            android:layout_width="@dimen/_126sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:alpha=".6"
+            android:background="@drawable/btn_default"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="World"
+            android:textColor="@color/clay_creek"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/txtFriends"
+            app:layout_constraintTop_toBottomOf="@id/linearTime" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLeaderBoard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_350sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            app:cardBackgroundColor="#FDCE76"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtWorld">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLeaderBoard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    tools:listitem="@layout/row_leaderboard" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/heading_bg_red"
+            android:elevation="@dimen/_15sdp"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="LEADERBOARD"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtFriends" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtSharePills"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_default"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Share\nFree 500 Pills"
+            android:textColor="@color/clay_creek"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintLeft_toLeftOf="@id/cardLeaderBoard"
+            app:layout_constraintRight_toRightOf="@id/cardLeaderBoard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardLeaderBoard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

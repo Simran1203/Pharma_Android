@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pharmacy.crack">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/app_icon"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PharmacyCrack"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".main.view.QuestionActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".main.view.GotCategorySpinActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".main.view.EndGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.SubmitQuestionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.ShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.WinActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.LoseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".main.view.GameActivities.TwoPlayerBattleActivity" />
+        <activity
+            android:name=".main.view.GameActivities.SelectOpponentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.mainActivities.StatsIqActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.GameActivities.SoloActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.mainActivities.StartGameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.mainActivities.LeaderBoardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.mainActivities.DrugStoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.SettingActivities.EmailSupportActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.SettingActivities.ChangeProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.rewardsActivity.DailyBonusActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.mainActivities.FreeRewardsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.mainActivities.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.mainActivities.DashboardActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.LoginSignUpActivity.StoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.LoginSignUpActivity.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.LoginSignUpActivity.ForgetPaswordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.LoginSignUpActivity.LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.splashActivities.SplashActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".main.view.splashActivities.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+
+</manifest>

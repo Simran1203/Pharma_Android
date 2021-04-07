@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/onboarding_bg"
+    android:paddingBottom="@dimen/_20sdp"
+    android:paddingTop="@dimen/_40sdp"
+    tools:context=".main.view.splashActivities.SplashActivity2">
+
+    <LinearLayout
+        android:id="@+id/layotTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/imgCassy">
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pharmacy"
+            android:textColor="@color/limed_spruce"
+            android:textSize="@dimen/_30sdp" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textColor="@color/wild_strawberry"
+            android:text="Crack"
+            android:textSize="@dimen/_30sdp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgCassy"
+        app:layout_constraintTop_toBottomOf="@id/layotTxt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_210sdp"
+        android:src="@drawable/cassy_splash"/>
+
+  <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtRx"
+        app:layout_constraintTop_toTopOf="@id/imgCassy"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/_195sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_rx"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/capsule"/>
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtPharma"
+        app:layout_constraintTop_toBottomOf="@id/txtRx"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pharmacology"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/capsule"/>
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtFun"
+        app:layout_constraintTop_toBottomOf="@id/txtPharma"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fun_facts"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/capsule"/>
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtOtc"
+        app:layout_constraintTop_toBottomOf="@id/txtFun"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/otc"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/capsule"/>
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtLaw"
+        app:layout_constraintTop_toBottomOf="@id/txtOtc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/law"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sdp"
+        android:background="@drawable/capsule"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

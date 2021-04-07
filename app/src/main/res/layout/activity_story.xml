@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/onboarding_bg"
+    tools:context=".main.view.LoginSignUpActivity.StoryActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_40sdp"
+        android:paddingBottom="@dimen/_30sdp">
+
+        <LinearLayout
+            android:id="@+id/layotTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pharmacy"
+                android:textColor="@color/limed_spruce"
+                android:textSize="@dimen/_30sdp" />
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:text="Crack"
+                android:textColor="@color/wild_strawberry"
+                android:textSize="@dimen/_30sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_45sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/square_bg"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_35sdp"
+            android:paddingRight="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layotTxt">
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="Story"
+                android:textColor="@color/wild_strawberry"
+                android:textSize="@dimen/_30sdp" />
+
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/rules_objectives"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="• "
+                    android:textColor="#605A34"
+                    android:textSize="@dimen/_16sdp" />
+
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/game_objective_is_to_achieve_an_overall_drug_iq_of_guru"
+                    android:textColor="#605A34"
+                    android:textSize="@dimen/_11sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="• "
+                    android:textColor="#605A34"
+                    android:textSize="@dimen/_16sdp" />
+
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/answer_3_correct_answers_in_each_category_to_advance_to_the_next_drug_iq_level_in_that_category"
+                    android:textColor="#605A34"
+                    android:textSize="@dimen/_11sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="• "
+                    android:textColor="#605A34"
+                    android:textSize="@dimen/_16sdp" />
+
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="@string/your_overall_drug_iq_is_the_combined_lifetime_score_of_all_categories"
+                    android:textColor="#605A34"
+                    android:textSize="@dimen/_11sdp" />
+            </LinearLayout>
+
+
+
+
+            <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/the_world_is_under_widespread_disease"
+                android:textColor="#605A34"
+                android:textSize="@dimen/_11sdp" />
+            <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="During her travels, Casey will meet new friends and they will join her on her quest to defeat the evil Dizzy. Casey must learn pharmacology from her new friends to increase her Drug IQ. This quest will increase in difficulty as she travels the world seeking knowledge. One wrong answer can end her quest and the possibility of curing the world."
+                android:textColor="#605A34"
+                android:textSize="@dimen/_11sdp" />
+
+            <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="She can NEVER GIVE UP!"
+                android:textColor="#605A34"
+                android:textSize="@dimen/_11sdp" />
+            <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Help Casey &amp; Friends SAVE HUMANITY!"
+                android:textColor="#605A34"
+                android:textSize="@dimen/_11sdp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgCassy"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:src="@drawable/cassy"
+            app:layout_constraintRight_toRightOf="@id/linearCard"
+            app:layout_constraintTop_toBottomOf="@id/layotTxt" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_40sdp"
+            android:gravity="start"
+            android:text="Skip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearCard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

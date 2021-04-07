@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+   <ImageView
+       android:id="@+id/imgBackgroud"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_40sdp"
+       android:layout_marginTop="@dimen/_10sdp"
+       android:layout_marginRight="@dimen/_10sdp"
+       android:background="@drawable/square_bg"
+       app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <ImageView
+            android:id="@+id/imgMainTopBonus"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            app:layout_constraintStart_toStartOf="@id/imgBackgroud"
+            app:layout_constraintTop_toTopOf="@id/imgBackgroud"
+            app:layout_constraintBottom_toBottomOf="@id/imgBackgroud"
+            app:layout_constraintEnd_toEndOf="@id/imgBackgroud"
+            android:src="@drawable/fifty_fifty"/>
+
+
+    <ImageView
+        android:id="@+id/imgbadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/badge"
+        app:layout_constraintStart_toEndOf="@id/imgMainTopBonus"
+        android:layout_marginLeft="@dimen/_9sdp"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtRemain"
+        app:layout_constraintBottom_toBottomOf="@id/imgbadge"
+        app:layout_constraintTop_toTopOf="@id/imgbadge"
+        app:layout_constraintEnd_toEndOf="@id/imgbadge"
+        app:layout_constraintStart_toStartOf="@id/imgbadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sdp"
+        android:paddingBottom="@dimen/_3sdp"
+        android:textColor="@color/wild_strawberry"
+        android:text="1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

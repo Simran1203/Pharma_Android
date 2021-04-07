@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".main.view.mainActivities.DashboardActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/_40sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtDashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Dashboard"
+            android:textColor="@color/wild_strawberry"
+            android:textSize="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imgCassy"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/cassy"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDashboard" />
+
+
+
+        <ImageView
+            android:id="@+id/imgPowerBarFifty"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/power_bar_filler_left"
+            android:layout_marginLeft="@dimen/_41sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imgFifty"
+            app:layout_constraintTop_toTopOf="@id/imgFifty" />
+
+
+
+        <LinearLayout
+            android:id="@+id/imgPoweFill"
+            app:layout_constraintLeft_toLeftOf="@id/imgPowerBarFifty"
+            app:layout_constraintBottom_toBottomOf="@id/imgFifty"
+            app:layout_constraintTop_toTopOf="@id/imgFifty"
+            android:layout_width="@dimen/_44sdp"
+            android:gravity="start"
+            android:layout_height="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/power_fill"/>
+        </LinearLayout>
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtfifty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/10"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="@id/imgPowerBarFifty"
+            app:layout_constraintStart_toStartOf="@id/imgPowerBarFifty"
+            app:layout_constraintTop_toTopOf="@id/imgPowerBarFifty"
+            app:layout_constraintBottom_toBottomOf="@id/imgPowerBarFifty"/>
+
+        <ImageView
+            android:id="@+id/imgFifty"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:src="@drawable/fifty_fifty"
+            android:layout_marginTop="@dimen/_40sdp"
+            app:layout_constraintRight_toLeftOf="@id/imgCassy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtDashboard" />
+
+        <ImageView
+            android:id="@+id/imgPowerBarClock"
+            android:layout_width="@dimen/_71sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/power_bar_filler_left"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_40sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imgClock"
+            app:layout_constraintTop_toTopOf="@id/imgClock" />
+
+
+
+        <LinearLayout
+            android:id="@+id/imgPoweFillClock"
+            app:layout_constraintLeft_toLeftOf="@id/imgPowerBarClock"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgClock"
+            app:layout_constraintTop_toTopOf="@id/imgClock"
+            android:layout_width="@dimen/_44sdp"
+            android:gravity="start"
+            android:layout_height="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/power_fill"/>
+        </LinearLayout>
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/10"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="@id/imgPowerBarClock"
+            app:layout_constraintStart_toStartOf="@id/imgPowerBarClock"
+            app:layout_constraintTop_toTopOf="@id/imgPowerBarClock"
+            app:layout_constraintBottom_toBottomOf="@id/imgPowerBarClock"/>
+
+        <ImageView
+            android:id="@+id/imgClock"
+            android:layout_width="@dimen/_42sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:layout_marginLeft="@dimen/_7sdp"
+            android:src="@drawable/stopwatch"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintRight_toLeftOf="@id/imgCassy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgFifty" />
+
+
+
+        <ImageView
+            android:id="@+id/imgPowerBarSpin"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/power_bar_filler_right"
+            android:layout_marginRight="@dimen/_40sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imgSpin"
+            app:layout_constraintTop_toTopOf="@id/imgSpin" />
+
+
+
+        <LinearLayout
+            android:id="@+id/imgPoweFillSpin"
+            app:layout_constraintRight_toRightOf="@id/imgPowerBarSpin"
+            app:layout_constraintBottom_toBottomOf="@id/imgSpin"
+            app:layout_constraintTop_toTopOf="@id/imgSpin"
+            android:layout_width="@dimen/_44sdp"
+            android:gravity="end"
+            android:layout_height="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/power_fill_right"/>
+        </LinearLayout>
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtfiftySpin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/10"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="@id/imgPowerBarSpin"
+            app:layout_constraintStart_toStartOf="@id/imgPowerBarSpin"
+            app:layout_constraintTop_toTopOf="@id/imgPowerBarSpin"
+            app:layout_constraintBottom_toBottomOf="@id/imgPowerBarSpin"/>
+
+        <ImageView
+            android:id="@+id/imgSpin"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_7sdp"
+            android:src="@drawable/respin"
+            app:layout_constraintLeft_toRightOf="@id/imgCassy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgFifty"
+            app:layout_constraintBottom_toBottomOf="@id/imgFifty"/>
+
+
+ <ImageView
+            android:id="@+id/imgPowerBarLive"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/power_bar_filler_right"
+            android:layout_marginRight="@dimen/_40sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/imgLive"
+            app:layout_constraintTop_toTopOf="@id/imgLive" />
+
+
+
+        <LinearLayout
+            android:id="@+id/imgPoweFillLive"
+            app:layout_constraintRight_toRightOf="@id/imgPowerBarLive"
+            app:layout_constraintBottom_toBottomOf="@id/imgLive"
+            app:layout_constraintTop_toTopOf="@id/imgLive"
+            android:layout_width="@dimen/_44sdp"
+            android:gravity="end"
+            android:layout_height="@dimen/_15sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/power_fill_right"/>
+        </LinearLayout>
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtLive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7/10"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="@id/imgPowerBarLive"
+            app:layout_constraintStart_toStartOf="@id/imgPowerBarLive"
+            app:layout_constraintTop_toTopOf="@id/imgPowerBarLive"
+            app:layout_constraintBottom_toBottomOf="@id/imgPowerBarLive"/>
+
+        <ImageView
+            android:id="@+id/imgLive"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_7sdp"
+            android:src="@drawable/lives"
+            app:layout_constraintLeft_toRightOf="@id/imgCassy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imgClock"
+            app:layout_constraintBottom_toBottomOf="@id/imgClock"/>
+
+
+<LinearLayout
+    android:id="@+id/linOption"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/imgCassy"
+    android:background="@drawable/square_bg"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/_15sdp"
+    android:layout_marginRight="@dimen/_15sdp"
+    android:layout_marginTop="@dimen/_60sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:padding="@dimen/_5sdp"
+        android:orientation="horizontal">
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtFreeRewards"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_55sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Free Rewards"
+            android:background="@drawable/btn_yellow"/>
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtDrugStore"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_55sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Drug Store"
+            android:background="@drawable/btn_yellow"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:orientation="horizontal">
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtStatsIq"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_55sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="Stats &amp; IQ"
+            android:background="@drawable/btn_yellow"/>
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtLeaderBoard"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_55sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Leader Board"
+            android:background="@drawable/btn_yellow"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:orientation="horizontal">
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_55sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="IQ Map"
+            android:background="@drawable/btn_yellow"/>
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_5sdp" />
+    </LinearLayout>
+
+    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+        android:id="@+id/txtStartGame"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:textSize="@dimen/_15sdp"
+        android:textColor="@color/clay_creek"
+        android:gravity="center"
+        android:text="Start Game"
+        android:background="@drawable/btn_default"/>
+
+</LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/profile_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgCassy"/>
+
+        <ImageView
+            android:id="@+id/imgPills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pill_bar"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="@id/imgPhoto"
+            app:layout_constraintBottom_toBottomOf="@id/imgPhoto"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtPills"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500"
+            android:textColor="#39290F"
+            android:textSize="@dimen/_18sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="@id/imgPills"
+            app:layout_constraintTop_toTopOf="@id/imgPills"
+            app:layout_constraintBottom_toBottomOf="@id/imgPills"
+            app:layout_constraintStart_toStartOf="@id/imgPills"/>
+
+
+        <ImageView
+            android:id="@+id/imgScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/score"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="@id/imgPhoto"
+            app:layout_constraintBottom_toBottomOf="@id/imgPhoto"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txthighScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_9sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="High Score"
+            android:textColor="#805E29"
+            app:layout_constraintStart_toStartOf="@id/txtScore"
+            app:layout_constraintTop_toTopOf="@id/imgScore"
+            app:layout_constraintBottom_toTopOf="@id/txtScore"/>
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500"
+            android:textSize="@dimen/_18sdp"
+            android:textColor="#39290F"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgScore"
+            app:layout_constraintEnd_toEndOf="@id/imgScore"
+            app:layout_constraintTop_toBottomOf="@id/txthighScore"
+            app:layout_constraintStart_toStartOf="@id/imgScore"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="@id/linOption"
+            app:layout_constraintEnd_toEndOf="@id/linOption"
+            app:layout_constraintTop_toBottomOf="@id/linOption">
+
+<ImageView
+    android:id="@+id/imgSetting"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/settings"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tnc"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
