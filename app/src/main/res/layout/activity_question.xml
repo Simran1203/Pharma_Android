@@ -57,22 +57,31 @@
                android:orientation="vertical">
 
                 <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                    android:id="@+id/txtTimeQue"
+                    android:id="@+id/txtTimeLevel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/_20sdp"
-                    android:gravity="start"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:gravity="center"
                     android:text="Level 1"
                     android:textColor="@color/solid_black"
-                    android:textSize="@dimen/_15sdp" />
+                    android:textSize="@dimen/_10sdp" />
 
-                <androidx.appcompat.widget.AppCompatRatingBar
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="@dimen/_45sdp"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_marginEnd="@dimen/_20sdp"
-                    android:numStars="3"/>
+                    android:background="@drawable/level_bg">
+                    <androidx.appcompat.widget.AppCompatRatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:theme="@style/MyRatingBar"
+                        android:rating="1"
+                        android:numStars="3"/>
+                </RelativeLayout>
+
            </LinearLayout>
         </LinearLayout>
 
@@ -81,10 +90,11 @@
             android:id="@+id/linearQuest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:background="@drawable/square_bg"
+            android:paddingBottom="@dimen/_20sdp"
+            android:background="@drawable/question_bg"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

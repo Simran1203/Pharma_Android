@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="Widget.Theme.PharmacyCrack.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.Theme.PharmacyCrack.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+    </style>
+
+    <style name="MyRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="colorAccent">@color/name</item>
+        <item name="android:colorControlNormal">@color/dove_grey</item>
+    </style>
+
+
+</resources>

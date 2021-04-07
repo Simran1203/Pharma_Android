@@ -29,4 +29,7 @@
     <string name="settings">Settings</string>
     <string name="children_reaserch_donate">A portion of profit will be donated to\nSt. Jude\'s Children Research Hospital</string>
     <string name="an_infection_has">An Infection Has\nLead To Your Death</string>
+    <string name="title_activity_incorrect_question">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

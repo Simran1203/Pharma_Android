@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fillViewport="true"
+    tools:context=".main.view.IncorrectActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/_20sdp">
+
+        <LinearLayout
+            android:id="@+id/linearTimeIncoorect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/stopwatch" />
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:id="@+id/txtTimeIncorrect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:gravity="start"
+                android:text="00:20"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearQueInCorr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/question_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/linearTimeIncoorect">
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="start"
+                android:text="Pharmacy Crack"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgCatAns" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtQueInCorr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="start"
+                android:textColor="@color/solid_black"
+                android:text="Choose the best preventive treatment option for a 23 year old female suffering from chronic migraines &amp; obesity"
+                android:textSize="@dimen/_13sdp"
+                android:layout_marginTop="@dimen/_20sdp"/>
+
+        </LinearLayout>
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtShareQuestInCorr"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Share a question\nFree 250 Pills"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearQueInCorr" />
+
+        <LinearLayout
+            android:id="@+id/linearIncorrect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:orientation="vertical"
+            android:background="@drawable/incorrect_answer_bg_red"
+            app:layout_constraintTop_toBottomOf="@+id/txtShareQuestInCorr">
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Incorrect!"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgCatAns" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtQueInCorr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="start"
+                android:textColor="@color/white"
+                android:text="Want a second chance?"
+                android:textSize="@dimen/_13sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_80sdp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constarintUseHeart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imgBackgroudHeart"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:background="@drawable/bonus_item_bg"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <ImageView
+                            android:id="@+id/imgHeartIn"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            app:layout_constraintStart_toStartOf="@id/imgBackgroudHeart"
+                            app:layout_constraintTop_toTopOf="@id/imgBackgroudHeart"
+                            app:layout_constraintBottom_toBottomOf="@id/imgBackgroudHeart"
+                            android:src="@drawable/heart"/>
+
+                        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                            android:id="@+id/txtdrugtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Use"
+                            android:textColor="@color/rose_pink"
+                            android:textSize="@dimen/_13sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/imgBackgroudHeart"
+                            app:layout_constraintEnd_toEndOf="@+id/imgBackgroudHeart"
+                            app:layout_constraintHorizontal_bias="0.30"
+                            app:layout_constraintStart_toEndOf="@id/imgHeartIn"
+                            app:layout_constraintTop_toTopOf="@id/imgBackgroudHeart" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constarintUsePills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/imgBackgroudHeart2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:background="@drawable/bonus_item_bg"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <ImageView
+                            android:id="@+id/imgPillsIn"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            app:layout_constraintStart_toStartOf="@id/imgBackgroudHeart2"
+                            app:layout_constraintTop_toTopOf="@id/imgBackgroudHeart2"
+                            app:layout_constraintBottom_toBottomOf="@id/imgBackgroudHeart2"
+                            android:src="@drawable/pills"/>
+
+                        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Use"
+                            android:textColor="@color/rose_pink"
+                            android:textSize="@dimen/_13sdp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/imgBackgroudHeart2"
+                            app:layout_constraintEnd_toEndOf="@+id/imgBackgroudHeart2"
+                            app:layout_constraintHorizontal_bias="0.30"
+                            app:layout_constraintStart_toEndOf="@id/imgPillsIn"
+                            app:layout_constraintTop_toTopOf="@id/imgBackgroudHeart2" />
+
+
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+           <RelativeLayout
+               android:layout_width="@dimen/_80sdp"
+               android:layout_height="@dimen/_60sdp"
+               android:layout_marginStart="@dimen/_15sdp"
+               android:background="@drawable/bonus_item_bg">
+               <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Free\nReward"
+                   android:gravity="center"
+                   android:layout_centerInParent="true"
+                   android:textColor="@color/rose_pink"
+                   android:textSize="@dimen/_13sdp"
+                   android:textStyle="bold" />
+
+           </RelativeLayout>
+
+
+           <RelativeLayout
+               android:layout_width="@dimen/_80sdp"
+               android:layout_height="@dimen/_60sdp"
+               android:layout_marginStart="@dimen/_15sdp"
+               android:background="@drawable/bonus_item_bg">
+               <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Purchase\nPills"
+                   android:gravity="center"
+                   android:layout_centerInParent="true"
+                   android:textColor="@color/rose_pink"
+                   android:textSize="@dimen/_13sdp"
+                   android:textStyle="bold" />
+
+           </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.80"
+            app:layout_constraintTop_toBottomOf="@id/linearIncorrect">
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_yellow"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="End Game"
+                android:paddingBottom="@dimen/_10sdp"/>
+
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_yellow"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="Report Question"
+                android:paddingBottom="@dimen/_10sdp"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

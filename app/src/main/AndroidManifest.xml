@@ -15,16 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyCrack"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.view.QuestionActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".main.view.CongratulationActivity"/>
+        <activity
+            android:name=".main.view.IncorrectActivity"
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
+            android:name=".main.view.AnswerActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".main.view.QuestionActivity"></activity>
+        <activity
             android:name=".main.view.GotCategorySpinActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.view.EndGameActivity"
             android:screenOrientation="portrait" />
@@ -102,7 +105,12 @@
         <activity
             android:name=".main.view.splashActivities.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

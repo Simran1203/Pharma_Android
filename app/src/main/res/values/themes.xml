@@ -14,15 +14,25 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
-    </style>
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"></style>
 
-    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
-    </style>
+    <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"></style>
 
     <style name="circleImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
 
+    </style>
+
+    <style name="Theme.PharmacyCrack.Fullscreen" parent="Theme.PharmacyCrack">
+        <item name="android:actionBarStyle">@style/Widget.Theme.PharmacyCrack.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.PharmacyCrack.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
 </resources>
