@@ -208,7 +208,7 @@
             app:layout_constraintTop_toBottomOf="@id/txtFriends" />
 
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
-            android:id="@+id/txtSharePills"
+            android:id="@+id/txtSharePillsLeader"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
             android:layout_marginLeft="@dimen/_20sdp"

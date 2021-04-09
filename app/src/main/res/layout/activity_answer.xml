@@ -91,11 +91,13 @@
             android:orientation="vertical">
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtAns1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/btn_yellow"
                 android:gravity="start|center_vertical"
+                android:alpha="0.5"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
                 android:text="A)  topiramate"
@@ -104,6 +106,7 @@
                 android:textStyle="bold" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtAns2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -118,6 +121,7 @@
                 android:textStyle="bold" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtAns3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -132,6 +136,7 @@
                 android:textStyle="bold" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtAns4"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"

@@ -1,4 +1,4 @@
-package com.pharmacy.crack.main.view
+package com.pharmacy.crack.main.view.rewardsActivity
 
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +12,6 @@ import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.editTextBackground
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
-import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.activity_sign_up.constarintSignup
 import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
 
@@ -105,7 +103,7 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             }
         }
-        if(v==imgBackToolbarMultiColor){
+        if(v==imgBackQuest){
             super.onBackPressed()
         }
     }

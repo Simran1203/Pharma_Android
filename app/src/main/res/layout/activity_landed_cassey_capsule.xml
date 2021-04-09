@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/bg"
+    tools:context=".main.view.LandedCasseyCapsuleActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_30sdp">
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtLanded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You Landed On\nCasey Capsule"
+            android:gravity="center"
+            android:textColor="@color/wild_strawberry"
+            android:textSize="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/relCatLand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_30sdp"
+            app:cardCornerRadius="@dimen/_20sdp"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/rose_pink"
+            app:layout_constraintTop_toBottomOf="@id/txtLanded">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCatLand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                tools:listitem="@layout/row_catspin"
+                app:spanCount="3"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtStartGameLanded"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/clay_creek"
+            android:gravity="center"
+            android:text="Start Game"
+            android:background="@drawable/btn_default"
+            app:layout_constraintTop_toBottomOf="@id/relCatLand"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/relCatLand"
+            app:layout_constraintStart_toStartOf="@id/relCatLand"
+            app:layout_constraintVertical_bias="0.5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

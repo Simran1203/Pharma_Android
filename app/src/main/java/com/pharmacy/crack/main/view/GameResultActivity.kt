@@ -5,23 +5,24 @@ import android.os.Bundle
 import android.view.View
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
-import kotlinx.android.synthetic.main.activity_share.*
+import kotlinx.android.synthetic.main.toolbar.*
 
-class ShareActivity : AppCompatActivity(), View.OnClickListener {
+class GameResultActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
-        setContentView(R.layout.activity_share)
+        setContentView(R.layout.activity_game_result)
 
-        listner()
+        initAll()
     }
 
-    private fun listner() {
-        imgCloseShare.setOnClickListener(this)
+    private fun initAll() {
+        txtToolbar.setText("Game Result")
+        imgBackToolbar.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        if(v==imgCloseShare){
+        if(v==imgBackToolbar){
             super.onBackPressed()
         }
     }

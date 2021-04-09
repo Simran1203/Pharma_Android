@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
-import com.pharmacy.crack.main.ViewModel.LoginSignUpViewModels.LoginViewModel
 import com.pharmacy.crack.utils.AsteriskPasswordTransformationMethod
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen

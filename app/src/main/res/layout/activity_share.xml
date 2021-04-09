@@ -161,6 +161,7 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
+            android:id="@+id/imgCloseShare"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginTop="@dimen/_40sdp"

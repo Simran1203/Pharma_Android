@@ -1,10 +1,12 @@
 package com.pharmacy.crack.main.view.mainActivities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.LeaderBoardAdapter
+import com.pharmacy.crack.main.view.ShareActivity
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_leader_board.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -31,6 +33,7 @@ class LeaderBoardActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun clickListners() {
         imgBackToolbar.setOnClickListener(this)
+        txtSharePillsLeader.setOnClickListener(this)
     }
 
     private fun initAll() {
@@ -41,6 +44,9 @@ class LeaderBoardActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         if(v==imgBackToolbar){
             super.onBackPressed()
+        }
+        else if(v==txtSharePillsLeader){
+            startActivity(Intent(this,ShareActivity::class.java))
         }
     }
 }

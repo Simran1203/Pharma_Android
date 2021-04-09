@@ -8,11 +8,11 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
-import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
+import android.os.Handler
 import android.util.Base64
 import android.util.Log
 import android.util.TypedValue

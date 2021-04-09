@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.EndGameActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,6 +82,7 @@
             </LinearLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtFreeRewards"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -93,6 +95,7 @@
                 android:textStyle="bold" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtDrugStore"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -119,7 +122,7 @@
         </LinearLayout>
 
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
-            android:id="@+id/txtRandomOpp"
+            android:id="@+id/txtendGame"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:layout_margin="@dimen/_10sdp"

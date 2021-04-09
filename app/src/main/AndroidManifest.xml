@@ -14,17 +14,28 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyCrack"
+        android:name=".main.BaseApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.view.CongratulationActivity"/>
+        <activity android:name=".main.view.LandedCasseyCapsuleActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".main.view.CategorySpinActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".main.view.ReportQuestionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".main.view.GameResultActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".main.view.CongratulationActivity" />
         <activity
             android:name=".main.view.IncorrectActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".main.view.AnswerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.view.QuestionActivity"></activity>
+        <activity android:name=".main.view.QuestionActivity" />
         <activity
             android:name=".main.view.GotCategorySpinActivity"
             android:screenOrientation="portrait" />
@@ -32,7 +43,7 @@
             android:name=".main.view.EndGameActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".main.view.SubmitQuestionActivity"
+            android:name=".main.view.rewardsActivity.SubmitQuestionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
@@ -83,7 +94,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".main.view.mainActivities.DashboardActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name=".main.view.LoginSignUpActivity.StoryActivity"
             android:screenOrientation="portrait" />

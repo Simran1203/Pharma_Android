@@ -42,7 +42,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             if (hasFocus) {
                 hideKeyBoard(this)
             }
-
         }
 
     }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    tools:context=".main.view.ReportQuestionActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/consReportQue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingTop="@dimen/_30sdp"
+        android:paddingRight="@dimen/_20sdp"
+        android:paddingBottom="@dimen/_20sdp">
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Report a"
+            android:textColor="@color/limed_spruce"
+            android:textSize="@dimen/_30sdp"
+            app:layout_constraintBottom_toTopOf="@id/txtInfo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Question?"
+            android:textColor="@color/wild_strawberry"
+            android:textSize="@dimen/_30sdp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtNew" />
+
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Category"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtInfo" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtCatAns"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_14sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:text="Neurology &amp; Psychology\nasaddsads"
+            android:textColor="@color/desert"
+            app:layout_constraintTop_toBottomOf="@id/txtCat" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtQuest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Question"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtCatAns" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtQuestAns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+            android:padding="@dimen/_10sdp"
+            android:text=""
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/desert"
+            app:layout_constraintTop_toBottomOf="@id/txtQuest" />
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtreportQue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Reason for reporting? (250 words max.)"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtQuestAns" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edtReportTextInput"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_220sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:boxCornerRadiusTopStart="@dimen/_10sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+            app:boxStrokeColor="@color/wild_strawberry"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeWidth="1dp"
+            app:boxBackgroundColor="@color/name"
+            app:layout_constraintTop_toBottomOf="@id/txtreportQue">
+
+            <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                android:id="@+id/edtReportAns"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                android:textCursorDrawable="@drawable/cursor_edit"
+                android:textColor="@color/desert" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtSubmitReportQue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/btn_default"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Submit"
+            android:textColor="@color/clay_creek"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.8"
+            app:layout_constraintTop_toBottomOf="@id/edtReportTextInput" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

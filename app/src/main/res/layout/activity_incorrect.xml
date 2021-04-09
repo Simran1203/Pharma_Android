@@ -286,6 +286,7 @@
             app:layout_constraintTop_toBottomOf="@id/linearIncorrect">
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtendGame"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginEnd="@dimen/_2sdp"
@@ -298,6 +299,7 @@
 
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtReportQuest"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginStart="@dimen/_2sdp"

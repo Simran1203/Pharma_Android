@@ -1,18 +1,19 @@
 package com.pharmacy.crack.main.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.crack.R
-import com.pharmacy.crack.main.view.GameActivities.TwoPlayerBattleActivity
+import com.pharmacy.crack.main.view.GameActivities.SelectOpponentActivity.Companion.selectedOpponent
 import kotlinx.android.synthetic.main.row_friends.view.*
-import kotlinx.android.synthetic.main.row_turn.view.*
-import kotlinx.android.synthetic.main.row_turn.view.txtTurnName
 
-class FriendsAdapter(private var context : Context, private var list: ArrayList<String>) :
+class FriendsAdapter(
+    private var context: Context,
+    private var list: ArrayList<String>,
+    val onClick:(position:Int)-> Unit
+) :
     RecyclerView.Adapter<FriendsAdapter.FriendsHolder>(){
 
     inner class FriendsHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -25,8 +26,13 @@ class FriendsAdapter(private var context : Context, private var list: ArrayList<
         holder.itemView.txtFriends.text = list[position]
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context,TwoPlayerBattleActivity::class.java))
+            onClick(position)
         }
+            if(selectedOpponent==position){
+                holder.itemView.imgCheck.visibility = View.VISIBLE
+            }else{
+                holder.itemView.imgCheck.visibility = View.GONE
+            }
     }
 
     override fun getItemCount(): Int {

@@ -17,7 +17,7 @@
             android:id="@+id/txtDashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:text="Dashboard"
             android:textColor="@color/wild_strawberry"
             android:textSize="@dimen/_30sdp"

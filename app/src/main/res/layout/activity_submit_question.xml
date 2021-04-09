@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:fitsSystemWindows="true"
-    tools:context=".main.view.SubmitQuestionActivity">
+    tools:context=".main.view.rewardsActivity.SubmitQuestionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintQuest"
