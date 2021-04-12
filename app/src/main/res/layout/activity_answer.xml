@@ -74,7 +74,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="start"
                 android:textColor="@color/solid_black"
-                android:text="Choose the best preventive treatment option for a 23 year old female suffering from chronic migraines &amp; obesity"
+                android:text=""
                 android:textSize="@dimen/_13sdp"
                 android:layout_marginTop="@dimen/_20sdp"/>
 
@@ -100,7 +100,7 @@
                 android:alpha="0.5"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:text="A)  topiramate"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -112,10 +112,10 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/btn_yellow"
                 android:gravity="start|center_vertical"
+                android:alpha="0.5"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:alpha="0.5"
-                android:text="B)  topiramate"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -127,10 +127,10 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/btn_yellow"
                 android:gravity="start|center_vertical"
+                android:alpha="0.5"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:alpha="0.5"
-                android:text="C)  Propanolol"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -142,10 +142,10 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/btn_yellow"
                 android:gravity="start|center_vertical"
+                android:alpha="0.5"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:alpha="0.5"
-                android:text="D)  Valproic acid"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />

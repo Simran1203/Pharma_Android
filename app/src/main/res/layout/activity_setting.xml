@@ -99,6 +99,7 @@
 
 
     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtTutorial"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
             android:paddingBottom="@dimen/_10sdp"

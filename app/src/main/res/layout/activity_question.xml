@@ -160,7 +160,7 @@
                 android:gravity="start|center_vertical"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:text="B)  topiramate"
+                android:text="B)  amitriptyline"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -174,7 +174,7 @@
                 android:gravity="start|center_vertical"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:text="C)  Propanolol"
+                android:text="C)  propanolol"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
@@ -188,7 +188,7 @@
                 android:gravity="start|center_vertical"
                 android:paddingBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_30sdp"
-                android:text="D)  Valproic acid"
+                android:text="D)  valproic acid"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />

@@ -11,10 +11,16 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 class QuestionActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var category:String
+    lateinit var listOption:ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_question)
+        listOption = ArrayList()
+        listOption.add(txtQue1.text.toString())
+        listOption.add(txtQue2.text.toString())
+        listOption.add(txtQue3.text.toString())
+        listOption.add(txtQue4.text.toString())
 
         category = intent.getStringExtra("cat").toString()
         txtCategory.text = category
@@ -35,19 +41,27 @@ class QuestionActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         if(v==txtQue1){
             startActivity(Intent(this,AnswerActivity::class.java)
-                .putExtra("option",1))
+                .putExtra("optionNo",1)
+                .putExtra("que",txtQue.text.toString())
+                .putStringArrayListExtra("option",listOption))
         }
         else if(v==txtQue2){
             startActivity(Intent(this,AnswerActivity::class.java)
-                .putExtra("option",2))
+                .putExtra("optionNo",2)
+                .putExtra("que",txtQue.text.toString())
+                .putStringArrayListExtra("option",listOption))
         }
         else if(v==txtQue3){
             startActivity(Intent(this,AnswerActivity::class.java)
-                .putExtra("option",3))
+                .putExtra("optionNo",3)
+                .putExtra("que",txtQue.text.toString())
+                .putStringArrayListExtra("option",listOption))
         }
         else if(v==txtQue4){
             startActivity(Intent(this,AnswerActivity::class.java)
-                .putExtra("option",4))
+                .putExtra("optionNo",4)
+                .putExtra("que",txtQue.text.toString())
+                .putStringArrayListExtra("option",listOption))
         }
     }
 }
