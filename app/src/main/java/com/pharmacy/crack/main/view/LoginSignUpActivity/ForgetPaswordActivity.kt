@@ -10,6 +10,7 @@ import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
     lateinit var dialogForget : Dialog
     lateinit var txtForgotSubmitDialog : RegularTextView
-    lateinit var txtEmailDialog : SemiBoldTextView
+    lateinit var txtEmailDialog : RegularTextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -56,16 +57,21 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
 
     override fun onClick(v: View?) {
         if(v==txtSubmit){
-            if(edtEmailForget.getText().toString().isEmpty()){
-                edtEmailForget.setError("Email Address can't be blank")
-                edtEmailForget.requestFocus()
+
+            if(edtEmailForget.getText().toString().trim().isEmpty()){
+                Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
+                edtEmailForget.text?.clear()
             }
-            else if(!(Patterns.EMAIL_ADDRESS.matcher(edtEmailForget.getText().toString()).matches())){
-                edtEmailForget.setError("Not a Valid Email Address")
-                edtEmailForget.requestFocus()
+            else if(!(Patterns.EMAIL_ADDRESS.matcher(edtEmailForget.getText().toString().trim()).matches())){
+                Toast.makeText(this, "Please enter valid Email Address", Toast.LENGTH_SHORT).show()
+            }
+           else if(edtEmailForget.getText().toString().startsWith(" ")){
+                Toast.makeText(this, "Please enter Email valid Address.", Toast.LENGTH_SHORT).show()
             }
             else{
-                txtEmailDialog.text = edtEmailForget.getText().toString()
+                val emailEnd = edtEmailForget.getText().toString().split("@").toTypedArray()
+                val emailStart = edtEmailForget.getText().toString()[0]
+                txtEmailDialog.text = emailStart+"...@"+emailEnd[1]
                 dialogForget.show()
             }
 

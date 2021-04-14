@@ -15,4 +15,17 @@
     </style>
 
 
+    <style name="StyledTilEditTextTheme">
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:singleLine">true</item>
+        <item name="colorControlNormal">@color/dove_grey</item>
+        <item name="colorControlActivated">@color/wild_strawberry</item>
+        <item name="android:textColorPrimary">@color/desert</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
+    </style>
+
+    <style name="StyledTilEditText">
+        <item name="android:theme">@style/StyledTilEditTextTheme</item>
+        <item name="android:paddingTop">4dp</item>
+    </style>
 </resources>

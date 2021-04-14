@@ -6,6 +6,9 @@
     <string name="mediumbold_font">BebasNeue Bold.ttf</string>
     <string name="hardbold_font">Britannic Bold Bold.ttf</string>
 
+
+    <string name="term_condition">By clicking on the Next button, you agree to our <u><a href="">Terms &amp; Conditions</a></u>.</string>
+
     <string name="new_rx">New Rx</string>
     <string name="pharmacology">Pharmacology</string>
     <string name="fun_facts">Fun Facts</string>
@@ -20,8 +23,8 @@
     <string name="password_reset_email_sent">Password Reset Email Sent</string>
     <string name="an_email_has_been_sent_to_your_registered_email_address">An email has been sent to your registered email address</string>
     <string name="new_user">New User</string>
-    <string name="full_name">Full Name</string>
-    <string name="rules_objectives">Rules/Objectives</string>
+    <string name="full_name">Full Name*</string>
+    <string name="rules_objectives">Rules/Objective</string>
     <string name="game_objective_is_to_achieve_an_overall_drug_iq_of_guru"> Game objective is to achieve an Overall Drug IQ of Guru</string>
     <string name="answer_3_correct_answers_in_each_category_to_advance_to_the_next_drug_iq_level_in_that_category"> Answer 3 correct answers in each category to advance to the next Drug IQ level in that category</string>
     <string name="your_overall_drug_iq_is_the_combined_lifetime_score_of_all_categories"> Your Overall Drug IQ is the combined lifetime score of all categories</string>

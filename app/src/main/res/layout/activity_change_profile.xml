@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusableInTouchMode="true"
-        android:paddingLeft="@dimen/_20sdp"
         android:paddingRight="@dimen/_20sdp"
         android:paddingBottom="@dimen/_10sdp">
 
@@ -29,6 +28,7 @@
             android:id="@+id/relProfilr"
             android:layout_width="@dimen/_140sdp"
             android:layout_height="@dimen/_140sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -58,24 +58,35 @@
        android:id="@+id/linearCurrentUserName"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
+       android:layout_marginStart="@dimen/_20sdp"
        android:layout_marginTop="@dimen/_10sdp"
        app:layout_constraintTop_toBottomOf="@id/relProfilr"
        android:orientation="vertical">
 
-       <com.pharmacy.crack.utils.viewUtils.RegularTextView
-           android:id="@+id/txtFullName"
-           android:layout_width="wrap_content"
+       <LinearLayout
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_marginTop="@dimen/_15sdp"
            android:layout_marginLeft="@dimen/_10sdp"
-           android:drawableLeft="@drawable/user_icon_drawable"
-           android:gravity="center_vertical"
-           android:drawablePadding="@dimen/_15sdp"
-           android:text="Current User-Name"
-           android:textColor="@color/solid_black"
-           android:textSize="@dimen/_12sdp"
-           app:layout_constraintStart_toStartOf="parent"
-           app:layout_constraintTop_toBottomOf="@id/txtInfo" />
+           android:layout_marginTop="@dimen/_15sdp"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/user"/>
+           <com.pharmacy.crack.utils.viewUtils.RegularTextView
+               android:id="@+id/txtFullName"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_marginStart="@dimen/_15sdp"
+               android:text="Current User-Name"
+               android:textColor="@color/solid_black"
+               android:textSize="@dimen/_12sdp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/txtInfo" />
+       </LinearLayout>
+
 
        <com.google.android.material.textfield.TextInputLayout
            android:id="@+id/edtPasswordTextInput"
@@ -106,21 +117,34 @@
        android:id="@+id/linearNewUserName"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
+       android:layout_marginStart="@dimen/_20sdp"
        app:layout_constraintTop_toBottomOf="@id/linearCurrentUserName"
        android:orientation="vertical">
 
-       <com.pharmacy.crack.utils.viewUtils.RegularTextView
-           android:id="@+id/txtNewName"
-           android:layout_width="wrap_content"
+       <LinearLayout
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_marginTop="@dimen/_15sdp"
            android:layout_marginLeft="@dimen/_10sdp"
-           android:drawableLeft="@drawable/user_icon_drawable"
-           android:gravity="center_vertical"
-           android:drawablePadding="@dimen/_15sdp"
-           android:text="New User-Name"
-           android:textColor="@color/solid_black"
-           android:textSize="@dimen/_12sdp" />
+           android:layout_marginTop="@dimen/_15sdp"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/user"/>
+           <com.pharmacy.crack.utils.viewUtils.RegularTextView
+               android:id="@+id/txtFullName"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:gravity="center_vertical"
+               android:layout_marginStart="@dimen/_15sdp"
+               android:text="New User-Name"
+               android:textColor="@color/solid_black"
+               android:textSize="@dimen/_12sdp"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/txtInfo" />
+       </LinearLayout>
+
 
        <com.google.android.material.textfield.TextInputLayout
            android:layout_width="match_parent"
@@ -154,6 +178,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:orientation="vertical"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:background="@drawable/match_histroy_bg"
@@ -248,7 +273,7 @@
             app:layout_constraintTop_toBottomOf="@id/linearMatchHistory"
             android:paddingBottom="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_40sdp"
             android:textSize="@dimen/_15sdp"
             android:textColor="@color/clay_creek"
             android:gravity="center"

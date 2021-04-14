@@ -1,22 +1,16 @@
 package com.pharmacy.crack.main.view.mainActivities
 
 import android.content.Intent
-import android.content.res.Resources
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.DatePicker
-import android.widget.DatePicker.OnDateChangedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.SettingActivities.ChangeProfileActivity
 import com.pharmacy.crack.main.view.SettingActivities.EmailSupportActivity
-import com.pharmacy.crack.main.view.TutorialScreenActivity
+import com.pharmacy.crack.main.view.SettingActivities.TutorialScreenActivity
+import com.pharmacy.crack.main.view.TermsConditionActivity
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_setting.*
-import kotlinx.android.synthetic.main.activity_sign_up.view.*
-import java.text.DateFormat
 
 
 class SettingActivity : AppCompatActivity(),View.OnClickListener {
@@ -29,12 +23,10 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
         txtChangeProfile.setOnClickListener(this)
         txtEmaiSupport.setOnClickListener(this)
         txtTutorial.setOnClickListener(this)
+        txtTermsCondition.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        if(v==imgBackSetting){
-            super.onBackPressed()
-        }
         if(v==txtChangeProfile){
             startActivity(Intent(this,ChangeProfileActivity::class.java))
         }
@@ -42,7 +34,13 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
             startActivity(Intent(this,EmailSupportActivity::class.java))
         }
         if(v==txtTutorial){
-            startActivity(Intent(this,TutorialScreenActivity::class.java))
+            startActivity(Intent(this, TutorialScreenActivity::class.java))
+        }
+        if(v==txtTermsCondition){
+            startActivity(Intent(this, TermsConditionActivity::class.java))
+        }
+        if(v==imgBackSetting){
+            super.onBackPressed()
         }
     }
 

@@ -1,4 +1,4 @@
-package com.pharmacy.crack.main.view
+package com.pharmacy.crack.main.view.SettingActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

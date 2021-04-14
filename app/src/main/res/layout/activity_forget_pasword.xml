@@ -97,12 +97,37 @@
                 android:inputType="textEmailAddress"
                 android:maxLength="25"/>
 
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_55sdp"-->
+<!--                app:hintEnabled="false"-->
+<!--                style="@style/StyledTilEditText"-->
+<!--                app:boxStrokeColor="@color/wild_strawberry"-->
+<!--                android:layout_marginTop="@dimen/_5sdp">-->
+
+<!--                <com.pharmacy.crack.utils.viewUtils.RegularEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:hint="@string/xyz_gmail_com"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:textCursorDrawable="@drawable/cursor_edit"-->
+<!--                    android:drawablePadding="@dimen/_10sdp"-->
+<!--                    android:paddingStart="0dp"-->
+<!--                    android:textSize="@dimen/_14sdp"-->
+<!--                    android:inputType="textEmailAddress"-->
+
+<!--                    android:maxLength="25"-->
+<!--                    android:drawableStart="@drawable/email" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+
         </LinearLayout>
 
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtSubmit"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_60sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintStart_toStartOf="@id/linearCard"
             app:layout_constraintEnd_toEndOf="@id/linearCard"

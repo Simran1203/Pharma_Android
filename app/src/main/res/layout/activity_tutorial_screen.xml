@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/constraintTutorial"
     android:background="@drawable/tutorial_setting_screen"
-    tools:context=".main.view.TutorialScreenActivity">
+    tools:context=".main.view.SettingActivities.TutorialScreenActivity">
 
     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
         android:id="@+id/txtSkipTutorial"

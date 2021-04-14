@@ -1,30 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingEnd="@dimen/_10sdp"
+    android:background="#70000000"
+    android:id="@+id/consDasDialog"
+    android:clickable="true"
     android:paddingStart="@dimen/_10sdp"
-    android:background="#90000000">
+    android:paddingEnd="@dimen/_10sdp"
+    android:focusable="true">
 
     <ImageView
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
+        android:src="@drawable/cassy"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.35"
-        android:src="@drawable/cassy"/>
+        app:layout_constraintVertical_bias="0.35" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.30"
         android:layout_marginStart="@dimen/_70sdp"
-        android:background="@drawable/chatbox"/>
+        android:background="@drawable/chatbox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.30">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/imgDashTutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/fifty_fifty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.34"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:id="@+id/txtHeadDashTutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:text="50/50"
+                android:textColor="@color/wild_strawberry"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/imgDashTutorial"
+                app:layout_constraintStart_toEndOf="@id/imgDashTutorial"
+                app:layout_constraintTop_toTopOf="@id/imgDashTutorial" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/imgDescDashTutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="You can eliminate 2 wrong\n answer using this power."
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgDashTutorial" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

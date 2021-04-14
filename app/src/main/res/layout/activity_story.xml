@@ -202,7 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_40sdp"
             android:gravity="start"
-            android:text="Skip"
+            android:text="Start"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             app:layout_constraintRight_toRightOf="parent"

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.relMonth
 import kotlinx.android.synthetic.main.toolbar.*
 
-class ChangeProfileActivity : AppCompatActivity() {
+class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -21,19 +21,25 @@ class ChangeProfileActivity : AppCompatActivity() {
 
         initAll()
 
+        imgBackToolbar.setOnClickListener(this)
     }
 
     private fun initAll() {
-        imgBackToolbar.visibility = View.GONE
         txtToolbar.setText("Change Profile")
 
 
-        constarintProfile.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
+        constarintProfile.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
 
-        })
+        }
 
+    }
+
+    override fun onClick(v: View?) {
+        if(v==imgBackToolbar){
+            super.onBackPressed()
+        }
     }
 }

@@ -2,27 +2,31 @@ package com.pharmacy.crack.utils
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
-import android.os.Handler
 import android.util.Base64
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
@@ -44,7 +48,26 @@ fun showToast(context: Context, message: String){
     var toast: Toast? = null
     toast?.cancel()
     toast = Toast.makeText(context, message, Toast.LENGTH_SHORT)
-    val tf = Typeface.createFromAsset(context.assets, "fonts/" + context.getString(R.string.regular_font))
+    val tf = Typeface.createFromAsset(
+        context.assets,
+        "fonts/" + context.getString(R.string.regular_font)
+    )
+    if(toast?.view != null) {
+        val toastLayout = toast.view as LinearLayout?
+        val toastText = toastLayout?.getChildAt(0) as TextView
+        toastText.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15f)
+        toastText.typeface = tf
+    }
+    toast?.show()
+}
+fun Context.showToasts(message: String){
+    var toast: Toast? = null
+    toast?.cancel()
+    toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+    val tf = Typeface.createFromAsset(
+        this.assets,
+        "fonts/" + this.getString(R.string.regular_font)
+    )
     if(toast?.view != null) {
         val toastLayout = toast.view as LinearLayout?
         val toastText = toastLayout?.getChildAt(0) as TextView
@@ -54,7 +77,23 @@ fun showToast(context: Context, message: String){
     toast?.show()
 }
 
-fun editTextBackground(v: View?,colors : String,stroke : String) {
+fun showProgress(context: Context): Dialog {
+    val dialog = Dialog(context)
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    dialog.getWindow()?.setBackgroundDrawable(
+        ColorDrawable(0)
+    )
+    dialog.setContentView(R.layout.dialog_progress)
+    val progressBar: ProgressBar = dialog.findViewById(R.id.progressBar)
+    progressBar.indeterminateDrawable.setColorFilter(
+        context.resources.getColor(R.color.wild_strawberry),
+        PorterDuff.Mode.MULTIPLY
+    )
+    dialog.setCancelable(false)
+    dialog.show()
+    return dialog
+}
+fun editTextBackground(v: View?, colors: String, stroke: String) {
 
     val border = GradientDrawable()
     border.setColor(Color.parseColor(colors))
@@ -68,15 +107,18 @@ fun editTextBackground(v: View?,colors : String,stroke : String) {
     }
 }
 
-fun drawableColor(context: Context,v: View?,colors : String){
+fun drawableColor(context: Context, v: View?, colors: String){
     val unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.custom_progress_bar)
     val wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable!!)
     DrawableCompat.setTint(wrappedDrawable, Color.parseColor(colors))
 }
 
-fun fonts(v : RegularEditText,context: Context){
-    var tf: Typeface? = Typeface.createFromAsset(context.assets, "fonts/" + context.getString(
-        R.string.regular_font))
+fun fonts(v: RegularEditText, context: Context){
+    var tf: Typeface? = Typeface.createFromAsset(
+        context.assets, "fonts/" + context.getString(
+            R.string.regular_font
+        )
+    )
 
     v.setTypeface(tf)
 
@@ -107,8 +149,8 @@ fun setSystemBarTheme(pActivity: Activity, pIsDark: Boolean) {
 fun getRootDirPath(context: Context): String {
     return if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()) {
         val file: File = ContextCompat.getExternalFilesDirs(
-                context.applicationContext,
-                null
+            context.applicationContext,
+            null
         )[0]
         file.absolutePath
     } else {
@@ -146,8 +188,8 @@ fun getAppVersionName(context: Context): String {
             .getPackageInfo(context.packageName, 0).versionName
     } catch (e: PackageManager.NameNotFoundException) {
         Log.e(
-                TAG,
-                "Error :" + e.message + " at line number : " + e.stackTrace[2].lineNumber
+            TAG,
+            "Error :" + e.message + " at line number : " + e.stackTrace[2].lineNumber
         )
     }
     return ""
@@ -159,7 +201,7 @@ fun hideKeyBoard(context: Context) {
     if ((context as Activity).currentFocus != null && context.currentFocus!!
             .windowToken != null) {
         manager.hideSoftInputFromWindow(
-                context.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
+            context.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS
         )
     }
 }
@@ -205,7 +247,8 @@ fun openPlayStoreLink(context: Context, url: String?) {
 fun getKeyHash(context: Context) {
     try {
         val info = context.packageManager.getPackageInfo(
-                context.packageName, PackageManager.GET_SIGNATURES)
+            context.packageName, PackageManager.GET_SIGNATURES
+        )
         //4B:D4:52:55:B6:2F:95:6D:54:16:B9:66:12:1D:EF:41:81:FC:B1:CE
         for (signature in info.signatures) {
             val md = MessageDigest.getInstance("SHA")
@@ -228,9 +271,9 @@ fun getKeyHash(context: Context) {
 
 fun rotateAnimation(imageView: View) {
     val rotate = RotateAnimation(
-            0f, 360f,
-            Animation.RELATIVE_TO_SELF, 0.5f,
-            Animation.RELATIVE_TO_SELF, 0.5f
+        0f, 360f,
+        Animation.RELATIVE_TO_SELF, 0.5f,
+        Animation.RELATIVE_TO_SELF, 0.5f
     )
     rotate.duration = 30000
     rotate.interpolator = LinearInterpolator()
@@ -247,10 +290,11 @@ fun showSnackBar(view: View?, message: String?) {
 
 
 fun showCustomSnackBar(
-        view: View?,
-        initialMsg: String?,
-        actionTxt: String?,
-        finalMsg: String?) {
+    view: View?,
+    initialMsg: String?,
+    actionTxt: String?,
+    finalMsg: String?
+) {
     val snackbar = Snackbar.make(view!!, initialMsg!!, Snackbar.LENGTH_LONG)
         .setAction(actionTxt) { view ->
             val snackbar1 = Snackbar.make(view, finalMsg!!, Snackbar.LENGTH_SHORT)
@@ -283,10 +327,14 @@ fun shareApp(context: Context, subject: String?, extraText: String, playStoreLin
 
 
 fun applyFontsToTextInputLayout(
-        context: Context,
-        textInputLayouts: Array<TextInputLayout>) {
+    context: Context,
+    textInputLayouts: Array<TextInputLayout>
+) {
     for (textInputLayout in textInputLayouts) {
-        textInputLayout.typeface = Typeface.createFromAsset(context.assets, "fonts/WorkSans-Medium.ttf")
+        textInputLayout.typeface = Typeface.createFromAsset(
+            context.assets,
+            "fonts/WorkSans-Medium.ttf"
+        )
     }
 
 }
