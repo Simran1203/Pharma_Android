@@ -9,6 +9,7 @@ import com.pharmacy.crack.main.view.CategorySpinActivity
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_two_player_battle.*
 import kotlinx.android.synthetic.main.toolbar.*
+import java.util.*
 
 class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,7 @@ class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun initAll() {
         imgBackToolbar.visibility = View.GONE
-        txtToolbar.text = "2 Player Battle"
+        txtToolbar.text = "2 Player Battle".toUpperCase(Locale.ROOT)
 
         txtStartGame.setOnClickListener(this)
     }

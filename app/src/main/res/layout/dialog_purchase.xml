@@ -49,7 +49,7 @@
                       android:layout_width="@dimen/_60sdp"
                       android:layout_height="@dimen/_60sdp"
                       android:layout_centerHorizontal="true"
-                      android:src="@drawable/fifty_fifty"/>
+                      android:src="@drawable/fifty_fifty_big"/>
               </RelativeLayout>
 
               <RelativeLayout

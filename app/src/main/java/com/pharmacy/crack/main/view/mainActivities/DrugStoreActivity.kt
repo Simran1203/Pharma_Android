@@ -26,7 +26,8 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         setContentView(R.layout.activity_drug_store)
 
         imgBackToolbarMultiColor.setOnClickListener(this)
-        constarint1Life.setOnClickListener(this)
+        constraint2.setOnClickListener(this)
+        constraint3.setOnClickListener(this)
 
         initAll()
 
@@ -59,7 +60,10 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if(v== constarint1Life){
+        if(v== constraint2){
+            dialogPurchase.show()
+        }
+        if(v== constraint3){
             dialogPurchase.show()
         }
         if(v== imgBackToolbarMultiColor){

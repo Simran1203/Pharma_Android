@@ -11,7 +11,7 @@
 
     <style name="MyRatingBar" parent="Widget.AppCompat.RatingBar">
         <item name="colorAccent">@color/name</item>
-        <item name="android:colorControlNormal">@color/dove_grey</item>
+        <item name="android:colorControlNormal">@color/light_gray</item>
     </style>
 
 

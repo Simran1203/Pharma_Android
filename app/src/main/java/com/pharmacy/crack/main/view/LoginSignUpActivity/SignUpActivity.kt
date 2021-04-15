@@ -175,7 +175,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
                 }
 
-                Log.d("hitStateApi:", listStateModel.size.toString())
+//                Log.d("hitStateApi:", listStateModel.size.toString())
             }
         }
     }

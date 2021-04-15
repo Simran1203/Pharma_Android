@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.AnswerActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/_20sdp"
-        android:paddingBottom="@dimen/_20sdp">
+        android:paddingTop="@dimen/_40sdp"
+        android:paddingBottom="@dimen/_35sdp">
 
         <ImageView
             android:id="@+id/imgCatAns"
@@ -154,13 +155,13 @@
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtShareQuest"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_height="@dimen/_70sdp"
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/btn_default"
             android:gravity="center"
-            android:paddingBottom="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:text="Share a question\nFree 250 Pills"
             android:textColor="@color/clay_creek"
             android:textSize="@dimen/_15sdp"

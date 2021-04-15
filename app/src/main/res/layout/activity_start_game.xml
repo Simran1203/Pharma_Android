@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/_30sdp">
+        android:paddingBottom="@dimen/_35sdp">
 
         <include
             android:id="@+id/toolbar"
@@ -84,7 +84,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="Your turn"
+                    android:text="Your Turn"
                     android:textColor="@color/wild_strawberry"
                     android:textSize="@dimen/_25sdp"/>
 

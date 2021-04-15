@@ -27,6 +27,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var imgDescDashTutorial: RegularTextView
     lateinit var consDasDialog: ConstraintLayout
     private var doubleBackToExitPressedOnce = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -42,6 +43,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         imgClock.setOnClickListener(this)
         imgSpin.setOnClickListener(this)
         imgLive.setOnClickListener(this)
+        imgPills.setOnClickListener(this)
 
         dialogTutorial = Dialog(
             this@DashboardActivity,
@@ -113,8 +115,15 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         }
         if (v == imgLive) {
             imgDashTutorial.setImageResource(R.drawable.lives)
-            txtHeadDashTutorial.text = "lives"
-            imgDescDashTutorial.text = "You can use Lives to\ncontinue the game after a\nwrong answer"
+            txtHeadDashTutorial.text = "Lives"
+            imgDescDashTutorial.text = "You can use Lives to\ncontinue the game after a\nwrong answer."
+            dialogTutorial.show()
+
+        }
+        if (v == imgPills) {
+            imgDashTutorial.setImageResource(R.drawable.pills)
+            txtHeadDashTutorial.text = "Pills"
+            imgDescDashTutorial.text = "You can use Pills to\npurchase all soft\nCurrency i.e respin, lives,\ntime stop & 50/50."
             dialogTutorial.show()
 
         }

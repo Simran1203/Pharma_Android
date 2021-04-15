@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    android:fitsSystemWindows="true"
     tools:context=".main.view.rewardsActivity.SubmitQuestionActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:fitsSystemWindows="true"
+        android:fillViewport="true">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintQuest"
@@ -15,12 +23,14 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:paddingBottom="@dimen/_10sdp">
+        android:paddingBottom="@dimen/_90sdp">
 
         <LinearLayout
             android:id="@+id/toolbarM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:paddingLeft="@dimen/_15sdp"
             android:paddingRight="@dimen/_15sdp"
             android:paddingTop="@dimen/_30sdp"
@@ -117,7 +127,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="Type Questions Here.."
+                android:text="Type Question Here.."
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_14sdp" />
 
@@ -139,8 +149,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="start"
+                    android:maxLength="200"
+                    android:scrollbars="vertical"
+                    android:inputType="textMultiLine|textCapSentences"
                     android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/desert" />
+                    android:textColor="@color/textview_selector" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -179,8 +192,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
+                    android:inputType="textCapSentences"
                     android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/desert" />
+                    android:textColor="@color/textview_selector"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -209,8 +223,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
+                    android:inputType="textCapSentences"
                     android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/desert" />
+                    android:textColor="@color/textview_selector" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -239,8 +254,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
+                    android:inputType="textCapSentences"
                     android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/desert" />
+                    android:textColor="@color/textview_selector" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -269,24 +285,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
+                    android:inputType="textCapSentences"
                     android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/desert" />
+                    android:textColor="@color/textview_selector" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:id="@+id/txtSubmitQueston"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_gravity="bottom|center"
-                android:layout_margin="@dimen/_20sdp"
-                android:background="@drawable/btn_default"
-                android:gravity="center"
-                android:paddingBottom="@dimen/_5sdp"
-                android:text="Submit Earn 250 Pills"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/dove_grey"
-                android:textSize="@dimen/_14sdp" />
+<!--            <com.pharmacy.crack.utils.viewUtils.RegularTextView-->
+<!--                android:id="@+id/txtSubmitQueston"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="@dimen/_60sdp"-->
+<!--                android:layout_gravity="bottom|center"-->
+<!--                android:layout_margin="@dimen/_20sdp"-->
+<!--                android:background="@drawable/btn_default"-->
+<!--                android:gravity="center"-->
+<!--                android:paddingBottom="@dimen/_5sdp"-->
+<!--                android:text="Submit Earn 250 Pills"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/dove_grey"-->
+<!--                android:textSize="@dimen/_14sdp" />-->
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+        android:id="@+id/txtSubmitQueston"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:textSize="@dimen/_15sdp"
+        android:background="@drawable/btn_default"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_5sdp"
+        android:scaleY="0.9"
+        android:text="Submit Earn 250 Pills"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/dove_grey" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

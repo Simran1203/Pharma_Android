@@ -14,7 +14,7 @@
         android:paddingStart="@dimen/_20sdp"
         android:paddingTop="@dimen/_40sdp"
         android:paddingEnd="@dimen/_20sdp"
-        android:paddingBottom="@dimen/_20sdp">
+        android:paddingBottom="@dimen/_35sdp">
 
         <ImageView
             android:id="@+id/imgDiseas"
@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtDeath"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

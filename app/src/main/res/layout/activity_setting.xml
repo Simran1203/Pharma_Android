@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:orientation="vertical"
+    android:paddingBottom="@dimen/_35sdp"
     tools:context=".main.view.mainActivities.SettingActivity">
 
 
@@ -123,7 +124,7 @@
         android:background="@drawable/btn_yellow"
         android:gravity="center"
         android:paddingBottom="@dimen/_10sdp"
-        android:text="terms &amp; Conditions"
+        android:text="Terms &amp; Conditions"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold" />

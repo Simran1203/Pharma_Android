@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
         android:id="@+id/txtCatSpin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

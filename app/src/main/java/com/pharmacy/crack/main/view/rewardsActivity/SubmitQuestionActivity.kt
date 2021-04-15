@@ -1,19 +1,22 @@
 package com.pharmacy.crack.main.view.rewardsActivity
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.editTextBackground
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
+
 
 class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
     var listCategory: ArrayList<String> = ArrayList()
@@ -35,6 +38,13 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
     private fun clickListner() {
         imgBackQuest.setOnClickListener(this)
         txtSubmitQueston.setOnClickListener(this)
+
+        edtTypeQue.movementMethod = ScrollingMovementMethod()
+        ScrollingMovementMethod.getInstance()
+        edtTypeQue.setOnTouchListener(OnTouchListener { v, event ->
+            edtTypeQue.parent.requestDisallowInterceptTouchEvent(true)
+            false
+        })
     }
 
     private fun initCategory() {
@@ -79,24 +89,24 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==txtSubmitQueston){
-            if(edtTypeQue.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Type Question Field", Toast.LENGTH_SHORT).show()
+            if(edtTypeQue.text.toString().length<20){
+                Toast.makeText(this, "Please enter 20 chars as minimum.", Toast.LENGTH_SHORT).show()
                 edtTypeQue.requestFocus()
             }
             else if(edtCorrectAns.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Correct Ans Field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter in Correct Ans Field.", Toast.LENGTH_SHORT).show()
                 edtCorrectAns.requestFocus()
             }
             else if(edtCorrectAns1.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Correct Ans01 Field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter in Wrong Ans 01 Field.", Toast.LENGTH_SHORT).show()
                 edtCorrectAns1.requestFocus()
             }
             else if(edtCorrectAns2.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Correct Ans02 Field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter in Wrong Ans 02 Field.", Toast.LENGTH_SHORT).show()
                 edtCorrectAns2.requestFocus()
             }
             else if(edtCorrectAns3.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Correct Ans03 Field", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter in Wrong Ans 03 Field.", Toast.LENGTH_SHORT).show()
                 edtCorrectAns3.requestFocus()
             }else{
                 hideKeyBoard(this)

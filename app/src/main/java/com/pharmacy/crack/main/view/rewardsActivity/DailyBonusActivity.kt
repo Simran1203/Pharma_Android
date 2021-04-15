@@ -35,7 +35,7 @@ class DailyBonusActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
-        txtToolbar.setText("DAILY BONUS")
+        txtToolbar.setText("Daily Bonus")
         dialogBonus = Dialog(this@DailyBonusActivity,android.R.style.Theme_Light)
         dialogBonus.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogBonus.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))

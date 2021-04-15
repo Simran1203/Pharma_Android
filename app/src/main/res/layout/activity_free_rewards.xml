@@ -112,7 +112,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Invite a Friend Earn 5000 Pills\nFor you and Your Friend"
+                android:text="Invite a Friend Earn 5000 Pills\nFor you &amp; Your Friend"
                 android:background="@drawable/btn_yellow"/>
 
 

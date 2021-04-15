@@ -78,7 +78,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:drawableLeft="@drawable/email"
                 android:textColorHint="@color/dove_grey"
-                android:textColor="@color/desert"
+                android:textColor="@color/textview_selector"
                 android:drawablePadding="@dimen/_10sdp"
                 android:inputType="textEmailAddress"
                 android:maxLength="25" />
@@ -103,7 +103,7 @@
                 android:singleLine="true"
                 android:textColorHint="@color/dove_grey"
                 android:maxLength="15"
-                android:textColor="@color/desert"/>
+                android:textColor="@color/textview_selector" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:id="@+id/txtLogin"

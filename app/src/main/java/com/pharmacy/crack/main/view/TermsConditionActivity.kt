@@ -7,6 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
+import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_terms_condition.*
 
 
@@ -14,17 +15,18 @@ class TermsConditionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val window: Window = window
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.setStatusBarColor(Color.YELLOW)
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            val window: Window = window
+//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//            window.setStatusBarColor(Color.YELLOW)
+//        }
+        setFullScreen(this)
         setContentView(R.layout.activity_terms_condition)
 
         webTerm.loadUrl("https://www.agicent.com/")
         webTerm.settings.setSupportZoom(true)
         webTerm.settings.javaScriptEnabled = true
 
-//        imgBackterms.setOnClickListener { super.onBackPressed() }
+        imgBackterms.setOnClickListener { super.onBackPressed() }
     }
 }

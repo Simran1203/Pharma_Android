@@ -4,25 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.LandedCasseyCapsuleActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/_30sdp">
+        android:paddingTop="@dimen/_40sdp">
+
         <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
             android:id="@+id/txtLanded"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You Landed On\nCasey Capsule"
             android:gravity="center"
+            android:text="You Landed On\nCasey Capsule"
             android:textColor="@color/wild_strawberry"
             android:textSize="@dimen/_30sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtOwnCat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Choose Own Category"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@id/txtLanded"
+            android:textColor="@color/solid_black"
+            android:textSize="@dimen/_22sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <com.google.android.material.card.MaterialCardView
@@ -31,18 +47,18 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_30sdp"
             app:cardCornerRadius="@dimen/_20sdp"
-            app:strokeWidth="@dimen/_1sdp"
+            app:layout_constraintTop_toBottomOf="@id/txtOwnCat"
             app:strokeColor="@color/rose_pink"
-            app:layout_constraintTop_toBottomOf="@id/txtLanded">
+            app:strokeWidth="@dimen/_1sdp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCatLand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
-                tools:listitem="@layout/row_catspin"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="3"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+                tools:listitem="@layout/row_catspin" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -51,22 +67,21 @@
             android:id="@+id/txtStartGameLanded"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_30sdp"
-            android:layout_marginEnd="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_5sdp"
-            android:textSize="@dimen/_15sdp"
-            android:textColor="@color/clay_creek"
-            android:gravity="center"
-            android:text="Start Game"
+            android:layout_marginEnd="@dimen/_40sdp"
+            android:layout_marginBottom="@dimen/_35sdp"
             android:background="@drawable/btn_default"
-            app:layout_constraintTop_toBottomOf="@id/relCatLand"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Start Game"
+            android:textColor="@color/clay_creek"
+            android:textSize="@dimen/_15sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/relCatLand"
             app:layout_constraintStart_toStartOf="@id/relCatLand"
-            app:layout_constraintVertical_bias="0.5"/>
+            app:layout_constraintTop_toBottomOf="@id/relCatLand"
+            app:layout_constraintVertical_bias="0.5" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -58,7 +58,9 @@ class QuestionActivity : AppCompatActivity(),View.OnClickListener {
                 .putStringArrayListExtra("option",listOption))
         }
         else if(v==txtQue4){
-            startActivity(Intent(this,AnswerActivity::class.java)
+             //////////////// if Question is wrong then go to Incorrect //////////
+
+            startActivity(Intent(this,IncorrectActivity::class.java)
                 .putExtra("optionNo",4)
                 .putExtra("que",txtQue.text.toString())
                 .putStringArrayListExtra("option",listOption))

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     android:fitsSystemWindows="true"
+    android:overScrollMode="always"
+    android:scrollbarStyle="insideInset"
     tools:context=".main.view.SettingActivities.EmailSupportActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +16,6 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusableInTouchMode="true"
-        android:paddingLeft="@dimen/_20sdp"
         android:paddingRight="@dimen/_20sdp"
         android:paddingBottom="@dimen/_10sdp">
 
@@ -32,6 +33,7 @@
             android:layout_width="@dimen/_180sdp"
             android:layout_height="@dimen/_180sdp"
             android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:src="@drawable/cassy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,21 +47,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             app:cardCornerRadius="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@id/imgCassey">
 
             <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                android:id="@+id/edtmessage"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:gravity="start"
                 android:paddingTop="@dimen/_5sdp"
                 android:paddingLeft="@dimen/_5sdp"
+                android:maxLength="500"
+                android:scrollbars="vertical"
+                android:inputType="textMultiLine|textCapSentences"
+                android:textColor="@color/textview_selector"
                 android:hint="Type Your Message Here"
                 android:background="@null"/>
         </androidx.cardview.widget.CardView>
 
 
                 <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                    android:id="@+id/txtSubmitContact"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_55sdp"
                     android:layout_marginTop="@dimen/_60sdp"
@@ -68,7 +77,7 @@
                     app:layout_constraintTop_toBottomOf="@id/cardMessage"
                     android:paddingBottom="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_30sdp"
                     android:textSize="@dimen/_15sdp"
                     android:textColor="@color/clay_creek"
                     android:gravity="center"

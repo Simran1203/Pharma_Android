@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.mainActivities.DrugStoreActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/_30sdp">
+        android:paddingBottom="@dimen/_35sdp">
 
         <include
             android:id="@+id/toolbarM"
@@ -25,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_290sdp"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_60sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/square_bg"
             app:layout_constraintTop_toBottomOf="@id/toolbarM" />
@@ -36,68 +37,61 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_25sdp"
             android:layout_marginEnd="@dimen/_25sdp"
-            app:layout_constraintBottom_toTopOf="@id/imgSquareBg"
-            app:layout_constraintStart_toStartOf="@id/imgSquareBg"
-            app:layout_constraintTop_toTopOf="@+id/imgSquareBg">
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarM"
+            app:layout_constraintEnd_toEndOf="@+id/imgSquareBg"
+            app:layout_constraintStart_toStartOf="@id/imgSquareBg">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constarint1Life"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bonus_item_bg"
+                android:paddingBottom="@dimen/_10sdp"
                 app:layout_constraintEnd_toStartOf="@+id/constraint2"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtdrugtitle1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@drawable/bonus_item_bg"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_10sdp"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:text="1 Life"
+                    android:textColor="@color/rose_pink"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                        android:id="@+id/txtdrugtitle1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:text="1 Life"
-                        android:textColor="@color/rose_pink"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/imgMainBonus1"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:src="@drawable/heart"
-                        app:layout_constraintEnd_toEndOf="@id/txtdrugtitle1"
-                        app:layout_constraintStart_toStartOf="@id/txtdrugtitle1"
-                        app:layout_constraintTop_toBottomOf="@id/txtdrugtitle1" />
+                <ImageView
+                    android:id="@+id/imgMainBonus1"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/heart"
+                    app:layout_constraintEnd_toEndOf="@id/txtdrugtitle1"
+                    app:layout_constraintStart_toStartOf="@id/txtdrugtitle1"
+                    app:layout_constraintTop_toBottomOf="@id/txtdrugtitle1" />
 
 
-                    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                        android:id="@+id/txtBonusDay1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:text="500 pills"
-                        android:textColor="@color/scorpion_grey"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@id/imgMainBonus1"
-                        app:layout_constraintStart_toStartOf="@id/imgMainBonus1"
-                        app:layout_constraintTop_toBottomOf="@id/imgMainBonus1" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtBonusDay1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text="500 pills"
+                    android:textColor="@color/scorpion_grey"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/imgMainBonus1"
+                    app:layout_constraintStart_toStartOf="@id/imgMainBonus1"
+                    app:layout_constraintTop_toBottomOf="@id/imgMainBonus1" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -105,114 +99,96 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint2"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/constarint1Life"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bonus_item_bg"
+                android:paddingBottom="@dimen/_15sdp"
                 app:layout_constraintEnd_toStartOf="@+id/constraint3"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/constarint1Life"
                 app:layout_constraintTop_toTopOf="@+id/constarint1Life">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtDrugtitle2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@drawable/bonus_item_bg"
-                    android:paddingBottom="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:gravity="center"
+                    android:text="Pro Version\nAll\nCategories"
+                    android:textColor="@color/rose_pink"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                        android:id="@+id/txtDrugtitle2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:gravity="center"
-                        android:text="Pro Version\nAll\nCategories"
-                        android:textColor="@color/rose_pink"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                        android:id="@+id/txtBonusDay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:text="$4.99"
-                        android:textColor="@color/scorpion_grey"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@id/txtDrugtitle2"
-                        app:layout_constraintStart_toStartOf="@id/txtDrugtitle2"
-                        app:layout_constraintTop_toBottomOf="@id/txtDrugtitle2" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtBonusDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="$4.99"
+                    android:textColor="@color/scorpion_grey"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/txtDrugtitle2"
+                    app:layout_constraintStart_toStartOf="@id/txtDrugtitle2"
+                    app:layout_constraintTop_toBottomOf="@id/txtDrugtitle2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint3"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@+id/constraint2"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bonus_item_bg"
+                android:paddingBottom="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/constraint2"
                 app:layout_constraintTop_toTopOf="@+id/constraint2">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtBonustitle3"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bonus_item_bg"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_10sdp"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:text="1000 Pills"
+                    android:textColor="@color/rose_pink"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgMainBonu3"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/pills"
+                    app:layout_constraintEnd_toEndOf="@id/txtBonustitle3"
+                    app:layout_constraintStart_toStartOf="@id/txtBonustitle3"
+                    app:layout_constraintTop_toBottomOf="@id/txtBonustitle3" />
 
 
-                    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                        android:id="@+id/txtBonustitle3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_7sdp"
-                        android:text="1000 Pills"
-                        android:textColor="@color/rose_pink"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                    android:id="@+id/txtBonusDay3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:text="$0.99"
+                    android:textColor="@color/scorpion_grey"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/imgMainBonu3"
+                    app:layout_constraintStart_toStartOf="@id/imgMainBonu3"
+                    app:layout_constraintTop_toBottomOf="@id/imgMainBonu3" />
 
-                    <ImageView
-                        android:id="@+id/imgMainBonu3"
-                        android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:src="@drawable/pills"
-                        app:layout_constraintEnd_toEndOf="@id/txtBonustitle3"
-                        app:layout_constraintStart_toStartOf="@id/txtBonustitle3"
-                        app:layout_constraintTop_toBottomOf="@id/txtBonustitle3" />
-
-
-                    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                        android:id="@+id/txtBonusDay3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_3sdp"
-                        android:text="$0.99"
-                        android:textColor="@color/scorpion_grey"
-                        android:textSize="@dimen/_13sdp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="@id/imgMainBonu3"
-                        app:layout_constraintStart_toStartOf="@id/imgMainBonu3"
-                        app:layout_constraintTop_toBottomOf="@id/imgMainBonu3" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -220,8 +196,11 @@
                 android:id="@+id/barrier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+               app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="constarint1Life,constraint2,constraint3" />
+                app:constraint_referenced_ids="constraint2,constarint1Life,constraint3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

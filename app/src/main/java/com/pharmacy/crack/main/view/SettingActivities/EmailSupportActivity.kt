@@ -2,24 +2,28 @@ package com.pharmacy.crack.main.view.SettingActivities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.showToasts
 import kotlinx.android.synthetic.main.activity_email_support.*
+import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class EmailSupportActivity : AppCompatActivity() {
+class EmailSupportActivity : AppCompatActivity(),View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_email_support)
         initAll()
 
+        txtSubmitContact.setOnClickListener(this)
     }
 
     private fun initAll() {
-        imgBackToolbar.visibility = View.GONE
+
         txtToolbar.setText("Contact Us")
 
         constantEmail.setOnFocusChangeListener { v, hasFocus ->
@@ -27,5 +31,27 @@ class EmailSupportActivity : AppCompatActivity() {
                     hideKeyBoard(this)
             }
         }
+        imgBackToolbar.setOnClickListener {
+            super.onBackPressed()
+        }
+
+        edtmessage.movementMethod = ScrollingMovementMethod()
+        ScrollingMovementMethod.getInstance()
+        edtmessage.setOnTouchListener(View.OnTouchListener { v, event ->
+            edtmessage.parent.requestDisallowInterceptTouchEvent(true)
+            false
+        })
     }
+
+    override fun onClick(v: View?) {
+        if(v==txtSubmitContact){
+            if(edtmessage.text.toString().isEmpty()){
+                showToasts("Please write something.")
+            }
+        }
+        if(v==imgBackToolbar){
+            imgBackToolbar.setOnClickListener(this)
+        }
+    }
+
 }

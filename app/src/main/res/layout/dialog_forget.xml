@@ -24,7 +24,7 @@
         android:background="@drawable/square_bg"
         android:orientation="vertical">
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/password_reset_email_sent"
