@@ -8,6 +8,7 @@ import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.ChooseGameTurnAdapter
 import com.pharmacy.crack.main.view.GameActivities.SoloActivity
 import com.pharmacy.crack.main.view.GameActivities.SelectOpponentActivity
+import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_start_game.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -49,9 +50,11 @@ class StartGameActivity : AppCompatActivity(),View.OnClickListener {
             super.onBackPressed()
         }
         if(v==txtSolo){
+            PrefHelper(this).gametype = "Solo"
             startActivity(Intent(this,SoloActivity::class.java))
         }
         if(v==txtTwoPlayer){
+            PrefHelper(this).gametype = "Battle"
             startActivity(Intent(this,SelectOpponentActivity::class.java))
         }
     }

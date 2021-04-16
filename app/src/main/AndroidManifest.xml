@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyCrack"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.view.TermsConditionActivity"></activity>
+        <activity android:name=".main.view.TermsConditionActivity"/>
         <activity android:name=".main.view.SettingActivities.TutorialScreenActivity" />
         <activity
             android:name=".main.view.TutorialActivity"
@@ -41,7 +41,9 @@
         <activity
             android:name=".main.view.AnswerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.view.QuestionActivity" />
+        <activity android:name=".main.view.QuestionActivity" >
+
+        </activity>
         <activity
             android:name=".main.view.GotCategorySpinActivity"
             android:screenOrientation="portrait" />
@@ -110,7 +112,9 @@
         </activity>
         <activity
             android:name=".main.view.LoginSignUpActivity.StoryActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity
             android:name=".main.view.LoginSignUpActivity.SignUpActivity"
             android:screenOrientation="portrait"

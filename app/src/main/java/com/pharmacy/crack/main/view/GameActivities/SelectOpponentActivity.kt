@@ -1,9 +1,12 @@
-package com.pharmacy.crack.main.view.GameActivities
+package com. pharmacy.crack.main.view.GameActivities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.FriendsAdapter
 import com.pharmacy.crack.utils.hideKeyBoard
@@ -35,6 +38,8 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
         imgBackToolbar.setOnClickListener(this)
         txtPlay.setOnClickListener(this)
         txtRandomOpp.setOnClickListener(this)
+        imgClear.setOnClickListener(this)
+
         constraintOpponent.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
@@ -55,6 +60,24 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
             onItemClick(pos)
         }
         rvFriends.adapter = adapter
+
+        edtSearch.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if(s.toString().isNotEmpty()){
+                    imgClear.visibility = View.VISIBLE
+                }else{
+                    imgClear.visibility = View.GONE
+                }
+
+            }
+
+        })
     }
 
     private fun onItemClick(pos: Int) {
@@ -77,6 +100,9 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
         }
         if(v==txtRandomOpp){
             startActivity(Intent(this,TwoPlayerBattleActivity::class.java))
+        }
+        if(v==imgClear){
+            edtSearch.text?.clear()
         }
     }
 }

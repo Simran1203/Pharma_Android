@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.pharmacy.crack.R
+import com.pharmacy.crack.main.view.TermsConditionActivity
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.showToast
 import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
@@ -44,6 +45,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         imgSpin.setOnClickListener(this)
         imgLive.setOnClickListener(this)
         imgPills.setOnClickListener(this)
+        imgTermDashBoard.setOnClickListener(this)
 
         dialogTutorial = Dialog(
             this@DashboardActivity,
@@ -92,6 +94,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         }
         if (v == txtStatsIq) {
             startActivity(Intent(this, StatsIqActivity::class.java))
+        }
+        if (v == imgTermDashBoard) {
+            startActivity(Intent(this, TermsConditionActivity::class.java))
         }
         if (v == imgFifty) {
             imgDashTutorial.setImageResource(R.drawable.fifty_fifty)

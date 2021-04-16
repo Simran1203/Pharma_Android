@@ -11,22 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
 
         <ImageView
             android:id="@+id/imgBackWin"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_450sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_100sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_60sdp"
             android:background="@drawable/square_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imgTrophy"
@@ -36,7 +33,8 @@
             android:src="@drawable/trophy"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            app:layout_constraintBottom_toTopOf="@id/imgBackWin"
+            app:layout_constraintTop_toTopOf="@id/imgBackWin" />
 
         <ImageView
             android:id="@+id/imgPlayerWin"
@@ -69,6 +67,22 @@
             app:layout_constraintTop_toBottomOf="@id/imgPlayerWin" />
 
 
-
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            android:id="@+id/txtContinue"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/btn_default"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Continue"
+            android:textColor="@color/clay_creek"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgBackWin"
+            app:layout_constraintVertical_bias="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

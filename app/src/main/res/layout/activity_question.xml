@@ -139,61 +139,15 @@
             android:paddingTop="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:id="@+id/txtQue1"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOption"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/btn_yellow"
-                android:gravity="start|center_vertical"
-                android:paddingBottom="@dimen/_10sdp"
-                android:paddingStart="@dimen/_30sdp"
-                android:text="A)  topiramate"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/row_question"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:id="@+id/txtQue2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/btn_yellow"
-                android:gravity="start|center_vertical"
-                android:paddingBottom="@dimen/_10sdp"
-                android:paddingStart="@dimen/_30sdp"
-                android:text="B)  amitriptyline"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:id="@+id/txtQue3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/btn_yellow"
-                android:gravity="start|center_vertical"
-                android:paddingBottom="@dimen/_10sdp"
-                android:paddingStart="@dimen/_30sdp"
-                android:text="C)  propanolol"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:id="@+id/txtQue4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/btn_yellow"
-                android:gravity="start|center_vertical"
-                android:paddingBottom="@dimen/_10sdp"
-                android:paddingStart="@dimen/_30sdp"
-                android:text="D)  valproic acid"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout

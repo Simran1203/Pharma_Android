@@ -30,11 +30,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/dove_grey"
-                android:textSize="@dimen/_15sdp"
+                android:textSize="@dimen/_17sdp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:gravity="center"
-                android:text="You don't have enough pills.\nBuy pills to continue playing"/>
+                android:text="You don't have enough lives.\nBuy lives to continue playing"/>
 
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="Buy Now"
                 android:gravity="center"
+                android:textSize="@dimen/_15sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:textColor="@color/white"

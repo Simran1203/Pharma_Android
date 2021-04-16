@@ -1,9 +1,11 @@
 package com.pharmacy.crack.main.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_answer.*
@@ -11,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_answer.*
 class AnswerActivity : AppCompatActivity(), View.OnClickListener {
 
     var correctOptionNO: Int = 0
+    var correctAnsNo: Int = 0
     lateinit var optionList: ArrayList<String>
     lateinit var question: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +21,7 @@ class AnswerActivity : AppCompatActivity(), View.OnClickListener {
         setFullScreen(this)
         setContentView(R.layout.activity_answer)
         correctOptionNO = intent.getIntExtra("optionNo", 0)
+        correctAnsNo = intent.getIntExtra("correct", 0)
         question = intent.getStringExtra("que").toString()
         optionList = intent.getStringArrayListExtra("option") as ArrayList<String>
         txtAns1.text = optionList[0]
@@ -36,7 +40,18 @@ class AnswerActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v == txtNextQuest) {
-            onBackPressed()
+            correctAnsNo += 1
+            val intents = Intent()
+            intents.putExtra("correct", correctAnsNo)
+            setResult(2, intents)
+            finish()
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }

@@ -192,7 +192,7 @@
         </androidx.cardview.widget.CardView>
 
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.MediumBoldTextView
             android:layout_width="@dimen/_200sdp"
             android:layout_height="@dimen/_55sdp"
             android:layout_marginTop="@dimen/_20sdp"
@@ -202,7 +202,7 @@
             android:paddingBottom="@dimen/_10sdp"
             android:text="LEADERBOARD"
             android:textColor="@color/white"
-            android:textSize="@dimen/_16sdp"
+            android:textSize="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtFriends" />

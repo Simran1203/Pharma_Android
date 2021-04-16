@@ -58,7 +58,7 @@
                <ImageView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:src="@drawable/pills"/>
+                   android:src="@drawable/pills_big"/>
 
                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                    android:layout_width="wrap_content"
@@ -68,16 +68,17 @@
                    android:gravity="center"
                    android:textStyle="bold"
                    android:textSize="@dimen/_22sdp"
-                   android:textColor="@color/solid_black"/>
+                   android:textColor="@color/clay_creek"/>
 
 
            </LinearLayout>
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Resume"
                 android:gravity="center"
+                android:textSize="@dimen/_15sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_30sdp"
                 android:textColor="@color/white"

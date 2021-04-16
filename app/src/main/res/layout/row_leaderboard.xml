@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:text="Elizabeth"
+                android:textAllCaps="true"
                 android:textColor="#B07130"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
@@ -70,14 +71,14 @@
             android:layout_height="wrap_content"
             android:src="@drawable/score_coin" />
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.MediumBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/_5sdp"
             android:text="900"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_17sdp"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>

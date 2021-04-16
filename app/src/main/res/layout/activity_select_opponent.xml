@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusableInTouchMode="true"
-        android:paddingBottom="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_35sdp"
         android:focusable="true">
 
         <include
@@ -78,25 +78,46 @@
                 android:textColor="@color/dove_grey"
                 android:textSize="@dimen/_20sdp"/>
 
-            <com.pharmacy.crack.utils.viewUtils.RegularEditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:background="@drawable/btn_yellow"
-                android:drawableStart="@drawable/search"
-                android:textStyle="bold"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:drawablePadding="@dimen/_10sdp"
-                android:paddingStart="@dimen/_25sdp"
-                android:paddingBottom="@dimen/_10sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                tools:ignore="RtlSymmetry" />
+                android:layout_marginTop="@dimen/_5sdp">
+                <com.pharmacy.crack.utils.viewUtils.RegularEditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_55sdp"
+                    android:background="@drawable/btn_yellow_big"
+                    android:drawableStart="@drawable/search"
+                    android:textStyle="bold"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:maxLength="40"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionSearch"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_25sdp"
+                    android:paddingEnd="@dimen/_35sdp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    tools:ignore="RtlSymmetry" />
+
+                <ImageView
+                    android:id="@+id/imgClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_close"/>
+            </RelativeLayout>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_20sdp"
