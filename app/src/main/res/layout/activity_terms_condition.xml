@@ -8,20 +8,42 @@
     tools:context=".main.view.TermsConditionActivity">
 
 
-
-    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
         android:id="@+id/txtTerms"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:text="Terms &amp;\nConditions"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/_50sdp"
+        android:gravity="center_horizontal|bottom"
+        android:text="Terms &amp;"
+        android:textColor="@color/limed_spruce"
+        android:textSize="@dimen/_30sdp"
+        app:layout_constraintBottom_toTopOf="@id/txtCond"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtCond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Conditions"
         android:textColor="@color/wild_strawberry"
         android:textSize="@dimen/_30sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTerms" />
 
+
+    <ImageView
+        android:id="@+id/imgBackterms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtCond"
+        app:layout_constraintBottom_toBottomOf="@+id/txtCond"
+        android:src="@drawable/back_arrow"/>
 
 
 
@@ -31,18 +53,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtTerms"
+        app:layout_constraintTop_toBottomOf="@id/txtCond"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <ImageView
-        android:id="@+id/imgBackterms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txtTerms"
-        app:layout_constraintBottom_toBottomOf="@id/txtTerms"
-        android:src="@drawable/back_arrow"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

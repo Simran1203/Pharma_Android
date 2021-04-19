@@ -5,9 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/constraintTutorial"
-    android:background="@drawable/tutorial_setting_screen"
     tools:context=".main.view.SettingActivities.TutorialScreenActivity">
 
+
+    <ImageView
+        android:id="@+id/imgTutorial"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/tutorial_setting_screen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
         android:id="@+id/txtSkipTutorial"
         android:layout_width="wrap_content"
@@ -27,7 +36,7 @@
         android:text="Next"
         android:textColor="@color/white"
         android:textSize="@dimen/_22sdp"
-        android:layout_marginBottom="@dimen/_35sdp"
+        android:layout_marginBottom="@dimen/_45sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

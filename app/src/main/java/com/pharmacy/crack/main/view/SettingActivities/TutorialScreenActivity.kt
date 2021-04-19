@@ -31,22 +31,26 @@ class TutorialScreenActivity : AppCompatActivity(),View.OnClickListener {
             finish()
         }
         if(v==txtNextTutorial){
-            if(tutorialScreen.equals("")){
+            if(tutorialScreen == ""){
                 tutorialScreen = "soft"
-                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_soft_screen))
+                imgTutorial.setImageResource(R.drawable.tutorial_soft_screen)
+//                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_soft_screen))
             }
-            else if(tutorialScreen.equals("soft")){
+            else if(tutorialScreen == "soft"){
                 tutorialScreen = "hard"
-                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_hard_screen))
+                imgTutorial.setImageResource(R.drawable.tutorial_hard_screen)
+//                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_hard_screen))
             }
-            else if(tutorialScreen.equals("hard")){
+            else if(tutorialScreen == "hard"){
                 tutorialScreen = "free"
-                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_free_screen))
+                imgTutorial.setImageResource(R.drawable.tutorial_free_screen)
+//                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_free_screen))
             }
-            else if(tutorialScreen.equals("free")){
+            else if(tutorialScreen == "free"){
                 tutorialScreen = "drug"
                 txtNextTutorial.text  = "Finish"
-                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_drug_screen))
+                imgTutorial.setImageResource(R.drawable.tutorial_drug_screen)
+//                constraintTutorial.setBackground(ContextCompat.getDrawable(this,R.drawable.tutorial_drug_screen))
             }
             else {
                 startActivity(Intent(this,DashboardActivity::class.java))

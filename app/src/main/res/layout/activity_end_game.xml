@@ -89,7 +89,7 @@
                 android:background="@drawable/btn_yellow"
                 android:gravity="center"
                 android:paddingBottom="@dimen/_10sdp"
-                android:text="free Rewards"
+                android:text="Free Rewards"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />

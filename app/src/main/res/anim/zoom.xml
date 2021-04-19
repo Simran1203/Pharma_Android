@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- important: tweak the delay percentage to slow down or speed up animation -->
+<translate
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fromYDelta="100%"
+    android:toYDelta="0%"
+    android:duration="2000" >
+
+    <alpha
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="1000"/>
+
+    <scale
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:fromXScale="0.1"
+        android:fromYScale="0.1"
+        android:toXScale="1"
+        android:toYScale="1"
+        android:duration="1000" />
+</translate>

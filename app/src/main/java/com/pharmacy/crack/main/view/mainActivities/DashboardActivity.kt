@@ -22,11 +22,11 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 
 
 class DashboardActivity : AppCompatActivity(), View.OnClickListener {
-    lateinit var dialogTutorial: Dialog
-    lateinit var imgDashTutorial: ImageView
-    lateinit var txtHeadDashTutorial: HardBoldTextView
-    lateinit var imgDescDashTutorial: RegularTextView
-    lateinit var consDasDialog: ConstraintLayout
+    private lateinit var dialogTutorial: Dialog
+    private lateinit var imgDashTutorial: ImageView
+    private lateinit var txtHeadDashTutorial: HardBoldTextView
+    private lateinit var imgDescDashTutorial: RegularTextView
+    private lateinit var consDasDialog: ConstraintLayout
     private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +46,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         imgLive.setOnClickListener(this)
         imgPills.setOnClickListener(this)
         imgTermDashBoard.setOnClickListener(this)
+        txtIqMap.setOnClickListener(this)
 
         dialogTutorial = Dialog(
             this@DashboardActivity,
@@ -95,6 +96,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         if (v == txtStatsIq) {
             startActivity(Intent(this, StatsIqActivity::class.java))
         }
+        if (v == txtIqMap) {
+            startActivity(Intent(this, IQMapActivity::class.java))
+        }
         if (v == imgTermDashBoard) {
             startActivity(Intent(this, TermsConditionActivity::class.java))
         }
@@ -128,7 +132,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         if (v == imgPills) {
             imgDashTutorial.setImageResource(R.drawable.pills)
             txtHeadDashTutorial.text = "Pills"
-            imgDescDashTutorial.text = "You can use Pills to\npurchase all soft\nCurrency i.e respin, lives,\ntime stop & 50/50."
+            imgDescDashTutorial.text = "You can use Pills to\npurchase all Soft\nCurrency i.e respin, lives,\ntime stop & 50/50."
             dialogTutorial.show()
 
         }

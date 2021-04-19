@@ -94,7 +94,7 @@
 
             <com.pharmacy.crack.utils.viewUtils.RegularEditText
                 android:id="@+id/edtPasswordLogin"
-                android:hint="A@123"
+                android:hint="******"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:drawableLeft="@drawable/password"

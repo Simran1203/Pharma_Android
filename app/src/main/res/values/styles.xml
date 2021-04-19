@@ -14,6 +14,11 @@
         <item name="android:colorControlNormal">@color/light_gray</item>
     </style>
 
+    <style name="levelRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/level_rating_bar_full</item>
+        <item name="android:minHeight">@dimen/_15sdp</item>
+        <item name="android:maxHeight">@dimen/_18sdp</item>
+    </style>
 
     <style name="StyledTilEditTextTheme">
         <item name="android:imeOptions">actionNext</item>

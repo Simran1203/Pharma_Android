@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/_35sdp"
     tools:context=".main.view.mainActivities.SettingActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_35sdp">
 
     <LinearLayout
         android:id="@+id/layotTxt"
@@ -21,8 +24,8 @@
 
         <ImageView
             android:id="@+id/imgBackSetting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_30sdp"
             android:layout_gravity="center_vertical"
             android:src="@drawable/back_arrow" />
 
@@ -129,5 +132,5 @@
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold" />
 
-
-</LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

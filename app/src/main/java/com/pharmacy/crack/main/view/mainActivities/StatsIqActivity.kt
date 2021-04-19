@@ -1,6 +1,7 @@
 package com.pharmacy.crack.main.view.mainActivities
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -56,6 +57,8 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
         listImage.add(R.drawable.new_drugs)
         listImage.add(R.drawable.pharmacy_law)
         listImage.add(R.drawable.oncology_misc)
+
+
 
 //        val layoutManager = GridLayoutManager(this, 2)
 //        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

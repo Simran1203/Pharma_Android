@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.mainActivities.StartGameActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg"
         android:paddingBottom="@dimen/_35sdp">
 
         <include
@@ -77,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp">
-                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
                     android:id="@+id/txtTurn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="1"
-            android:textColor="@color/solid_black"
+            android:textColor="@color/dove_grey"
             android:textSize="@dimen/_16sdp" />
 
         <ImageView

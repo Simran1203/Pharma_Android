@@ -345,7 +345,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     editPasswordSignUp.getText().toString()
                 )
             ) {
-                Toast.makeText(this, "Confirm Password should be same as Password", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Confirm Password should be same as Password.", Toast.LENGTH_SHORT)
                     .show()
             } else if (editUserName.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()

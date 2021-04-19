@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.mainActivities.DashboardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/bg"
         android:paddingTop="@dimen/_40sdp"
         android:paddingBottom="@dimen/_35sdp">
 
@@ -343,6 +344,7 @@
                     android:layout_marginRight="@dimen/_5sdp" />
 
                 <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                   android:id="@+id/txtIqMap"
                     android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_55sdp"
@@ -381,8 +383,8 @@
 
         <ImageView
             android:id="@+id/imgPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             android:src="@drawable/profile_img"
             app:layout_constraintStart_toStartOf="@id/linOption"
             app:layout_constraintEnd_toEndOf="@id/linOption"
@@ -391,8 +393,8 @@
 
         <ImageView
             android:id="@+id/imgPills"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_95sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@drawable/pill_bar"
             app:layout_constraintTop_toTopOf="@id/imgPhoto"
             app:layout_constraintBottom_toBottomOf="@id/imgPhoto"
@@ -414,8 +416,8 @@
 
         <ImageView
             android:id="@+id/imgScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_95sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@drawable/score"
             app:layout_constraintTop_toTopOf="@id/imgPhoto"
             app:layout_constraintBottom_toBottomOf="@id/imgPhoto"
@@ -463,8 +465,8 @@
 
             <ImageView
                 android:id="@+id/imgSetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:src="@drawable/settings"/>
 
             <View
@@ -474,8 +476,8 @@
 
             <ImageView
                 android:id="@+id/imgTermDashBoard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:src="@drawable/tnc"/>
         </LinearLayout>
 

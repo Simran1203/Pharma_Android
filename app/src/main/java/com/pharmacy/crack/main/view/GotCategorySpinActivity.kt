@@ -1,23 +1,28 @@
 package com.pharmacy.crack.main.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_got_category_spin.*
 import kotlinx.android.synthetic.main.row_catspin.view.*
 
+
 class GotCategorySpinActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var category:String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_got_category_spin)
+
         
         category = intent.getStringExtra("cat").toString()
         txtGot.text = "You got ${category}\n"+"in category spin"
+
 
         when (category) {
             "Oncology & misc" -> imgGotNeuro.setImageResource(R.drawable.oncology_misc_large)
@@ -35,6 +40,12 @@ class GotCategorySpinActivity : AppCompatActivity(),View.OnClickListener {
             "Law" -> imgGotNeuro.setImageResource(R.drawable.pharmacy_law_large)
         }
 
+        val animation = AnimationUtils.loadAnimation(
+            applicationContext,
+            R.anim.zoom
+        )
+        imgGotNeuro.startAnimation(animation)
+
         listner()
     }
 
@@ -49,8 +60,14 @@ class GotCategorySpinActivity : AppCompatActivity(),View.OnClickListener {
             super.onBackPressed()
         }
         else if(v==txtstartGme){
-            startActivity(Intent(this,QuestionActivity::class.java)
-                .putExtra("cat",category))
+            startActivity(
+                Intent(this, QuestionActivity::class.java)
+                    .putExtra("cat", category)
+            )
         }
+    }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
     }
 }

@@ -22,7 +22,8 @@ class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
 
     private fun initAll() {
         imgBackToolbar.visibility = View.GONE
-        txtToolbar.text = "2 Player Battle".toUpperCase(Locale.ROOT)
+        txtToolbar.text = "2 Player Battle"
+//        txtToolbar.text = "2 Player Battle".toUpperCase(Locale.ROOT)
 
         txtStartGame.setOnClickListener(this)
     }

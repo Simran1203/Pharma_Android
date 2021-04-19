@@ -164,7 +164,7 @@ fun getRootDirPath(context: Context): String {
         context.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setWindowFlag(context, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
         context.window.statusBarColor = Color.TRANSPARENT
-        setWindowFlag(context, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, true)
+        setWindowFlag(context, WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION, false)
     }
 
 

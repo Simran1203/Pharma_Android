@@ -81,6 +81,7 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
         }
         else if(v==txtForgotSubmitDialog){
             dialogForget.dismiss()
+            startActivity(Intent(this,ResetPasswordActivity::class.java))
         }
         else if(v==imgBack){
             onBackPressed()

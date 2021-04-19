@@ -45,7 +45,7 @@ class EmailSupportActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==txtSubmitContact){
-            if(edtmessage.text.toString().isEmpty()){
+            if(edtmessage.text.toString().trim().isEmpty()){
                 showToasts("Please write something.")
             }
         }

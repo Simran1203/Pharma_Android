@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     android:fillViewport="true"
     tools:context=".main.view.mainActivities.DrugStoreActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg"
         android:paddingBottom="@dimen/_35sdp">
 
         <include
@@ -36,11 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_30sdp"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarM"
+            android:layout_marginEnd="@dimen/_25sdp"
             app:layout_constraintEnd_toEndOf="@+id/imgSquareBg"
-            app:layout_constraintStart_toStartOf="@id/imgSquareBg">
+            app:layout_constraintStart_toStartOf="@id/imgSquareBg"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarM">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -196,11 +196,11 @@
                 android:id="@+id/barrier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-               app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:barrierDirection="bottom"
-                app:constraint_referenced_ids="constraint2,constarint1Life,constraint3" />
+                app:constraint_referenced_ids="constraint2,constarint1Life,constraint3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -250,28 +250,26 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linear6Items"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_25sdp"
-            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/linear3IemsText">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintproStarter"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/imgBackgroud4"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_85sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:background="@drawable/bonus_item_bg"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="@dimen/_85sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bonus_item_bg"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintEnd_toStartOf="@+id/constraint25"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
                 <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
@@ -284,9 +282,9 @@
                     android:textColor="@color/rose_pink"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@id/imgBackgroud4"
-                    app:layout_constraintStart_toStartOf="@id/imgBackgroud4"
-                    app:layout_constraintTop_toTopOf="@id/imgBackgroud4" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imgMainBonus4"
@@ -316,18 +314,15 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint25"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/imgBackgroud5"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_85sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:background="@drawable/bonus_item_bg"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="@dimen/_85sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bonus_item_bg"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintEnd_toStartOf="@+id/constraint75"
+                app:layout_constraintStart_toEndOf="@+id/constraintproStarter"
+                app:layout_constraintTop_toTopOf="@+id/constraintproStarter">
 
 
                 <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
@@ -339,9 +334,9 @@
                     android:textColor="@color/rose_pink"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@id/imgBackgroud5"
-                    app:layout_constraintStart_toStartOf="@id/imgBackgroud5"
-                    app:layout_constraintTop_toTopOf="@id/imgBackgroud5" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imgMainBonu5"
@@ -370,18 +365,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint75"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                android:layout_height="@dimen/_85sdp"
+                app:layout_constraintTop_toTopOf="@+id/constraint25"
+                app:layout_constraintStart_toEndOf="@+id/constraint25"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bonus_item_bg"
+                app:layout_constraintHorizontal_weight="1">
 
-                <ImageView
-                    android:id="@+id/imgBackgroud6"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_85sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:background="@drawable/bonus_item_bg"
-                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
@@ -393,9 +386,9 @@
                     android:textColor="@color/rose_pink"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@id/imgBackgroud6"
-                    app:layout_constraintStart_toStartOf="@id/imgBackgroud6"
-                    app:layout_constraintTop_toTopOf="@id/imgBackgroud6" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imgMainBonu6"
@@ -422,7 +415,7 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/linear6IemsText"
