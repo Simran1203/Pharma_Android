@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.Dimension
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.QuestionAdapter
 import com.pharmacy.crack.utils.PrefHelper
@@ -21,6 +22,7 @@ class QuestionActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_question)
+
         listOption = ArrayList()
         listOption.add("A) topiramate")
         listOption.add("B) amitryptyline")

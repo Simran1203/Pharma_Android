@@ -1,6 +1,7 @@
 package com.pharmacy.crack.main.view
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,10 +12,12 @@ import android.view.Window
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
+import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.main.view.mainActivities.DrugStoreActivity
 import com.pharmacy.crack.main.view.mainActivities.FreeRewardsActivity
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_incorrect.*
+
 
 class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -34,14 +37,12 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
         dialogBuyPillLife = Dialog(this, android.R.style.Theme_Light)
         dialogBuyPillLife.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogBuyPillLife.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
-        dialogBuyPillLife.setCancelable(false)
         dialogBuyPillLife.setContentView(R.layout.dialog_buy_now)
         imgCloseBuy = dialogBuyPillLife.findViewById(R.id.imgCloseBuy)
 
         dialogResume = Dialog(this, android.R.style.Theme_Light)
         dialogResume.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogResume.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
-        dialogResume.setCancelable(false)
         dialogResume.setContentView(R.layout.dialog_resume)
         imgCloseResume = dialogResume.findViewById(R.id.imgCloseResume)
 
@@ -53,6 +54,24 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
         relPurchasePill.setOnClickListener(this)
         imgCloseBuy.setOnClickListener(this)
         imgCloseResume.setOnClickListener(this)
+
+        dialogBack()
+
+    }
+
+    private fun dialogBack() {
+        dialogBuyPillLife.setOnKeyListener(DialogInterface.OnKeyListener { arg0, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                startActivity(Intent(this, DashboardActivity::class.java))
+            }
+            true
+        })
+        dialogResume.setOnKeyListener(DialogInterface.OnKeyListener { arg0, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK) {
+                super.onBackPressed()
+            }
+            true
+        })
     }
 
     override fun onClick(v: View?) {
@@ -93,4 +112,5 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
     override fun onBackPressed() {
 //        super.onBackPressed()
     }
+
 }

@@ -90,7 +90,7 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         if(v==txtSubmitQueston){
             if(edtTypeQue.text.toString().length<20){
-                Toast.makeText(this, "Please enter 20 chars as minimum.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter at least 20 min chars long Question.", Toast.LENGTH_SHORT).show()
                 edtTypeQue.requestFocus()
             }
             else if(edtCorrectAns.text.toString().isEmpty()){

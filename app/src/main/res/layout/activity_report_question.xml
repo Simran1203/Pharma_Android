@@ -7,6 +7,8 @@
     android:background="@drawable/bg"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
+    android:overScrollMode="always"
+    android:scrollbarStyle="insideInset"
     tools:context=".main.view.ReportQuestionActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -126,8 +128,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="start"
+                android:padding="@dimen/_15sdp"
+                android:maxLength="250"
+                android:text=""
+                android:scrollbars="vertical"
                 android:textCursorDrawable="@drawable/cursor_edit"
-                android:textColor="@color/desert" />
+                android:inputType="textMultiLine|textCapSentences"
+                android:textColor="@color/textview_selector"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.pharmacy.crack.utils.viewUtils.RegularTextView

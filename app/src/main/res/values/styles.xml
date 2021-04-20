@@ -9,15 +9,11 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
-    <style name="MyRatingBar" parent="Widget.AppCompat.RatingBar">
-        <item name="colorAccent">@color/name</item>
-        <item name="android:colorControlNormal">@color/light_gray</item>
-    </style>
 
-    <style name="levelRatingBar" parent="@android:style/Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/level_rating_bar_full</item>
-        <item name="android:minHeight">@dimen/_15sdp</item>
-        <item name="android:maxHeight">@dimen/_18sdp</item>
+    <style name="levelRatingBar" parent="android:style/Widget.Material.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/rating_custom_bar</item>
+        <item name="android:minHeight">30dip</item>
+        <item name="android:maxHeight">30dip</item>
     </style>
 
     <style name="StyledTilEditTextTheme">

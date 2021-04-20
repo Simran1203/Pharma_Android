@@ -19,6 +19,7 @@
     <color name="scorpion_grey">#606060</color>
     <color name="dodger_blue">#5648FD</color>
     <color name="leader_board_shadow">#8C5E14</color>
+    <color name="you_win">#BA7F20</color>
     <color name="time_remain_color">#461732</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ADADAD</color>

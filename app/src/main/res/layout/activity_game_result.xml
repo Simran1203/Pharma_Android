@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/cassyResult"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
             android:src="@drawable/cassy"
             android:layout_marginTop="@dimen/_10sdp"
@@ -37,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cassyResult" />
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtFirstPlyrName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,16 +65,18 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Score"
+                android:text="SCORE"
+                android:textColor="@color/limed_spruce"
+                android:alpha="0.4"
                 android:gravity="center"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
 
-            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -112,16 +114,18 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Score"
+                    android:text="SCORE"
+                    android:textColor="@color/limed_spruce"
+                    android:alpha="0.4"
                     android:gravity="center"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
-                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -144,7 +148,7 @@
             app:layout_constraintStart_toEndOf="@+id/cardSecondPlayer"
             app:layout_constraintTop_toBottomOf="@+id/imgVs" />
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtsecondPlyrName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

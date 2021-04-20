@@ -53,7 +53,7 @@ class LandedCasseyCapsuleActivity : AppCompatActivity(),View.OnClickListener {
     override fun onClick(v: View?) {
         if(v==txtStartGameLanded){
             if(selectionLandedcasey==4){
-                showToast(this,"Please select category")
+                showToast(this,"Please select category.")
             }else{
                 startActivity(Intent(this,QuestionActivity::class.java)
                     .putExtra("cat",listCat.get(selectionLandedcasey)))

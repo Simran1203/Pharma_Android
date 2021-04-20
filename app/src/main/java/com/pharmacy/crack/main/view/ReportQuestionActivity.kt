@@ -3,13 +3,12 @@ package com.pharmacy.crack.main.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Toast
 import com.pharmacy.crack.R
-import com.pharmacy.crack.utils.editTextBackground
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
-import com.pharmacy.crack.utils.showToast
+import com.pharmacy.crack.utils.*
+import kotlinx.android.synthetic.main.activity_email_support.*
 import kotlinx.android.synthetic.main.activity_report_question.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.constarintSignup
@@ -23,6 +22,13 @@ class ReportQuestionActivity : AppCompatActivity(),View.OnClickListener {
 
 
         initBackground()
+        edtReportAns.movementMethod = ScrollingMovementMethod()
+        ScrollingMovementMethod.getInstance()
+        edtReportAns.setOnTouchListener(View.OnTouchListener { v, event ->
+            edtReportAns.parent.requestDisallowInterceptTouchEvent(true)
+            false
+        })
+
         consReportQue.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
@@ -41,10 +47,10 @@ class ReportQuestionActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==txtSubmitReportQue){
-            if(edtReportAns.text.toString().isEmpty()){
-                showToast(this,"Please Enter your Answer")
+            if(edtReportAns.text.toString().trim().isEmpty()){
+                showToasts("Please write something.")
             }else{
-                showToast(this,"success")
+//                showToast(this,"success")
             }
         }
     }

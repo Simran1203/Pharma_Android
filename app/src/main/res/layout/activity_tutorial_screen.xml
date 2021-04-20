@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:src="@drawable/tutorial_setting_screen"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +38,7 @@
         android:text="Next"
         android:textColor="@color/white"
         android:textSize="@dimen/_22sdp"
-        android:layout_marginBottom="@dimen/_45sdp"
+        android:layout_marginBottom="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

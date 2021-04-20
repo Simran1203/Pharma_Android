@@ -36,11 +36,16 @@
         <activity
             android:name=".main.view.ReportQuestionActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" >
+
+        </activity>
         <activity
             android:name=".main.view.GameResultActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity android:name=".main.view.CongratulationActivity" />
+
         <activity
             android:name=".main.view.IncorrectActivity"
             android:screenOrientation="portrait" />
@@ -48,10 +53,7 @@
             android:name=".main.view.AnswerActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".main.view.QuestionActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".main.view.GotCategorySpinActivity"
@@ -68,7 +70,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".main.view.WinActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity
             android:name=".main.view.LoseActivity"
             android:screenOrientation="portrait" />
@@ -76,7 +81,7 @@
         <activity
             android:name=".main.view.GameActivities.SelectOpponentActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".main.view.mainActivities.StatsIqActivity"
             android:screenOrientation="portrait" />
@@ -112,7 +117,10 @@
         <activity
             android:name=".main.view.mainActivities.DashboardActivity"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".main.view.LoginSignUpActivity.StoryActivity"

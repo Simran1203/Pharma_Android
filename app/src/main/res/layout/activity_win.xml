@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/imgBackWin"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_450sdp"
+            android:layout_height="@dimen/_420sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_100sdp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -48,8 +48,8 @@
             app:layout_constraintTop_toBottomOf="@id/imgTrophy" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_130sdp"
             android:src="@drawable/you_win_cassy"
             android:layout_marginTop="@dimen/_13sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,9 +62,9 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:text="You Win!"
             android:textAllCaps="true"
-            android:textColor="@color/desert"
-            android:textSize="@dimen/_40sdp"
-            app:layout_constraintEnd_toEndOf="@id/imgBackWin"
+            android:textColor="@color/you_win"
+            android:textSize="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_57sdp"
             app:layout_constraintStart_toStartOf="@id/imgBackWin"
             app:layout_constraintTop_toBottomOf="@id/imgPlayerWin" />
 
