@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_start_game.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class StartGameActivity : AppCompatActivity(),View.OnClickListener {
+    var fromSource:String = ""
     lateinit var list: ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,10 @@ class StartGameActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
+        if(intent.hasExtra("fromSource")){
+            fromSource = intent.getStringExtra("fromSource").toString()
+        }
+
         imgBackToolbar.visibility = View.GONE
         txtToolbar.text = "Choose Game"
 
@@ -56,6 +61,16 @@ class StartGameActivity : AppCompatActivity(),View.OnClickListener {
         if(v==txtTwoPlayer){
             PrefHelper(this).gametype = "Battle"
             startActivity(Intent(this,SelectOpponentActivity::class.java))
+        }
+    }
+
+    override fun onBackPressed() {
+        if(fromSource == "Dashboard"){
+            super.onBackPressed()
+        }
+        else{
+            startActivity(Intent(this,DashboardActivity::class.java))
+            finishAffinity()
         }
     }
 }

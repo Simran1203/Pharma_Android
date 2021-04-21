@@ -9,6 +9,9 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.FriendsAdapter
+import com.pharmacy.crack.main.view.GameActivities.TwoPlayerBattleActivity
+import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
+import com.pharmacy.crack.main.view.mainActivities.StartGameActivity
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.showToast
@@ -27,6 +30,7 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_select_opponent)
+
 
         initAll()
         listner()
@@ -96,13 +100,13 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
             }else{
                 startActivity(Intent(this,TwoPlayerBattleActivity::class.java))
             }
-
         }
         if(v==txtRandomOpp){
-            startActivity(Intent(this,TwoPlayerBattleActivity::class.java))
+            startActivity(Intent(this, TwoPlayerBattleActivity::class.java))
         }
         if(v==imgClear){
             edtSearch.text?.clear()
         }
     }
+
 }

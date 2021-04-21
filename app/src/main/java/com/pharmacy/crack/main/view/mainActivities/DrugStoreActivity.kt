@@ -1,6 +1,7 @@
 package com.pharmacy.crack.main.view.mainActivities
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +17,12 @@ import kotlinx.android.synthetic.main.toolbar_multicolor.imgBackToolbarMultiColo
 
 class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
 
-    lateinit var dialogUnsuccessful : Dialog
-    lateinit var dialogPurchase : Dialog
-    lateinit var imgCloseUnsuccess : ImageView
-    lateinit var imgClosePurchase : ImageView
+    private lateinit var dialogUnsuccessful : Dialog
+    private lateinit var dialogPurchase : Dialog
+    private lateinit var imgCloseUnsuccess : ImageView
+    private lateinit var imgClosePurchase : ImageView
+    private var fromSource:String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -29,6 +32,9 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         constraint2.setOnClickListener(this)
         constraint3.setOnClickListener(this)
 
+        if(intent.hasExtra("fromSource")){
+            fromSource = intent.getStringExtra("fromSource").toString()
+        }
         initAll()
 
     }
@@ -55,7 +61,6 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         imgClosePurchase.setOnClickListener(View.OnClickListener {
             dialogPurchase.dismiss()
             dialogUnsuccessful.show()
-
         })
     }
 
@@ -68,6 +73,16 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         }
         if(v== imgBackToolbarMultiColor){
             onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        if(fromSource == "Dashboard"){
+            super.onBackPressed()
+        }
+        else{
+            startActivity(Intent(this,DashboardActivity::class.java))
+            finishAffinity()
         }
     }
 }

@@ -2,7 +2,6 @@ package com.pharmacy.crack.main.view.LoginSignUpActivity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -31,9 +30,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         })
 
-
     }
-
 
 
     private fun listner() {

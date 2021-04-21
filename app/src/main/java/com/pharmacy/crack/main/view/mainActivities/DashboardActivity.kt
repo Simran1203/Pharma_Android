@@ -82,16 +82,19 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, SettingActivity::class.java))
         }
         if (v == txtFreeRewards) {
-            startActivity(Intent(this, FreeRewardsActivity::class.java))
+            startActivity(Intent(this, FreeRewardsActivity::class.java)
+                .putExtra("fromSource","Dashboard"))
         }
         if (v == txtDrugStore) {
-            startActivity(Intent(this, DrugStoreActivity::class.java))
+            startActivity(Intent(this, DrugStoreActivity::class.java)
+                .putExtra("fromSource","Dashboard"))
         }
         if (v == txtLeaderBoard) {
             startActivity(Intent(this, LeaderBoardActivity::class.java))
         }
         if (v == txtStartGame) {
-            startActivity(Intent(this, StartGameActivity::class.java))
+            startActivity(Intent(this, StartGameActivity::class.java)
+                .putExtra("fromSource","Dashboard"))
         }
         if (v == txtStatsIq) {
             startActivity(Intent(this, StatsIqActivity::class.java))

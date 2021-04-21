@@ -76,7 +76,7 @@
                 android:hint="@string/xyz_gmail_com"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:drawableLeft="@drawable/email"
+                android:drawableStart="@drawable/email"
                 android:textColorHint="@color/dove_grey"
                 android:textColor="@color/textview_selector"
                 android:drawablePadding="@dimen/_10sdp"

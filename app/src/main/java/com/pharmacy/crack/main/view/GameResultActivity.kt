@@ -7,6 +7,7 @@ import android.view.View
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.GameActivities.SelectOpponentActivity
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
+import com.pharmacy.crack.main.view.mainActivities.StartGameActivity
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_game_result.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -28,7 +29,7 @@ class GameResultActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==txtPlayAgainGame){
-            startActivity(Intent(this,SelectOpponentActivity::class.java))
+            startActivity(Intent(this,StartGameActivity::class.java))
             finishAffinity()
         }
         if(v==imgBackToolbar){

@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_free_rewards.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class FreeRewardsActivity : AppCompatActivity(), View.OnClickListener {
+    var fromSource:String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -23,6 +25,10 @@ class FreeRewardsActivity : AppCompatActivity(), View.OnClickListener {
         txtSubmitQue.setOnClickListener(this)
         txtShareFreeReward.setOnClickListener(this)
         txtToolbar.setText("Free Rewards")
+
+        if(intent.hasExtra("fromSource")){
+            fromSource = intent.getStringExtra("fromSource").toString()
+        }
     }
 
     override fun onClick(v: View?) {
@@ -37,6 +43,16 @@ class FreeRewardsActivity : AppCompatActivity(), View.OnClickListener {
         }
         else if(v==txtShareFreeReward){
             startActivity(Intent(this,ShareActivity::class.java))
+        }
+    }
+
+    override fun onBackPressed() {
+        if(fromSource == "Dashboard"){
+            super.onBackPressed()
+        }
+        else{
+            startActivity(Intent(this,DashboardActivity::class.java))
+            finishAffinity()
         }
     }
 }

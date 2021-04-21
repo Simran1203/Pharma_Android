@@ -70,7 +70,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_sign_up)
 
         if (!isNetworkAvailable(this)) {
-            showToast(this, "No Internet Connection")
+            showToast(this, "Please check your internet connection and try again.")
             coordinatorSignup.visibility = View.INVISIBLE
         } else {
             coordinatorSignup.visibility = View.VISIBLE
