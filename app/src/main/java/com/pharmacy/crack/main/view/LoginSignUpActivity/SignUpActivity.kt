@@ -56,12 +56,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
     var listYear: ArrayList<Int> = ArrayList()
     var listDay: ArrayList<Int> = ArrayList()
-    var listCountry: ArrayList<Geoname> = ArrayList()
     var listState: ArrayList<String> = ArrayList()
-    var listStateModel: ArrayList<com.pharmacy.crack.main.model.stateModel.Geoname> = ArrayList()
     var termsAndCon: Boolean = false
     val picker = CountryPicker.newInstance("Select Country")
-    var urlCountry: String = "http://api.geonames.org/countryInfoJSON?username=savej123"
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,14 +66,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         setFullScreen(this)
         setContentView(R.layout.activity_sign_up)
 
-        if (!isNetworkAvailable(this)) {
-            showToast(this, "Please check your internet connection and try again.")
-            coordinatorSignup.visibility = View.INVISIBLE
-        } else {
-            coordinatorSignup.visibility = View.VISIBLE
-            hitCountryApi(applicationContext.resources.configuration.locale.displayCountry)
-        }
 
+        txtCountry.text = applicationContext.resources.configuration.locale.displayCountry
         initBackground()
         initlistner()
 
@@ -108,77 +99,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 //        txtTerm.highlightColor = Color.TRANSPARENT
     }
 
-    private fun hitCountryApi(countryName: String) {
-//        val dialog : Dialog =  showProgress(this)
-        GlobalScope.launch(Dispatchers.IO) {
-//            dialog.dismiss()
 
-            val response = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://api.geonames.org/countryInfoJSON/").build().create<MyApi>()
-                .getCountry(urlCountry)
-            if (response.isSuccessful) {
-                listCountry = response.body()?.geonames!!
-
-                for (i in 1..listCountry.size) {
-                    val name = listCountry[i].countryName
-                    if (name.equals(countryName)) {
-                        txtCountry.text = name
-                       val geonameId = listCountry[i].geonameId
-                        hitStateApi(geonameId)
-                        break
-                    }
-                }
-            }else{
-                showToast(this@SignUpActivity, "" + response.message())
-            }
-        }
-    }
-
-    private fun hitStateApi(geonameId: Int) {
-        listStateModel.clear()
-        listState.clear()
-
-
-        GlobalScope.launch(Dispatchers.IO) {
-            val response = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://api.geonames.org/").build().create<MyApi>()
-                .getState(geonameId, "savej123")
-
-            if (response.isSuccessful) {
-                listStateModel = response.body()?.geonames!!
-                listStateModel.forEach {
-                    listState.add(it.name)
-                }
-
-                withContext(Dispatchers.Main){
-                    val stateAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
-                        this@SignUpActivity,
-                        R.layout.age_spinner_text,
-                        listState
-                    )
-                    stateAdapter.setDropDownViewResource(R.layout.age_spinner)
-                    spinnerState.setAdapter(stateAdapter)
-
-                    spinnerState.onItemSelectedListener = object :
-                        AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(
-                            parent: AdapterView<*>,
-                            view: View, position: Int, id: Long
-                        ) {
-                            (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-                        }
-
-                        override fun onNothingSelected(parent: AdapterView<*>) {
-                            // write code to perform some action
-                        }
-                    }
-
-                }
-
-//                Log.d("hitStateApi:", listStateModel.size.toString())
-            }
-        }
-    }
 
     private fun initOther() {
 
@@ -189,15 +110,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         picker.setListener { name, code, dialCode, flagDrawableResID ->
-            for (i in 0 until listCountry.size) {
-                val name1 = listCountry[i].countryName
-                if (name1.equals(name)){
-                    txtCountry.text = name1
-                    val geonameId = listCountry[i].geonameId
-                    hitStateApi(geonameId)
-                    break
-                }
-            }
+
+            txtCountry.text = name
             picker.dismiss()
         }
     }
@@ -217,6 +131,31 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         spinnerDay.setAdapter(dayAdapter)
 
         spinnerDay.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+
+        listState.add("UP")
+        listState.add("MP")
+        val stateAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this@SignUpActivity,
+            R.layout.age_spinner_text,
+            listState
+        )
+
+        stateAdapter.setDropDownViewResource(R.layout.age_spinner)
+        spinnerState.setAdapter(stateAdapter)
+
+        spinnerState.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,

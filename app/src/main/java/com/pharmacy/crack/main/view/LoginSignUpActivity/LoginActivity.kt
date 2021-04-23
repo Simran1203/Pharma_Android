@@ -9,9 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
-import com.pharmacy.crack.utils.AsteriskPasswordTransformationMethod
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
@@ -47,7 +45,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, ForgetPaswordActivity::class.java))
         }
         else if(v===txtCreateAccount){
-            startActivity(Intent(this, SignUpActivity::class.java))
+            if (!isNetworkAvailable(this)) {
+                showToast(this, "Please check your internet connection and try again.")
+
+            }else{
+                startActivity(Intent(this, SignUpActivity::class.java))
+            }
+
         }
         else if(v===txtLogin){
             if(editEmailLogin.getText().toString().trim().isEmpty()){

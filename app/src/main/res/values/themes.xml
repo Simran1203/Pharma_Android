@@ -14,6 +14,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="MyEditText" parent="Theme.AppCompat.Light">
+        <!--        <item name="colorControlNormal">#DA0323</item>-->
+        <item name="colorControlActivated">#DA0323</item>
+    </style>
 
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"/>
 
@@ -33,7 +37,7 @@
     </style>
 
     <style name="ThemeOverlay.PharmacyCrack.FullscreenContainer" parent="">
-        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
-        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+        <item name="fullscreenBackgroundColor">@color/wild_strawberry</item>
+        <item name="fullscreenTextColor">@color/wild_strawberry</item>
     </style>
 </resources>

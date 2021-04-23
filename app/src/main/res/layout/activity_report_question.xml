@@ -120,6 +120,7 @@
             app:boxStrokeColor="@color/wild_strawberry"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeWidth="1dp"
+            app:hintEnabled="false"
             app:boxBackgroundColor="@color/name"
             app:layout_constraintTop_toBottomOf="@id/txtreportQue">
 
@@ -131,6 +132,7 @@
                 android:padding="@dimen/_15sdp"
                 android:maxLength="250"
                 android:text=""
+                android:hint="Type Your Message Here"
                 android:scrollbars="vertical"
                 android:textCursorDrawable="@drawable/cursor_edit"
                 android:inputType="textMultiLine|textCapSentences"
