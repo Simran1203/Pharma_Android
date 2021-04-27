@@ -31,7 +31,6 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
         setFullScreen(this)
         setContentView(R.layout.activity_select_opponent)
 
-
         initAll()
         listner()
     }

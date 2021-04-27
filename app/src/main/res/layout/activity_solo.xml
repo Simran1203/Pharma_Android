@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
+    android:paddingTop="@dimen/_20sdp"
     android:paddingBottom="@dimen/_35sdp"
     tools:context=".main.view.GameActivities.SoloActivity">
 
@@ -18,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="YOUR DRUG IQ"
         android:textColor="@color/solid_black"
+        android:layout_marginTop="@dimen/_5sdp"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

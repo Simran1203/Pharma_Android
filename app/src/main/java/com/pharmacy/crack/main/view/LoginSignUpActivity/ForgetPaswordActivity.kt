@@ -65,12 +65,12 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
             else if(!(Patterns.EMAIL_ADDRESS.matcher(edtEmailForget.getText().toString().trim()).matches())){
                 Toast.makeText(this, "Please enter valid Email Address", Toast.LENGTH_SHORT).show()
             }
-           else if(edtEmailForget.getText().toString().startsWith(" ")){
-                Toast.makeText(this, "Please enter Email valid Address.", Toast.LENGTH_SHORT).show()
-            }
+//           else if(edtEmailForget.getText().toString().startsWith(" ")){
+//                Toast.makeText(this, "Please enter Email valid Address.", Toast.LENGTH_SHORT).show()
+//            }
             else{
                 val emailEnd = edtEmailForget.getText().toString().split("@").toTypedArray()
-                val emailStart = edtEmailForget.getText().toString()[0]
+                val emailStart = edtEmailForget.getText().toString().trim()[0]
                 txtEmailDialog.text = emailStart+"...@"+emailEnd[1]
                 dialogForget.show()
             }

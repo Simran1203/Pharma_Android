@@ -27,6 +27,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/road_map"-->
+<!--            android:alpha="0.3"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
         <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
             android:id="@+id/txtDrugIqMap"
             android:layout_width="wrap_content"
@@ -1151,7 +1162,7 @@
                     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="J"
+                        android:text="G"
                         android:textColor="@color/solid_black"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
@@ -1214,7 +1225,7 @@
 
     <com.pharmacy.crack.utils.viewUtils.RegularTextView
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_55sdp"
         android:layout_gravity="bottom|center"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"

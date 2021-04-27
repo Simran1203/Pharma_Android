@@ -41,34 +41,68 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 
-        <androidx.cardview.widget.CardView
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/cardMessage"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_200sdp"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            android:layout_marginTop="@dimen/_30sdp"-->
+<!--            android:layout_marginStart="@dimen/_20sdp"-->
+<!--            app:cardCornerRadius="@dimen/_10sdp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/imgCassey">-->
+
+<!--            <com.pharmacy.crack.utils.viewUtils.RegularEditText-->
+<!--                android:id="@+id/edtmessage"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_200sdp"-->
+<!--                android:gravity="start"-->
+<!--                android:padding="@dimen/_15sdp"-->
+<!--                android:maxLength="250"-->
+<!--                android:scrollbars="vertical"-->
+<!--                android:textCursorDrawable="@drawable/cursor_edit"-->
+<!--                android:inputType="textMultiLine|textCapSentences"-->
+<!--                android:textColor="@color/textview_selector"-->
+<!--                android:hint="Type Your Message Here"-->
+<!--                android:background="@null"/>-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/cardMessage"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginStart="@dimen/_20sdp"
-            app:cardCornerRadius="@dimen/_10sdp"
+            app:boxCornerRadiusTopStart="@dimen/_10sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_10sdp"
+            app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+            app:boxStrokeColor="@color/wild_strawberry"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeWidth="1dp"
+            app:hintEnabled="false"
+            app:boxBackgroundColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imgCassey">
 
             <com.pharmacy.crack.utils.viewUtils.RegularEditText
                 android:id="@+id/edtmessage"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="match_parent"
                 android:gravity="start"
                 android:padding="@dimen/_15sdp"
                 android:maxLength="250"
+                android:text=""
+                android:hint="Type Your Message Here"
                 android:scrollbars="vertical"
                 android:textCursorDrawable="@drawable/cursor_edit"
-                android:inputType="textMultiLine|textCapSentences"
-                android:textColor="@color/textview_selector"
-                android:hint="Type Your Message Here"
-                android:background="@null"/>
-        </androidx.cardview.widget.CardView>
+                android:inputType="textMultiLine|textNoSuggestions|textCapSentences"
+                android:textColor="@color/textview_selector"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
                     android:id="@+id/txtSubmitContact"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_55sdp"

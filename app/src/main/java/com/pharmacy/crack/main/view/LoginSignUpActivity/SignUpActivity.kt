@@ -114,6 +114,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             txtCountry.text = name
             picker.dismiss()
         }
+
     }
 
     private fun listDayInit() {
@@ -266,9 +267,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     .matches())
             ) {
                 Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
-            } else if (editEmail.getText().toString().startsWith(" ")) {
-                Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
-            } else if (editPasswordSignUp.text.toString().trim().isEmpty()) {
+            }  else if (editPasswordSignUp.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Password.", Toast.LENGTH_SHORT).show()
                 editPasswordSignUp.text?.clear()
             } else if (editPasswordSignUp.getText().toString().trim().length < 6) {

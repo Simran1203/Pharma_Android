@@ -16,7 +16,7 @@
         android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:paddingTop="@dimen/_30sdp">
+        android:paddingTop="@dimen/_20sdp">
         <LinearLayout
             android:id="@+id/layotTxt"
             android:layout_width="match_parent"

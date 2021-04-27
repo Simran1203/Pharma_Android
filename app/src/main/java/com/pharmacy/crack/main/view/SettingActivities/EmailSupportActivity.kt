@@ -3,6 +3,7 @@ package com.pharmacy.crack.main.view.SettingActivities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.view.MotionEvent
 import android.view.View
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.hideKeyBoard
@@ -35,11 +36,20 @@ class EmailSupportActivity : AppCompatActivity(),View.OnClickListener {
             super.onBackPressed()
         }
 
-        edtmessage.movementMethod = ScrollingMovementMethod()
-        ScrollingMovementMethod.getInstance()
-        edtmessage.setOnTouchListener(View.OnTouchListener { v, event ->
-            edtmessage.parent.requestDisallowInterceptTouchEvent(true)
-            false
+        edtmessage.setOnTouchListener(object:View.OnTouchListener{
+            override fun onTouch(v: View?, p1: MotionEvent?): Boolean {
+                if(edtmessage.hasFocus()){
+                    v?.parent?.requestDisallowInterceptTouchEvent(true)
+                    when (p1?.getAction()!! and MotionEvent.ACTION_MASK) {
+                        MotionEvent.ACTION_SCROLL -> {
+                            v!!.parent.requestDisallowInterceptTouchEvent(false)
+                            return true
+                        }
+                    }
+                }
+                return false
+            }
+
         })
     }
 

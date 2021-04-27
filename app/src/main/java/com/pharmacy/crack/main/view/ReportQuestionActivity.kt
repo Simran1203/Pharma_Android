@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.pharmacy.crack.R
@@ -22,11 +23,21 @@ class ReportQuestionActivity : AppCompatActivity(),View.OnClickListener {
 
 
         initBackground()
-        edtReportAns.movementMethod = ScrollingMovementMethod()
-        ScrollingMovementMethod.getInstance()
-        edtReportAns.setOnTouchListener(View.OnTouchListener { v, event ->
-            edtReportAns.parent.requestDisallowInterceptTouchEvent(true)
-            false
+
+        edtReportAns.setOnTouchListener(object:View.OnTouchListener{
+            override fun onTouch(v: View?, p1: MotionEvent?): Boolean {
+                if(edtReportAns.hasFocus()){
+                    v?.parent?.requestDisallowInterceptTouchEvent(true)
+                    when (p1?.getAction()!! and MotionEvent.ACTION_MASK) {
+                        MotionEvent.ACTION_SCROLL -> {
+                            v!!.parent.requestDisallowInterceptTouchEvent(false)
+                            return true
+                        }
+                    }
+                }
+                return false
+            }
+
         })
 
         consReportQue.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->

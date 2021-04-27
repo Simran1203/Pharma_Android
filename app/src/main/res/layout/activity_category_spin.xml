@@ -9,9 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="@drawable/bg"
-        android:paddingTop="@dimen/_30sdp">
+        android:paddingTop="@dimen/_40sdp">
     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
         android:id="@+id/txtCategorySpin"
         android:layout_width="wrap_content"

@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/_10sdp"
         android:paddingEnd="@dimen/_15sdp"
-        android:paddingTop="@dimen/_40sdp"
+        android:paddingTop="@dimen/_15sdp"
         android:orientation="horizontal">
 
         <ImageView

@@ -61,9 +61,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             else if(!(Patterns.EMAIL_ADDRESS.matcher(editEmailLogin.getText().toString().trim()).matches())){
                 Toast.makeText(this, "Please enter valid Email Address", Toast.LENGTH_SHORT).show()
             }
-            else if(editEmailLogin.getText().toString().startsWith(" ")){
-                Toast.makeText(this, "Please enter Email valid Address.", Toast.LENGTH_SHORT).show()
-            }
+
            else if(edtPasswordLogin.getText().toString().trim().isEmpty()){
                 Toast.makeText(this, "Please enter Password.", Toast.LENGTH_SHORT).show()
                 edtPasswordLogin.text?.clear()

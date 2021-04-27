@@ -22,9 +22,9 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:paddingLeft="@dimen/_20sdp"
-            android:paddingTop="@dimen/_30sdp"
+            android:paddingTop="@dimen/_20sdp"
             android:paddingRight="@dimen/_20sdp"
-            android:paddingBottom="@dimen/_110sdp">
+            android:paddingBottom="@dimen/_100sdp">
 
 
 

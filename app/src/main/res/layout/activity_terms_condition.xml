@@ -12,7 +12,7 @@
         android:id="@+id/txtTerms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:gravity="center_horizontal|bottom"
         android:text="Terms &amp;"
         android:textColor="@color/limed_spruce"
