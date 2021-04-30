@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="LoginViewModel"
+            type="com.pharmacy.crack.main.viewModel.loginSignUpViewModels.LoginViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/onboarding_bg"
@@ -94,10 +103,10 @@
 
             <com.pharmacy.crack.utils.viewUtils.RegularEditText
                 android:id="@+id/edtPasswordLogin"
-                android:hint="******"
+                android:hint="*********"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
-                android:drawableLeft="@drawable/password"
+                android:drawableStart="@drawable/password"
                 android:drawablePadding="@dimen/_10sdp"
                 android:gravity="center_vertical"
                 android:singleLine="true"
@@ -183,3 +192,4 @@
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
+</layout>

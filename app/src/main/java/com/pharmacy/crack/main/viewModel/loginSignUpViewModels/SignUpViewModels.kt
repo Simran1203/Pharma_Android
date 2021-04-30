@@ -1,4 +1,4 @@
-package com.pharmacy.crack.main.ViewModel.LoginSignUpViewModels
+package com.pharmacy.crack.main.viewModel.loginSignUpViewModels
 
 import androidx.lifecycle.ViewModel
 import com.pharmacy.crack.data.repositories.SignupRepo

@@ -2,71 +2,84 @@ package com.pharmacy.crack.main.view.LoginSignUpActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Patterns
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.pharmacy.crack.R
+import com.pharmacy.crack.databinding.ActivityLoginBinding
+
+import com.pharmacy.crack.main.viewModel.loginSignUpViewModels.LoginViewModel
+import com.pharmacy.crack.main.model.LoginModel
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
+
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
+
+
+     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
-        setContentView(R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this@LoginActivity, R.layout.activity_login)
+        binding.lifecycleOwner = this;
 
         listner()
+        }
 
-        constraintLogin.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+    private fun listner() {
+
+        binding.constraintLogin.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
 
-        })
+        }
 
-    }
+        binding.edtPasswordLogin.transformationMethod = AsteriskPasswordTransformationMethod()
 
+        binding.txtLogin.setOnClickListener(this)
+        binding.txtForgtPwd.setOnClickListener(this)
+        binding.txtCreateAccount.setOnClickListener(this)
 
-    private fun listner() {
-        edtPasswordLogin.setTransformationMethod(AsteriskPasswordTransformationMethod())
-
-        txtForgtPwd.setOnClickListener(this)
-        txtCreateAccount.setOnClickListener(this)
-        txtLogin.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
 
-        if(v===txtForgtPwd){
+        if(v===binding.txtForgtPwd){
             startActivity(Intent(this, ForgetPaswordActivity::class.java))
         }
-        else if(v===txtCreateAccount){
+        else if(v===binding.txtCreateAccount){
             if (!isNetworkAvailable(this)) {
                 showToast(this, "Please check your internet connection and try again.")
 
             }else{
                 startActivity(Intent(this, SignUpActivity::class.java))
             }
-
         }
-        else if(v===txtLogin){
-            if(editEmailLogin.getText().toString().trim().isEmpty()){
+
+        else if(v===binding.txtLogin){
+            if(binding.editEmailLogin.text.toString().trim().isEmpty()){
                 Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
-                editEmailLogin.text?.clear()
+                binding.editEmailLogin.text?.clear()
             }
-            else if(!(Patterns.EMAIL_ADDRESS.matcher(editEmailLogin.getText().toString().trim()).matches())){
+            else if(!(Patterns.EMAIL_ADDRESS.matcher(binding.editEmailLogin.getText().toString().trim()).matches())){
                 Toast.makeText(this, "Please enter valid Email Address", Toast.LENGTH_SHORT).show()
             }
 
-           else if(edtPasswordLogin.getText().toString().trim().isEmpty()){
+            else if(binding.edtPasswordLogin.text.toString().trim().isEmpty()){
                 Toast.makeText(this, "Please enter Password.", Toast.LENGTH_SHORT).show()
-                edtPasswordLogin.text?.clear()
+                binding.edtPasswordLogin.text?.clear()
             }
-            else if(edtPasswordLogin.getText().toString().trim().length<6){
+            else if(binding.edtPasswordLogin.text.toString().trim().length<6){
                 Toast.makeText(
                     this,
                     "Please enter at least 6 chars long password.",
@@ -79,7 +92,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this, DashboardActivity::class.java))
                 finish()
             }
-
         }
     }
 
