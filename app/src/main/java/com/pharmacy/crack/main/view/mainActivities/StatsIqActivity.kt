@@ -1,8 +1,10 @@
 package com.pharmacy.crack.main.view.mainActivities
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.pharmacy.crack.R
@@ -15,6 +17,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var listImage: ArrayList<Int>
     lateinit var listPercent: ArrayList<Int>
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

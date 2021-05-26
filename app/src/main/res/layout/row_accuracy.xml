@@ -27,7 +27,7 @@
         app:layout_constraintLeft_toRightOf="@id/imgStats"
         app:layout_constraintTop_toTopOf="@id/imgStats"
         app:layout_constraintBottom_toBottomOf="@id/imgStats"
-        android:textColor="@color/black"
+        android:textColor="@color/dove_grey"
         android:layout_marginEnd="@dimen/_10sdp"
         android:textSize="@dimen/_18sdp" />
 

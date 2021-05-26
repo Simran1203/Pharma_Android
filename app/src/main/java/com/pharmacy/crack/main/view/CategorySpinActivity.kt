@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.*
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.CategorySpinAdapter
+import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.showToast
 import kotlinx.android.synthetic.main.activity_category_spin.*
@@ -18,7 +20,7 @@ class CategorySpinActivity : AppCompatActivity() {
     lateinit var listCat : ArrayList<String>
     lateinit var adapter: CategorySpinAdapter
     lateinit var countDownTimer: CountDownTimer
-    var coundInterval: Long = 500
+    var coundInterval: Long = 300
     var catName = arrayOf("Oncology & misc","Women & Pediatrics","Endrocrinolgy","Infectious Disease",
         "Casey","Abused Substances","Cardiology & Hematology","Infection","OTC & Herbal","Fun Facts",
     "Neurology","New Rx","Infection","Law","Casey")
@@ -26,10 +28,12 @@ class CategorySpinActivity : AppCompatActivity() {
     companion object{
          var selection:Int = 0
     }
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_category_spin)
+        PrefHelper(this).wrongQuestion=0
         listCat = ArrayList()
 
         for(i in 0..14){
@@ -85,7 +89,7 @@ class CategorySpinActivity : AppCompatActivity() {
     }
 
     private fun onItemClick(pos: Int) {
-        Log.d("TAGasd", "onItemClick: " + pos)
+//        Log.d("TAGasd", "onItemClick: " + pos)
     }
 
     override fun onRestart() {

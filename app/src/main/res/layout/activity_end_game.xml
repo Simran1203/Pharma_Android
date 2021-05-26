@@ -65,11 +65,11 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
                     android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
                     android:src="@drawable/heart" />
 
                 <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -121,6 +121,7 @@
 
         </LinearLayout>
 
+
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtendGame"
             android:layout_width="match_parent"
@@ -132,11 +133,11 @@
             android:text="End Game"
             android:textColor="@color/clay_creek"
             android:textSize="@dimen/_15sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearOpt"
+            app:layout_constraintStart_toStartOf="@+id/linearOpt"
             app:layout_constraintTop_toBottomOf="@+id/linearOpt"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.80" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

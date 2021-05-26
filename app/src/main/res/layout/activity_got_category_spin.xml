@@ -35,7 +35,7 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:textAllCaps="true"
             android:gravity="center"
-            android:text="YOU GOT NEUROLOGY\nIN CATEGORY SPIN"
+            android:text="YOU GOT NEUROLOGY\nIN CATEGORY SPIN!"
             android:textColor="@color/wild_strawberry"
             android:textSize="@dimen/_22sdp" />
     </LinearLayout>

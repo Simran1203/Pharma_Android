@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.pharmacy.crack.R
@@ -29,6 +30,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var consDasDialog: ConstraintLayout
     private var doubleBackToExitPressedOnce = false
 
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

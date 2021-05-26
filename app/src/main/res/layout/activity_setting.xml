@@ -132,5 +132,20 @@
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold" />
 
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtLogout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@drawable/btn_yellow"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_10sdp"
+        android:text="Logout"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

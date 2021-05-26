@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDrugIq"
-        app:srcCompat="@drawable/cassy" />
+        app:srcCompat="@drawable/character_with_capsule" />
 
     <com.pharmacy.crack.utils.viewUtils.RegularTextView
        android:id="@+id/txtLevel"

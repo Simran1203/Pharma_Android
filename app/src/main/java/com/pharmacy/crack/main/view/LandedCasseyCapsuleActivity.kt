@@ -1,10 +1,12 @@
 package com.pharmacy.crack.main.view
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.CategorySpinAdapter
 import com.pharmacy.crack.main.adapter.LandedCaseyCapsulAdapter
@@ -25,6 +27,7 @@ class LandedCasseyCapsuleActivity : AppCompatActivity(),View.OnClickListener {
     companion object{
         var selectionLandedcasey:Int = 4
     }
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

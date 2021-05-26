@@ -1,8 +1,10 @@
 package com.pharmacy.crack.main.view.SettingActivities
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.editTextBackground
 import com.pharmacy.crack.utils.hideKeyBoard
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_sign_up.relMonth
 import kotlinx.android.synthetic.main.toolbar.*
 
 class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

@@ -6,27 +6,33 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
+import com.pharmacy.crack.databinding.ActivityLoginBinding
+import com.pharmacy.crack.databinding.ActivityStoryBinding
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_story.*
 
 class StoryActivity : AppCompatActivity(), View.OnClickListener {
     private var doubleBackToExitPressedOnce = false
+    private lateinit var binding: ActivityStoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
-        setContentView(R.layout.activity_story)
+        binding = DataBindingUtil.setContentView(this@StoryActivity, R.layout.activity_story)
+        binding.lifecycleOwner = this;
 
         onClicklistner()
     }
 
     private fun onClicklistner() {
-        txtSkip.setOnClickListener(this)
+        binding.txtSkip.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-      if(v== txtSkip){
+      if(v == binding.txtSkip){
         startActivity(Intent(this, DashboardActivity::class.java))
       }
     }

@@ -20,8 +20,10 @@
             android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".main.view.LoginSignUpActivity.ResetPasswordActivity" />
-        <activity android:name=".main.view.TermsConditionActivity" />
+        <activity android:name=".main.view.LoginSignUpActivity.ResetPasswordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".main.view.TermsConditionActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".main.view.SettingActivities.TutorialScreenActivity"
             android:screenOrientation="portrait"/>
         <activity
@@ -44,7 +46,8 @@
             android:screenOrientation="portrait" >
 
         </activity>
-        <activity android:name=".main.view.CongratulationActivity" />
+        <activity android:name=".main.view.CongratulationActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".main.view.IncorrectActivity"
@@ -52,7 +55,8 @@
         <activity
             android:name=".main.view.AnswerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.view.QuestionActivity" >
+        <activity android:name=".main.view.QuestionActivity"
+            android:screenOrientation="portrait" >
 
         </activity>
         <activity
@@ -77,7 +81,8 @@
         <activity
             android:name=".main.view.LoseActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".main.view.GameActivities.TwoPlayerBattleActivity" />
+        <activity android:name=".main.view.GameActivities.TwoPlayerBattleActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".main.view.GameActivities.SelectOpponentActivity"
             android:screenOrientation="portrait"

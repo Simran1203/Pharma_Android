@@ -4,13 +4,16 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.viewUtils.RegularTextView
 import kotlinx.android.synthetic.main.activity_drug_store.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.imgBackToolbarMultiColor
@@ -21,8 +24,10 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var dialogPurchase : Dialog
     private lateinit var imgCloseUnsuccess : ImageView
     private lateinit var imgClosePurchase : ImageView
+    private lateinit var txtBuyDrug : RegularTextView
     private var fromSource:String = ""
 
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -40,8 +45,8 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
-        txtToolLime.setText("Drug")
-        txtToolWlidStraw.setText("Store")
+        txtToolLime.text = "Drug"
+        txtToolWlidStraw.text = "Store"
 
         dialogUnsuccessful = Dialog(this@DrugStoreActivity,android.R.style.Theme_Light)
         dialogUnsuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -49,19 +54,23 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         dialogUnsuccessful.setCancelable(false)
         dialogUnsuccessful.setContentView(R.layout.dialog_purchase_unsuccessful)
         imgCloseUnsuccess = dialogUnsuccessful.findViewById(R.id.imgCloseUnsuccess)
-        imgCloseUnsuccess.setOnClickListener(View.OnClickListener {
+        imgCloseUnsuccess.setOnClickListener {
             dialogUnsuccessful.dismiss()
-        })
+        }
         dialogPurchase = Dialog(this@DrugStoreActivity,android.R.style.Theme_Light)
         dialogPurchase.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogPurchase.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
         dialogPurchase.setCancelable(false)
         dialogPurchase.setContentView(R.layout.dialog_purchase)
         imgClosePurchase = dialogPurchase.findViewById(R.id.imgClosePurchase)
-        imgClosePurchase.setOnClickListener(View.OnClickListener {
+        txtBuyDrug = dialogPurchase.findViewById(R.id.txtBuyDrug)
+        imgClosePurchase.setOnClickListener {
             dialogPurchase.dismiss()
             dialogUnsuccessful.show()
-        })
+        }
+        txtBuyDrug.setOnClickListener {
+            super.onBackPressed()
+        }
     }
 
     override fun onClick(v: View?) {

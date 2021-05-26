@@ -82,9 +82,9 @@
                         android:layout_height="@dimen/_10sdp"
                         android:layout_centerInParent="true"
                         android:stepSize="1"
-                        style="@style/levelRatingBar"
                         android:rating="1"
-                        android:numStars="3"/>
+                        android:numStars="3"
+                        style="@style/levelRatingBar" />
                 </RelativeLayout>
 
            </LinearLayout>
@@ -163,6 +163,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
+                android:id="@+id/rel_fifty"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@drawable/btn_yellow"
@@ -178,6 +179,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/relTimeQue"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@drawable/btn_yellow"

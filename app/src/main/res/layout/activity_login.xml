@@ -63,8 +63,8 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:paddingTop="@dimen/_60sdp"
-            android:paddingRight="@dimen/_20sdp"
-            android:paddingLeft="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/_120sdp"
             app:layout_constraintTop_toBottomOf="@id/layotTxt"
@@ -75,6 +75,7 @@
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:text="@string/email_address"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold"
@@ -85,16 +86,19 @@
                 android:hint="@string/xyz_gmail_com"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:drawableStart="@drawable/email"
                 android:textColorHint="@color/dove_grey"
                 android:textColor="@color/textview_selector"
                 android:drawablePadding="@dimen/_10sdp"
                 android:inputType="textEmailAddress"
+                android:theme="@style/MyEditText1"
                 android:maxLength="25" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:text="@string/password"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold"
@@ -106,18 +110,21 @@
                 android:hint="*********"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:drawableStart="@drawable/password"
                 android:drawablePadding="@dimen/_10sdp"
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:textColorHint="@color/dove_grey"
                 android:maxLength="15"
+                android:theme="@style/MyEditText1"
                 android:textColor="@color/textview_selector" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:id="@+id/txtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_5sdp"
                 android:textSize="@dimen/_17sdp"
@@ -132,8 +139,8 @@
             app:layout_constraintTop_toBottomOf="@id/layotTxt"
             app:layout_constraintLeft_toLeftOf="@id/linearCard"
             app:layout_constraintRight_toRightOf="@id/linearCard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_marginTop="@dimen/_25sdp"
             android:src="@drawable/cassy"/>
 

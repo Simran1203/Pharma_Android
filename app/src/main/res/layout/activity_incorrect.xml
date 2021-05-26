@@ -37,7 +37,6 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:gravity="start"
-                android:text="00:20"
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_15sdp" />
         </LinearLayout>

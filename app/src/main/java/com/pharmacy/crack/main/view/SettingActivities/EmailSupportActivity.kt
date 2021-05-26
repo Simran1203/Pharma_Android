@@ -1,10 +1,12 @@
 package com.pharmacy.crack.main.view.SettingActivities
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.MotionEvent
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class EmailSupportActivity : AppCompatActivity(),View.OnClickListener {
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

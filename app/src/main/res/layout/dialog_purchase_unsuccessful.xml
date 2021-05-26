@@ -55,10 +55,11 @@
 
 
        <com.pharmacy.crack.utils.viewUtils.RegularTextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="@dimen/_150sdp"
+           android:layout_height="@dimen/_40sdp"
            android:text="Ok"
            android:gravity="center"
+           android:textSize="@dimen/_15sdp"
            android:paddingBottom="@dimen/_10sdp"
            android:layout_marginTop="@dimen/_50sdp"
            android:textColor="@color/white"
@@ -69,10 +70,10 @@
 
         <ImageView
             android:id="@+id/imgCloseUnsuccess"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/close"/>
     </RelativeLayout>
 

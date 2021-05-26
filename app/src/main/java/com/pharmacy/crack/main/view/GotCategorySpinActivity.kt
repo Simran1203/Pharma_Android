@@ -1,9 +1,11 @@
 package com.pharmacy.crack.main.view
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.row_catspin.view.*
 class GotCategorySpinActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var category:String
 
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -21,7 +24,7 @@ class GotCategorySpinActivity : AppCompatActivity(),View.OnClickListener {
 
         
         category = intent.getStringExtra("cat").toString()
-        txtGot.text = "You got ${category}\n"+"in category spin"
+        txtGot.text = "You Landed on ${category}!"
 
 
         when (category) {

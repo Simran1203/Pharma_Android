@@ -1,8 +1,10 @@
 package com.pharmacy.crack.main.view.mainActivities
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.SettingActivities.ChangeProfileActivity
@@ -14,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_setting.*
 
 
 class SettingActivity : AppCompatActivity(),View.OnClickListener {
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -24,6 +27,7 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
         txtEmaiSupport.setOnClickListener(this)
         txtTutorial.setOnClickListener(this)
         txtTermsCondition.setOnClickListener(this)
+        txtLogout.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {

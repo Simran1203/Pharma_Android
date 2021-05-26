@@ -56,8 +56,8 @@
 
             <ImageView
                 android:id="@+id/imgBackSignup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_30sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/txtInfo"
                 app:layout_constraintBottom_toBottomOf="@+id/txtInfo"
@@ -93,6 +93,7 @@
                     android:id="@+id/edtName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textSize="@dimen/_14sdp"
                     android:singleLine="true"
                     android:inputType="textCapWords"
                     android:textCursorDrawable="@drawable/cursor_edit"
@@ -130,6 +131,7 @@
                     android:id="@+id/editEmail"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textCursorDrawable="@drawable/cursor_edit"
@@ -167,6 +169,7 @@
                     android:id="@+id/editPasswordSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:singleLine="true"
                     android:textCursorDrawable="@drawable/cursor_edit"
                     android:textColor="@color/textview_selector" />
@@ -205,6 +208,7 @@
                     android:id="@+id/editCnfmPasswordSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:singleLine="true"
                     android:textCursorDrawable="@drawable/cursor_edit"
                     android:textColor="@color/textview_selector" />
@@ -242,6 +246,7 @@
                     android:id="@+id/editUserName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textSize="@dimen/_14sdp"
                     android:singleLine="true"
                     android:imeOptions="actionDone"
                     android:textColor="@color/textview_selector"
@@ -255,7 +260,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="Age*"
+                android:text="Age"
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -397,8 +402,8 @@
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
                     android:textColor="@color/desert"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:textSize="@dimen/_14sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_13sdp"
                     android:gravity="center_vertical" />
 
                 <ImageView
@@ -409,6 +414,30 @@
                     android:layout_gravity="center"
                     android:src="@drawable/dropdown_arrow" />
 
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/countrPickerSignup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:ccp_contentColor="@android:color/transparent"
+                    android:background="@android:color/transparent"
+                    app:ccp_textSize="@dimen/_25sdp"
+                    app:ccp_textGravity="CENTER"
+                    app:ccp_showFlag="false"
+                    app:ccp_showFullName="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_showPhoneCode="false"
+                    app:ccpDialog_backgroundColor="@color/white"
+                    app:ccpDialog_showCloseIcon="true"
+                    app:ccpDialog_keyboardAutoPopup="true"
+                    app:ccp_autoDetectLanguage="false"
+                    app:ccp_autoDetectCountry="false"
+                    android:layout_centerInParent="true"
+                    app:ccp_clickable="true"
+                    android:focusable="false"
+                    app:ccp_arrowColor="@color/white"
+                    app:ccp_showArrow="false"
+                    android:textAlignment="gravity" />
+
             </RelativeLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -416,7 +445,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="State*"
+                android:text="State"
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -462,73 +491,91 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="Player Classification"
+                android:text="Player Classification*"
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/relState" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editPlayerextInput"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
+            <RelativeLayout
+                android:id="@+id/relPlayer"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/_5sdp"
-                app:boxCornerRadiusTopStart="@dimen/_10sdp"
-                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
-                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
-                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
-                app:boxStrokeColor="@color/wild_strawberry"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeWidth="1dp"
-                app:boxBackgroundColor="@color/player"
-                app:layout_constraintTop_toBottomOf="@id/txtPlayer">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPlayer"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/round_edit"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/_10sdp">
 
-                <com.pharmacy.crack.utils.viewUtils.RegularEditText
-                    android:id="@+id/editPlayer"
+                <Spinner
+                    android:id="@+id/spinnerPlayer"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/textview_selector" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dropdown_arrow" />
+
+            </RelativeLayout>
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:id="@+id/txtSpeciality"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="Specialty(All that Apply)"
+                android:text="Specialty(All that Apply)*"
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editPlayerextInput" />
+                app:layout_constraintTop_toBottomOf="@id/relPlayer" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editSpecialtyTextInput"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
+            <RelativeLayout
+                android:id="@+id/relSpecialty"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="@dimen/_5sdp"
-                app:boxCornerRadiusTopStart="@dimen/_10sdp"
-                app:boxCornerRadiusBottomStart="@dimen/_10sdp"
-                app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
-                app:boxCornerRadiusTopEnd="@dimen/_10sdp"
-                app:boxStrokeColor="@color/wild_strawberry"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:boxStrokeWidth="1dp"
-                app:boxBackgroundColor="@color/speciality"
-                app:layout_constraintTop_toBottomOf="@id/txtSpeciality">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtSpeciality"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@drawable/round_edit"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/_10sdp">
 
-                <com.pharmacy.crack.utils.viewUtils.RegularEditText
-                    android:id="@+id/editSpecialty"
+                <Spinner
+                    android:id="@+id/spinnerSpecialty"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp"
-                    android:singleLine="true"
-                    android:inputType="textCapWords"
-                    android:textCursorDrawable="@drawable/cursor_edit"
-                    android:textColor="@color/textview_selector" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown" />
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dropdown_arrow" />
+
+            </RelativeLayout>
 
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -536,11 +583,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:text="College/University*"
+                android:text="College/University"
                 android:textColor="@color/solid_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editSpecialtyTextInput" />
+                app:layout_constraintTop_toBottomOf="@id/relSpecialty" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -563,6 +610,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:singleLine="true"
+                    android:textSize="@dimen/_14sdp"
                     android:inputType="textCapWords"
                     android:textCursorDrawable="@drawable/cursor_edit"
                     android:textColor="@color/textview_selector" />

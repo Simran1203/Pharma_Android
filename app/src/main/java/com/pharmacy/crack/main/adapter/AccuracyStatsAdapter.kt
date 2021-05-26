@@ -41,16 +41,6 @@ class AccuracyStatsAdapter(
 
           holder.itemView.txtStatsPercent.text = listPercent.get(position).toString()+"%"
 
-//         if(position==10){
-//             val displaymetrics = DisplayMetrics()
-//             (context as Activity).windowManager.defaultDisplay.getMetrics(displaymetrics)
-//
-//             val devicewidth = displaymetrics.widthPixels / 2
-//
-//             holder.itemView.consStat.getLayoutParams().width = devicewidth
-//
-//         }
-
 
         if(listPercent.get(position) in 90..100){
             holder.itemView.progrssStats.progressTintList = ColorStateList.valueOf(

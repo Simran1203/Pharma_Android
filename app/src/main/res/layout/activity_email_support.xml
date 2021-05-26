@@ -95,6 +95,7 @@
                 android:maxLength="250"
                 android:text=""
                 android:hint="Type Your Message Here"
+                android:textSize="@dimen/_14sdp"
                 android:scrollbars="vertical"
                 android:textCursorDrawable="@drawable/cursor_edit"
                 android:inputType="textMultiLine|textNoSuggestions|textCapSentences"

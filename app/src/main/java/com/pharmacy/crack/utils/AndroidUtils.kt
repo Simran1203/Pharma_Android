@@ -29,6 +29,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -159,6 +160,7 @@ fun getRootDirPath(context: Context): String {
 }
 
 
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     fun setFullScreen(context: Context) {
         setWindowFlag(context as Activity, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, true)
         context.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN

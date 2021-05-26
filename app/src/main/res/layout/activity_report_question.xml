@@ -69,7 +69,7 @@
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
             android:gravity="center_vertical"
-            android:text="Neurology &amp; Psychology\nasaddsads"
+            android:text="Neurology"
             android:textColor="@color/desert"
             app:layout_constraintTop_toBottomOf="@id/txtCat" />
 

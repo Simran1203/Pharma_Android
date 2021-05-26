@@ -11,7 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
+import com.pharmacy.crack.databinding.ActivityForgetPaswordBinding
+import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -23,20 +26,17 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
     lateinit var dialogForget : Dialog
     lateinit var txtForgotSubmitDialog : RegularTextView
     lateinit var txtEmailDialog : RegularTextView
+    private lateinit var binding: ActivityForgetPaswordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
-        setContentView(R.layout.activity_forget_pasword)
+        binding = DataBindingUtil.setContentView(this@ForgetPaswordActivity, R.layout.activity_forget_pasword)
+        binding.lifecycleOwner = this;
 
         init()
         clickListner()
 
-        constraintForgot.setOnFocusChangeListener(View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                hideKeyBoard(this)
-            }
 
-        })
     }
 
     private fun init() {
@@ -49,41 +49,48 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
     }
 
     private fun clickListner() {
-        txtSubmit.setOnClickListener(this)
+        binding.constraintForgot.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                hideKeyBoard(this)
+            }
+
+        }
+
+        binding.txtSubmit.setOnClickListener(this)
         txtForgotSubmitDialog.setOnClickListener(this)
-        btnSignUpForgot.setOnClickListener(this)
-        imgBack.setOnClickListener(this)
+        binding.btnSignUpForgot.setOnClickListener(this)
+        binding.imgBack.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        if(v==txtSubmit){
+        if(v==binding.txtSubmit){
 
-            if(edtEmailForget.getText().toString().trim().isEmpty()){
+            if(binding.edtEmailForget.text.toString().trim().isEmpty()){
                 Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
-                edtEmailForget.text?.clear()
+                binding.edtEmailForget.text?.clear()
             }
-            else if(!(Patterns.EMAIL_ADDRESS.matcher(edtEmailForget.getText().toString().trim()).matches())){
+            else if(!(Patterns.EMAIL_ADDRESS.matcher(binding.edtEmailForget.text.toString().trim()).matches())){
                 Toast.makeText(this, "Please enter valid Email Address", Toast.LENGTH_SHORT).show()
             }
 //           else if(edtEmailForget.getText().toString().startsWith(" ")){
 //                Toast.makeText(this, "Please enter Email valid Address.", Toast.LENGTH_SHORT).show()
 //            }
             else{
-                val emailEnd = edtEmailForget.getText().toString().split("@").toTypedArray()
-                val emailStart = edtEmailForget.getText().toString().trim()[0]
+                val emailEnd = binding.edtEmailForget.text.toString().split("@").toTypedArray()
+                val emailStart = binding.edtEmailForget.getText().toString().trim()[0]
                 txtEmailDialog.text = emailStart+"...@"+emailEnd[1]
                 dialogForget.show()
             }
 
         }
-        else if(v==btnSignUpForgot){
+        else if(v==binding.btnSignUpForgot){
             startActivity(Intent(this, SignUpActivity::class.java))
         }
         else if(v==txtForgotSubmitDialog){
             dialogForget.dismiss()
             startActivity(Intent(this,ResetPasswordActivity::class.java))
         }
-        else if(v==imgBack){
+        else if(v==binding.imgBack){
             onBackPressed()
         }
     }
@@ -91,9 +98,7 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
     override fun onStart() {
         super.onStart()
         val dialog = dialogForget
-        if (dialog != null) {
-            dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        }
+        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }

@@ -125,10 +125,12 @@
                     android:text="1250" />
             </LinearLayout>
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/txtBuyDrug"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:text="Buy"
                 android:gravity="center"
+                android:textSize="@dimen/_15sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textColor="@color/white"
@@ -141,8 +143,8 @@
 
         <ImageView
             android:id="@+id/imgClosePurchase"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_alignParentTop="true"

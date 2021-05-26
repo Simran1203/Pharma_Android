@@ -1,10 +1,12 @@
 package com.pharmacy.crack.main.view
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
@@ -12,10 +14,11 @@ import kotlinx.android.synthetic.main.activity_answer.*
 
 class AnswerActivity : AppCompatActivity(), View.OnClickListener {
 
-    var correctOptionNO: Int = 0
-    var correctAnsNo: Int = 0
+    private var correctOptionNO: Int = 0
+    private var correctAnsNo: Int = 0
     lateinit var optionList: ArrayList<String>
     lateinit var question: String
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

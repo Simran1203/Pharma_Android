@@ -1,9 +1,11 @@
 package com.pharmacy.crack.main.view.SettingActivities
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
@@ -11,7 +13,8 @@ import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_tutorial_screen.*
 
 class TutorialScreenActivity : AppCompatActivity(),View.OnClickListener {
-    var tutorialScreen : String =""
+    private var tutorialScreen : String =""
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg">
+
+
+    <ImageView
+        android:id="@+id/imgDialogCorrect"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/neurology_psychiatry_large" />
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtCorrectAnsw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:text="CORRECT\nANSWER!"
+        android:textColor="@color/wild_strawberry"
+        android:textSize="@dimen/_35sdp" />
+
+    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        android:id="@+id/txtPointAnsw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="You Earned: 150 Points"
+        android:textColor="@color/scorpion_grey"
+        android:textSize="@dimen/_25sdp" />
+</LinearLayout>

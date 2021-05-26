@@ -17,6 +17,7 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.hbb20.CountryCodePicker
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.model.countryModel.Geoname
 import com.pharmacy.crack.main.view.TermsConditionActivity
@@ -37,7 +38,7 @@ import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
-class SignUpActivity : AppCompatActivity(), View.OnClickListener {
+class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePicker.OnCountryChangeListener{
 
     val month = arrayOf(
         "Jan",
@@ -53,12 +54,23 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         "Nov",
         "Dec"
     )
+    val player = arrayOf(
+        "Pharmacist","Physician","Nurse","Nurse Practitioner","Physician Assistant",
+        "Paramedic", "Dentist", "Optometrist", "Pharmacy Technician",
+        "Student – Pharmacy", "Student – Nurse", "Student – Medical", "Student - Other","Other"
+    )
+    val speciality = arrayOf(
+        "Specialist", "Clinical Pharmacist", "Retail", "Hospital", "Ambulatory",
+        "Administrative", "Family Practice", "Surgeon", "Bedside Nurse",
+        "Non-Bedside Nurse", "Clinic", "Other"
+    )
 
     var listYear: ArrayList<Int> = ArrayList()
     var listDay: ArrayList<Int> = ArrayList()
     var listState: ArrayList<String> = ArrayList()
+    var listPlayer: ArrayList<String> = ArrayList()
     var termsAndCon: Boolean = false
-    val picker = CountryPicker.newInstance("Select Country")
+//    val picker = CountryPicker.newInstance("Select Country")
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,6 +86,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         initYear()
         listMonthInit()
         listDayInit()
+        initPlayer()
+        initSpeciality()
         initOther()
 
 //        txtTerm.setOnClickListener {
@@ -99,6 +113,54 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 //        txtTerm.highlightColor = Color.TRANSPARENT
     }
 
+    private fun initSpeciality() {
+        val specialityAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, speciality)
+        specialityAdapter.setDropDownViewResource(R.layout.age_spinner)
+        spinnerSpecialty.adapter = specialityAdapter
+
+        spinnerSpecialty.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+//                Toast.makeText(
+//                    this@SignUpActivity,
+//                    player[position], Toast.LENGTH_SHORT
+//                ).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+    }
+
+    private fun initPlayer() {
+        val playerAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, player)
+        playerAdapter.setDropDownViewResource(R.layout.age_spinner)
+        spinnerPlayer.adapter = playerAdapter
+
+        spinnerPlayer.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+//                Toast.makeText(
+//                    this@SignUpActivity,
+//                    player[position], Toast.LENGTH_SHORT
+//                ).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+    }
+
 
 
     private fun initOther() {
@@ -109,11 +171,12 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
 
-        picker.setListener { name, code, dialCode, flagDrawableResID ->
+//        picker.setListener { name, code, dialCode, flagDrawableResID ->
+//
+//            txtCountry.text = name
+//            picker.dismiss()
+//        }
 
-            txtCountry.text = name
-            picker.dismiss()
-        }
 
     }
 
@@ -232,7 +295,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         editCnfmPasswordSignUp.transformationMethod = AsteriskPasswordTransformationMethod()
         txtSignup.setOnClickListener(this)
         imgBackSignup.setOnClickListener(this)
-        relCont.setOnClickListener(this)
+        countrPickerSignup!!.setOnCountryChangeListener(this)
+//        relCont.setOnClickListener(this)
+
 
         chkTerm.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
@@ -250,6 +315,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         editTextBackground(relDate, "#FFFFA7", "#ADADAD")
         editTextBackground(relCont, "#FBFB95", "#ADADAD")
         editTextBackground(relState, "#FBFB95", "#ADADAD")
+        editTextBackground(relPlayer, "#F5ED7E", "#ADADAD")
+        editTextBackground(relSpecialty, "#EFD671", "#ADADAD")
     }
 
 
@@ -288,10 +355,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             } else if (editUserName.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()
                 editUserName.text?.clear()
-            } else if (editCollege.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "Please enter College/University name.", Toast.LENGTH_SHORT)
-                    .show()
-            } else if (!termsAndCon) {
+            }  else if (!termsAndCon) {
                 Toast.makeText(
                     this,
                     "Please agree to our Terms and Conditions.",
@@ -302,9 +366,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
             }
 
         }
-        if (v == relCont) {
-            picker.show(supportFragmentManager, "COUNTRY_PICKER")
-        }
+//        if (v == tvCountryCode) {
+//            picker.show(supportFragmentManager, "COUNTRY_PICKER")
+//        }
         if (v == imgBackSignup) {
             super.onBackPressed()
         }
@@ -315,5 +379,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     override fun onBackPressed() {
         hideKeyBoard(this)
         super.onBackPressed()
+    }
+
+    override fun onCountrySelected() {
+        txtCountry.text = countrPickerSignup?.selectedCountryName
     }
 }

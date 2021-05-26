@@ -20,7 +20,8 @@
             android:gravity="center"
             android:text="You Landed On\nCasey Capsule"
             android:textColor="@color/wild_strawberry"
-            android:textSize="@dimen/_30sdp"
+            android:textSize="@dimen/_27sdp"
+            android:textAllCaps="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

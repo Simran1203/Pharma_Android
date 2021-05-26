@@ -31,7 +31,6 @@
             android:gravity="start"
             android:text="You Earned: 150 Points"
             android:textColor="@color/white"
-            android:textStyle="bold"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

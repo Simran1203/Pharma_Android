@@ -1,6 +1,7 @@
 package com.pharmacy.crack.main.view.rewardsActivity
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
@@ -9,21 +10,28 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.hbb20.CountryCodePicker
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.editTextBackground
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
+import com.ybs.countrypicker.CountryPicker
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
 
 
-class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
+class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, CountryCodePicker.OnCountryChangeListener {
     var listCategory: ArrayList<String> = ArrayList()
+
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_submit_question)
+        txtCountryQuest.text = applicationContext.resources.configuration.locale.displayCountry
 
         constraintQuest.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
@@ -33,11 +41,13 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
 
         initCategory()
         clickListner()
+
     }
 
     private fun clickListner() {
         imgBackQuest.setOnClickListener(this)
         txtSubmitQueston.setOnClickListener(this)
+
 
         edtTypeQue.movementMethod = ScrollingMovementMethod()
         ScrollingMovementMethod.getInstance()
@@ -48,21 +58,19 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initCategory() {
-
+        editTextBackground(relContQuest, "#FBFB95", "#FF48AF")
         editTextBackground(relCat, "#FFFC7C", "#FF48AF")
-        listCategory.add("Oncology & misc")
-        listCategory.add("Women & Pediatrics")
-        listCategory.add("Endocrinology")
-        listCategory.add("infectious Disease")
-        listCategory.add("Casey")
-        listCategory.add("Abused Substances")
-        listCategory.add("Cardiology & Hematology")
-        listCategory.add("Infection")
-        listCategory.add("OTC & Herbal")
-        listCategory.add("Fun Facts")
-        listCategory.add("Neurology")
+        listCategory.add("Infectious Disease & Immunology")
+        listCategory.add("Womens & Pediatrics")
         listCategory.add("New Rx")
         listCategory.add("Law")
+        listCategory.add("Abused Substances")
+        listCategory.add("Fun Facts")
+        listCategory.add("OTC & Herbals")
+        listCategory.add("Endocrinology & Toxicology")
+        listCategory.add("Cardiology & Hematology")
+        listCategory.add("Neurology & Psychology")
+        listCategory.add("Oncology & Miscellaneous")
 
         val catAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
             this,
@@ -113,14 +121,19 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             }
         }
-        if(v==imgBackQuest){
+       else if(v==imgBackQuest){
             super.onBackPressed()
         }
+
     }
 
     override fun onBackPressed() {
         hideKeyBoard(this)
         super.onBackPressed()
+    }
+
+    override fun onCountrySelected() {
+        txtCountryQuest.text = countrPickerQuest?.selectedCountryName
     }
 
 }
