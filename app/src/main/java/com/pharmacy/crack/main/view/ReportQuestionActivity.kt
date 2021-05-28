@@ -51,6 +51,7 @@ class ReportQuestionActivity : AppCompatActivity(),View.OnClickListener {
         }
 
         txtSubmitReportQue.setOnClickListener(this)
+        imgBackreportQuest.setOnClickListener(this)
     }
 
     private fun initBackground() {
@@ -69,6 +70,9 @@ class ReportQuestionActivity : AppCompatActivity(),View.OnClickListener {
                 finishAffinity()
 //                showToast(this,"success")
             }
+        }
+        else if(v==imgBackreportQuest){
+            super.onBackPressed()
         }
     }
 

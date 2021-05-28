@@ -167,7 +167,6 @@
             android:layout_marginRight="@dimen/_40sdp"
             android:layout_marginLeft="@dimen/_40sdp"
             android:background="@drawable/btn_red"
-            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/txtForgtPwd"
             android:layout_marginTop="@dimen/_20sdp" />
 

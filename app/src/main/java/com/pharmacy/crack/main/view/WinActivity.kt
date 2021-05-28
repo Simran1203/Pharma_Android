@@ -20,7 +20,7 @@ class WinActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_win)
 
         txtContinue.setOnClickListener(this)
-        PrefHelper(this).wrongQuestion=0
+        QuestionActivity.wrongAns =0
     }
 
     override fun onClick(v: View?) {

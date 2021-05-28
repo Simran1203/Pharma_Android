@@ -1,9 +1,11 @@
 package com.pharmacy.crack.main.view.GameActivities
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.CategorySpinActivity
 import com.pharmacy.crack.main.view.QuestionActivity
@@ -12,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_solo.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class SoloActivity : AppCompatActivity(),View.OnClickListener {
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

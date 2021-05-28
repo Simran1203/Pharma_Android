@@ -48,6 +48,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtNew" />
 
+        <ImageView
+            android:id="@+id/imgBackreportQuest"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/txtInfo"
+            app:layout_constraintTop_toTopOf="@+id/txtNew" />
 
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtCat"
@@ -129,6 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="start"
+                android:textSize="@dimen/_14sdp"
                 android:padding="@dimen/_15sdp"
                 android:maxLength="250"
                 android:text=""

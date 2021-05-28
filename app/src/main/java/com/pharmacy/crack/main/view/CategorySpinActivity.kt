@@ -33,7 +33,6 @@ class CategorySpinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_category_spin)
-        PrefHelper(this).wrongQuestion=0
         listCat = ArrayList()
 
         for(i in 0..14){

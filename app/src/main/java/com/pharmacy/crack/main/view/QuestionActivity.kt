@@ -41,6 +41,9 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var txtIncAns: TextView
     var coundInterval: Long = 1000
     var isRunning24Hrs: Boolean = false
+    companion object{
+        var wrongAns=0;
+    }
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +76,7 @@ class QuestionActivity : AppCompatActivity() {
 
         if (pos == 0) {
             if (correctAnsNo == 3 && level == totalLevel) {
-                PrefHelper(this).wrongQuestion = 0
+                wrongAns = 0
                 startActivity(Intent(this, WinActivity::class.java))
             } else if (correctAnsNo == 3) {
                 val intents = Intent(this, CongratulationActivity::class.java).apply {
@@ -82,17 +85,18 @@ class QuestionActivity : AppCompatActivity() {
                 }
                 startActivityForResult(intents, 3)
             } else {
-
+                txtToolbar.visibility = View.INVISIBLE
                 dialogCorrect.show()
                 imageCategoryWithAnimCorrectAns()
 
             }
         } else {
-            if (PrefHelper(this).wrongQuestion <2) {
+            if (wrongAns <2) {
+                txtToolbar.visibility = View.INVISIBLE
                 dialogInCorrectAnim()
             }
             else {
-                PrefHelper(this).wrongQuestion=0
+                wrongAns=0
                 startActivity(Intent(this, LoseActivity::class.java))
             }
         }
@@ -107,7 +111,7 @@ class QuestionActivity : AppCompatActivity() {
         txtIncAns.startAnimation(animation)
 
         Handler().postDelayed({
-            PrefHelper(this).wrongQuestion = PrefHelper(this).wrongQuestion + 1
+            wrongAns = wrongAns + 1
             startActivity(
                 Intent(this, IncorrectActivity::class.java)
                     .putExtra("optionNo", 4)
@@ -163,7 +167,8 @@ class QuestionActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 2) {
-            if(PrefHelper(this).wrongQuestion==2){
+            txtToolbar.visibility = View.VISIBLE
+            if(wrongAns==2){
                 rel_fifty.alpha = 0.5F
             }
             correctAnsNo = data?.getIntExtra("correct", 0)!!
@@ -171,7 +176,8 @@ class QuestionActivity : AppCompatActivity() {
             ratngLevel.rating = (correctAnsNo).toFloat()
         }
         if (requestCode == 3) {
-            if(PrefHelper(this).wrongQuestion==2){
+            txtToolbar.visibility = View.VISIBLE
+            if(wrongAns==2){
                 rel_fifty.alpha = 0.5F
             }
             correctAnsNo = 1
@@ -209,10 +215,11 @@ class QuestionActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 countDownTimer.cancel()
-                if (PrefHelper(this@QuestionActivity).wrongQuestion <2) {
+                if (wrongAns <2) {
+                    txtToolbar.visibility = View.INVISIBLE
                   dialogInCorrectAnim()
                 } else {
-                    PrefHelper(this@QuestionActivity).wrongQuestion=0
+                    wrongAns=0
                     startActivity(Intent(this@QuestionActivity, LoseActivity::class.java))
                 }
             }
@@ -229,10 +236,11 @@ class QuestionActivity : AppCompatActivity() {
             override fun onFinish() {
                 countDownTimer24Hour.cancel()
                 isRunning24Hrs = false
-                if (PrefHelper(this@QuestionActivity).wrongQuestion <2) {
+                if (wrongAns <2) {
+                    txtToolbar.visibility = View.INVISIBLE
                     dialogInCorrectAnim()
                 } else {
-                    PrefHelper(this@QuestionActivity).wrongQuestion=0
+                    wrongAns=0
                     startActivity(Intent(this@QuestionActivity, LoseActivity::class.java))
                 }
             }
@@ -249,14 +257,15 @@ class QuestionActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
+        txtToolbar.visibility = View.VISIBLE
         countDownTimer.start()
-        if(PrefHelper(this).wrongQuestion==2){
+        if(wrongAns==2){
             rel_fifty.alpha = 0.5F
         }
     }
 
     override fun onBackPressed() {
-        PrefHelper(this@QuestionActivity).wrongQuestion=0
+        wrongAns=0
         countDownTimer.cancel()
         super.onBackPressed()
     }

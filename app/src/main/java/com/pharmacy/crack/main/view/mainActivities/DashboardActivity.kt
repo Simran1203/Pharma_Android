@@ -137,7 +137,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
         if (v == imgPills) {
             imgDashTutorial.setImageResource(R.drawable.pills)
             txtHeadDashTutorial.text = "Pills"
-            imgDescDashTutorial.text = "You can use Pills to\npurchase all Soft\nCurrency i.e respin, lives,\ntime stop & 50/50."
+            imgDescDashTutorial.text = "You can use Pills to\npurchase all Power\nUps i.e respin, lives,\ntime stop & 50/50."
             dialogTutorial.show()
 
         }

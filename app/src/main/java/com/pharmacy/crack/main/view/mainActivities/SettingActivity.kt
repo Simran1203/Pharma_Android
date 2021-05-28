@@ -7,6 +7,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
+import com.pharmacy.crack.main.view.LoginSignUpActivity.LoginActivity
 import com.pharmacy.crack.main.view.SettingActivities.ChangeProfileActivity
 import com.pharmacy.crack.main.view.SettingActivities.EmailSupportActivity
 import com.pharmacy.crack.main.view.SettingActivities.TutorialScreenActivity
@@ -42,6 +43,10 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
         }
         if(v==txtTermsCondition){
             startActivity(Intent(this, TermsConditionActivity::class.java))
+        }
+        if(v==txtLogout){
+            startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
         }
         if(v==imgBackSetting){
             super.onBackPressed()

@@ -40,7 +40,7 @@ class LoseActivity : AppCompatActivity() {
         txtToolbar.text = "You Lose"
 
         txtToolbar.setTextColor(Color.parseColor("#FFFFFF"));
-        PrefHelper(this).wrongQuestion=0
+        QuestionActivity.wrongAns =0
     }
 
     override fun onBackPressed() {

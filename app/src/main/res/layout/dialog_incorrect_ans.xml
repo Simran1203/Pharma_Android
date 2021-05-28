@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/bg">
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+    <com.pharmacy.crack.utils.viewUtils.RegularTextView
         android:id="@+id/txtIncAns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

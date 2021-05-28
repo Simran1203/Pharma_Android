@@ -139,6 +139,7 @@
                 app:boxCornerRadiusBottomStart="@dimen/_10sdp"
                 app:boxCornerRadiusBottomEnd="@dimen/_10sdp"
                 app:boxCornerRadiusTopEnd="@dimen/_10sdp"
+                app:hintEnabled="false"
                 app:boxStrokeColor="@color/wild_strawberry"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="1dp"

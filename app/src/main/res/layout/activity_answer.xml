@@ -72,7 +72,7 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="start"
+                android:gravity="center"
                 android:textColor="@color/solid_black"
                 android:text=""
                 android:textSize="@dimen/_13sdp"
@@ -90,7 +90,7 @@
             android:paddingTop="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                 android:id="@+id/txtAns1"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
@@ -105,7 +105,7 @@
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                 android:id="@+id/txtAns2"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
@@ -120,7 +120,7 @@
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                 android:id="@+id/txtAns3"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
@@ -135,7 +135,7 @@
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                 android:id="@+id/txtAns4"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
@@ -151,7 +151,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <com.pharmacy.crack.utils.viewUtils.RegularTextView
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
             android:id="@+id/txtShareQuest"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_70sdp"
@@ -161,7 +161,7 @@
             android:background="@drawable/btn_default"
             android:gravity="center"
             android:paddingBottom="@dimen/_10sdp"
-            android:text="Share a question\nFree 250 Pills"
+            android:text="Share a Question\nEarn 250 Pills"
             android:textColor="@color/clay_creek"
             android:textSize="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"

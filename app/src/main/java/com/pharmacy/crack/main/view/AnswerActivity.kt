@@ -39,6 +39,7 @@ class AnswerActivity : AppCompatActivity(), View.OnClickListener {
             4 -> txtAns4.alpha = 1.0F
         }
         txtNextQuest.setOnClickListener(this)
+        txtShareQuest.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -48,6 +49,9 @@ class AnswerActivity : AppCompatActivity(), View.OnClickListener {
             intents.putExtra("correct", correctAnsNo)
             setResult(2, intents)
             finish()
+        }
+        else if(v==txtShareQuest){
+            startActivity(Intent(this,ShareActivity::class.java))
         }
     }
 

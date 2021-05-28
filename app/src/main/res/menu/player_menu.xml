@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/Pharmacist"
+        android:title="Pharmacist" />
+
+    <item
+        android:id="@+id/Physician"
+        android:title="Physician" />
+    <item
+        android:id="@+id/Nurse"
+        android:title="Nurse" />
+    <item
+        android:id="@+id/Nurse_Practitioner"
+        android:title="Nurse Practitioner" />
+    <item
+        android:id="@+id/Physician_Assistant"
+        android:title="Physician Assistant" />
+    <item
+        android:id="@+id/Paramedic"
+        android:title="Paramedic" />
+    <item
+        android:id="@+id/Dentist"
+        android:title="Dentist" />
+    <item
+        android:id="@+id/Optometrist"
+        android:title="Optometrist" />
+    <item
+        android:id="@+id/Pharmacy_Technician"
+        android:title="Pharmacy Technician" />
+    <item
+        android:id="@+id/Student_Pharmacy"
+        android:title="Student – Pharmacy" />
+    <item
+        android:id="@+id/Studen_Other"
+        android:title="Student – Other" />
+    <item
+        android:id="@+id/Other"
+        android:title="Other" />
+
+</menu>

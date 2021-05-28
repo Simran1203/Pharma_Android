@@ -1,21 +1,51 @@
 package com.pharmacy.crack.main.view.SettingActivities
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
+import android.media.MediaRecorder
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.editTextBackground
 import com.pharmacy.crack.utils.hideKeyBoard
 import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.showToast
+import com.theartofdev.edmodo.cropper.CropImage
+import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_change_profile.*
 import kotlinx.android.synthetic.main.activity_forget_pasword.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.relMonth
 import kotlinx.android.synthetic.main.toolbar.*
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
+
+    var photoFile: File? = null
+    var mCurrentPhotoPath: String? = null
+
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +55,13 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
         initAll()
 
         imgBackToolbar.setOnClickListener(this)
+        imgEditProfile.setOnClickListener(this)
+        imgProfile.setOnClickListener(this)
     }
 
     private fun initAll() {
         txtToolbar.setText("Change Profile")
-
+        askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
 
         constarintProfile.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
@@ -41,8 +73,150 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if(v==imgBackToolbar){
+        if(v==imgEditProfile){
+            CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAllowRotation(false)
+                .setAllowFlipping(false)
+                .setOutputCompressQuality(50)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .setFixAspectRatio(true)
+                .start(this)
+//            showDialogs()
+        }
+        else if(v==imgProfile){
+            CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAllowRotation(false)
+                .setAllowFlipping(false)
+                .setOutputCompressQuality(50)
+                .setCropShape(CropImageView.CropShape.RECTANGLE)
+                .setFixAspectRatio(true)
+                .start(this)
+//            showDialogs()
+        }
+        else if(v==imgBackToolbar){
             super.onBackPressed()
         }
+    }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE -> {
+                val result = CropImage.getActivityResult(data)
+                if (resultCode === Activity.RESULT_OK) {
+                    val resultUri: Uri? = result.uri
+                    if (resultUri?.path != null) {
+                      val imagePath : String = resultUri.path!!
+//                        Log.i("imagePathGallerySelect",imagePath)
+
+                        Glide.with(applicationContext).load(imagePath)
+                            .placeholder(R.drawable.profile_img)
+                            .centerCrop()
+                            .into(imgProfile)
+
+                    }
+                } else if (resultCode === CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    val error = result.error
+                }
+            }
+        }
+    }
+
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_"
+        val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val image = File.createTempFile(
+            imageFileName, /* prefix */
+            ".jpg", /* suffix */
+            storageDir      /* directory */
+        )
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.absolutePath
+        return image
+    }
+
+
+    private fun askForPermissioncamera(permission: String, requestCode: Int) {
+        if (ContextCompat.checkSelfPermission(
+                applicationContext,
+                permission
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    permission
+                )
+            ) {
+
+                //This is called if user has denied the permission before
+                //In this case I am just asking the permission again
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(permission),
+                    requestCode
+                )
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(permission),
+                    requestCode
+                )
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 786) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show()
+                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(cameraIntent, 0)
+            } else {
+                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    private fun scaleBitmap(bitmap: Bitmap): Bitmap? {
+        val ei = ExifInterface(photoFile?.absolutePath.toString())
+        val orientation: Int = ei.getAttributeInt(
+            ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_UNDEFINED
+        )
+
+        var rotatedBitmap: Bitmap? = null
+        when (orientation) {
+            ExifInterface.ORIENTATION_ROTATE_90 -> rotatedBitmap = rotateImage(bitmap, 90)
+            ExifInterface.ORIENTATION_ROTATE_180 -> rotatedBitmap = rotateImage(bitmap, 180)
+            ExifInterface.ORIENTATION_ROTATE_270 -> rotatedBitmap = rotateImage(bitmap, 270)
+            ExifInterface.ORIENTATION_NORMAL -> rotatedBitmap = bitmap
+            else -> rotatedBitmap = bitmap
+        }
+
+        return rotatedBitmap
+    }
+
+    private fun rotateImage(source: Bitmap, angle: Int): Bitmap? {
+        val matrix = Matrix()
+        matrix.postRotate(angle.toFloat())
+        return Bitmap.createBitmap(
+            source, 0, 0, source.width, source.height,
+            matrix, true
+        )
     }
 }

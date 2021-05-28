@@ -124,11 +124,11 @@
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="start"
+                android:gravity="center"
                 android:textColor="@color/solid_black"
                 android:text="Choose the best preventive treatment option for a 23 year old female suffering from chronic migraines &amp; obesity"
                 android:textSize="@dimen/_13sdp"
-                android:layout_marginTop="@dimen/_20sdp"/>
+                android:layout_marginTop="@dimen/_15sdp"/>
 
         </LinearLayout>
 

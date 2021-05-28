@@ -28,12 +28,6 @@ class PrefHelper(internal var context: Context) {
         editor.commit()
     }
 
-    var wrongQuestion:Int
-    get() = prefrence.getInt("wrong",0)
-    set(value) {
-        editor.putInt("wrong",value)
-        editor.commit()
-    }
     var clearData: Boolean = false
         set(value) {
             field = value

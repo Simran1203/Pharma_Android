@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Specialist"
+        android:title="Specialist" />
+    <item
+        android:id="@+id/Clinical_Pharmacist"
+        android:title="Clinical Pharmacist" />
+    <item
+        android:id="@+id/Retail"
+        android:title="Retail" />
+    <item
+        android:id="@+id/Hospital"
+        android:title="Hospital" />
+    <item
+        android:id="@+id/Ambulatory"
+        android:title="Ambulatory" />
+    <item
+        android:id="@+id/Surgeon"
+        android:title="Surgeon" />
+    <item
+        android:id="@+id/Administrative"
+        android:title="Administrative" />
+    <item
+        android:id="@+id/Family_Practice"
+        android:title="Family Practice" />
+    <item
+        android:id="@+id/Bedside_Nurse"
+        android:title="Bedside Nurse" />
+
+    <item
+        android:id="@+id/Non_Bedside_Nurse"
+        android:title="Non-Bedside Nurse" />
+    <item
+        android:id="@+id/Clinic"
+        android:title="Clinic" />
+
+    <item
+        android:id="@+id/Other"
+        android:title="Other" />
+
+
+</menu>

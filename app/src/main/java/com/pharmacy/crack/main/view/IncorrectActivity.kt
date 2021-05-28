@@ -15,6 +15,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
+import com.pharmacy.crack.main.view.QuestionActivity.Companion.wrongAns
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.main.view.mainActivities.DrugStoreActivity
 import com.pharmacy.crack.main.view.mainActivities.FreeRewardsActivity
@@ -61,9 +62,11 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
         constarintUsePills.setOnClickListener(this)
         constarintUseHeart.setOnClickListener(this)
         relPurchasePill.setOnClickListener(this)
+        txtShareQuestInCorr.setOnClickListener(this)
         imgCloseBuy.setOnClickListener(this)
         imgCloseResume.setOnClickListener(this)
         btnResumeIn.setOnClickListener(this)
+
 
         dialogBack()
 
@@ -72,7 +75,7 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
     private fun dialogBack() {
         dialogBuyPillLife.setOnKeyListener(DialogInterface.OnKeyListener { _, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_BACK) {
-                PrefHelper(this).wrongQuestion = 0
+                wrongAns=0
                 startActivity(Intent(this, DashboardActivity::class.java))
             }
             true
@@ -87,24 +90,28 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v == txtReportQuest) {
-            PrefHelper(this).wrongQuestion = 0
+            wrongAns=0
             startActivity(
                 Intent(this, ReportQuestionActivity::class.java)
                     .putExtra("que", txtQueInCorr.text.toString())
             )
         } else if (v == txtendGame) {
-            PrefHelper(this).wrongQuestion = 0
+            wrongAns=0
             startActivity(Intent(this, LoseActivity::class.java))
 
         }
         else if (v == relFreeReward) {
-            PrefHelper(this).wrongQuestion = 0
+            wrongAns=0
             startActivity(Intent(this, FreeRewardsActivity::class.java))
 
         }
         else if (v == relPurchasePill) {
-            PrefHelper(this).wrongQuestion = 0
+            wrongAns=0
             startActivity(Intent(this, DrugStoreActivity::class.java))
+
+        }
+        else if (v == txtShareQuestInCorr) {
+            startActivity(Intent(this, ShareActivity::class.java))
 
         }
         else if (v == constarintUseHeart) {

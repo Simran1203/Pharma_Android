@@ -13,7 +13,7 @@
         android:layout_height="@dimen/_100sdp"
         android:src="@drawable/neurology_psychiatry_large" />
 
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+    <com.pharmacy.crack.utils.viewUtils.RegularTextView
         android:id="@+id/txtCorrectAnsw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:textColor="@color/wild_strawberry"
         android:textSize="@dimen/_35sdp" />
 
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+    <com.pharmacy.crack.utils.viewUtils.RegularTextView
         android:id="@+id/txtPointAnsw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

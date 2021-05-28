@@ -33,6 +33,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.Period
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -70,6 +72,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
     var listState: ArrayList<String> = ArrayList()
     var listPlayer: ArrayList<String> = ArrayList()
     var termsAndCon: Boolean = false
+
+    var dobYear: Int = 0
+    var dobDay: Int = 0
+    var dobMonth: String = ""
 //    val picker = CountryPicker.newInstance("Select Country")
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -171,13 +177,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             }
         }
 
-//        picker.setListener { name, code, dialCode, flagDrawableResID ->
-//
-//            txtCountry.text = name
-//            picker.dismiss()
-//        }
-
-
     }
 
     private fun listDayInit() {
@@ -201,6 +200,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+                dobDay = listDay.get(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -236,7 +236,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     private fun initYear() {
         val sdf = SimpleDateFormat("yyyy")
-        val currentYear = Integer.parseInt(sdf.format(Date()))
+        var currentYear = Integer.parseInt(sdf.format(Date()))
         for (i in 1970..currentYear) {
             listYear.add(i)
         }
@@ -256,6 +256,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+                dobYear = listYear.get(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -277,6 +278,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+                dobMonth = month.get(position)
 //                Toast.makeText(
 //                    this@SignUpActivity,
 //                    month[position], Toast.LENGTH_SHORT
@@ -352,10 +354,16 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             ) {
                 Toast.makeText(this, "Confirm Password should be same as Password.", Toast.LENGTH_SHORT)
                     .show()
-            } else if (editUserName.text.toString().trim().isEmpty()) {
+            }
+            else if (editUserName.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()
                 editUserName.text?.clear()
-            }  else if (!termsAndCon) {
+            }
+            else if ((getAge(dobYear, dobMonth, dobDay)) < 5) {
+                Toast.makeText(this, "You must be at least 5 years old.", Toast.LENGTH_SHORT).show()
+
+            }
+            else if (!termsAndCon) {
                 Toast.makeText(
                     this,
                     "Please agree to our Terms and Conditions.",
@@ -383,5 +391,28 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     override fun onCountrySelected() {
         txtCountry.text = countrPickerSignup?.selectedCountryName
+    }
+
+    fun getAge(year: Int, month: String, dayOfMonth: Int): Int {
+        var monthInt = 0
+        when (month) {
+            "Jan" -> monthInt = 1
+            "Feb" -> monthInt = 2
+            "Mar" -> monthInt = 3
+            "Apr" -> monthInt = 4
+            "May" -> monthInt = 5
+            "Jun" -> monthInt = 6
+            "Jul" -> monthInt = 7
+            "Aug" -> monthInt = 8
+            "Sep" -> monthInt = 9
+            "Oct" -> monthInt = 10
+            "nov" -> monthInt = 11
+            "Dev" -> monthInt = 12
+        }
+
+        return Period.between(
+            LocalDate.of(year, monthInt, dayOfMonth),
+            LocalDate.now()
+        ).years
     }
 }

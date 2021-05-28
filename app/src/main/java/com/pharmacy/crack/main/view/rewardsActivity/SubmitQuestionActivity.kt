@@ -47,6 +47,7 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
     private fun clickListner() {
         imgBackQuest.setOnClickListener(this)
         txtSubmitQueston.setOnClickListener(this)
+        countrPickerQuest!!.setOnCountryChangeListener(this)
 
 
         edtTypeQue.movementMethod = ScrollingMovementMethod()
