@@ -19,7 +19,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.hbb20.CountryCodePicker
 import com.pharmacy.crack.R
-import com.pharmacy.crack.main.model.countryModel.Geoname
 import com.pharmacy.crack.main.view.TermsConditionActivity
 import com.pharmacy.crack.utils.*
 import com.ybs.countrypicker.CountryPicker
