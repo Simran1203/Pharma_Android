@@ -2,7 +2,6 @@ package com.pharmacy.crack.main.view.LoginSignUpActivity
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
@@ -11,7 +10,6 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
@@ -19,18 +17,18 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.hbb20.CountryCodePicker
 import com.pharmacy.crack.R
+import com.pharmacy.crack.data.model.classificationModels.Getclassification
+import com.pharmacy.crack.data.model.specialityModels.Getspeciality
+import com.pharmacy.crack.data.model.statesModels.State
+import com.pharmacy.crack.main.model.RegisterDataModel
 import com.pharmacy.crack.main.view.TermsConditionActivity
 import com.pharmacy.crack.utils.*
-import com.ybs.countrypicker.CountryPicker
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import org.json.JSONObject
+import java.security.AccessController.getContext
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
@@ -38,7 +36,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-@AndroidEntryPoint
 class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePicker.OnCountryChangeListener{
 
     val month = arrayOf(
@@ -55,27 +52,23 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         "Nov",
         "Dec"
     )
-    val player = arrayOf(
-        "Pharmacist","Physician","Nurse","Nurse Practitioner","Physician Assistant",
-        "Paramedic", "Dentist", "Optometrist", "Pharmacy Technician",
-        "Student – Pharmacy", "Student – Nurse", "Student – Medical", "Student - Other","Other"
-    )
-    val speciality = arrayOf(
-        "Specialist", "Clinical Pharmacist", "Retail", "Hospital", "Ambulatory",
-        "Administrative", "Family Practice", "Surgeon", "Bedside Nurse",
-        "Non-Bedside Nurse", "Clinic", "Other"
-    )
+
 
     var listYear: ArrayList<Int> = ArrayList()
     var listDay: ArrayList<Int> = ArrayList()
-    var listState: ArrayList<String> = ArrayList()
-    var listPlayer: ArrayList<String> = ArrayList()
+    var listState: ArrayList<State> = ArrayList()
+    var listClassification: ArrayList<Getclassification> = ArrayList()
+    var listSpeciality: ArrayList<Getspeciality> = ArrayList()
     var termsAndCon: Boolean = false
 
     var dobYear: Int = 0
+    var classificationID: Int = 0
+    var specialityID: Int = 0
     var dobDay: Int = 0
     var dobMonth: String = ""
-//    val picker = CountryPicker.newInstance("Select Country")
+    lateinit var stateName: String
+    lateinit var pref: PrefHelper
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,21 +76,15 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         setFullScreen(this)
         setContentView(R.layout.activity_sign_up)
 
-
-        txtCountry.text = applicationContext.resources.configuration.locale.displayCountry
+        txtCountry.text = countrPickerSignup.defaultCountryName
+        pref = PrefHelper(this)
         initBackground()
         initlistner()
 
         initYear()
         listMonthInit()
         listDayInit()
-        initPlayer()
-        initSpeciality()
         initOther()
-
-//        txtTerm.setOnClickListener {
-//            showToasts("click")
-//        }
 
 
         val ss = SpannableString("By clicking on the Next button, you agree to our Terms & Conditions.")
@@ -115,11 +102,78 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         ss.setSpan(ForegroundColorSpan(Color.parseColor("#FF0091")), 49, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         txtTerm.text = ss
         txtTerm.movementMethod = LinkMovementMethod.getInstance()
-//        txtTerm.highlightColor = Color.TRANSPARENT
+
+        CoroutineScope(Dispatchers.IO
+        ).launch{
+            fetchStateList(countrPickerSignup.defaultCountryNameCode.toString())
+            fetchClassification()
+            fetchSpeciality()
+
+        }
     }
 
+    private suspend fun fetchStateList(countrystateId: String) {
+        val res = RetrofitFactory.api.getState(countrystateId)
+        if(res.isSuccessful){
+            res.body()?.let {
+                listState  = it.states
+                if(!listState.isNullOrEmpty()){
+                    withContext(Main){
+                        initState()
+                    }
+                }
+            }
+        }
+        else{
+            withContext(Main){
+                showToasts(res.message())
+            }
+
+        }
+    }
+
+    suspend fun fetchSpeciality() {
+        val res = RetrofitFactory.api.getSpeciality()
+        if(res.isSuccessful){
+            res.body()?.let {
+                listSpeciality = it.getspeciality
+                if(!listSpeciality.isNullOrEmpty()){
+                    withContext(Main){
+                        initSpeciality()
+                    }
+                }
+            }
+        }else{
+            withContext(Main){
+                showToasts(res.message())
+            }
+        }
+    }
+
+    private suspend fun fetchClassification() {
+        val res = RetrofitFactory.api.getClassification()
+        if(res.isSuccessful){
+            res.body()?.let{
+             listClassification = it.getclassification
+                if(!listClassification.isNullOrEmpty()){
+                    withContext(Main){
+                        initClassification()
+                    }
+                }
+            }
+        }
+        else{
+            withContext(Main){
+                showToasts(res.message())
+            }
+        }
+    }
+
+
     private fun initSpeciality() {
-        val specialityAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, speciality)
+        val specialityAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text,
+            listSpeciality as List<CharSequence>
+        )
         specialityAdapter.setDropDownViewResource(R.layout.age_spinner)
         spinnerSpecialty.adapter = specialityAdapter
 
@@ -130,10 +184,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-//                Toast.makeText(
-//                    this@SignUpActivity,
-//                    player[position], Toast.LENGTH_SHORT
-//                ).show()
+                specialityID = listSpeciality.get(position).id
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -142,8 +193,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         }
     }
 
-    private fun initPlayer() {
-        val playerAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, player)
+    private fun initClassification() {
+
+        val playerAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text,
+            listClassification as List<CharSequence>
+        )
         playerAdapter.setDropDownViewResource(R.layout.age_spinner)
         spinnerPlayer.adapter = playerAdapter
 
@@ -154,10 +208,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-//                Toast.makeText(
-//                    this@SignUpActivity,
-//                    player[position], Toast.LENGTH_SHORT
-//                ).show()
+                classificationID = listClassification.get(position).id
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -207,12 +259,15 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             }
         }
 
-        listState.add("UP")
-        listState.add("MP")
-        val stateAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+
+
+    }
+
+    private fun initState(){
+        val stateAdapter: ArrayAdapter<CharSequence> = ArrayAdapter<CharSequence>(
             this@SignUpActivity,
             R.layout.age_spinner_text,
-            listState
+            listState as List<CharSequence>
         )
 
         stateAdapter.setDropDownViewResource(R.layout.age_spinner)
@@ -225,6 +280,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+                stateName = listState.get(position).name
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -278,10 +334,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
                 dobMonth = month.get(position)
-//                Toast.makeText(
-//                    this@SignUpActivity,
-//                    month[position], Toast.LENGTH_SHORT
-//                ).show()
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -297,8 +350,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         txtSignup.setOnClickListener(this)
         imgBackSignup.setOnClickListener(this)
         countrPickerSignup!!.setOnCountryChangeListener(this)
-//        relCont.setOnClickListener(this)
-
 
         chkTerm.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
@@ -369,18 +420,56 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                startActivity(Intent(this, StoryActivity::class.java))
+                pref.showProgress(this)
+                CoroutineScope(IO).launch{
+                    submitRegisterData()
+                }
             }
 
         }
-//        if (v == tvCountryCode) {
-//            picker.show(supportFragmentManager, "COUNTRY_PICKER")
-//        }
+
         if (v == imgBackSignup) {
             super.onBackPressed()
         }
+    }
 
+    private suspend fun submitRegisterData() {
 
+       val model = RegisterDataModel(edtName.text.toString(),editEmail.text.toString(),editPasswordSignUp.text.toString(),
+           editUserName.text.toString(),"$dobYear-$dobMonth-$dobDay",txtCountry.text.toString(),stateName,classificationID,
+       specialityID,editCollege.text.toString())
+
+        val res = RetrofitFactory.api.submitSignUp(model)
+
+        if(res.isSuccessful){
+            res.body()?.let {
+                var msg = it.message
+                if(msg.equals("User Register Successfully")){
+                    CoroutineScope(Main).launch {
+                        pref.hideProgress()
+                        showToasts("$msg")
+                        startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
+                    }
+                }
+                else{
+                    CoroutineScope(Main).launch {
+                        pref.hideProgress()
+                        showToasts("$msg")
+                    }
+                }
+            }
+        }
+        else{
+            CoroutineScope(Main).launch {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts("${jObjError.getString("msg")}")
+                } catch (e: Exception) {
+                    Toast.makeText(this@SignUpActivity, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {
@@ -390,6 +479,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     override fun onCountrySelected() {
         txtCountry.text = countrPickerSignup?.selectedCountryName
+        CoroutineScope(IO).launch {
+            fetchStateList(countrPickerSignup.selectedCountryNameCode)
+        }
     }
 
     fun getAge(year: Int, month: String, dayOfMonth: Int): Int {

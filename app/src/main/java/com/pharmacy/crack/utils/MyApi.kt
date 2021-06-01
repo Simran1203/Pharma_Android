@@ -1,17 +1,26 @@
 package com.pharmacy.crack.utils
-
-import com.pharmacy.crack.main.model.countryModel.CountryMainModel
-import com.pharmacy.crack.main.model.stateModel.StateMainModel
+import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
+import com.pharmacy.crack.data.model.signUp.SignUpModel
+import com.pharmacy.crack.data.model.specialityModels.SpecialityModel
+import com.pharmacy.crack.data.model.statesModels.StateModel
+import com.pharmacy.crack.main.model.RegisterDataModel
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface MyApi {
 
-    @GET
-    suspend fun getCountry(@Url url: String?) : Response<CountryMainModel>
+    @GET("classification")
+    suspend fun getClassification() : Response<ClassificationModel>
 
-    @GET("childrenJSON")
-    suspend fun getState(@Query("geonameId") query: Int,@Query("username") usewrname: String) : Response<StateMainModel>
+    @GET("speciality")
+    suspend fun getSpeciality() : Response<SpecialityModel>
+
+    @GET("countrystatecity")
+    suspend fun getState(@Query("countryId") countryId:String) :Response<StateModel>
+
+    @POST("register")
+    suspend fun submitSignUp(@Body model: RegisterDataModel) :Response<SignUpModel>
 }

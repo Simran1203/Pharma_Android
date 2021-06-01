@@ -1,12 +1,21 @@
 package com.pharmacy.crack.utils
 
+import android.app.Dialog
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
+import android.view.View
+import android.view.Window
+import android.widget.ProgressBar
+import com.pharmacy.crack.R
 
 class PrefHelper(internal var context: Context) {
     private val prefrence: SharedPreferences =
         context.getSharedPreferences("PharmacyPref", Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = prefrence.edit()
+    lateinit var mDialog: Dialog
 
     var isLoggedIn: Boolean
         get() = prefrence.getBoolean("isLoggedIn", false)
@@ -34,4 +43,25 @@ class PrefHelper(internal var context: Context) {
             editor.clear()
             editor.commit()
         }
+
+
+    fun hideProgress() {
+        while (mDialog != null && mDialog.isShowing()) {
+            mDialog.dismiss()
+        }
+    }
+    fun showProgress(context: Context){
+        if (context != null) {
+            mDialog = Dialog(context)
+            mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            mDialog.setContentView(R.layout.dialog_progress)
+            mDialog.findViewById<View>(R.id.progressBar).visibility = View.VISIBLE
+            mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            mDialog.setCancelable(false)
+            mDialog.setCanceledOnTouchOutside(false)
+            mDialog.show()
+
+        }
+
+    }
 }

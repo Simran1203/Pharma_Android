@@ -78,22 +78,7 @@ fun Context.showToasts(message: String){
     toast?.show()
 }
 
-fun showProgress(context: Context): Dialog {
-    val dialog = Dialog(context)
-    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-    dialog.getWindow()?.setBackgroundDrawable(
-        ColorDrawable(0)
-    )
-    dialog.setContentView(R.layout.dialog_progress)
-    val progressBar: ProgressBar = dialog.findViewById(R.id.progressBar)
-    progressBar.indeterminateDrawable.setColorFilter(
-        context.resources.getColor(R.color.wild_strawberry),
-        PorterDuff.Mode.MULTIPLY
-    )
-    dialog.setCancelable(false)
-    dialog.show()
-    return dialog
-}
+
 fun editTextBackground(v: View?, colors: String, stroke: String) {
 
     val border = GradientDrawable()
