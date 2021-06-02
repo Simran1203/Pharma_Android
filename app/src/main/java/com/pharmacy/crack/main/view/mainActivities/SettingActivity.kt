@@ -12,16 +12,22 @@ import com.pharmacy.crack.main.view.SettingActivities.ChangeProfileActivity
 import com.pharmacy.crack.main.view.SettingActivities.EmailSupportActivity
 import com.pharmacy.crack.main.view.SettingActivities.TutorialScreenActivity
 import com.pharmacy.crack.main.view.TermsConditionActivity
+import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.showToasts
 import kotlinx.android.synthetic.main.activity_setting.*
 
 
 class SettingActivity : AppCompatActivity(),View.OnClickListener {
+    lateinit var pref : PrefHelper
+
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_setting)
+
+        pref = PrefHelper(this)
 
         imgBackSetting.setOnClickListener(this)
         txtChangeProfile.setOnClickListener(this)
@@ -45,6 +51,8 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
             startActivity(Intent(this, TermsConditionActivity::class.java))
         }
         if(v==txtLogout){
+            pref.clearData = true
+            showToasts("Logout Successfully")
             startActivity(Intent(this, LoginActivity::class.java))
             finishAffinity()
         }

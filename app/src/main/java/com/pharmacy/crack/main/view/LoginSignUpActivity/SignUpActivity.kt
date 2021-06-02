@@ -1,6 +1,7 @@
 package com.pharmacy.crack.main.view.LoginSignUpActivity
 
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -28,7 +29,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import org.json.JSONObject
-import java.security.AccessController.getContext
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
@@ -37,22 +37,6 @@ import kotlin.collections.ArrayList
 
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePicker.OnCountryChangeListener{
-
-    val month = arrayOf(
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-    )
-
 
     var listYear: ArrayList<Int> = ArrayList()
     var listDay: ArrayList<Int> = ArrayList()
@@ -209,29 +193,22 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
                 classificationID = listClassification.get(position).id
-
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
             }
         }
     }
 
-
-
     private fun initOther() {
-
         constarintSignup.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
         }
-
     }
 
     private fun listDayInit() {
-
         for (i in 1 until 32) {
             listDay.add(i)
         }
@@ -253,14 +230,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
                 dobDay = listDay.get(position)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
             }
         }
-
-
-
     }
 
     private fun initState(){
@@ -272,7 +245,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
         stateAdapter.setDropDownViewResource(R.layout.age_spinner)
         spinnerState.setAdapter(stateAdapter)
-
         spinnerState.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -321,8 +293,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
     }
 
     private fun listMonthInit() {
-
-        val monthAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, month)
+        val res = resources
+        val monthAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, res.getStringArray(R.array.month))
         monthAdapter.setDropDownViewResource(R.layout.age_spinner)
         spinnerMonth.adapter = monthAdapter
 
@@ -333,8 +305,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-                dobMonth = month.get(position)
-
+                dobMonth = res.getStringArray(R.array.month).get(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -354,10 +325,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         chkTerm.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 termsAndCon = isChecked
-
-            }
-
-        })
+            } })
     }
 
 
@@ -425,7 +393,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                     submitRegisterData()
                 }
             }
-
         }
 
         if (v == imgBackSignup) {
@@ -440,7 +407,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
        specialityID,editCollege.text.toString())
 
         val res = RetrofitFactory.api.submitSignUp(model)
-
         if(res.isSuccessful){
             res.body()?.let {
                 var msg = it.message
@@ -448,7 +414,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                     CoroutineScope(Main).launch {
                         pref.hideProgress()
                         showToasts("$msg")
+                        pref.authToken = it.token
                         startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
+                        finishAffinity()
                     }
                 }
                 else{

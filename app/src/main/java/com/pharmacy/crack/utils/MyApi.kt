@@ -1,14 +1,15 @@
 package com.pharmacy.crack.utils
 import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
+import com.pharmacy.crack.data.model.forgetpassowrods.ForgetModel
+import com.pharmacy.crack.data.model.loginModels.LoginModel
 import com.pharmacy.crack.data.model.signUp.SignUpModel
 import com.pharmacy.crack.data.model.specialityModels.SpecialityModel
 import com.pharmacy.crack.data.model.statesModels.StateModel
+import com.pharmacy.crack.main.model.ForgetDataModel
+import com.pharmacy.crack.main.model.LoginDatamodel
 import com.pharmacy.crack.main.model.RegisterDataModel
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface MyApi {
 
@@ -23,4 +24,10 @@ interface MyApi {
 
     @POST("register")
     suspend fun submitSignUp(@Body model: RegisterDataModel) :Response<SignUpModel>
+
+    @POST("login")
+    suspend fun submitLogin(@Body model: LoginDatamodel) :Response<LoginModel>
+
+    @PATCH("forgot-password")
+    suspend fun submitForget(@Body model: ForgetDataModel) :Response<ForgetModel>
 }

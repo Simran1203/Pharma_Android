@@ -11,22 +11,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityLoginBinding
+import com.pharmacy.crack.main.model.LoginDatamodel
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.util.*
 
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLoginBinding
-
+   lateinit var pref:PrefHelper
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         binding = DataBindingUtil.setContentView(this@LoginActivity, R.layout.activity_login)
         binding.lifecycleOwner = this
+        pref = PrefHelper(this)
 
         listner()
     }
@@ -78,9 +85,47 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 ).show()
             } else {
                 hideKeyBoard(this)
-                startActivity(Intent(this, DashboardActivity::class.java))
-                finish()
+                pref.showProgress(this)
+                CoroutineScope(IO).launch {
+                    submitLogin()
+                }
             }
+        }
+    }
+
+    private suspend fun submitLogin() {
+        val model = LoginDatamodel(binding.editEmailLogin.text.toString(),binding.edtPasswordLogin.text.toString())
+        val res = RetrofitFactory.api.submitLogin(model)
+
+        if(res.isSuccessful){
+              res.body()?.let {
+                val msg = it.message
+                    if(msg.equals("Logged in Successfully")){
+
+                        CoroutineScope(Dispatchers.Main).launch {
+                            pref.hideProgress()
+                            showToasts(msg)
+                            pref.authToken = it.data.auth_token
+                            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                            finishAffinity()
+                        }
+                    }else{
+                        CoroutineScope(Dispatchers.Main).launch {
+                            pref.hideProgress()
+                            showToasts(msg)
+                        }
+                    }
+                }
+        }else{
+                CoroutineScope(Dispatchers.Main).launch {
+                    pref.hideProgress()
+                    try {
+                        val jObjError = JSONObject(res.errorBody().toString())
+                        showToasts(jObjError.getString("msg"))
+                    } catch (e: Exception) {
+                        showToasts(e.message.toString())
+                    }
+                }
         }
     }
 

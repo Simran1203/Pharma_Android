@@ -4,34 +4,46 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityForgetPaswordBinding
 import com.pharmacy.crack.databinding.ActivityLoginBinding
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.main.model.ForgetDataModel
+import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
+import com.pharmacy.crack.utils.*
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
 import com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
 import kotlinx.android.synthetic.main.activity_forget_pasword.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
-    lateinit var dialogForget : Dialog
+    private lateinit var dialogForget : Dialog
     lateinit var txtForgotSubmitDialog : RegularTextView
     lateinit var txtEmailDialog : RegularTextView
+    lateinit var pref : PrefHelper
     private lateinit var binding: ActivityForgetPaswordBinding
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         binding = DataBindingUtil.setContentView(this@ForgetPaswordActivity, R.layout.activity_forget_pasword)
         binding.lifecycleOwner = this;
+        pref = PrefHelper(this)
 
         init()
         clickListner()
@@ -79,7 +91,11 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
                 val emailEnd = binding.edtEmailForget.text.toString().split("@").toTypedArray()
                 val emailStart = binding.edtEmailForget.getText().toString().trim()[0]
                 txtEmailDialog.text = emailStart+"...@"+emailEnd[1]
-                dialogForget.show()
+                pref.showProgress(this)
+                CoroutineScope(IO).launch {
+                    submitForgetPass()
+                }
+
             }
 
         }
@@ -88,10 +104,41 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
         }
         else if(v==txtForgotSubmitDialog){
             dialogForget.dismiss()
-            startActivity(Intent(this,ResetPasswordActivity::class.java))
+            startActivity(Intent(this,ResetPasswordCodeActivity::class.java))
         }
         else if(v==binding.imgBack){
             onBackPressed()
+        }
+    }
+
+    private suspend fun submitForgetPass() {
+        val model = ForgetDataModel(binding.edtEmailForget.text.toString())
+        val res = RetrofitFactory.api.submitForget(model)
+        if(res.isSuccessful){
+             res.body()?.let {
+                 val msg = it.message
+                 if (msg.equals("Successfully sent reset code to registered email.")){
+                     CoroutineScope(Dispatchers.Main).launch {
+                         pref.hideProgress()
+                         dialogForget.show()
+                     }
+                 }else{
+                     CoroutineScope(Dispatchers.Main).launch {
+                         pref.hideProgress()
+                         showToasts(msg)
+                     }
+                 }
+             }
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody().toString())
+                    showToasts(jObjError.getString("msg"))
+                } catch (e: Exception) {
+                    showToasts(e.message.toString())
+                }
+            }
         }
     }
 

@@ -1,10 +1,12 @@
 package com.pharmacy.crack.main.view.LoginSignUpActivity
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityLoginBinding
@@ -21,6 +23,7 @@ class ResetPasswordActivity : AppCompatActivity(),View.OnClickListener {
 
     private lateinit var binding: ActivityResetPasswordBinding
 
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

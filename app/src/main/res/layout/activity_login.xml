@@ -4,12 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="LoginViewModel"
-            type="com.pharmacy.crack.main.viewModel.loginSignUpViewModels.LoginViewModel" />
-    </data>
-
     <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -93,7 +87,7 @@
                 android:drawablePadding="@dimen/_10sdp"
                 android:inputType="textEmailAddress"
                 android:theme="@style/MyEditText1"
-                android:maxLength="25" />
+                android:maxLength="35" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:layout_width="wrap_content"
