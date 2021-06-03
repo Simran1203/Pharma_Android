@@ -8,6 +8,7 @@ import com.pharmacy.crack.data.model.statesModels.StateModel
 import com.pharmacy.crack.main.model.ForgetDataModel
 import com.pharmacy.crack.main.model.LoginDatamodel
 import com.pharmacy.crack.main.model.RegisterDataModel
+import com.pharmacy.crack.main.model.ResetCodeDataModel
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -28,6 +29,12 @@ interface MyApi {
     @POST("login")
     suspend fun submitLogin(@Body model: LoginDatamodel) :Response<LoginModel>
 
+    @POST("resetcode")
+    suspend fun submitResetCode(@Body model: ResetCodeDataModel) :Response<ForgetModel>
+
     @PATCH("forgot-password")
     suspend fun submitForget(@Body model: ForgetDataModel) :Response<ForgetModel>
+
+    @PATCH("newpassword")
+    suspend fun submitNewPassword(@Body model: LoginDatamodel) :Response<ForgetModel>
 }

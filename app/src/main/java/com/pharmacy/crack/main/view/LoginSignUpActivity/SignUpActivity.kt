@@ -388,10 +388,15 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                pref.showProgress(this)
-                CoroutineScope(IO).launch{
-                    submitRegisterData()
+                if (!isNetworkAvailable(this)) {
+                    showToast(this, "Please check your internet connection and try again.")
+                }else{
+                    pref.showProgress(this)
+                    CoroutineScope(IO).launch{
+                        submitRegisterData()
+                    }
                 }
+
             }
         }
 

@@ -61,11 +61,10 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
     }
 
     private fun clickListner() {
-        binding.constraintForgot.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+        binding.constraintForgot.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
-
         }
 
         binding.txtSubmit.setOnClickListener(this)
@@ -91,20 +90,24 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
                 val emailEnd = binding.edtEmailForget.text.toString().split("@").toTypedArray()
                 val emailStart = binding.edtEmailForget.getText().toString().trim()[0]
                 txtEmailDialog.text = emailStart+"...@"+emailEnd[1]
-                pref.showProgress(this)
-                CoroutineScope(IO).launch {
-                    submitForgetPass()
+
+                if (!isNetworkAvailable(this)) {
+                    showToast(this, "Please check your internet connection and try again.")
+                }else{
+                    pref.showProgress(this)
+                    CoroutineScope(IO).launch {
+                        submitForgetPass()
+                    }
                 }
-
             }
-
         }
         else if(v==binding.btnSignUpForgot){
             startActivity(Intent(this, SignUpActivity::class.java))
         }
         else if(v==txtForgotSubmitDialog){
             dialogForget.dismiss()
-            startActivity(Intent(this,ResetPasswordCodeActivity::class.java))
+            startActivity(Intent(this,ResetPasswordCodeActivity::class.java)
+                .putExtra("email",binding.edtEmailForget.text.toString()))
         }
         else if(v==binding.imgBack){
             onBackPressed()
@@ -133,7 +136,7 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
                 pref.hideProgress()
                 try {
-                    val jObjError = JSONObject(res.errorBody().toString())
+                    val jObjError = JSONObject(res.errorBody()?.string())
                     showToasts(jObjError.getString("msg"))
                 } catch (e: Exception) {
                     showToasts(e.message.toString())

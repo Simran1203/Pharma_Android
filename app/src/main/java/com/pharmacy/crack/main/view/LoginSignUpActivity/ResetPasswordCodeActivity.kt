@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -11,13 +12,19 @@ import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityResetPasswordBinding
 import com.pharmacy.crack.databinding.ActivityResetPasswordCodeBinding
-import com.pharmacy.crack.utils.AsteriskPasswordTransformationMethod
-import com.pharmacy.crack.utils.XPasswordTransformationMethod
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.main.model.LoginDatamodel
+import com.pharmacy.crack.main.model.ResetCodeDataModel
+import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
+import com.pharmacy.crack.utils.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
     private lateinit var binding: ActivityResetPasswordCodeBinding
+    lateinit var pref: PrefHelper
+    lateinit var email:String
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +37,8 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
-
+        pref = PrefHelper(this)
+        email = intent.getStringExtra("email").toString()
         binding.edtCode.transformationMethod = XPasswordTransformationMethod()
         binding.constraintReset.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
@@ -51,9 +59,52 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
                     Toast.LENGTH_SHORT
                 ).show()
             } else{
-                startActivity(Intent(this,ResetPasswordActivity::class.java))
-                finishAffinity()
+                if (!isNetworkAvailable(this)) {
+                    showToast(this, "Please check your internet connection and try again.")
+                }else{
+                    pref.showProgress(this)
+                    CoroutineScope(Dispatchers.IO).launch {
+                        submitCode()
+                    }
+                }
+
             }
         }
     }
+
+    private suspend fun submitCode() {
+        val model = ResetCodeDataModel(email,binding.edtCode.text.toString())
+        val res = RetrofitFactory.api.submitResetCode(model)
+
+        if(res.isSuccessful){
+            res.body()?.let {
+                val msg = it.message
+                if(msg == "ResetCode Matched  Successfully"){
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        pref.hideProgress()
+                        startActivity(Intent(this@ResetPasswordCodeActivity,ResetPasswordActivity::class.java)
+                            .putExtra("email",email))
+                        finishAffinity()
+                    }
+                }else{
+                    CoroutineScope(Dispatchers.Main).launch {
+                        pref.hideProgress()
+                        showToasts(msg)
+                    }
+                }
+            }
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts(jObjError.getString("msg"))
+                } catch (e: Exception) {
+                    showToasts(e.message.toString())
+                }
+            }
+        }
+    }
+
 }

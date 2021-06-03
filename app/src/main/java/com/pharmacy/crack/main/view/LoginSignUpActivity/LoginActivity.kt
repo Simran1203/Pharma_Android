@@ -3,6 +3,7 @@ package com.pharmacy.crack.main.view.LoginSignUpActivity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -26,7 +27,7 @@ import java.util.*
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLoginBinding
-   lateinit var pref:PrefHelper
+    lateinit var pref:PrefHelper
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,10 +86,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 ).show()
             } else {
                 hideKeyBoard(this)
-                pref.showProgress(this)
-                CoroutineScope(IO).launch {
-                    submitLogin()
+                if (!isNetworkAvailable(this)) {
+                    showToast(this, "Please check your internet connection and try again.")
+                }else{
+                    pref.showProgress(this)
+                    CoroutineScope(IO).launch {
+                        submitLogin()
+                    }
                 }
+
             }
         }
     }
@@ -120,13 +126,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 CoroutineScope(Dispatchers.Main).launch {
                     pref.hideProgress()
                     try {
-                        val jObjError = JSONObject(res.errorBody().toString())
+                        val jObjError = JSONObject(res.errorBody()?.string())
                         showToasts(jObjError.getString("msg"))
                     } catch (e: Exception) {
                         showToasts(e.message.toString())
-                    }
-                }
-        }
+                    } } }
     }
 
     override fun onBackPressed() {
