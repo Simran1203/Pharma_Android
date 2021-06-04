@@ -14,17 +14,23 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.hbb20.CountryCodePicker
 import com.pharmacy.crack.R
-import com.pharmacy.crack.utils.editTextBackground
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.data.model.categoryModels.Category
+import com.pharmacy.crack.main.model.CategoryDataModel
+import com.pharmacy.crack.utils.*
 import com.ybs.countrypicker.CountryPicker
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 
 class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, CountryCodePicker.OnCountryChangeListener {
-    var listCategory: ArrayList<String> = ArrayList()
+    var listCategory: ArrayList<Category> = ArrayList()
+    lateinit var pref: PrefHelper
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +38,7 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
         setFullScreen(this)
         setContentView(R.layout.activity_submit_question)
         txtCountryQuest.text = applicationContext.resources.configuration.locale.displayCountry
+        pref = PrefHelper(this)
 
         constraintQuest.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
@@ -39,9 +46,36 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
             }
         }
 
-        initCategory()
+
         clickListner()
 
+        CoroutineScope(Dispatchers.IO).launch{
+            fetchcategory()
+        }
+    }
+
+    private suspend fun fetchcategory() {
+
+        val res = RetrofitFactory.api.getcategory()
+        if(res.isSuccessful){
+            res.body()?.let {
+                listCategory = it.category
+                if(!listCategory.isNullOrEmpty()){
+                    withContext(Dispatchers.Main){
+                        initCategory()
+                    }
+                }
+            }
+        }else{
+            withContext(Dispatchers.Main){
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts("${jObjError.getString("msg")}")
+                } catch (e: Exception) {
+                    showToasts(e.message.toString())
+                }
+            }
+        }
     }
 
     private fun clickListner() {
@@ -61,22 +95,11 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
     private fun initCategory() {
         editTextBackground(relContQuest, "#FBFB95", "#FF48AF")
         editTextBackground(relCat, "#FFFC7C", "#FF48AF")
-        listCategory.add("Infectious Disease & Immunology")
-        listCategory.add("Womens & Pediatrics")
-        listCategory.add("New Rx")
-        listCategory.add("Law")
-        listCategory.add("Abused Substances")
-        listCategory.add("Fun Facts")
-        listCategory.add("OTC & Herbals")
-        listCategory.add("Endocrinology & Toxicology")
-        listCategory.add("Cardiology & Hematology")
-        listCategory.add("Neurology & Psychology")
-        listCategory.add("Oncology & Miscellaneous")
 
-        val catAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+        val catAdapter = ArrayAdapter<CharSequence>(
             this,
             R.layout.age_spinner_text,
-            listCategory
+            listCategory as List<CharSequence>
         )
         catAdapter.setDropDownViewResource(R.layout.age_spinner)
         spinnerCategory.adapter = catAdapter

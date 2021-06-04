@@ -94,7 +94,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         submitLogin()
                     }
                 }
-
             }
         }
     }
@@ -112,6 +111,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             pref.hideProgress()
                             showToasts(msg)
                             pref.authToken = it.data.auth_token
+                            pref.userId = it.data.id
                             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                             finishAffinity()
                         }

@@ -30,6 +30,13 @@ class PrefHelper(internal var context: Context) {
             editor.commit()
         }
 
+    var userId: Int
+    get() = prefrence.getInt("id",0)
+    set(value) {
+        editor.putInt("id",value)
+        editor.commit()
+    }
+
     var gametype: String
     get() =  prefrence.getString("gameType","").toString()
     set(value) {

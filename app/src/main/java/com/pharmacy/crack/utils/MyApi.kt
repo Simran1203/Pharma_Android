@@ -1,14 +1,12 @@
 package com.pharmacy.crack.utils
+import com.pharmacy.crack.data.model.categoryModels.CategoryModel
 import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
 import com.pharmacy.crack.data.model.forgetpassowrods.ForgetModel
 import com.pharmacy.crack.data.model.loginModels.LoginModel
 import com.pharmacy.crack.data.model.signUp.SignUpModel
 import com.pharmacy.crack.data.model.specialityModels.SpecialityModel
 import com.pharmacy.crack.data.model.statesModels.StateModel
-import com.pharmacy.crack.main.model.ForgetDataModel
-import com.pharmacy.crack.main.model.LoginDatamodel
-import com.pharmacy.crack.main.model.RegisterDataModel
-import com.pharmacy.crack.main.model.ResetCodeDataModel
+import com.pharmacy.crack.main.model.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -23,6 +21,9 @@ interface MyApi {
     @GET("countrystatecity")
     suspend fun getState(@Query("countryId") countryId:String) :Response<StateModel>
 
+    @GET("category")
+    suspend fun getcategory() :Response<CategoryModel>
+
     @POST("register")
     suspend fun submitSignUp(@Body model: RegisterDataModel) :Response<SignUpModel>
 
@@ -32,9 +33,9 @@ interface MyApi {
     @POST("resetcode")
     suspend fun submitResetCode(@Body model: ResetCodeDataModel) :Response<ForgetModel>
 
-    @PATCH("forgot-password")
+    @POST("forgot-password")
     suspend fun submitForget(@Body model: ForgetDataModel) :Response<ForgetModel>
 
-    @PATCH("newpassword")
+    @POST("newpassword")
     suspend fun submitNewPassword(@Body model: LoginDatamodel) :Response<ForgetModel>
 }
