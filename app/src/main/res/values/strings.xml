@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Pharmacy Crack</string>
 
-    <string name="facebook_app_id">4127033510697718</string>
-    <string name="fb_login_protocol_scheme">fb4127033510697718</string>
+    <string name="facebook_app_id">531713431519858</string>
+    <string name="fb_login_protocol_scheme">fb531713431519858</string>
 
     <string name="regular_font">Manrope-Bold.ttf</string>
     <string name="semibold_font">Manrope-SemiBold.ttf</string>

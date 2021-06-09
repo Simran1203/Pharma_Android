@@ -192,6 +192,7 @@
                 />
 
             <ImageView
+                android:id="@+id/imgGoogle"
                 android:layout_toRightOf="@+id/imgFacebook"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="@dimen/_45sdp"

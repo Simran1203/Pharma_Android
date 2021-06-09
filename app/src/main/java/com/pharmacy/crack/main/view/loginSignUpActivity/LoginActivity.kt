@@ -1,5 +1,6 @@
 package com.pharmacy.crack.main.view.loginSignUpActivity
 
+import android.R.attr
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -15,8 +16,11 @@ import com.facebook.Profile
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.main.model.LoginDatamodel
@@ -38,6 +42,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var pref:PrefHelper
     var callbackManager: CallbackManager? = null
     var loginButton: LoginButton? = null
+    private val RC_GOOGLE_LOGIN = 101
+    var mGoogleSignInClient: GoogleSignInClient? = null
+
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,13 +88,64 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         })
 
 //        getKeyhash()
-
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("319985004088-hc8ec1iog2etbrmkvtrvctt2prr1n98c.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
     }
+
+    // TODO google Implimentation
+    fun sign_in_with_gmail() {
+        val signInIntent = mGoogleSignInClient?.signInIntent
+        startActivityForResult(signInIntent, RC_GOOGLE_LOGIN)    }
+
+    // TODO google Implimentation override method
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         callbackManager!!.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_GOOGLE_LOGIN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                //Google Sign In was successful, authenticate with Firebase
+//                val account = task.getResult(ApiException::class.java)
+                handleSignInResult(task)
+            } catch (e: ApiException) {
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // TODO Relate to google login
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            if (account != null) {
+                val id = account.id
+                var fname = "" + account.givenName
+                var lname = "" + account.familyName
+                var emal = "" + account.email
+                Log.d("dddddd",fname)
+
+                // if we do not get the picture of user then we will use default profile picture
+                val pic_url: String
+                pic_url = if (account.photoUrl != null) {
+                    account.photoUrl.toString()
+                } else {
+                    "null"
+                }
+                if (fname.trim { it <= ' ' } == "" || fname.trim { it <= ' ' } == "null") fname =
+                    resources.getString(R.string.app_name)
+                if (lname.trim { it <= ' ' } == "" || lname.trim { it <= ' ' } == "null") lname =
+                    "User"
+                //  Change_Url_to_base64(id, fname, lname, pic_url, "gmail")
+            }
+        } catch (e: ApiException) {
+            Log.w("Error message", "signInResult:failed code=" + e.statusCode)
+        }
     }
 
     private fun getUserProfile(currentAccessToken: AccessToken) {
@@ -105,7 +163,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 image_url = JSONObject(`object`.getString("picture")).getJSONObject(
                     "data"
                 ).getString("url")
-                Log.d("urlsassd", image_url)
+                Log.d("urlsassd", ""+email)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
@@ -129,6 +187,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.txtLogin.setOnClickListener(this)
         binding.imgFacebook.setOnClickListener(this)
+        binding.imgGoogle.setOnClickListener(this)
         binding.txtForgtPwd.setOnClickListener(this)
         binding.txtCreateAccount.setOnClickListener(this)
 
@@ -141,10 +200,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
         else if (v === binding.imgFacebook) {
             binding.loginButton.performClick()
+        }
+        else if (v === binding.imgGoogle) {
+            sign_in_with_gmail()
         } else if (v === binding.txtCreateAccount) {
             if (!isNetworkAvailable(this)) {
                 showToast(this, "Please check your internet connection and try again.")
-
             } else {
                 startActivity(Intent(this, SignUpActivity::class.java))
             }
