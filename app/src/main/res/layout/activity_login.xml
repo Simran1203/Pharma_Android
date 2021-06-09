@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/onboarding_bg"
     android:fitsSystemWindows="true"
-    tools:context=".main.view.LoginSignUpActivity.LoginActivity">
+    tools:context=".main.view.loginSignUpActivity.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLogin"
@@ -165,7 +165,7 @@
             android:layout_marginTop="@dimen/_20sdp" />
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -178,18 +178,26 @@
             app:layout_constraintTop_toBottomOf="@id/txtCreateAccount">
 
         <ImageView
+            android:id="@+id/imgFacebook"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="@dimen/_45sdp"
             android:src="@drawable/facebook"/>
 
-
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                />
 
             <ImageView
+                android:layout_toRightOf="@+id/imgFacebook"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_marginStart="@dimen/_20sdp"
             android:src="@drawable/google"/>
-        </LinearLayout>
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
 </layout>

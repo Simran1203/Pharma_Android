@@ -1,7 +1,6 @@
-package com.pharmacy.crack.main.view.LoginSignUpActivity
+package com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +10,7 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.*
@@ -36,7 +36,8 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePicker.OnCountryChangeListener{
+class SignUpActivity : AppCompatActivity(), View.OnClickListener,
+    CountryCodePicker.OnCountryChangeListener {
 
     var listYear: ArrayList<Int> = ArrayList()
     var listDay: ArrayList<Int> = ArrayList()
@@ -49,6 +50,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
     var classificationID: Int = 0
     var specialityID: Int = 0
     var dobDay: Int = 0
+    var totalMonthDay: Int = 0
     var dobMonth: String = ""
     lateinit var stateName: String
     lateinit var pref: PrefHelper
@@ -67,14 +69,15 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
         initYear()
         listMonthInit()
-        listDayInit()
+
         initOther()
 
 
-        val ss = SpannableString("By clicking on the Next button, you agree to our Terms & Conditions.")
+        val ss =
+            SpannableString("By clicking on the Next button, you agree to our Terms & Conditions.")
         val clickableSpan: ClickableSpan = object : ClickableSpan() {
             override fun onClick(textView: View) {
-                startActivity(Intent(this@SignUpActivity,TermsConditionActivity::class.java))
+                startActivity(Intent(this@SignUpActivity, TermsConditionActivity::class.java))
             }
 
             override fun updateDrawState(ds: TextPaint) {
@@ -83,33 +86,39 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             }
         }
         ss.setSpan(clickableSpan, 49, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        ss.setSpan(ForegroundColorSpan(Color.parseColor("#FF0091")), 49, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(
+            ForegroundColorSpan(Color.parseColor("#FF0091")),
+            49,
+            ss.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
         txtTerm.text = ss
         txtTerm.movementMethod = LinkMovementMethod.getInstance()
 
-        CoroutineScope(Dispatchers.IO
-        ).launch{
+
+        CoroutineScope(
+            Dispatchers.IO
+        ).launch {
             fetchStateList(countrPickerSignup.defaultCountryNameCode.toString())
             fetchClassification()
             fetchSpeciality()
-
         }
+
     }
 
     private suspend fun fetchStateList(countrystateId: String) {
         val res = RetrofitFactory.api.getState(countrystateId)
-        if(res.isSuccessful){
+        if (res.isSuccessful) {
             res.body()?.let {
-                listState  = it.states
-                if(!listState.isNullOrEmpty()){
-                    withContext(Main){
+                listState = it.states
+                if (!listState.isNullOrEmpty()) {
+                    withContext(Main) {
                         initState()
                     }
                 }
             }
-        }
-        else{
-            withContext(Main){
+        } else {
+            withContext(Main) {
                 showToasts(res.message())
             }
 
@@ -118,17 +127,17 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     suspend fun fetchSpeciality() {
         val res = RetrofitFactory.api.getSpeciality()
-        if(res.isSuccessful){
+        if (res.isSuccessful) {
             res.body()?.let {
                 listSpeciality = it.getspeciality
-                if(!listSpeciality.isNullOrEmpty()){
-                    withContext(Main){
+                if (!listSpeciality.isNullOrEmpty()) {
+                    withContext(Main) {
                         initSpeciality()
                     }
                 }
             }
-        }else{
-            withContext(Main){
+        } else {
+            withContext(Main) {
                 showToasts(res.message())
             }
         }
@@ -136,18 +145,17 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     private suspend fun fetchClassification() {
         val res = RetrofitFactory.api.getClassification()
-        if(res.isSuccessful){
-            res.body()?.let{
-             listClassification = it.getclassification
-                if(!listClassification.isNullOrEmpty()){
-                    withContext(Main){
+        if (res.isSuccessful) {
+            res.body()?.let {
+                listClassification = it.getclassification
+                if (!listClassification.isNullOrEmpty()) {
+                    withContext(Main) {
                         initClassification()
                     }
                 }
             }
-        }
-        else{
-            withContext(Main){
+        } else {
+            withContext(Main) {
                 showToasts(res.message())
             }
         }
@@ -155,7 +163,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
 
     private fun initSpeciality() {
-        val specialityAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text,
+        val specialityAdapter = ArrayAdapter<CharSequence>(
+            this, R.layout.age_spinner_text,
             listSpeciality as List<CharSequence>
         )
         specialityAdapter.setDropDownViewResource(R.layout.age_spinner)
@@ -179,7 +188,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     private fun initClassification() {
 
-        val playerAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text,
+        val playerAdapter = ArrayAdapter<CharSequence>(
+            this, R.layout.age_spinner_text,
             listClassification as List<CharSequence>
         )
         playerAdapter.setDropDownViewResource(R.layout.age_spinner)
@@ -194,6 +204,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
                 classificationID = listClassification.get(position).id
             }
+
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
             }
@@ -201,7 +212,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
     }
 
     private fun initOther() {
-        constarintSignup.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+        constarintSignup.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
@@ -209,7 +220,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
     }
 
     private fun listDayInit() {
-        for (i in 1 until 32) {
+        for (i in 1 until totalMonthDay) {
             listDay.add(i)
         }
 
@@ -230,13 +241,14 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
                 dobDay = listDay.get(position)
             }
+
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // write code to perform some action
             }
         }
     }
 
-    private fun initState(){
+    private fun initState() {
         val stateAdapter: ArrayAdapter<CharSequence> = ArrayAdapter<CharSequence>(
             this@SignUpActivity,
             R.layout.age_spinner_text,
@@ -294,7 +306,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
 
     private fun listMonthInit() {
         val res = resources
-        val monthAdapter = ArrayAdapter<CharSequence>(this, R.layout.age_spinner_text, res.getStringArray(R.array.month))
+        val monthAdapter = ArrayAdapter<CharSequence>(
+            this,
+            R.layout.age_spinner_text,
+            res.getStringArray(R.array.month)
+        )
         monthAdapter.setDropDownViewResource(R.layout.age_spinner)
         spinnerMonth.adapter = monthAdapter
 
@@ -306,6 +322,40 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
                 dobMonth = res.getStringArray(R.array.month).get(position)
+                if (position == 0) {
+                    totalMonthDay = 32
+                } else if (position == 1) {
+                    if(dobYear%4!=0){
+                        totalMonthDay = 29
+                    }
+                    else{
+                        totalMonthDay = 30
+                    }
+
+                } else if (position == 2) {
+                    totalMonthDay = 32
+                } else if (position == 3) {
+                    totalMonthDay = 31
+                } else if (position == 4) {
+                    totalMonthDay = 32
+                } else if (position == 5) {
+                    totalMonthDay = 31
+                } else if (position == 6) {
+                    totalMonthDay = 32
+                } else if (position == 7) {
+                    totalMonthDay = 32
+                } else if (position == 8) {
+                    totalMonthDay = 31
+                } else if (position == 9) {
+                    totalMonthDay = 32
+                }else if (position == 10) {
+                    totalMonthDay = 31
+                } else if (position == 11) {
+                    totalMonthDay = 32
+                }
+
+                listDay.clear()
+                listDayInit()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -325,7 +375,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         chkTerm.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
                 termsAndCon = isChecked
-            } })
+            }
+        })
     }
 
 
@@ -354,7 +405,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                     .matches())
             ) {
                 Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
-            }  else if (editPasswordSignUp.text.toString().trim().isEmpty()) {
+            } else if (editPasswordSignUp.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Password.", Toast.LENGTH_SHORT).show()
                 editPasswordSignUp.text?.clear()
             } else if (editPasswordSignUp.getText().toString().trim().length < 6) {
@@ -370,18 +421,19 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
                     editPasswordSignUp.getText().toString()
                 )
             ) {
-                Toast.makeText(this, "Confirm Password should be same as Password.", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    this,
+                    "Confirm Password should be same as Password.",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
-            }
-            else if (editUserName.text.toString().trim().isEmpty()) {
+            } else if (editUserName.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()
                 editUserName.text?.clear()
-            }
-            else if ((getAge(dobYear, dobMonth, dobDay)) < 5) {
+            } else if ((getAge(dobYear, dobMonth, dobDay)) < 5) {
                 Toast.makeText(this, "You must be at least 5 years old.", Toast.LENGTH_SHORT).show()
 
-            }
-            else if (!termsAndCon) {
+            } else if (!termsAndCon) {
                 Toast.makeText(
                     this,
                     "Please agree to our Terms and Conditions.",
@@ -390,10 +442,13 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             } else {
                 if (!isNetworkAvailable(this)) {
                     showToast(this, "Please check your internet connection and try again.")
-                }else{
+                } else {
+                    val dobMonthInt = getMonthInteger(dobMonth)
+                    var dob = "$dobYear-$dobMonthInt-$dobDay"
+
                     pref.showProgress(this)
-                    CoroutineScope(IO).launch{
-                        submitRegisterData()
+                    CoroutineScope(IO).launch {
+                        submitRegisterData(dob)
                     }
                 }
 
@@ -405,34 +460,40 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
         }
     }
 
-    private suspend fun submitRegisterData() {
+    private suspend fun submitRegisterData(dob: String) {
 
-       val model = RegisterDataModel(edtName.text.toString(),editEmail.text.toString(),editPasswordSignUp.text.toString(),
-           editUserName.text.toString(),"$dobYear-$dobMonth-$dobDay",txtCountry.text.toString(),stateName,classificationID,
-       specialityID,editCollege.text.toString())
+        val model = RegisterDataModel(
+            edtName.text.toString(),
+            editEmail.text.toString(),
+            editPasswordSignUp.text.toString(),
+            editUserName.text.toString(),
+            dob,
+            txtCountry.text.toString(),
+            stateName,
+            classificationID,
+            specialityID,
+            editCollege.text.toString()
+        )
 
         val res = RetrofitFactory.api.submitSignUp(model)
-        if(res.isSuccessful){
+        if (res.isSuccessful) {
             res.body()?.let {
                 var msg = it.message
-                if(msg.equals("User Register Successfully")){
+                if (msg.equals("User Register Successfully")) {
                     CoroutineScope(Main).launch {
                         pref.hideProgress()
-                        showToasts("$msg")
                         pref.authToken = it.token
                         startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
                         finishAffinity()
                     }
-                }
-                else{
+                } else {
                     CoroutineScope(Main).launch {
                         pref.hideProgress()
                         showToasts("$msg")
                     }
                 }
             }
-        }
-        else{
+        } else {
             CoroutineScope(Main).launch {
                 pref.hideProgress()
                 try {
@@ -470,7 +531,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             "Aug" -> monthInt = 8
             "Sep" -> monthInt = 9
             "Oct" -> monthInt = 10
-            "nov" -> monthInt = 11
+            "Nov" -> monthInt = 11
             "Dev" -> monthInt = 12
         }
 
@@ -478,5 +539,25 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener , CountryCodePi
             LocalDate.of(year, monthInt, dayOfMonth),
             LocalDate.now()
         ).years
+    }
+
+    fun getMonthInteger(month: String): Int {
+        var monthInt = 0
+        when (month) {
+            "Jan" -> monthInt = 1
+            "Feb" -> monthInt = 2
+            "Mar" -> monthInt = 3
+            "Apr" -> monthInt = 4
+            "May" -> monthInt = 5
+            "Jun" -> monthInt = 6
+            "Jul" -> monthInt = 7
+            "Aug" -> monthInt = 8
+            "Sep" -> monthInt = 9
+            "Oct" -> monthInt = 10
+            "Nov" -> monthInt = 11
+            "Dev" -> monthInt = 12
+        }
+
+        return monthInt
     }
 }

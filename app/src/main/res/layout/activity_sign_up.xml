@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/coordinatorSignup"
     android:background="@drawable/onboarding_bg"
-    tools:context=".main.view.LoginSignUpActivity.SignUpActivity">
+    tools:context=".main.view.loginSignUpActivity.SignUpActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

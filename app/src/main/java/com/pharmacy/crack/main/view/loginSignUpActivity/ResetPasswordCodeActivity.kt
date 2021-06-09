@@ -1,20 +1,16 @@
-package com.pharmacy.crack.main.view.LoginSignUpActivity
+package com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
-import com.pharmacy.crack.databinding.ActivityResetPasswordBinding
 import com.pharmacy.crack.databinding.ActivityResetPasswordCodeBinding
-import com.pharmacy.crack.main.model.LoginDatamodel
 import com.pharmacy.crack.main.model.ResetCodeDataModel
-import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

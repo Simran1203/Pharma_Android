@@ -7,7 +7,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
-import com.pharmacy.crack.main.view.LoginSignUpActivity.LoginActivity
+import com.pharmacy.crack.main.view.loginSignUpActivity.LoginActivity
 import com.pharmacy.crack.main.view.SettingActivities.ChangeProfileActivity
 import com.pharmacy.crack.main.view.SettingActivities.EmailSupportActivity
 import com.pharmacy.crack.main.view.SettingActivities.TutorialScreenActivity

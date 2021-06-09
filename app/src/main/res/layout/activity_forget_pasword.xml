@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/onboarding_bg"
     android:fitsSystemWindows="true"
-    tools:context=".main.view.LoginSignUpActivity.ForgetPaswordActivity">
+    tools:context=".main.view.loginSignUpActivity.ForgetPaswordActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintForgot"

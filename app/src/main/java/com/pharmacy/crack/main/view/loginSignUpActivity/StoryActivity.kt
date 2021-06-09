@@ -1,4 +1,4 @@
-package  com.pharmacy.crack.main.view.LoginSignUpActivity
+package  com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.content.Intent
 import android.os.Build
@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
-import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.databinding.ActivityStoryBinding
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.setFullScreen

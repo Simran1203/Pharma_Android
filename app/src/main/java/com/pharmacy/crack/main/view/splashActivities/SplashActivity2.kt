@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
-import com.pharmacy.crack.main.view.LoginSignUpActivity.LoginActivity
+import com.pharmacy.crack.main.view.loginSignUpActivity.LoginActivity
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen

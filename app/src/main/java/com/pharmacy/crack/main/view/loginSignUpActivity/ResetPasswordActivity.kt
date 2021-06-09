@@ -1,4 +1,4 @@
-package com.pharmacy.crack.main.view.LoginSignUpActivity
+package com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.content.Intent
 import android.os.Build

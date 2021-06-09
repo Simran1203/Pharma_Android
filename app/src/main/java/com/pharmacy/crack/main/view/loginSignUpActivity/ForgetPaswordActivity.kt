@@ -1,4 +1,4 @@
-package com.pharmacy.crack.main.view.LoginSignUpActivity
+package com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.app.Dialog
 import android.content.Intent
@@ -7,22 +7,17 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityForgetPaswordBinding
-import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.main.model.ForgetDataModel
-import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.*
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
-import com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
 import kotlinx.android.synthetic.main.activity_forget_pasword.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
