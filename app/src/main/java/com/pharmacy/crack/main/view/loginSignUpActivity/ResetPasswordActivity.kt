@@ -91,27 +91,19 @@ class ResetPasswordActivity : AppCompatActivity(),View.OnClickListener {
         if(res.isSuccessful){
             res.body()?.let {
                 val msg = it.message
-                if(msg == "Password Updated Successfully"){
-
                     CoroutineScope(Dispatchers.Main).launch {
                         pref.hideProgress()
                         showToasts(msg)
                         startActivity(Intent(this@ResetPasswordActivity,LoginActivity::class.java))
                         finishAffinity()
                     }
-                }else{
-                    CoroutineScope(Dispatchers.Main).launch {
-                        pref.hideProgress()
-                        showToasts(msg)
-                    }
-                }
             }
         }else{
             CoroutineScope(Dispatchers.Main).launch {
                 pref.hideProgress()
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())
-                    showToasts(jObjError.getString("msg"))
+                    showToasts(jObjError.getString("message"))
                 } catch (e: Exception) {
                     showToasts(e.message.toString())
                 } } }

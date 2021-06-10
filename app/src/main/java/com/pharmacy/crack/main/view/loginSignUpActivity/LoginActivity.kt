@@ -247,9 +247,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         if(res.isSuccessful){
               res.body()?.let {
-                val msg = it.message
-                    if(msg.equals("Logged in Successfully")){
-
                         CoroutineScope(Dispatchers.Main).launch {
                             pref.hideProgress()
                             pref.authToken = it.data.auth_token
@@ -257,19 +254,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                             finishAffinity()
                         }
-                    }else{
-                        CoroutineScope(Dispatchers.Main).launch {
-                            pref.hideProgress()
-                            showToasts(msg)
-                        }
-                    }
+
                 }
         }else{
                 CoroutineScope(Dispatchers.Main).launch {
                     pref.hideProgress()
                     try {
                         val jObjError = JSONObject(res.errorBody()?.string())
-                        showToasts(jObjError.getString("msg"))
+                        showToasts(jObjError.getString("message"))
                     } catch (e: Exception) {
                         showToasts(e.message.toString())
                     } } }

@@ -1,4 +1,5 @@
 package com.pharmacy.crack.utils
+import com.pharmacy.crack.data.model.EmailSupportModel
 import com.pharmacy.crack.data.model.categoryModels.CategoryModel
 import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
 import com.pharmacy.crack.data.model.forgetpassowrods.ForgetModel
@@ -38,4 +39,10 @@ interface MyApi {
 
     @POST("newpassword")
     suspend fun submitNewPassword(@Body model: LoginDatamodel) :Response<ForgetModel>
+
+    @POST("contactqueries")
+    suspend fun submitQueries(@Body model: EmailsupportDataModel) :Response<EmailSupportModel>
+
+    @POST("resetusername")
+    suspend fun submitResetUserName(@Body model: ProfileDataModel) :Response<EmailSupportModel>
 }

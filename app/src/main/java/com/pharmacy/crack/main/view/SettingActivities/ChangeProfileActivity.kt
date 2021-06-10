@@ -25,10 +25,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
-import com.pharmacy.crack.utils.editTextBackground
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
-import com.pharmacy.crack.utils.showToast
+import com.pharmacy.crack.main.model.ProfileDataModel
+import com.pharmacy.crack.utils.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_change_profile.*
@@ -36,6 +34,9 @@ import kotlinx.android.synthetic.main.activity_forget_pasword.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_sign_up.relMonth
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -45,6 +46,7 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
 
     var photoFile: File? = null
     var mCurrentPhotoPath: String? = null
+    lateinit var pref: PrefHelper
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,11 +58,13 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
 
         imgBackToolbar.setOnClickListener(this)
         imgEditProfile.setOnClickListener(this)
+        txtSaveProfile.setOnClickListener(this)
         imgProfile.setOnClickListener(this)
     }
 
     private fun initAll() {
-        txtToolbar.setText("Change Profile")
+        pref = PrefHelper(this)
+        txtToolbar.text = "Change Profile"
         askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
 
         constarintProfile.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
@@ -74,32 +78,54 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==imgEditProfile){
-            CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAllowRotation(false)
-                .setAllowFlipping(false)
-                .setOutputCompressQuality(50)
-                .setCropShape(CropImageView.CropShape.RECTANGLE)
-                .setFixAspectRatio(true)
-                .start(this)
-//            showDialogs()
+            showDialogs()
         }
         else if(v==imgProfile){
-            CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .setAllowRotation(false)
-                .setAllowFlipping(false)
-                .setOutputCompressQuality(50)
-                .setCropShape(CropImageView.CropShape.RECTANGLE)
-                .setFixAspectRatio(true)
-                .start(this)
-//            showDialogs()
+            showDialogs()
+        }
+        else if(v==txtSaveProfile){
+            if (edtCurrentUserName.text.toString().trim().isEmpty()) {
+                showToasts("Please enter current Username.")
+            }
+            else if (editNewUserName.text.toString().trim().isEmpty()) {
+                showToasts("Please enter new Username.")
+            }
+            else {
+                CoroutineScope(Dispatchers.Main).launch {
+                    submitUserName()
+                }
+            }
         }
         else if(v==imgBackToolbar){
             super.onBackPressed()
         }
     }
 
+    private suspend fun submitUserName() {
+        pref.showProgress(this)
+        val model = ProfileDataModel(edtCurrentUserName.text.toString(),editNewUserName.text.toString())
+        val  res = RetrofitFactory.api.submitResetUserName(model)
+
+        pref.hideProgress()
+        if(res.isSuccessful){
+            res.body()?.let {
+                showToasts(it.message)
+                edtCurrentUserName.text?.clear()
+                editNewUserName.text?.clear()
+            }
+        }
+    }
+
+    private fun showDialogs() {
+        CropImage.activity()
+            .setGuidelines(CropImageView.Guidelines.ON)
+            .setAllowRotation(false)
+            .setAllowFlipping(false)
+            .setOutputCompressQuality(50)
+            .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .setFixAspectRatio(true)
+            .start(this)
+    }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

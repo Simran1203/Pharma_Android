@@ -1,5 +1,7 @@
 package com.pharmacy.crack.main.view.loginSignUpActivity
 
+import android.app.DatePickerDialog
+import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -33,6 +35,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
 import java.util.*
+import javax.xml.datatype.DatatypeConstants.MONTHS
 import kotlin.collections.ArrayList
 
 
@@ -50,11 +53,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     var classificationID: Int = 0
     var specialityID: Int = 0
     var dobDay: Int = 0
-    var totalMonthDay: Int = 0
-    var dobMonth: String = ""
+    var dobMonth: Int = 0
     lateinit var stateName: String
     lateinit var pref: PrefHelper
-
+    val myCalendar = Calendar.getInstance();
+    lateinit var  dpd:DatePickerDialog
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,9 +69,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         pref = PrefHelper(this)
         initBackground()
         initlistner()
-
-        initYear()
-        listMonthInit()
 
         initOther()
 
@@ -96,26 +96,27 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         txtTerm.movementMethod = LinkMovementMethod.getInstance()
 
 
-        CoroutineScope(
-            Dispatchers.IO
-        ).launch {
+        CoroutineScope(Dispatchers.IO).launch {
             fetchStateList(countrPickerSignup.defaultCountryNameCode.toString())
             fetchClassification()
             fetchSpeciality()
         }
 
+        initDatePicker()
+
+
     }
 
+
     private suspend fun fetchStateList(countrystateId: String) {
+        Log.d( "fetchStateList: ",countrystateId);
         val res = RetrofitFactory.api.getState(countrystateId)
         if (res.isSuccessful) {
             res.body()?.let {
                 listState = it.states
-                if (!listState.isNullOrEmpty()) {
                     withContext(Main) {
                         initState()
                     }
-                }
             }
         } else {
             withContext(Main) {
@@ -219,35 +220,6 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    private fun listDayInit() {
-        for (i in 1 until totalMonthDay) {
-            listDay.add(i)
-        }
-
-        val dayAdapter: ArrayAdapter<Int> = ArrayAdapter<Int>(
-            this,
-            R.layout.age_spinner_text,
-            listDay
-        )
-        dayAdapter.setDropDownViewResource(R.layout.age_spinner)
-        spinnerDay.setAdapter(dayAdapter)
-
-        spinnerDay.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View, position: Int, id: Long
-            ) {
-                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-                dobDay = listDay.get(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-            }
-        }
-    }
-
     private fun initState() {
         val stateAdapter: ArrayAdapter<CharSequence> = ArrayAdapter<CharSequence>(
             this@SignUpActivity,
@@ -273,102 +245,14 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    private fun initYear() {
-        val sdf = SimpleDateFormat("yyyy")
-        var currentYear = Integer.parseInt(sdf.format(Date()))
-        for (i in 1970..currentYear) {
-            listYear.add(i)
-        }
-
-        val yearAdapter: ArrayAdapter<Int> = ArrayAdapter<Int>(
-            this,
-            R.layout.age_spinner_text,
-            listYear
-        )
-        yearAdapter.setDropDownViewResource(R.layout.age_spinner)
-        spinnerYear.adapter = yearAdapter
-
-        spinnerYear.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View, position: Int, id: Long
-            ) {
-                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-                dobYear = listYear.get(position)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-            }
-        }
-    }
-
-    private fun listMonthInit() {
-        val res = resources
-        val monthAdapter = ArrayAdapter<CharSequence>(
-            this,
-            R.layout.age_spinner_text,
-            res.getStringArray(R.array.month)
-        )
-        monthAdapter.setDropDownViewResource(R.layout.age_spinner)
-        spinnerMonth.adapter = monthAdapter
-
-        spinnerMonth.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View, position: Int, id: Long
-            ) {
-                (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
-                dobMonth = res.getStringArray(R.array.month).get(position)
-                if (position == 0) {
-                    totalMonthDay = 32
-                } else if (position == 1) {
-                    if(dobYear%4!=0){
-                        totalMonthDay = 29
-                    }
-                    else{
-                        totalMonthDay = 30
-                    }
-
-                } else if (position == 2) {
-                    totalMonthDay = 32
-                } else if (position == 3) {
-                    totalMonthDay = 31
-                } else if (position == 4) {
-                    totalMonthDay = 32
-                } else if (position == 5) {
-                    totalMonthDay = 31
-                } else if (position == 6) {
-                    totalMonthDay = 32
-                } else if (position == 7) {
-                    totalMonthDay = 32
-                } else if (position == 8) {
-                    totalMonthDay = 31
-                } else if (position == 9) {
-                    totalMonthDay = 32
-                }else if (position == 10) {
-                    totalMonthDay = 31
-                } else if (position == 11) {
-                    totalMonthDay = 32
-                }
-
-                listDay.clear()
-                listDayInit()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-            }
-        }
-    }
-
 
     private fun initlistner() {
         editPasswordSignUp.transformationMethod = AsteriskPasswordTransformationMethod()
         editCnfmPasswordSignUp.transformationMethod = AsteriskPasswordTransformationMethod()
         txtSignup.setOnClickListener(this)
+        relDate.setOnClickListener(this)
+        relMonth.setOnClickListener(this)
+        relYear.setOnClickListener(this)
         imgBackSignup.setOnClickListener(this)
         countrPickerSignup!!.setOnCountryChangeListener(this)
 
@@ -443,21 +327,53 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                 if (!isNetworkAvailable(this)) {
                     showToast(this, "Please check your internet connection and try again.")
                 } else {
-                    val dobMonthInt = getMonthInteger(dobMonth)
-                    var dob = "$dobYear-$dobMonthInt-$dobDay"
-
+                    var dob = "$dobYear-$dobMonth-$dobDay"
                     pref.showProgress(this)
                     CoroutineScope(IO).launch {
                         submitRegisterData(dob)
                     }
                 }
-
             }
         }
 
-        if (v == imgBackSignup) {
+        else if (v == relDate) {
+            dpd.show()
+        }
+        else if (v == relMonth) {
+            dpd.show()
+        }
+        else if (v == relYear) {
+            dpd.show()
+        }
+        else if (v == imgBackSignup) {
             super.onBackPressed()
         }
+    }
+
+    private fun initDatePicker() {
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        dobDay = day
+        dobMonth = month+1
+        dobYear = year
+        txtDay.setText("" + day)
+        txtMonth.setText(""+(month+1))
+        txtYear.setText("" +year)
+
+         dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+            // Display Selected date in textbox
+             dobDay = dayOfMonth
+             dobMonth = monthOfYear+1
+             dobYear = year
+            txtDay.setText("" + dayOfMonth)
+            txtMonth.setText(""+dobMonth)
+            txtYear.setText("" +year)
+
+        }, year, month, day)
     }
 
     private suspend fun submitRegisterData(dob: String) {
@@ -479,26 +395,22 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         if (res.isSuccessful) {
             res.body()?.let {
                 var msg = it.message
-                if (msg.equals("User Register Successfully")) {
+
                     CoroutineScope(Main).launch {
                         pref.hideProgress()
-                        pref.authToken = it.token
+                        pref.authToken = it.auth_token
+                        showToasts("$msg")
                         startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
                         finishAffinity()
                     }
-                } else {
-                    CoroutineScope(Main).launch {
-                        pref.hideProgress()
-                        showToasts("$msg")
-                    }
-                }
+
             }
         } else {
             CoroutineScope(Main).launch {
                 pref.hideProgress()
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())
-                    showToasts("${jObjError.getString("msg")}")
+                    showToasts("${jObjError.getString("message")}")
                 } catch (e: Exception) {
                     Toast.makeText(this@SignUpActivity, e.message, Toast.LENGTH_LONG).show()
                 }
@@ -518,46 +430,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         }
     }
 
-    fun getAge(year: Int, month: String, dayOfMonth: Int): Int {
-        var monthInt = 0
-        when (month) {
-            "Jan" -> monthInt = 1
-            "Feb" -> monthInt = 2
-            "Mar" -> monthInt = 3
-            "Apr" -> monthInt = 4
-            "May" -> monthInt = 5
-            "Jun" -> monthInt = 6
-            "Jul" -> monthInt = 7
-            "Aug" -> monthInt = 8
-            "Sep" -> monthInt = 9
-            "Oct" -> monthInt = 10
-            "Nov" -> monthInt = 11
-            "Dev" -> monthInt = 12
-        }
-
+    fun getAge(year: Int, monthInt: Int, dayOfMonth: Int): Int {
         return Period.between(
             LocalDate.of(year, monthInt, dayOfMonth),
             LocalDate.now()
         ).years
     }
 
-    fun getMonthInteger(month: String): Int {
-        var monthInt = 0
-        when (month) {
-            "Jan" -> monthInt = 1
-            "Feb" -> monthInt = 2
-            "Mar" -> monthInt = 3
-            "Apr" -> monthInt = 4
-            "May" -> monthInt = 5
-            "Jun" -> monthInt = 6
-            "Jul" -> monthInt = 7
-            "Aug" -> monthInt = 8
-            "Sep" -> monthInt = 9
-            "Oct" -> monthInt = 10
-            "Nov" -> monthInt = 11
-            "Dev" -> monthInt = 12
-        }
-
-        return monthInt
-    }
 }

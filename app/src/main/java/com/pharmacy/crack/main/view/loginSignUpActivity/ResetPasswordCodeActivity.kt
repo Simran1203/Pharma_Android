@@ -74,8 +74,6 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
 
         if(res.isSuccessful){
             res.body()?.let {
-                val msg = it.message
-                if(msg == "ResetCode Matched  Successfully"){
 
                     CoroutineScope(Dispatchers.Main).launch {
                         pref.hideProgress()
@@ -83,19 +81,14 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
                             .putExtra("email",email))
                         finishAffinity()
                     }
-                }else{
-                    CoroutineScope(Dispatchers.Main).launch {
-                        pref.hideProgress()
-                        showToasts(msg)
-                    }
-                }
+
             }
         }else{
             CoroutineScope(Dispatchers.Main).launch {
                 pref.hideProgress()
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())
-                    showToasts(jObjError.getString("msg"))
+                    showToasts(jObjError.getString("message"))
                 } catch (e: Exception) {
                     showToasts(e.message.toString())
                 }

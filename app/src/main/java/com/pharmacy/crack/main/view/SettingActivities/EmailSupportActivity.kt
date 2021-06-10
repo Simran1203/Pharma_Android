@@ -1,49 +1,61 @@
 package com.pharmacy.crack.main.view.SettingActivities
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.ScrollingMovementMethod
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import com.pharmacy.crack.R
-import com.pharmacy.crack.utils.hideKeyBoard
-import com.pharmacy.crack.utils.setFullScreen
-import com.pharmacy.crack.utils.showToasts
+import com.pharmacy.crack.databinding.ActivityEmailSupportBinding
+import com.pharmacy.crack.main.model.EmailsupportDataModel
+import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_email_support.*
 import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 
-class EmailSupportActivity : AppCompatActivity(),View.OnClickListener {
+class EmailSupportActivity : AppCompatActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityEmailSupportBinding
+    lateinit var pref: PrefHelper
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
-        setContentView(R.layout.activity_email_support)
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_email_support)
+        binding.lifecycleOwner = this
+        pref = PrefHelper(this)
+
         initAll()
 
-        txtSubmitContact.setOnClickListener(this)
+        binding.txtSubmitContact.setOnClickListener(this)
     }
 
     private fun initAll() {
 
-        txtToolbar.setText("Contact Us")
+        txtToolbar.text = "Contact Us"
 
-        constantEmail.setOnFocusChangeListener { v, hasFocus ->
-            if(hasFocus){
-                    hideKeyBoard(this)
+        binding.constantEmail.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                hideKeyBoard(this)
             }
         }
         imgBackToolbar.setOnClickListener {
             super.onBackPressed()
         }
 
-        edtmessage.setOnTouchListener(object:View.OnTouchListener{
+        binding.edtmessage.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, p1: MotionEvent?): Boolean {
-                if(edtmessage.hasFocus()){
+                if (binding.edtmessage.hasFocus()) {
                     v?.parent?.requestDisallowInterceptTouchEvent(true)
-                    when (p1?.getAction()!! and MotionEvent.ACTION_MASK) {
+                    when (p1?.action!! and MotionEvent.ACTION_MASK) {
                         MotionEvent.ACTION_SCROLL -> {
                             v!!.parent.requestDisallowInterceptTouchEvent(false)
                             return true
@@ -57,13 +69,44 @@ class EmailSupportActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if(v==txtSubmitContact){
-            if(edtmessage.text.toString().trim().isEmpty()){
+        if (v == binding.txtSubmitContact) {
+            if (binding.edtmessage.text.toString().trim().isEmpty()) {
                 showToasts("Please write something.")
+            } else {
+                CoroutineScope(Main).launch {
+                    submitQueries()
+                }
             }
         }
-        if(v==imgBackToolbar){
+        if (v == imgBackToolbar) {
             imgBackToolbar.setOnClickListener(this)
+        }
+    }
+
+    private suspend fun submitQueries() {
+        pref.showProgress(this)
+        val c: Date = Calendar.getInstance().time
+        val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val formattedDate: String = df.format(c)
+
+       val model = EmailsupportDataModel(pref.userId.toString(),binding.edtmessage.text.toString(),formattedDate)
+
+        val res = RetrofitFactory.api.submitQueries(model)
+        if (res.isSuccessful){
+            pref.hideProgress()
+            res.body()?.let {
+                showToasts(it.message)
+                binding.edtmessage.text?.clear()
+            }
+
+        }else{
+            pref.hideProgress()
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            } catch (e: Exception) {
+                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

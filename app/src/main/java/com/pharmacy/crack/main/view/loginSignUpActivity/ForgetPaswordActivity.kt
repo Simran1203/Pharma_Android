@@ -115,24 +115,18 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
         if(res.isSuccessful){
              res.body()?.let {
                  val msg = it.message
-                 if (msg.equals("Successfully sent reset code to registered email.")){
                      CoroutineScope(Dispatchers.Main).launch {
+                         showToasts(msg)
                          pref.hideProgress()
                          dialogForget.show()
                      }
-                 }else{
-                     CoroutineScope(Dispatchers.Main).launch {
-                         pref.hideProgress()
-                         showToasts(msg)
-                     }
-                 }
              }
         }else{
             CoroutineScope(Dispatchers.Main).launch {
                 pref.hideProgress()
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())
-                    showToasts(jObjError.getString("msg"))
+                    showToasts(jObjError.getString("message"))
                 } catch (e: Exception) {
                     showToasts(e.message.toString())
                 }

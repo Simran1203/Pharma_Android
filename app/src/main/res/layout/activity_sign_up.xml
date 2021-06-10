@@ -284,18 +284,17 @@
                     android:orientation="horizontal"
                     android:paddingRight="@dimen/_10sdp">
 
-                    <Spinner
-                        android:id="@+id/spinnerDay"
+
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:id="@+id/txtDay"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        tools:listitem="@layout/age_spinner_text"
-                        android:spinnerMode="dropdown" />
-
+                        android:textColor="@color/desert"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textSize="@dimen/_13sdp"
+                        android:gravity="center_vertical" />
                     <ImageView
                         android:layout_width="@dimen/_10sdp"
                         android:layout_height="@dimen/_10sdp"
@@ -317,16 +316,17 @@
                     android:orientation="horizontal"
                     android:paddingRight="@dimen/_10sdp">
 
-                    <Spinner
-                        android:id="@+id/spinnerMonth"
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:id="@+id/txtMonth"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:spinnerMode="dropdown" />
+                        android:textColor="@color/desert"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textSize="@dimen/_13sdp"
+                        android:gravity="center_vertical" />
+
 
                     <ImageView
                         android:layout_width="@dimen/_10sdp"
@@ -347,16 +347,16 @@
                     android:orientation="horizontal"
                     android:paddingRight="@dimen/_10sdp">
 
-                    <Spinner
-                        android:id="@+id/spinnerYear"
+                    <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:id="@+id/txtYear"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="5dp"
-                        android:background="@android:color/transparent"
-                        android:gravity="center"
-                        android:spinnerMode="dropdown" />
+                        android:textColor="@color/desert"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textSize="@dimen/_13sdp"
+                        android:gravity="center_vertical" />
 
                     <ImageView
                         android:layout_width="@dimen/_10sdp"
