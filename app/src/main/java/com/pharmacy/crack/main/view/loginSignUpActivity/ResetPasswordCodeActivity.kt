@@ -30,6 +30,7 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
         initAll()
 
         binding.txtSubmitCode.setOnClickListener(this)
+        binding.imgBack.setOnClickListener(this)
     }
 
     private fun initAll() {
@@ -66,6 +67,9 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
 
             }
         }
+        else if(v==  binding.imgBack){
+            super.onBackPressed()
+        }
     }
 
     private suspend fun submitCode() {
@@ -81,7 +85,6 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
                             .putExtra("email",email))
                         finishAffinity()
                     }
-
             }
         }else{
             CoroutineScope(Dispatchers.Main).launch {

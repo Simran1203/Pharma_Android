@@ -93,4 +93,7 @@ dependencies {
 
     // for Google authentication
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
+    // TODO Emoji dependency
+    implementation 'org.apache.commons:commons-lang3:3.4'
 }

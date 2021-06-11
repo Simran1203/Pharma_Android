@@ -73,8 +73,12 @@ class EmailSupportActivity : AppCompatActivity(), View.OnClickListener {
             if (binding.edtmessage.text.toString().trim().isEmpty()) {
                 showToasts("Please write something.")
             } else {
-                CoroutineScope(Main).launch {
-                    submitQueries()
+                if (!isNetworkAvailable(this)) {
+                    showToast(this, "Please check your internet connection and try again.")
+                } else {
+                    CoroutineScope(Main).launch {
+                        submitQueries()
+                    }
                 }
             }
         }

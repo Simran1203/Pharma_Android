@@ -1,7 +1,6 @@
 package com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -30,12 +29,11 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import org.apache.commons.lang3.StringEscapeUtils
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 import kotlin.collections.ArrayList
 
 
@@ -109,7 +107,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
 
 
     private suspend fun fetchStateList(countrystateId: String) {
-        Log.d( "fetchStateList: ",countrystateId);
+
         val res = RetrofitFactory.api.getState(countrystateId)
         if (res.isSuccessful) {
             res.body()?.let {
@@ -394,12 +392,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         val res = RetrofitFactory.api.submitSignUp(model)
         if (res.isSuccessful) {
             res.body()?.let {
-                var msg = it.message
-
                     CoroutineScope(Main).launch {
                         pref.hideProgress()
                         pref.authToken = it.auth_token
-                        showToasts("$msg")
                         startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
                         finishAffinity()
                     }
@@ -425,8 +420,12 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
 
     override fun onCountrySelected() {
         txtCountry.text = countrPickerSignup?.selectedCountryName
-        CoroutineScope(IO).launch {
-            fetchStateList(countrPickerSignup.selectedCountryNameCode)
+        if (!isNetworkAvailable(this)) {
+            showToast(this, "Please check your internet connection and try again.")
+        } else {
+            CoroutineScope(IO).launch {
+                fetchStateList(countrPickerSignup.selectedCountryNameCode)
+            }
         }
     }
 

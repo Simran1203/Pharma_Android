@@ -91,9 +91,14 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
                 showToasts("Please enter new Username.")
             }
             else {
-                CoroutineScope(Dispatchers.Main).launch {
-                    submitUserName()
+                if (!isNetworkAvailable(this)) {
+                    showToast(this, "Please check your internet connection and try again.")
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        submitUserName()
+                    }
                 }
+
             }
         }
         else if(v==imgBackToolbar){

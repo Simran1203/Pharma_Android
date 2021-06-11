@@ -45,7 +45,7 @@
 
         <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtEmailDialog"
-           android:gravity="center"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="xyz@gmail.com."
