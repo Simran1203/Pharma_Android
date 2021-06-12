@@ -55,7 +55,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     lateinit var stateName: String
     lateinit var pref: PrefHelper
     val myCalendar = Calendar.getInstance();
-    lateinit var  dpd:DatePickerDialog
+    lateinit var dpd: DatePickerDialog
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,9 +95,16 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            fetchStateList(countrPickerSignup.defaultCountryNameCode.toString())
-            fetchClassification()
-            fetchSpeciality()
+
+            try {
+                fetchStateList(countrPickerSignup.defaultCountryNameCode.toString())
+                fetchClassification()
+                fetchSpeciality()
+            } catch (e: java.lang.Exception) {
+                withContext(Main) {
+                    showToasts(e.message.toString())
+                }
+            }
         }
 
         initDatePicker()
@@ -112,9 +119,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         if (res.isSuccessful) {
             res.body()?.let {
                 listState = it.states
-                    withContext(Main) {
-                        initState()
-                    }
+                withContext(Main) {
+                    initState()
+                }
             }
         } else {
             withContext(Main) {
@@ -328,22 +335,25 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                     var dob = "$dobYear-$dobMonth-$dobDay"
                     pref.showProgress(this)
                     CoroutineScope(IO).launch {
-                        submitRegisterData(dob)
+                        try {
+                            submitRegisterData(dob)
+                        }
+                        catch (e: java.lang.Exception) {
+                        withContext(Main) {
+                            pref.hideProgress()
+                            showToasts(e.message.toString())
+                        }
+                    }
                     }
                 }
             }
-        }
-
-        else if (v == relDate) {
+        } else if (v == relDate) {
             dpd.show()
-        }
-        else if (v == relMonth) {
+        } else if (v == relMonth) {
             dpd.show()
-        }
-        else if (v == relYear) {
+        } else if (v == relYear) {
             dpd.show()
-        }
-        else if (v == imgBackSignup) {
+        } else if (v == imgBackSignup) {
             super.onBackPressed()
         }
     }
@@ -355,23 +365,29 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         val day = c.get(Calendar.DAY_OF_MONTH)
 
         dobDay = day
-        dobMonth = month+1
+        dobMonth = month + 1
         dobYear = year
         txtDay.setText("" + day)
-        txtMonth.setText(""+(month+1))
-        txtYear.setText("" +year)
+        txtMonth.setText("" + (month + 1))
+        txtYear.setText("" + year)
 
-         dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+        dpd = DatePickerDialog(
+            this,
+            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
 
-            // Display Selected date in textbox
-             dobDay = dayOfMonth
-             dobMonth = monthOfYear+1
-             dobYear = year
-            txtDay.setText("" + dayOfMonth)
-            txtMonth.setText(""+dobMonth)
-            txtYear.setText("" +year)
+                // Display Selected date in textbox
+                dobDay = dayOfMonth
+                dobMonth = monthOfYear + 1
+                dobYear = year
+                txtDay.setText("" + dayOfMonth)
+                txtMonth.setText("" + dobMonth)
+                txtYear.setText("" + year)
 
-        }, year, month, day)
+            },
+            year,
+            month,
+            day
+        )
     }
 
     private suspend fun submitRegisterData(dob: String) {
@@ -392,12 +408,12 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         val res = RetrofitFactory.api.submitSignUp(model)
         if (res.isSuccessful) {
             res.body()?.let {
-                    CoroutineScope(Main).launch {
-                        pref.hideProgress()
-                        pref.authToken = it.auth_token
-                        startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
-                        finishAffinity()
-                    }
+                CoroutineScope(Main).launch {
+                    pref.hideProgress()
+                    pref.authToken = it.auth_token
+                    startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
+                    finishAffinity()
+                }
 
             }
         } else {

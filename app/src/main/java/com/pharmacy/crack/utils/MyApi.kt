@@ -23,7 +23,7 @@ interface MyApi {
     suspend fun getState(@Query("countryId") countryId:String) :Response<StateModel>
 
     @GET("category")
-    suspend fun getcategory() :Response<CategoryModel>
+    suspend fun getcategory(@Header("Authorization") token: String) :Response<CategoryModel>
 
     @POST("register")
     suspend fun submitSignUp(@Body model: RegisterDataModel) :Response<SignUpModel>

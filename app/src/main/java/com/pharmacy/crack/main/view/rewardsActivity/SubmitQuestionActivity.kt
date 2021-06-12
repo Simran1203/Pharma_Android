@@ -56,7 +56,7 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
 
     private suspend fun fetchcategory() {
 
-        val res = RetrofitFactory.api.getcategory()
+        val res = RetrofitFactory.api.getcategory("Bearer "+pref.authToken)
         if(res.isSuccessful){
             res.body()?.let {
                 listCategory = it.category
@@ -70,7 +70,7 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
             withContext(Dispatchers.Main){
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())
-                    showToasts("${jObjError.getString("msg")}")
+                    showToasts("${jObjError.getString("message")}")
                 } catch (e: Exception) {
                     showToasts(e.message.toString())
                 }

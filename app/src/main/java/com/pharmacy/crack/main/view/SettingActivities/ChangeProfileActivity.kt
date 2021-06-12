@@ -128,6 +128,7 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
             .setAllowFlipping(false)
             .setOutputCompressQuality(50)
             .setCropShape(CropImageView.CropShape.RECTANGLE)
+            .setAllowRotation(false)
             .setFixAspectRatio(true)
             .start(this)
     }

@@ -44,6 +44,7 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onClick(v: View?) {
         if(v==binding.txtSubmitCode){
             if(binding.edtCode.text.toString().trim().isEmpty()){
@@ -61,10 +62,18 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
                 }else{
                     pref.showProgress(this)
                     CoroutineScope(Dispatchers.IO).launch {
-                        submitCode()
+                        try {
+                            binding.txtSubmitCode.isClickable = false
+                            binding.txtSubmitCode.isFocusable =false
+                            submitCode()
+                        }catch (e:java.lang.Exception){
+                            pref.hideProgress()
+                            showToasts(e.message.toString())
+                            binding.txtSubmitCode.isClickable = true
+                            binding.txtSubmitCode.isFocusable =true
+                        }
                     }
                 }
-
             }
         }
         else if(v==  binding.imgBack){
@@ -80,6 +89,8 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
             res.body()?.let {
 
                     CoroutineScope(Dispatchers.Main).launch {
+                        binding.txtSubmitCode.isClickable = true
+                        binding.txtSubmitCode.isFocusable =true
                         pref.hideProgress()
                         startActivity(Intent(this@ResetPasswordCodeActivity,ResetPasswordActivity::class.java)
                             .putExtra("email",email))
@@ -88,6 +99,8 @@ class ResetPasswordCodeActivity : AppCompatActivity(),View.OnClickListener {
             }
         }else{
             CoroutineScope(Dispatchers.Main).launch {
+                binding.txtSubmitCode.isClickable = true
+                binding.txtSubmitCode.isFocusable =true
                 pref.hideProgress()
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())

@@ -30,7 +30,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.*
@@ -234,7 +236,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }else{
                     pref.showProgress(this)
                     CoroutineScope(IO).launch {
-                        submitLogin()
+                        try {
+                            submitLogin()
+                        }catch (e:java.lang.Exception){
+                            withContext(Main){
+                                pref.hideProgress()
+                                showToasts(e.message.toString())
+                            }
+                        }
+
                     }
                 }
             }
@@ -249,7 +259,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
               res.body()?.let {
                         CoroutineScope(Dispatchers.Main).launch {
                             pref.hideProgress()
-                            pref.authToken = it.data.auth_token
+                            pref.authToken = it.auth_token
                             pref.userId = it.data.id
                             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                             finishAffinity()
