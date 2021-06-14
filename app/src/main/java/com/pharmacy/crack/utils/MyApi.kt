@@ -41,7 +41,7 @@ interface MyApi {
     suspend fun submitNewPassword(@Body model: LoginDatamodel) :Response<ForgetModel>
 
     @POST("contactqueries")
-    suspend fun submitQueries(@Body model: EmailsupportDataModel) :Response<EmailSupportModel>
+    suspend fun submitQueries(@Header("Authorization") token: String,@Body model: EmailsupportDataModel) :Response<EmailSupportModel>
 
     @POST("resetusername")
     suspend fun submitResetUserName(@Body model: ProfileDataModel) :Response<EmailSupportModel>

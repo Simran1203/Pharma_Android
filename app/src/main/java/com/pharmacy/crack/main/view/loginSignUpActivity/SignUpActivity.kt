@@ -1,8 +1,12 @@
 package com.pharmacy.crack.main.view.loginSignUpActivity
 
 import android.app.DatePickerDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
@@ -14,6 +18,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.View.OnTouchListener
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -29,7 +34,6 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
-import org.apache.commons.lang3.StringEscapeUtils
 import org.json.JSONObject
 import java.time.LocalDate
 import java.time.Period
@@ -56,6 +60,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     lateinit var pref: PrefHelper
     val myCalendar = Calendar.getInstance();
     lateinit var dpd: DatePickerDialog
+    lateinit var networkConnectivity:NetworkConnectivity
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,25 +98,47 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         txtTerm.text = ss
         txtTerm.movementMethod = LinkMovementMethod.getInstance()
 
-
-        CoroutineScope(Dispatchers.IO).launch {
-
-            try {
-                fetchStateList(countrPickerSignup.defaultCountryNameCode.toString())
-                fetchClassification()
-                fetchSpeciality()
-            } catch (e: java.lang.Exception) {
-                withContext(Main) {
-                    showToasts(e.message.toString())
-                }
-            }
-        }
-
         initDatePicker()
-
+        initSpecialityClassificationState()
 
     }
 
+    private fun initSpecialityClassificationState() {
+        networkConnectivity = NetworkConnectivity(application)
+        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable->
+            when(isAvailable){
+                true -> if (listState.isEmpty()||listClassification.isEmpty()||listSpeciality.isEmpty()){
+
+                    Thread.sleep(1_000)
+                    CoroutineScope(IO).launch {
+                        try{
+                            fetchStateList(countrPickerSignup.selectedCountryNameCode)
+                        }catch (e:Exception){
+                            withContext(Main) {
+                                showToast(this@SignUpActivity, "Please check your internet connection and try again.")
+                            }
+                        }
+                    }
+                    if(listClassification.isEmpty()){
+                        CoroutineScope(IO).launch {
+                            try{
+                                fetchClassification()
+                            }catch (e:Exception){
+                            }
+                        }
+                    }
+                    if(listSpeciality.isEmpty()){
+                        CoroutineScope(IO).launch {
+                            try{
+                                fetchSpeciality()
+                            }catch (e:Exception){
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
 
     private suspend fun fetchStateList(countrystateId: String) {
 
@@ -218,11 +245,24 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun initOther() {
+        spinnerSpecialty.setOnTouchListener(OnTouchListener { _, _ ->
+            hideKeyBoard(this)
+            false
+        })
+        spinnerPlayer.setOnTouchListener(OnTouchListener { _, _ ->
+            hideKeyBoard(this)
+            false
+        })
+        spinnerState.setOnTouchListener(OnTouchListener { _, _ ->
+            hideKeyBoard(this)
+            false
+        })
         constarintSignup.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
         }
+
     }
 
     private fun initState() {
@@ -341,17 +381,20 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                         catch (e: java.lang.Exception) {
                         withContext(Main) {
                             pref.hideProgress()
-                            showToasts(e.message.toString())
+                            showToast(this@SignUpActivity, "Please check your internet connection and try again.")
                         }
                     }
                     }
                 }
             }
         } else if (v == relDate) {
+            hideKeyBoard(this)
             dpd.show()
         } else if (v == relMonth) {
+            hideKeyBoard(this)
             dpd.show()
         } else if (v == relYear) {
+            hideKeyBoard(this)
             dpd.show()
         } else if (v == imgBackSignup) {
             super.onBackPressed()
@@ -373,7 +416,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
 
         dpd = DatePickerDialog(
             this,
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
 
                 // Display Selected date in textbox
                 dobDay = dayOfMonth
@@ -438,6 +481,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         txtCountry.text = countrPickerSignup?.selectedCountryName
         if (!isNetworkAvailable(this)) {
             showToast(this, "Please check your internet connection and try again.")
+            listState.clear()
+            initState()
+
         } else {
             CoroutineScope(IO).launch {
                 fetchStateList(countrPickerSignup.selectedCountryNameCode)

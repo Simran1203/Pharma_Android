@@ -241,7 +241,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         }catch (e:java.lang.Exception){
                             withContext(Main){
                                 pref.hideProgress()
-                                showToasts(e.message.toString())
+                                showToast(this@LoginActivity, "Please check your internet connection and try again.")
                             }
                         }
 

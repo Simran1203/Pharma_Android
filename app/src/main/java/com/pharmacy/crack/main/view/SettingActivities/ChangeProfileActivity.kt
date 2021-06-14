@@ -47,6 +47,7 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
     var photoFile: File? = null
     var mCurrentPhotoPath: String? = null
     lateinit var pref: PrefHelper
+     var permissionCamera: Boolean = false
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,10 +79,20 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==imgEditProfile){
-            showDialogs()
+            if(permissionCamera){
+                showDialogs()
+            }
+            else{
+                askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
+            }
         }
         else if(v==imgProfile){
-            showDialogs()
+            if(permissionCamera){
+                showDialogs()
+            }
+            else{
+                askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
+            }
         }
         else if(v==txtSaveProfile){
             if (edtCurrentUserName.text.toString().trim().isEmpty()) {
@@ -183,14 +194,13 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
                 permission
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-
+            permissionCamera = false
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     permission
                 )
             ) {
-
                 //This is called if user has denied the permission before
                 //In this case I am just asking the permission again
                 ActivityCompat.requestPermissions(
@@ -206,24 +216,12 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
                 )
             }
         }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 786) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "camera permission granted", Toast.LENGTH_LONG).show()
-                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(cameraIntent, 0)
-            } else {
-                Toast.makeText(this, "camera permission denied", Toast.LENGTH_LONG).show()
-            }
+        else{
+            permissionCamera = true
         }
     }
+
+
     private fun scaleBitmap(bitmap: Bitmap): Bitmap? {
         val ei = ExifInterface(photoFile?.absolutePath.toString())
         val orientation: Int = ei.getAttributeInt(

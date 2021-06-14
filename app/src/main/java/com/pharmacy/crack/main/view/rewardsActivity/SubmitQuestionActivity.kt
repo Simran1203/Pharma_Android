@@ -28,9 +28,11 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 
 
-class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, CountryCodePicker.OnCountryChangeListener {
+class SubmitQuestionActivity : AppCompatActivity(), View.OnClickListener,
+    CountryCodePicker.OnCountryChangeListener {
     var listCategory: ArrayList<Category> = ArrayList()
     lateinit var pref: PrefHelper
+    lateinit var networkConnectivity: NetworkConnectivity
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,33 +50,61 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
 
 
         clickListner()
-
-        CoroutineScope(Dispatchers.IO).launch{
-            fetchcategory()
+        if (!isNetworkAvailable(this)) {
+            showToast(
+                this@SubmitQuestionActivity,
+                "Please check your internet connection and try again."
+            )
         }
+        initfetchcategory()
+    }
+
+    private fun initfetchcategory() {
+
+        networkConnectivity = NetworkConnectivity(application)
+        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable ->
+            when (isAvailable) {
+                true -> if (listCategory.isEmpty()) {
+                    Thread.sleep(1_000)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try {
+                            fetchcategory()
+                        } catch (e: Exception) {
+                            showToast(
+                                this@SubmitQuestionActivity,
+                                "Please check your internet connection and try again."
+                            )
+                        }
+                    }
+                }
+                false -> showToast(
+                    this@SubmitQuestionActivity,
+                    "Please check your internet connection and try again."
+                )
+            }
+        })
+
     }
 
     private suspend fun fetchcategory() {
 
-        val res = RetrofitFactory.api.getcategory("Bearer "+pref.authToken)
-        if(res.isSuccessful){
+        val res = RetrofitFactory.api.getcategory("Bearer " + pref.authToken)
+        if (res.isSuccessful) {
             res.body()?.let {
                 listCategory = it.category
-                if(!listCategory.isNullOrEmpty()){
-                    withContext(Dispatchers.Main){
-                        initCategory()
-                    }
+                if (!listCategory.isNullOrEmpty()) {
+
+                    initCategory()
                 }
             }
-        }else{
-            withContext(Dispatchers.Main){
-                try {
-                    val jObjError = JSONObject(res.errorBody()?.string())
-                    showToasts("${jObjError.getString("message")}")
-                } catch (e: Exception) {
-                    showToasts(e.message.toString())
-                }
+        } else {
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            } catch (e: Exception) {
+                showToasts(e.message.toString())
             }
+
         }
     }
 
@@ -120,32 +150,35 @@ class SubmitQuestionActivity : AppCompatActivity(),View.OnClickListener, Country
     }
 
     override fun onClick(v: View?) {
-        if(v==txtSubmitQueston){
-            if(edtTypeQue.text.toString().length<20){
-                Toast.makeText(this, "Please enter at least 20 min chars long Question.", Toast.LENGTH_SHORT).show()
+        if (v == txtSubmitQueston) {
+            if (edtTypeQue.text.toString().length < 20) {
+                Toast.makeText(
+                    this,
+                    "Please enter at least 20 min chars long Question.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 edtTypeQue.requestFocus()
-            }
-            else if(edtCorrectAns.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Correct Ans Field.", Toast.LENGTH_SHORT).show()
+            } else if (edtCorrectAns.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please enter in Correct Ans Field.", Toast.LENGTH_SHORT)
+                    .show()
                 edtCorrectAns.requestFocus()
-            }
-            else if(edtCorrectAns1.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Wrong Ans 01 Field.", Toast.LENGTH_SHORT).show()
+            } else if (edtCorrectAns1.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please enter in Wrong Ans 01 Field.", Toast.LENGTH_SHORT)
+                    .show()
                 edtCorrectAns1.requestFocus()
-            }
-            else if(edtCorrectAns2.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Wrong Ans 02 Field.", Toast.LENGTH_SHORT).show()
+            } else if (edtCorrectAns2.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please enter in Wrong Ans 02 Field.", Toast.LENGTH_SHORT)
+                    .show()
                 edtCorrectAns2.requestFocus()
-            }
-            else if(edtCorrectAns3.text.toString().isEmpty()){
-                Toast.makeText(this, "Please enter in Wrong Ans 03 Field.", Toast.LENGTH_SHORT).show()
+            } else if (edtCorrectAns3.text.toString().isEmpty()) {
+                Toast.makeText(this, "Please enter in Wrong Ans 03 Field.", Toast.LENGTH_SHORT)
+                    .show()
                 edtCorrectAns3.requestFocus()
-            }else{
+            } else {
                 hideKeyBoard(this)
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             }
-        }
-       else if(v==imgBackQuest){
+        } else if (v == imgBackQuest) {
             super.onBackPressed()
         }
 

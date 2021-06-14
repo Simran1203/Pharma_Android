@@ -95,7 +95,7 @@ class EmailSupportActivity : AppCompatActivity(), View.OnClickListener {
 
        val model = EmailsupportDataModel(pref.userId.toString(),binding.edtmessage.text.toString(),formattedDate)
 
-        val res = RetrofitFactory.api.submitQueries(model)
+        val res = RetrofitFactory.api.submitQueries("Bearer "+pref.authToken,model)
         if (res.isSuccessful){
             pref.hideProgress()
             res.body()?.let {
