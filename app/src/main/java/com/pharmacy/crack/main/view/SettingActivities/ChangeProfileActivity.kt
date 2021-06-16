@@ -5,50 +5,53 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.PopupMenu
-import android.widget.Toast
+import android.webkit.MimeTypeMap
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
+import com.hbisoft.pickit.PickiT
+import com.hbisoft.pickit.PickiTCallbacks
 import com.pharmacy.crack.R
-import com.pharmacy.crack.main.model.ProfileDataModel
 import com.pharmacy.crack.utils.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_change_profile.*
-import kotlinx.android.synthetic.main.activity_forget_pasword.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.activity_sign_up.relMonth
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.MultipartBody.Part.Companion.create
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
+
+class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTCallbacks {
 
     var photoFile: File? = null
     var mCurrentPhotoPath: String? = null
     lateinit var pref: PrefHelper
-     var permissionCamera: Boolean = false
-
+    var permissionCamera: Boolean = false
+    private var pickit: PickiT? = null
+    private var filePart: MultipartBody.Part? = null
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +69,7 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
     private fun initAll() {
         pref = PrefHelper(this)
         txtToolbar.text = "Change Profile"
+        pickit = PickiT(this, this, this)
         askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
 
         constarintProfile.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
@@ -78,30 +82,24 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        if(v==imgEditProfile){
-            if(permissionCamera){
+        if (v == imgEditProfile) {
+            if (permissionCamera) {
                 showDialogs()
-            }
-            else{
+            } else {
                 askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
             }
-        }
-        else if(v==imgProfile){
-            if(permissionCamera){
+        } else if (v == imgProfile) {
+            if (permissionCamera) {
                 showDialogs()
-            }
-            else{
+            } else {
                 askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
             }
-        }
-        else if(v==txtSaveProfile){
+        } else if (v == txtSaveProfile) {
             if (edtCurrentUserName.text.toString().trim().isEmpty()) {
                 showToasts("Please enter current Username.")
-            }
-            else if (editNewUserName.text.toString().trim().isEmpty()) {
+            } else if (editNewUserName.text.toString().trim().isEmpty()) {
                 showToasts("Please enter new Username.")
-            }
-            else {
+            } else {
                 if (!isNetworkAvailable(this)) {
                     showToast(this, "Please check your internet connection and try again.")
                 } else {
@@ -109,21 +107,24 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
                         submitUserName()
                     }
                 }
-
             }
-        }
-        else if(v==imgBackToolbar){
+        } else if (v == imgBackToolbar) {
             super.onBackPressed()
         }
     }
 
     private suspend fun submitUserName() {
         pref.showProgress(this)
-        val model = ProfileDataModel(edtCurrentUserName.text.toString(),editNewUserName.text.toString())
-        val  res = RetrofitFactory.api.submitResetUserName(model)
+        var currnet_uName = edtCurrentUserName.text.toString()
+        var new_uName = editNewUserName.text.toString()
+        val cName: RequestBody = currnet_uName.toRequestBody("text/plain".toMediaTypeOrNull())
+        val nName: RequestBody = new_uName.toRequestBody("text/plain".toMediaTypeOrNull())
+        val res = RetrofitFactory.api.submitResetUserName(cName,nName,
+            filePart!!
+        )
 
         pref.hideProgress()
-        if(res.isSuccessful){
+        if (res.isSuccessful) {
             res.body()?.let {
                 showToasts(it.message)
                 edtCurrentUserName.text?.clear()
@@ -153,13 +154,16 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
                 if (resultCode === Activity.RESULT_OK) {
                     val resultUri: Uri? = result.uri
                     if (resultUri?.path != null) {
-                      val imagePath : String = resultUri.path!!
-//                        Log.i("imagePathGallerySelect",imagePath)
+                        val imagePath: String = resultUri.path!!
+
+//                        Log.i("imagePathGallerySelect", imagePath + "\n" + resultUri.toFile())
 
                         Glide.with(applicationContext).load(imagePath)
                             .placeholder(R.drawable.profile_img)
                             .centerCrop()
                             .into(imgProfile)
+
+                        pickit?.getPath(resultUri,Build.VERSION.SDK_INT)
 
                     }
                 } else if (resultCode === CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
@@ -215,8 +219,7 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
                     requestCode
                 )
             }
-        }
-        else{
+        } else {
             permissionCamera = true
         }
     }
@@ -248,5 +251,43 @@ class ChangeProfileActivity : AppCompatActivity(),View.OnClickListener {
             source, 0, 0, source.width, source.height,
             matrix, true
         )
+    }
+
+    override fun PickiTonUriReturned() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun PickiTonStartListener() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun PickiTonProgressUpdate(progress: Int) {
+//        TODO("Not yet implemented")
+    }
+
+    override fun PickiTonCompleteListener(
+        path: String?,
+        wasDriveFile: Boolean,
+        wasUnknownProvider: Boolean,
+        wasSuccessful: Boolean,
+        Reason: String?
+    ) {
+        path?.let {
+            val file = File(it)
+            val requestBody = file!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            filePart = MultipartBody.Part.createFormData("profile_pic", file!!.name, requestBody)
+        }
+
+
+        Log.d("PickiTonCompleteLis",filePart.toString())
+    }
+
+    fun getMimeType(url: String): String? {
+        var type: String? = null
+        val extension = url.substring(url.lastIndexOf(".") + 1) /*MimeTypeMap.getFileExtensionFromUrl(url);*/
+        if (extension != null) {
+            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension)
+        }
+        return type
     }
 }

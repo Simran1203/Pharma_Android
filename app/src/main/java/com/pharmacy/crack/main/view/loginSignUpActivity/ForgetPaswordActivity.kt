@@ -97,7 +97,12 @@ class ForgetPaswordActivity : AppCompatActivity() ,View.OnClickListener{
             }
         }
         else if(v==binding.btnSignUpForgot){
-            startActivity(Intent(this, SignUpActivity::class.java))
+            if (!isNetworkAvailable(this)) {
+                showToast(this, "Please check your internet connection and try again.")
+            }else{
+                startActivity(Intent(this, SignUpActivity::class.java))
+            }
+
         }
         else if(v==txtForgotSubmitDialog){
             dialogForget.dismiss()

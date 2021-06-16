@@ -77,7 +77,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 //loginResult.getRecentlyDeniedPermissions()
                 //loginResult.getRecentlyGrantedPermissions()
                 val loggedIn = AccessToken.getCurrentAccessToken() == null
-                Log.d("API123", "$loggedIn ??")
+
+                getUserProfile(AccessToken.getCurrentAccessToken())
             }
 
             override fun onCancel() {
@@ -153,7 +154,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun getUserProfile(currentAccessToken: AccessToken) {
         val request = GraphRequest.newMeRequest(
             currentAccessToken
-        ) { `object`, response ->
+        ) { `object`, _ ->
             Log.d("TAG", `object`.toString())
             val first_name = `object`.optString("first_name")
             val last_name = `object`.optString("last_name")
@@ -165,7 +166,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 image_url = JSONObject(`object`.getString("picture")).getJSONObject(
                     "data"
                 ).getString("url")
-                Log.d("urlsassd", ""+email)
+//                Log.d("urlsassd", ""+id)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
@@ -282,31 +283,4 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         super.onBackPressed()
     }
 
-
-//    private fun getKeyhash() {
-//        try {
-//            val info = this.packageManager.getPackageInfo(
-//                "com.pharmacy.crack",
-//                PackageManager.GET_SIGNATURES
-//            )
-//            for (signature in info.signatures) {
-//                val md = MessageDigest.getInstance("SHA")
-//                md.update(signature.toByteArray())
-//                Log.d(
-//                    "KeyHash", "KeyHash:" + encodeToString(
-//                        md.digest(),
-//                        Base64.DEFAULT
-//                    )
-//                )
-//                Toast.makeText(
-//                    this.applicationContext, encodeToString(
-//                        md.digest(),
-//                        Base64.DEFAULT
-//                    ), Toast.LENGTH_LONG
-//                ).show()
-//            }
-//        } catch (e: PackageManager.NameNotFoundException) {
-//        } catch (e: NoSuchAlgorithmException) {
-//        }
-//    }
 }

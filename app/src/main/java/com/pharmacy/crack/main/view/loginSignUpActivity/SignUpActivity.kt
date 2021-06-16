@@ -323,6 +323,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onClick(v: View?) {
         if (v == txtSignup) {
+
             hideKeyBoard(this)
             if (edtName.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "Please enter Name.", Toast.LENGTH_SHORT).show()
@@ -369,14 +370,17 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                if (!isNetworkAvailable(this)) {
+                if (!isNetworkAvailable(this)||listSpeciality.isEmpty()||listSpeciality.isEmpty()||listState.isEmpty()) {
                     showToast(this, "Please check your internet connection and try again.")
                 } else {
                     var dob = "$dobYear-$dobMonth-$dobDay"
                     pref.showProgress(this)
                     CoroutineScope(IO).launch {
                         try {
-                            submitRegisterData(dob)
+                            if(!pref.mDialog.isShowing){
+                                submitRegisterData(dob)
+                            }
+
                         }
                         catch (e: java.lang.Exception) {
                         withContext(Main) {
@@ -387,6 +391,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                     }
                 }
             }
+
         } else if (v == relDate) {
             hideKeyBoard(this)
             dpd.show()

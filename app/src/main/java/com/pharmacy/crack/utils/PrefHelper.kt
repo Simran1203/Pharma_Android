@@ -53,7 +53,7 @@ class PrefHelper(internal var context: Context) {
 
 
     fun hideProgress() {
-        while (mDialog != null && mDialog.isShowing()) {
+        while (mDialog != null && mDialog.isShowing) {
             mDialog.dismiss()
         }
     }
@@ -63,7 +63,7 @@ class PrefHelper(internal var context: Context) {
             mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             mDialog.setContentView(R.layout.dialog_progress)
             mDialog.findViewById<View>(R.id.progressBar).visibility = View.VISIBLE
-            mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            mDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             mDialog.setCancelable(false)
             mDialog.setCanceledOnTouchOutside(false)
             mDialog.show()
