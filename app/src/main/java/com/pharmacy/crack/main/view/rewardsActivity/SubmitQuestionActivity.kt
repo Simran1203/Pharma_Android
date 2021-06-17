@@ -56,7 +56,9 @@ class SubmitQuestionActivity : AppCompatActivity(), View.OnClickListener,
                 "Please check your internet connection and try again."
             )
         }
-        initfetchcategory()
+            initfetchcategory()
+
+
     }
 
     private fun initfetchcategory() {
