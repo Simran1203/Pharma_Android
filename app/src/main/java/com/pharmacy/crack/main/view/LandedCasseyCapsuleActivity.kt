@@ -20,9 +20,9 @@ import java.util.ArrayList
 class LandedCasseyCapsuleActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var listCat : ArrayList<String>
     lateinit var adapter: LandedCaseyCapsulAdapter
-    var catName = arrayOf("Oncology & misc","Women & Pediatrics","Endrocrinolgy","Infectious Disease",
+    var catName = arrayOf("Oncology & misc","Women & Pediatrics","Endocrinology & Toxicology","Infectious Disease & Immunology",
         "Casey","Abused Substances","Cardiology & Hematology","Law","OTC & Herbal","Fun Facts",
-        "Neurology","New Rx")
+        "Neurology & Psychology","New Rx")
 
     companion object{
         var selectionLandedcasey:Int = 4

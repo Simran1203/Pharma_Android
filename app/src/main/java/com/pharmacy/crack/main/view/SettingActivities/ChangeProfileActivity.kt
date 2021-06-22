@@ -15,6 +15,7 @@ import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.webkit.MimeTypeMap
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -27,10 +28,12 @@ import com.pharmacy.crack.utils.*
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import kotlinx.android.synthetic.main.activity_change_profile.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -38,6 +41,7 @@ import okhttp3.MultipartBody.Part.Companion.create
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -46,12 +50,14 @@ import java.util.*
 
 class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTCallbacks {
 
-    var photoFile: File? = null
-    var mCurrentPhotoPath: String? = null
+    private var photoFile: File? = null
+    private var mCurrentPhotoPath: String? = null
     lateinit var pref: PrefHelper
-    var permissionCamera: Boolean = false
+    private var permissionCamera: Boolean = false
+    private var historyApiCalled: Boolean = false
     private var pickit: PickiT? = null
     private var filePart: MultipartBody.Part? = null
+    private lateinit var networkConnectivity:NetworkConnectivity
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +72,54 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
         imgProfile.setOnClickListener(this)
     }
 
+    private fun initHistory() {
+        networkConnectivity = NetworkConnectivity(application)
+        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable->
+            when(isAvailable){
+                true -> if (!historyApiCalled){
+                    pref.showProgress(this)
+                    Thread.sleep(1_000)
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try{
+                            fetchHistory()
+                        }catch (e:Exception){
+                            withContext(Dispatchers.Main) {
+                                showToast(this@ChangeProfileActivity, "Please check your internet connection and try again.")
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private suspend fun fetchHistory() {
+
+        val res = RetrofitFactory.api.getmatchHistory("Bearer "+pref.authToken)
+        if (res.isSuccessful) {
+            historyApiCalled = true
+
+            res.body()?.let {
+                withContext(Dispatchers.Main) {
+                    pref.hideProgress()
+                    txtWinProfile.text = it.winmatch[0].Wins.toString()
+                    txtLoseProfile.text = it.lossmatch[0].Losses.toString()
+                }
+            }
+        } else {
+            withContext(Dispatchers.Main) {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts("${jObjError.getString("message")}")
+                } catch (e: Exception) {
+                    Toast.makeText(this@ChangeProfileActivity, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+
     private fun initAll() {
         pref = PrefHelper(this)
         txtToolbar.text = "Change Profile"
@@ -79,6 +133,7 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
 
         }
 
+        initHistory()
     }
 
     override fun onClick(v: View?) {
@@ -119,7 +174,7 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
         var new_uName = editNewUserName.text.toString()
         val cName: RequestBody = currnet_uName.toRequestBody("text/plain".toMediaTypeOrNull())
         val nName: RequestBody = new_uName.toRequestBody("text/plain".toMediaTypeOrNull())
-        val res = RetrofitFactory.api.submitResetUserName(cName,nName,
+        val res = RetrofitFactory.api.submitResetUserName("Bearer "+pref.authToken,cName,nName,
             filePart!!
         )
 
@@ -129,6 +184,14 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
                 showToasts(it.message)
                 edtCurrentUserName.text?.clear()
                 editNewUserName.text?.clear()
+            }
+        }
+        else{
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            } catch (e: Exception) {
+                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
             }
         }
     }

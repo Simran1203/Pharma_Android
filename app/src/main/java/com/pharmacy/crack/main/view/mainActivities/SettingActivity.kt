@@ -6,6 +6,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.login.LoginManager
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.loginSignUpActivity.LoginActivity
 import com.pharmacy.crack.main.view.SettingActivities.ChangeProfileActivity
@@ -20,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var pref : PrefHelper
-
+    var mGoogleSignInClient: GoogleSignInClient? = null
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +39,12 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
         txtTutorial.setOnClickListener(this)
         txtTermsCondition.setOnClickListener(this)
         txtLogout.setOnClickListener(this)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("319985004088-hc8ec1iog2etbrmkvtrvctt2prr1n98c.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     override fun onClick(v: View?) {
@@ -52,6 +62,8 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
         }
         if(v==txtLogout){
             pref.clearData = true
+            mGoogleSignInClient?.signOut()
+//            LoginManager.getInstance().logOut()
             showToasts("Logout Successfully")
             startActivity(Intent(this, LoginActivity::class.java))
             finishAffinity()

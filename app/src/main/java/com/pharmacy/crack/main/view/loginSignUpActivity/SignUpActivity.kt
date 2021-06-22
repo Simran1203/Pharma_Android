@@ -56,7 +56,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     var specialityID: Int = 0
     var dobDay: Int = 0
     var dobMonth: Int = 0
-    lateinit var stateName: String
+    var stateName: String=""
     lateinit var pref: PrefHelper
     val myCalendar = Calendar.getInstance();
     lateinit var dpd: DatePickerDialog
@@ -70,34 +70,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
 
         txtCountry.text = countrPickerSignup.defaultCountryName
         pref = PrefHelper(this)
+
         initBackground()
         initlistner()
-
         initOther()
-
-
-        val ss =
-            SpannableString("By clicking on the Next button, you agree to our Terms & Conditions.")
-        val clickableSpan: ClickableSpan = object : ClickableSpan() {
-            override fun onClick(textView: View) {
-                startActivity(Intent(this@SignUpActivity, TermsConditionActivity::class.java))
-            }
-
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.isUnderlineText = true
-            }
-        }
-        ss.setSpan(clickableSpan, 49, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        ss.setSpan(
-            ForegroundColorSpan(Color.parseColor("#FF0091")),
-            49,
-            ss.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        txtTerm.text = ss
-        txtTerm.movementMethod = LinkMovementMethod.getInstance()
-
         initDatePicker()
         initSpecialityClassificationState()
 
@@ -107,7 +83,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         networkConnectivity = NetworkConnectivity(application)
         networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable->
             when(isAvailable){
-                true -> if (listState.isEmpty()||listClassification.isEmpty()||listSpeciality.isEmpty()){
+                true -> if (listClassification.isEmpty()||listSpeciality.isEmpty()){
 
                     Thread.sleep(1_000)
                     CoroutineScope(IO).launch {
@@ -263,6 +239,45 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
             }
         }
 
+        val ss =
+            SpannableString("By clicking on the Next button, you agree to our Terms & Conditions and Privacy Policy.")
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(textView: View) {
+                startActivity(Intent(this@SignUpActivity, TermsConditionActivity::class.java))
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = true
+            }
+        }
+        val clickableSpan2: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(textView: View) {
+                startActivity(Intent(this@SignUpActivity, TermsConditionActivity::class.java))
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = true
+            }
+        }
+        ss.setSpan(clickableSpan, 49, 67, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(clickableSpan2, 72, ss.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        ss.setSpan(
+            ForegroundColorSpan(Color.parseColor("#FF0091")),
+            49,
+            67,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        ss.setSpan(
+            ForegroundColorSpan(Color.parseColor("#FF0091")),
+            72,
+            ss.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        txtTerm.text = ss
+        txtTerm.movementMethod = LinkMovementMethod.getInstance()
+
     }
 
     private fun initState() {
@@ -370,14 +385,14 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
-                if (!isNetworkAvailable(this)||listSpeciality.isEmpty()||listSpeciality.isEmpty()||listState.isEmpty()) {
+                if ((!isNetworkAvailable(this))||listSpeciality.isEmpty()||listClassification.isEmpty()) {
                     showToast(this, "Please check your internet connection and try again.")
                 } else {
                     var dob = "$dobYear-$dobMonth-$dobDay"
                     pref.showProgress(this)
                     CoroutineScope(IO).launch {
                         try {
-                            if(!pref.mDialog.isShowing){
+                            if(pref.mDialog.isShowing){
                                 submitRegisterData(dob)
                             }
 
@@ -385,6 +400,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                         catch (e: java.lang.Exception) {
                         withContext(Main) {
                             pref.hideProgress()
+                            Log.d("onClick:",e.message.toString())
                             showToast(this@SignUpActivity, "Please check your internet connection and try again.")
                         }
                     }
@@ -458,7 +474,8 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
             res.body()?.let {
                 CoroutineScope(Main).launch {
                     pref.hideProgress()
-                    pref.authToken = it.auth_token
+                    pref.authToken = it.userDetails.auth_token
+                    pref.storyCount = 1
                     startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
                     finishAffinity()
                 }

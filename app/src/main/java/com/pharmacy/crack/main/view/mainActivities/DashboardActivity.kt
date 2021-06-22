@@ -88,8 +88,7 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 .putExtra("fromSource","Dashboard"))
         }
         if (v == txtDrugStore) {
-            startActivity(Intent(this, DrugStoreActivity::class.java)
-                .putExtra("fromSource","Dashboard"))
+            startActivity(Intent(this, DrugStoreActivity::class.java))
         }
         if (v == txtLeaderBoard) {
             startActivity(Intent(this, LeaderBoardActivity::class.java))

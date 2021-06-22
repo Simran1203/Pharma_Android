@@ -4,6 +4,7 @@ import com.pharmacy.crack.data.model.categoryModels.CategoryModel
 import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
 import com.pharmacy.crack.data.model.forgetpassowrods.ForgetModel
 import com.pharmacy.crack.data.model.loginModels.LoginModel
+import com.pharmacy.crack.data.model.matchhistory.MatchHistoryModel
 import com.pharmacy.crack.data.model.signUp.SignUpModel
 import com.pharmacy.crack.data.model.specialityModels.SpecialityModel
 import com.pharmacy.crack.data.model.statesModels.StateModel
@@ -42,10 +43,16 @@ interface MyApi {
     @POST("user/setNewPassword")
     suspend fun submitNewPassword(@Body model: LoginDatamodel) :Response<ForgetModel>
 
-    @POST("contactqueries")
+    @POST("user/contactqueries")
     suspend fun submitQueries(@Header("Authorization") token: String,@Body model: EmailsupportDataModel) :Response<EmailSupportModel>
 
     @Multipart
     @POST("user/profile")
-    suspend fun submitResetUserName(@Part("current_username") current_username: RequestBody,@Part("new_username") new_username: RequestBody, @Part file: MultipartBody.Part) :Response<EmailSupportModel>
+    suspend fun submitResetUserName(@Header("Authorization") token: String,@Part("current_username") current_username: RequestBody,@Part("new_username") new_username: RequestBody, @Part file: MultipartBody.Part) :Response<EmailSupportModel>
+
+    @POST("user/social_login")
+    suspend fun submitSocialLogin(@Body model: SocialLoginData) :Response<LoginModel>
+
+    @GET("user/matchHistory")
+    suspend fun getmatchHistory(@Header("Authorization") token: String) :Response<MatchHistoryModel>
 }

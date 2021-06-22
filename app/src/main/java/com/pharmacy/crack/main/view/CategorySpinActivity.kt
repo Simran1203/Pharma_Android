@@ -21,9 +21,9 @@ class CategorySpinActivity : AppCompatActivity() {
     lateinit var adapter: CategorySpinAdapter
     lateinit var countDownTimer: CountDownTimer
     var coundInterval: Long = 300
-    var catName = arrayOf("Oncology & misc","Women & Pediatrics","Endrocrinolgy","Infectious Disease",
+    var catName = arrayOf("Oncology & misc","Women & Pediatrics","Endocrinology & Toxicology","Infectious Disease & Immunology",
         "Casey","Abused Substances","Cardiology & Hematology","Infection","OTC & Herbal","Fun Facts",
-    "Neurology","New Rx","Infection","Law","Casey")
+    "Neurology & Psychology","New Rx","Infection","Law","Casey")
 
     companion object{
          var selection:Int = 0

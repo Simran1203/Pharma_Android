@@ -41,8 +41,9 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var txtIncAns: TextView
     var coundInterval: Long = 1000
     var isRunning24Hrs: Boolean = false
-    companion object{
-        var wrongAns=0;
+
+    companion object {
+        var wrongAns = 0;
     }
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
@@ -67,10 +68,10 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     private fun onItemClick(pos: Int) {
-        if(isRunning24Hrs ==true){
-            isRunning24Hrs=false
+        if (isRunning24Hrs == true) {
+            isRunning24Hrs = false
             countDownTimer24Hour.cancel()
-        }else{
+        } else {
             countDownTimer.cancel()
         }
 
@@ -91,12 +92,11 @@ class QuestionActivity : AppCompatActivity() {
 
             }
         } else {
-            if (wrongAns <2) {
+            if (wrongAns < 2) {
                 txtToolbar.visibility = View.INVISIBLE
                 dialogInCorrectAnim()
-            }
-            else {
-                wrongAns=0
+            } else {
+                wrongAns = 0
                 startActivity(Intent(this, LoseActivity::class.java))
             }
         }
@@ -120,23 +120,23 @@ class QuestionActivity : AppCompatActivity() {
                     .putExtra("time", txtTimeQue.text.toString())
                     .putStringArrayListExtra("option", listOption)
             )
-            dialogInCorrect.dismiss()
-        },2000)
+
+        }, 2000)
     }
 
     private fun imageCategoryWithAnimCorrectAns() {
         when (category) {
             "Oncology & misc" -> imgDialogCorrect.setImageResource(R.drawable.oncology_misc_large)
             "Women & Pediatrics" -> imgDialogCorrect.setImageResource(R.drawable.women_health_pediatrics_large)
-            "Endrocrinolgy" -> imgDialogCorrect.setImageResource(R.drawable.endocrinology_toxicology_large)
-            "Infectious Disease" -> imgDialogCorrect.setImageResource(R.drawable.infectious_disease_immunology_large)
+            "Endocrinology & Toxicology" -> imgDialogCorrect.setImageResource(R.drawable.endocrinology_toxicology_large)
+            "Infectious Disease & Immunology" -> imgDialogCorrect.setImageResource(R.drawable.infectious_disease_immunology_large)
             "Casey" -> imgDialogCorrect.setImageResource(R.drawable.casey_capsule_large)
             "Abused Substances" -> imgDialogCorrect.setImageResource(R.drawable.illegal_abused_large)
             "Cardiology & Hematology" -> imgDialogCorrect.setImageResource(R.drawable.cardiology_hematology_large)
             "Infection" -> imgDialogCorrect.setImageResource(R.drawable.infectious_disease_immunology_large)
             "OTC & Herbal" -> imgDialogCorrect.setImageResource(R.drawable.otc_drugs_herbals_large)
             "Fun Facts" -> imgDialogCorrect.setImageResource(R.drawable.history_large)
-            "Neurology" -> imgDialogCorrect.setImageResource(R.drawable.neurology_psychiatry_large)
+            "Neurology & Psychology" -> imgDialogCorrect.setImageResource(R.drawable.neurology_psychiatry_large)
             "New Rx" -> imgDialogCorrect.setImageResource(R.drawable.new_drugs_large)
             "Law" -> imgDialogCorrect.setImageResource(R.drawable.pharmacy_law_large)
         }
@@ -158,8 +158,7 @@ class QuestionActivity : AppCompatActivity() {
                 putStringArrayListExtra("option", listOption)
             }
             startActivityForResult(intents, 2)
-            dialogCorrect.dismiss()
-        },2000)
+        }, 2000)
 
     }
 
@@ -167,19 +166,27 @@ class QuestionActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 2) {
-            txtToolbar.visibility = View.VISIBLE
-            if(wrongAns==2){
-                rel_fifty.alpha = 0.5F
+            if (dialogInCorrect.isShowing) {
+                dialogInCorrect.dismiss()
             }
+            if (dialogCorrect.isShowing){
+                dialogCorrect.dismiss()
+            }
+
+            txtToolbar.visibility = View.VISIBLE
             correctAnsNo = data?.getIntExtra("correct", 0)!!
             txtToolbar.text = "Question $correctAnsNo"
             ratngLevel.rating = (correctAnsNo).toFloat()
         }
         if (requestCode == 3) {
-            txtToolbar.visibility = View.VISIBLE
-            if(wrongAns==2){
-                rel_fifty.alpha = 0.5F
+            if (dialogInCorrect.isShowing) {
+                dialogInCorrect.dismiss()
             }
+            if (dialogCorrect.isShowing){
+                dialogCorrect.dismiss()
+            }
+
+            txtToolbar.visibility = View.VISIBLE
             correctAnsNo = 1
             level = data?.getIntExtra("level", 0)!!
             txtTimeLevel.text = "Level $level"
@@ -193,7 +200,7 @@ class QuestionActivity : AppCompatActivity() {
     private fun initAll() {
         imgBackToolbar.visibility = View.GONE
         txtToolbar.text = "Question 1"
-        dialogCorrect = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar_Fullscreen)
+        dialogCorrect = Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen)
         dialogCorrect.setContentView(R.layout.dialog_correct_ans)
         imgDialogCorrect = dialogCorrect.findViewById(R.id.imgDialogCorrect)
         txtCorrectAnsw = dialogCorrect.findViewById(R.id.txtCorrectAnsw)
@@ -201,7 +208,7 @@ class QuestionActivity : AppCompatActivity() {
         dialogCorrect.setCanceledOnTouchOutside(false)
         dialogCorrect.setCancelable(false)
 
-        dialogInCorrect = Dialog(this,android.R.style.Theme_Translucent_NoTitleBar_Fullscreen)
+        dialogInCorrect = Dialog(this, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen)
         dialogInCorrect.setContentView(R.layout.dialog_incorrect_ans)
         txtIncAns = dialogInCorrect.findViewById(R.id.txtIncAns)
         dialogInCorrect.setCanceledOnTouchOutside(false)
@@ -209,38 +216,42 @@ class QuestionActivity : AppCompatActivity() {
 
         countDownTimer = object : CountDownTimer(21000, coundInterval) {
             override fun onTick(millisUntilFinished: Long) {
-                txtTimeQue.text =  String.format("%02d:%02d",
-                    ((millisUntilFinished/1000) % 3600) / 60, ((millisUntilFinished/1000) % 60));
+                txtTimeQue.text = String.format(
+                    "%02d:%02d",
+                    ((millisUntilFinished / 1000) % 3600) / 60, ((millisUntilFinished / 1000) % 60)
+                );
             }
 
             override fun onFinish() {
                 countDownTimer.cancel()
-                if (wrongAns <2) {
+                if (wrongAns < 2) {
                     txtToolbar.visibility = View.INVISIBLE
-                  dialogInCorrectAnim()
+                    dialogInCorrectAnim()
                 } else {
-                    wrongAns=0
+                    wrongAns = 0
                     startActivity(Intent(this@QuestionActivity, LoseActivity::class.java))
                 }
             }
         }
         countDownTimer.start()
 
-        countDownTimer24Hour = object : CountDownTimer(86400000,1000){
+        countDownTimer24Hour = object : CountDownTimer(86400000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
-                txtTimeQue.text =  String.format("%02d:%02d:%02d", (millisUntilFinished/1000) / 3600,
-                    ((millisUntilFinished/1000) % 3600) / 60, ((millisUntilFinished/1000) % 60));
+                txtTimeQue.text = String.format(
+                    "%02d:%02d:%02d", (millisUntilFinished / 1000) / 3600,
+                    ((millisUntilFinished / 1000) % 3600) / 60, ((millisUntilFinished / 1000) % 60)
+                );
             }
 
             override fun onFinish() {
                 countDownTimer24Hour.cancel()
                 isRunning24Hrs = false
-                if (wrongAns <2) {
+                if (wrongAns < 2) {
                     txtToolbar.visibility = View.INVISIBLE
                     dialogInCorrectAnim()
                 } else {
-                    wrongAns=0
+                    wrongAns = 0
                     startActivity(Intent(this@QuestionActivity, LoseActivity::class.java))
                 }
             }
@@ -253,19 +264,26 @@ class QuestionActivity : AppCompatActivity() {
             countDownTimer24Hour.start()
             // stop timer for 24 hours
         }
-    }
 
-    override fun onRestart() {
-        super.onRestart()
-        txtToolbar.visibility = View.VISIBLE
-        countDownTimer.start()
-        if(wrongAns==2){
+        rel_fifty.setOnClickListener {
             rel_fifty.alpha = 0.5F
         }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        if (dialogInCorrect.isShowing) {
+            dialogInCorrect.dismiss()
+        }
+        if (dialogCorrect.isShowing){
+            dialogCorrect.dismiss()
+        }
+        txtToolbar.visibility = View.VISIBLE
+        countDownTimer.start()
+    }
+
     override fun onBackPressed() {
-        wrongAns=0
+        wrongAns = 0
         countDownTimer.cancel()
         super.onBackPressed()
     }

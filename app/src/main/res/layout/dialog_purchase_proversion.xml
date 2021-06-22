@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_280sdp"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/square_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_280sdp"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/square_bg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Purchase"
+                android:textColor="@color/wild_strawberry"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="Full Access to\nAll 11 Categories"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_18sdp" />
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:gravity="center"
+                android:text="$4.99"
+                android:textColor="@color/dove_grey"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtBuyProVer"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/btn_green"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="Buy"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imgCloseProVer"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:src="@drawable/close" />
+    </RelativeLayout>
+
+
+</LinearLayout>

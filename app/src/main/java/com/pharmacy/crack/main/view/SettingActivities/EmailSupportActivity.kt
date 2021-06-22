@@ -89,11 +89,7 @@ class EmailSupportActivity : AppCompatActivity(), View.OnClickListener {
 
     private suspend fun submitQueries() {
         pref.showProgress(this)
-        val c: Date = Calendar.getInstance().time
-        val df = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val formattedDate: String = df.format(c)
-
-       val model = EmailsupportDataModel(pref.userId.toString(),binding.edtmessage.text.toString(),formattedDate)
+       val model = EmailsupportDataModel(binding.edtmessage.text.toString())
 
         val res = RetrofitFactory.api.submitQueries("Bearer "+pref.authToken,model)
         if (res.isSuccessful){

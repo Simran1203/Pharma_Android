@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.crack.R
-import kotlinx.android.synthetic.main.row_leaderboard.view.*
-import kotlinx.android.synthetic.main.row_leaderboard.view.txtNameLeaderboard
 import kotlinx.android.synthetic.main.row_turn.view.*
 
-class ChooseGameTurnAdapter(private var context : Context, private var list: ArrayList<String>) :
+class ChooseGameTurnAdapter(
+    private var context: Context,
+    private var list: ArrayList<String>,
+    val onItemClick: (position: Int) -> Unit
+) :
     RecyclerView.Adapter<ChooseGameTurnAdapter.ChooseGameTurnHolder>(){
 
     inner class ChooseGameTurnHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -21,6 +23,10 @@ class ChooseGameTurnAdapter(private var context : Context, private var list: Arr
 
     override fun onBindViewHolder(holder: ChooseGameTurnHolder, position: Int) {
         holder.itemView.txtTurnName.text = list[position]
+
+        holder.itemView.setOnClickListener {
+            onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {

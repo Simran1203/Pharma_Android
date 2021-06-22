@@ -3,11 +3,13 @@ package com.pharmacy.crack.main.view.rewardsActivity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
@@ -21,6 +23,7 @@ class DailyBonusActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var dialogBonus : Dialog
     lateinit var txtCollectBonus : RegularTextView
     lateinit var imgCollectBonus : ImageView
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
@@ -56,13 +59,13 @@ class DailyBonusActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun setTopLayout() {
-        bonusFifty.title = "2"
+        bonusFifty.title = "0"
         bonusFifty.icon = getDrawable(R.drawable.fifty_fifty)
 
-        bonusStopWatch.title = "1"
+        bonusStopWatch.title = "0"
         bonusStopWatch.icon = getDrawable(R.drawable.stopwatch)
 
-        bonusSpin.title = "3"
+        bonusSpin.title = "0"
         bonusSpin.icon = getDrawable(R.drawable.respin)
     }
 

@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center"
-            android:text="Your Drug IQ Level 8"
+            android:text="Your Drug IQ Level Professional"
             android:textColor="@color/solid_black"
             android:textSize="@dimen/_20sdp"
             android:textAllCaps="true"
@@ -128,6 +128,7 @@
                         android:text="Wins"/>
 
                     <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:id="@+id/txtWinStats"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -135,7 +136,7 @@
                         android:gravity="bottom"
                         android:textSize="@dimen/_20sdp"
                         android:textColor="@color/dodger_blue"
-                        android:text="48"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -162,6 +163,7 @@
                         android:text="Losses"/>
 
                     <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                        android:id="@+id/txtLossStats"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -170,7 +172,7 @@
                         android:textSize="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:textColor="@color/wild_strawberry"
-                        android:text="48"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

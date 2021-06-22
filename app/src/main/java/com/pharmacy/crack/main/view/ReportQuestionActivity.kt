@@ -163,8 +163,7 @@ class ReportQuestionActivity : AppCompatActivity(),View.OnClickListener {
             if(binding.edtReportAns.text.toString().trim().isEmpty()){
                 showToasts("Please write something.")
             }else{
-                startActivity(Intent(this,DashboardActivity::class.java))
-                finishAffinity()
+               super.onBackPressed()
 //                showToast(this,"success")
             }
         }

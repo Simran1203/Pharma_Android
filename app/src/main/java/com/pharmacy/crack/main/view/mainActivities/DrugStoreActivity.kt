@@ -18,14 +18,17 @@ import kotlinx.android.synthetic.main.activity_drug_store.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.imgBackToolbarMultiColor
 
-class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
+class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var dialogUnsuccessful : Dialog
-    private lateinit var dialogPurchase : Dialog
-    private lateinit var imgCloseUnsuccess : ImageView
-    private lateinit var imgClosePurchase : ImageView
-    private lateinit var txtBuyDrug : RegularTextView
-    private var fromSource:String = ""
+    private lateinit var dialogUnsuccessful: Dialog
+    private lateinit var dialogPurchase: Dialog
+    private lateinit var dialogProVer: Dialog
+    private lateinit var imgCloseUnsuccess: ImageView
+    private lateinit var imgClosePurchase: ImageView
+    private lateinit var imgCloseProVer: ImageView
+    private lateinit var txtBuyDrug: RegularTextView
+    private lateinit var txtBuyProVer: RegularTextView
+    private var fromSource: String = ""
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,9 +40,6 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         constraint2.setOnClickListener(this)
         constraint3.setOnClickListener(this)
 
-        if(intent.hasExtra("fromSource")){
-            fromSource = intent.getStringExtra("fromSource").toString()
-        }
         initAll()
 
     }
@@ -48,7 +48,7 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         txtToolLime.text = "Drug"
         txtToolWlidStraw.text = "Store"
 
-        dialogUnsuccessful = Dialog(this@DrugStoreActivity,android.R.style.Theme_Light)
+        dialogUnsuccessful = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
         dialogUnsuccessful.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogUnsuccessful.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
         dialogUnsuccessful.setCancelable(false)
@@ -57,7 +57,7 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         imgCloseUnsuccess.setOnClickListener {
             dialogUnsuccessful.dismiss()
         }
-        dialogPurchase = Dialog(this@DrugStoreActivity,android.R.style.Theme_Light)
+        dialogPurchase = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
         dialogPurchase.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogPurchase.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
         dialogPurchase.setCancelable(false)
@@ -71,27 +71,38 @@ class DrugStoreActivity : AppCompatActivity(),View.OnClickListener {
         txtBuyDrug.setOnClickListener {
             super.onBackPressed()
         }
+
+        dialogProVer = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
+        dialogProVer.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogProVer.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialogProVer.setCancelable(false)
+        dialogProVer.setContentView(R.layout.dialog_purchase_proversion)
+        imgCloseProVer = dialogProVer.findViewById(R.id.imgCloseProVer)
+        txtBuyProVer = dialogProVer.findViewById(R.id.txtBuyProVer)
+        imgCloseProVer.setOnClickListener {
+            dialogProVer.dismiss()
+            dialogUnsuccessful.show()
+        }
+        txtBuyProVer.setOnClickListener {
+            super.onBackPressed()
+        }
+
+
     }
 
     override fun onClick(v: View?) {
-        if(v== constraint2){
+        if (v == constraint2) {
+            dialogProVer.show()
+        }
+        if (v == constraint3) {
             dialogPurchase.show()
         }
-        if(v== constraint3){
-            dialogPurchase.show()
-        }
-        if(v== imgBackToolbarMultiColor){
+        if (v == imgBackToolbarMultiColor) {
             onBackPressed()
         }
     }
 
     override fun onBackPressed() {
-        if(fromSource == "Dashboard"){
-            super.onBackPressed()
-        }
-        else{
-            startActivity(Intent(this,DashboardActivity::class.java))
-            finishAffinity()
-        }
+        super.onBackPressed()
     }
 }

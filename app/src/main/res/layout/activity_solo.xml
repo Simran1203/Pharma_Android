@@ -13,26 +13,15 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar"/>
 
-    <com.pharmacy.crack.utils.viewUtils.RegularTextView
-        android:id="@+id/txtDrugIq"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="YOUR DRUG IQ"
-        android:textColor="@color/solid_black"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:textSize="@dimen/_14sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_250sdp"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_60sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDrugIq"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:srcCompat="@drawable/character_with_capsule" />
 
     <com.pharmacy.crack.utils.viewUtils.RegularTextView

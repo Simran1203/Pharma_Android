@@ -39,15 +39,15 @@ class CategorySpinAdapter(
         when (list[position]) {
             "Oncology & misc" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.oncology_misc)
             "Women & Pediatrics" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.women_health_pediatrics)
-            "Endrocrinolgy" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.endocrinology_toxicology)
-            "Infectious Disease" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.infectious_disease_immunology)
+            "Endocrinology & Toxicology" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.endocrinology_toxicology)
+            "Infectious Disease & Immunology" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.infectious_disease_immunology)
             "Casey" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.cassy)
             "Abused Substances" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.illegal_abused)
             "Cardiology & Hematology" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.cardiology_hematology)
             "Infection" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.infection)
             "OTC & Herbal" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.otc_drugs_herbals)
             "Fun Facts" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.history)
-            "Neurology" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.neurology_psychiatry)
+            "Neurology & Psychology" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.neurology_psychiatry)
             "New Rx" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.new_drugs)
             "Law" -> holder.itemView.imgCatSpin.setImageResource(R.drawable.pharmacy_law)
         }

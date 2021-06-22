@@ -42,6 +42,8 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initAll() {
+        overridePendingTransition(R.anim.zoom_in, R.anim.zoom_in);
+
         txtTimeIncorrect.text = intent.getStringExtra("time")
         dialogBuyPillLife = Dialog(this, android.R.style.Theme_Light)
         dialogBuyPillLife.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -91,10 +93,7 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if (v == txtReportQuest) {
             wrongAns=0
-            startActivity(
-                Intent(this, ReportQuestionActivity::class.java)
-                    .putExtra("que", txtQueInCorr.text.toString())
-            )
+            startActivity(Intent(this, ReportQuestionActivity::class.java))
         } else if (v == txtendGame) {
             wrongAns=0
             startActivity(Intent(this, LoseActivity::class.java))

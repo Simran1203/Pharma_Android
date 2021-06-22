@@ -10,14 +10,16 @@ import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.ChooseGameTurnAdapter
 import com.pharmacy.crack.main.view.GameActivities.SoloActivity
 import com.pharmacy.crack.main.view.GameActivities.SelectOpponentActivity
+import com.pharmacy.crack.main.view.GameActivities.TwoPlayerBattleActivity
 import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
 import kotlinx.android.synthetic.main.activity_start_game.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class StartGameActivity : AppCompatActivity(),View.OnClickListener {
-    var fromSource:String = ""
+class StartGameActivity : AppCompatActivity(), View.OnClickListener {
+    var fromSource: String = ""
     lateinit var list: ArrayList<String>
+
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +38,7 @@ class StartGameActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
-        if(intent.hasExtra("fromSource")){
+        if (intent.hasExtra("fromSource")) {
             fromSource = intent.getStringExtra("fromSource").toString()
         }
 
@@ -50,29 +52,36 @@ class StartGameActivity : AppCompatActivity(),View.OnClickListener {
         list.add("Richard")
         list.add("Rx 83rd")
 
-        rvTurn.adapter = ChooseGameTurnAdapter(this,list)
+        rvTurn.adapter = ChooseGameTurnAdapter(this, list) { pos ->
+            onItemClick(pos)
+
+        }
+    }
+
+    private fun onItemClick(pos: Int) {
+        PrefHelper(this).gametype = "Battle"
+        startActivity(Intent(this, TwoPlayerBattleActivity::class.java))
     }
 
     override fun onClick(v: View?) {
-        if(v==txtDashboardTurn){
-           onBackPressed()
+        if (v == txtDashboardTurn) {
+            onBackPressed()
         }
-        if(v==txtSolo){
+        if (v == txtSolo) {
             PrefHelper(this).gametype = "Solo"
-            startActivity(Intent(this,SoloActivity::class.java))
+            startActivity(Intent(this, SoloActivity::class.java))
         }
-        if(v==txtTwoPlayer){
+        if (v == txtTwoPlayer) {
             PrefHelper(this).gametype = "Battle"
-            startActivity(Intent(this,SelectOpponentActivity::class.java))
+            startActivity(Intent(this, SelectOpponentActivity::class.java))
         }
     }
 
     override fun onBackPressed() {
-        if(fromSource == "Dashboard"){
+        if (fromSource == "Dashboard") {
             super.onBackPressed()
-        }
-        else{
-            startActivity(Intent(this,DashboardActivity::class.java))
+        } else {
+            startActivity(Intent(this, DashboardActivity::class.java))
             finishAffinity()
         }
     }

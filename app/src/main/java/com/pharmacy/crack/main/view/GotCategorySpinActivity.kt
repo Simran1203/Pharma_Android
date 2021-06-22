@@ -30,15 +30,15 @@ class GotCategorySpinActivity : AppCompatActivity(),View.OnClickListener {
         when (category) {
             "Oncology & misc" -> imgGotNeuro.setImageResource(R.drawable.oncology_misc_large)
             "Women & Pediatrics" -> imgGotNeuro.setImageResource(R.drawable.women_health_pediatrics_large)
-            "Endrocrinolgy" -> imgGotNeuro.setImageResource(R.drawable.endocrinology_toxicology_large)
-            "Infectious Disease" -> imgGotNeuro.setImageResource(R.drawable.infectious_disease_immunology_large)
+            "Endocrinology & Toxicology" -> imgGotNeuro.setImageResource(R.drawable.endocrinology_toxicology_large)
+            "Infectious Disease & Immunology" -> imgGotNeuro.setImageResource(R.drawable.infectious_disease_immunology_large)
             "Casey" -> imgGotNeuro.setImageResource(R.drawable.casey_capsule_large)
             "Abused Substances" -> imgGotNeuro.setImageResource(R.drawable.illegal_abused_large)
             "Cardiology & Hematology" -> imgGotNeuro.setImageResource(R.drawable.cardiology_hematology_large)
             "Infection" -> imgGotNeuro.setImageResource(R.drawable.infectious_disease_immunology_large)
             "OTC & Herbal" -> imgGotNeuro.setImageResource(R.drawable.otc_drugs_herbals_large)
             "Fun Facts" -> imgGotNeuro.setImageResource(R.drawable.history_large)
-            "Neurology" -> imgGotNeuro.setImageResource(R.drawable.neurology_psychiatry_large)
+            "Neurology & Psychology" -> imgGotNeuro.setImageResource(R.drawable.neurology_psychiatry_large)
             "New Rx" -> imgGotNeuro.setImageResource(R.drawable.new_drugs_large)
             "Law" -> imgGotNeuro.setImageResource(R.drawable.pharmacy_law_large)
         }

@@ -23,6 +23,7 @@ class EndGameActivity : AppCompatActivity(), View.OnClickListener {
         txtendGame.setOnClickListener(this)
         txtFreeRewards.setOnClickListener(this)
         txtDrugStore.setOnClickListener(this)
+        txtShareEarnfree.setOnClickListener(this)
     }
 
     override fun onBackPressed() {
@@ -38,6 +39,9 @@ class EndGameActivity : AppCompatActivity(), View.OnClickListener {
         }
         else if(v==txtDrugStore){
             startActivity(Intent(this,DrugStoreActivity::class.java))
+        }
+        else if(v==txtShareEarnfree){
+            startActivity(Intent(this,ShareActivity::class.java))
         }
     }
 }

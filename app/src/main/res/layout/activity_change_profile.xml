@@ -218,6 +218,7 @@
                         android:text="Wins"/>
 
                     <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                       android:id="@+id/txtWinProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -225,7 +226,7 @@
                         android:gravity="bottom"
                         android:textSize="@dimen/_20sdp"
                         android:textColor="@color/dodger_blue"
-                        android:text="48"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -252,6 +253,7 @@
                         android:text="Losses"/>
 
                     <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                       android:id="@+id/txtLoseProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -260,7 +262,7 @@
                         android:textSize="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:textColor="@color/wild_strawberry"
-                        android:text="48"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

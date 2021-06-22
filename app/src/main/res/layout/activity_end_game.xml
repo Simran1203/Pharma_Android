@@ -108,6 +108,7 @@
                 android:textStyle="bold" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtShareEarnfree"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"

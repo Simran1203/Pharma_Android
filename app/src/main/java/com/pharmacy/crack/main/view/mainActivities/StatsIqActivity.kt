@@ -4,19 +4,29 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.AccuracyStatsAdapter
-import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.*
+import kotlinx.android.synthetic.main.activity_change_profile.*
 import kotlinx.android.synthetic.main.activity_stats_iq.*
 import kotlinx.android.synthetic.main.toolbar.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
 
 
 class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var listImage: ArrayList<Int>
     lateinit var listPercent: ArrayList<Int>
+    private lateinit var networkConnectivity: NetworkConnectivity
+    private lateinit var pref: PrefHelper
+    private var historyApiCalled: Boolean = false
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +42,7 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
+        pref = PrefHelper(this)
         txtToolbar.text = "Accuracy\nStatistics"
 
 
@@ -62,20 +73,59 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
         listImage.add(R.drawable.oncology_misc)
 
 
-
-//        val layoutManager = GridLayoutManager(this, 2)
-//        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-//            override fun getSpanSize(position: Int): Int {
-//                when (position) {
-//                    10 -> return 2
-//                    else -> return 1
-//                }
-//            }
-//        }
-//        rvStats.layoutManager = layoutManager
         rvStats.adapter = AccuracyStatsAdapter(this, listPercent, listImage)
 
+        initHistory()
     }
+    private fun initHistory() {
+        networkConnectivity = NetworkConnectivity(application)
+        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable->
+            when(isAvailable){
+                true -> if (!historyApiCalled){
+                    pref.showProgress(this)
+                    Thread.sleep(1_000)
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try{
+                            fetchHistory()
+                        }catch (e:Exception){
+                            withContext(Dispatchers.Main) {
+                                showToast(this@StatsIqActivity, "Please check your internet connection and try again.")
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private suspend fun fetchHistory() {
+
+        val res = RetrofitFactory.api.getmatchHistory("Bearer "+pref.authToken)
+        if (res.isSuccessful) {
+            historyApiCalled = true
+
+            res.body()?.let {
+
+                withContext(Dispatchers.Main) {
+                    pref.hideProgress()
+                    txtWinStats.text = it.winmatch[0].Wins.toString()
+                    txtLossStats.text = it.lossmatch[0].Losses.toString()
+                }
+            }
+        } else {
+            withContext(Dispatchers.Main) {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts("${jObjError.getString("message")}")
+                } catch (e: Exception) {
+                    Toast.makeText(this@StatsIqActivity, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+
+        }
+    }
+
 
     override fun onClick(v: View?) {
         if(v==imgBackToolbar){

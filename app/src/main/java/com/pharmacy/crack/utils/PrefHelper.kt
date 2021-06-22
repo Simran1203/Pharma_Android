@@ -30,19 +30,32 @@ class PrefHelper(internal var context: Context) {
             editor.commit()
         }
 
-    var userId: Int
-    get() = prefrence.getInt("id",0)
-    set(value) {
-        editor.putInt("id",value)
-        editor.commit()
-    }
 
+    var storyCount: Int
+        get() = prefrence.getInt("story", 0)
+        set(value) {
+            editor.putInt("story", value)
+            editor.commit()
+        }
+    var tutorialCount: Int
+        get() = prefrence.getInt("tutorial", 0)
+        set(value) {
+            editor.putInt("tutorial", value)
+            editor.commit()
+        }
     var gametype: String
-    get() =  prefrence.getString("gameType","").toString()
-    set(value) {
-        editor.putString("gameType",value)
-        editor.commit()
-    }
+        get() = prefrence.getString("gameType", "").toString()
+        set(value) {
+            editor.putString("gameType", value)
+            editor.commit()
+        }
+
+    var profilePic: String
+        get() = prefrence.getString("pic", "").toString()
+        set(value) {
+            editor.putString("pic", value)
+            editor.commit()
+        }
 
     var clearData: Boolean = false
         set(value) {
@@ -57,7 +70,8 @@ class PrefHelper(internal var context: Context) {
             mDialog.dismiss()
         }
     }
-    fun showProgress(context: Context){
+
+    fun showProgress(context: Context) {
         if (context != null) {
             mDialog = Dialog(context)
             mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

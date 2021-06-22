@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@drawable/bg"
+    android:fillViewport="true"
     tools:context=".main.view.GameResultActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,17 +16,17 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+            layout="@layout/toolbar" />
 
         <ImageView
             android:id="@+id/cassyResult"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_100sdp"
-            android:src="@drawable/cassy"
             android:layout_marginTop="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            android:src="@drawable/cassy"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <ImageView
             android:id="@+id/imgFirstPlyr"
@@ -42,51 +42,52 @@
             android:id="@+id/txtFirstPlyrName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ELIZEBETH"
             android:layout_marginTop="@dimen/_5sdp"
+            android:text="ELIZEBETH"
+            android:textColor="@color/scorpion_grey"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:textColor="@color/scorpion_grey"
             app:layout_constraintEnd_toEndOf="@+id/imgFirstPlyr"
             app:layout_constraintStart_toStartOf="@+id/imgFirstPlyr"
             app:layout_constraintTop_toBottomOf="@+id/imgFirstPlyr" />
-        
+
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="@dimen/_50sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:layout_constraintTop_toTopOf="@id/imgFirstPlyr"
-            app:layout_constraintStart_toEndOf="@id/imgFirstPlyr"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/imgFirstPlyr"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_20sdp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgFirstPlyr"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgFirstPlyr"
+            app:layout_constraintTop_toTopOf="@id/imgFirstPlyr">
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="SCORE"
-                android:textColor="@color/limed_spruce"
-                android:alpha="0.4"
-                android:gravity="center"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="1800"
-                android:textColor="@color/solid_black"
-                android:gravity="center"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:alpha="0.4"
+                    android:gravity="center"
+                    android:text="SCORE"
+                    android:textColor="@color/limed_spruce"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1800"
+                    android:textColor="@color/solid_black"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <ImageView
@@ -103,13 +104,14 @@
             android:id="@+id/cardSecondPlayer"
             android:layout_width="0dp"
             android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             app:cardCornerRadius="@dimen/_5sdp"
-            app:layout_constraintTop_toTopOf="@id/imgSecondPlyr"
+            app:layout_constraintBottom_toBottomOf="@+id/imgSecondPlyr"
             app:layout_constraintEnd_toStartOf="@id/imgSecondPlyr"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/imgSecondPlyr"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp">
+            app:layout_constraintTop_toTopOf="@id/imgSecondPlyr">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -119,10 +121,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="SCORE"
-                    android:textColor="@color/limed_spruce"
                     android:alpha="0.4"
                     android:gravity="center"
+                    android:text="SCORE"
+                    android:textColor="@color/limed_spruce"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
 
@@ -130,9 +132,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:text="1800"
                     android:textColor="@color/solid_black"
-                    android:gravity="center"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -142,8 +144,8 @@
             android:id="@+id/imgSecondPlyr"
             android:layout_width="@dimen/_80sdp"
             android:layout_height="@dimen/_80sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:src="@drawable/profile_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardSecondPlayer"
@@ -153,11 +155,11 @@
             android:id="@+id/txtsecondPlyrName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MAGGIE"
             android:layout_marginTop="@dimen/_5sdp"
+            android:text="MAGGIE"
+            android:textColor="@color/scorpion_grey"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
-            android:textColor="@color/scorpion_grey"
             app:layout_constraintEnd_toEndOf="@+id/imgSecondPlyr"
             app:layout_constraintStart_toStartOf="@+id/imgSecondPlyr"
             app:layout_constraintTop_toBottomOf="@+id/imgSecondPlyr" />
@@ -167,96 +169,121 @@
             android:id="@+id/txtPlayAgainGame"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@drawable/btn_default"
             android:gravity="center"
             android:paddingBottom="@dimen/_5sdp"
             android:text="Play Again"
             android:textColor="@color/clay_creek"
             android:textSize="@dimen/_15sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtsecondPlyrName" />
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-            android:id="@+id/txtShare"
+        <LinearLayout
+            android:id="@+id/linearShare"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/txtPlayAgainGame"
-            android:gravity="center_horizontal"
-            android:textColor="@color/white"
             android:layout_marginTop="@dimen/_10sdp"
-            android:text="Share Results\nand Earn"
-            android:textSize="@dimen/_30sdp" />
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/txtPlayAgainGame">
+
+            <ImageView
+                android:id="@+id/imgPil"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/pills" />
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:id="@+id/txtShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:text="Share Results\nand Earn"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_30sdp" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            app:layout_constraintTop_toBottomOf="@id/txtShare"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/linearShare">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="@dimen/_5sdp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/_5sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/facebook_sq"/>
+                    android:src="@drawable/facebook_sq" />
             </androidx.cardview.widget.CardView>
-     <View
-         android:layout_width="@dimen/_10sdp"
-         android:layout_height="match_parent"
-         android:background="@android:color/transparent"/>
+
+            <View
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="@dimen/_5sdp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/_5sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/instagram"/>
+                    android:src="@drawable/instagram" />
             </androidx.cardview.widget.CardView>
 
             <View
-         android:layout_width="@dimen/_10sdp"
-         android:layout_height="match_parent"
-         android:background="@android:color/transparent"/>
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="@dimen/_5sdp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/_5sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_25sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/twitter"/>
+                    android:src="@drawable/twitter" />
             </androidx.cardview.widget.CardView>
 
             <View
-         android:layout_width="@dimen/_10sdp"
-         android:layout_height="match_parent"
-         android:background="@android:color/transparent"/>
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:cardCornerRadius="@dimen/_5sdp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/_5sdp">
+
                 <ImageView
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/message"/>
+                    android:src="@drawable/message" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

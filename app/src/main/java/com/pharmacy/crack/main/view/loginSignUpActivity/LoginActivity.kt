@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.Task
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.main.model.LoginDatamodel
+import com.pharmacy.crack.main.model.SocialLoginData
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -58,14 +59,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         loginButton = findViewById(R.id.login_button)
         listner()
 
-        val loggedOut = AccessToken.getCurrentAccessToken() == null
-
-        if (!loggedOut) {
-            Log.d("TAG", "Username is: " + Profile.getCurrentProfile().name)
-
-            //Using Graph API
-            getUserProfile(AccessToken.getCurrentAccessToken())
-        }
+//        val loggedOut = AccessToken.getCurrentAccessToken() == null
+//        if (!loggedOut) {
+//            Log.d("TAG", "Username is: " + Profile.getCurrentProfile().name)
+//
+//            //Using Graph API
+//            getUserProfile(AccessToken.getCurrentAccessToken())
+//        }
 
         binding.loginButton.setReadPermissions(Arrays.asList("email", "public_profile"))
         callbackManager = CallbackManager.Factory.create()
@@ -131,8 +131,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 var fname = "" + account.givenName
                 var lname = "" + account.familyName
                 var emal = "" + account.email
-                Log.d("dddddd",fname)
 
+
+                pref.showProgress(this)
+                CoroutineScope(IO).launch {
+                    try {
+                        hitSocialApi(fname+" "+lname,emal,id.toString(),"g")
+                    }catch (e:java.lang.Exception){
+                        withContext(Main){
+                            pref.hideProgress()
+                            showToast(this@LoginActivity, "Please check your internet connection and try again.")
+                        }
+                    }
+                }
                 // if we do not get the picture of user then we will use default profile picture
                 val pic_url: String
                 pic_url = if (account.photoUrl != null) {
@@ -151,6 +162,31 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private suspend fun hitSocialApi(name: String, emal: String, id: String, type: String) {
+        val model = SocialLoginData(emal,id,type)
+        val res = RetrofitFactory.api.submitSocialLogin(model)
+
+        if(res.isSuccessful){
+            res.body()?.let {
+                CoroutineScope(Dispatchers.Main).launch {
+                    pref.hideProgress()
+                    pref.authToken = it.userDetails.auth_token
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    finishAffinity()
+                }
+
+            }
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts(jObjError.getString("message"))
+                } catch (e: Exception) {
+                    showToasts(e.message.toString())
+                } } }
+    }
+
     private fun getUserProfile(currentAccessToken: AccessToken) {
         val request = GraphRequest.newMeRequest(
             currentAccessToken
@@ -160,6 +196,20 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             val last_name = `object`.optString("last_name")
             val email = `object`.optString("email")
             val id = `object`.optString("id")
+
+
+            pref.showProgress(this)
+            CoroutineScope(IO).launch {
+                try {
+                    hitSocialApi(first_name+" "+last_name,email,id,"f")
+                }catch (e:java.lang.Exception){
+                    withContext(Main){
+                        pref.hideProgress()
+                        showToast(this@LoginActivity, "Please check your internet connection and try again.")
+                    }
+                }
+            }
+
             //                        String image_url = "https://graph.facebook.com/" + id + "/picture?type=normal";
             var image_url: String? = null
             try {
@@ -260,10 +310,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
               res.body()?.let {
                         CoroutineScope(Dispatchers.Main).launch {
                             pref.hideProgress()
-                            pref.authToken = it.auth_token
-                            pref.userId = it.data.id
-                            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                            finishAffinity()
+                            pref.authToken = it.userDetails.auth_token
+                            if(pref.storyCount==1){
+                                pref.storyCount+=1
+                                startActivity(Intent(this@LoginActivity, StoryActivity::class.java))
+                                finishAffinity()
+                            }else{
+                                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                                finishAffinity()
+                            }
+
                         }
 
                 }

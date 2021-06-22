@@ -23,6 +23,8 @@ class AnswerActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_answer)
+        overridePendingTransition(R.anim.zoom_in, R.anim.zoom_in);
+
         correctOptionNO = intent.getIntExtra("optionNo", 0)
         correctAnsNo = intent.getIntExtra("correct", 0)
         question = intent.getStringExtra("que").toString()

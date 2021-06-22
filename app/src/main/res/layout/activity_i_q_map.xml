@@ -250,7 +250,7 @@
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:src="@drawable/lock_icon"
+                        android:src="@drawable/expert"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias=".7"
                         app:layout_constraintStart_toStartOf="parent"
