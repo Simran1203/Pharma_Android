@@ -473,6 +473,7 @@
             app:layout_constraintTop_toBottomOf="@id/linear6IemsText">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constrant3M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
@@ -518,6 +519,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constrant6M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
@@ -563,6 +565,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/conFreepro"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">

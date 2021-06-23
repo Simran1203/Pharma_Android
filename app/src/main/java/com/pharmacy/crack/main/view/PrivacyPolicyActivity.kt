@@ -1,30 +1,28 @@
 package com.pharmacy.crack.main.view
 
 import android.app.ProgressDialog
-import android.content.DialogInterface
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.isNetworkAvailable
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.showToast
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.activity_terms_condition.*
 
-
-class TermsConditionActivity : AppCompatActivity() {
+class PrivacyPolicyActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressDialog
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
-        setContentView(R.layout.activity_terms_condition)
+        setContentView(R.layout.activity_privacy_policy)
+
         if (!isNetworkAvailable(this)) {
             showToast(this, "Please check your internet connection and try again.")
             webTerm.visibility = View.INVISIBLE
@@ -54,7 +52,7 @@ class TermsConditionActivity : AppCompatActivity() {
                     failingUrl: String?
                 ) {
                     progressBar.dismiss()
-                    Toast.makeText(this@TermsConditionActivity, " $description", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@PrivacyPolicyActivity, " $description", Toast.LENGTH_SHORT)
                         .show()
                 }
             })

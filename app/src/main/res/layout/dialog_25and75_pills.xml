@@ -15,7 +15,7 @@
         <LinearLayout
             android:id="@+id/dummyLinear"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_300sdp"
+            android:layout_height="@dimen/_340sdp"
             android:background="@drawable/square_bg"
             android:layout_margin="@dimen/_20sdp"
             android:paddingBottom="@dimen/_20sdp"
@@ -23,7 +23,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_300sdp"
+            android:layout_height="@dimen/_340sdp"
             android:orientation="vertical"
             android:gravity="center_horizontal"
             android:layout_margin="@dimen/_20sdp"
@@ -118,11 +118,12 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
                     <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                        android:id="@+id/txtQuantityPills"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_centerHorizontal="true"
-                        android:text="1000"
+                        android:text="2500"
                         android:textColor="@color/dove_grey"
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold" />
@@ -135,18 +136,30 @@
             </LinearLayout>
 
 
-            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                android:id="@+id/txtFreepills"
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:gravity="center"
-                android:text="$0.99"
+                android:text="500 FREE PILL\nVALUE"
+                android:textColor="@color/solid_black"
+                android:textSize="@dimen/_18sdp" />
+
+
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:id="@+id/txtPrice25and75"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="$1.99"
                 android:textColor="@color/dove_grey"
                 android:textSize="@dimen/_25sdp"
                 android:textStyle="bold" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
-                android:id="@+id/txtBuy1K"
+                android:id="@+id/txtBuy25and75"
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:text="Buy"
@@ -163,7 +176,7 @@
 
 
         <ImageView
-            android:id="@+id/imgClose1k"
+            android:id="@+id/imgClose25and75"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_10sdp"

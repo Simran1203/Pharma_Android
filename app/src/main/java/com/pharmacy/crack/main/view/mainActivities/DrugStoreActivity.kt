@@ -1,33 +1,52 @@
 package com.pharmacy.crack.main.view.mainActivities
 
 import android.app.Dialog
-import android.content.Intent
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
 import kotlinx.android.synthetic.main.activity_drug_store.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
-import kotlinx.android.synthetic.main.toolbar_multicolor.imgBackToolbarMultiColor
 
 class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var dialogUnsuccessful: Dialog
-    private lateinit var dialogPurchase: Dialog
+    private lateinit var dialogProStartPack: Dialog
     private lateinit var dialogProVer: Dialog
+    private lateinit var dialogOneK: Dialog
+    private lateinit var dialog3m6m: Dialog
+    private lateinit var dialog25and75: Dialog
+    private lateinit var dialogFreeProVer: Dialog
     private lateinit var imgCloseUnsuccess: ImageView
-    private lateinit var imgClosePurchase: ImageView
+    private lateinit var imgCloseStartPack: ImageView
     private lateinit var imgCloseProVer: ImageView
-    private lateinit var txtBuyDrug: RegularTextView
+    private lateinit var imgClose1k: ImageView
+    private lateinit var imgClose3m6m: ImageView
+    private lateinit var imgClose25and75: ImageView
+    private lateinit var imgCloseFreePro: ImageView
+    private lateinit var txtBuyStartPack: RegularTextView
+    private lateinit var txtBuy1K: RegularTextView
+    private lateinit var txtBuy3m6m: RegularTextView
     private lateinit var txtBuyProVer: RegularTextView
+    private lateinit var txtBuy25and75: RegularTextView
+    private lateinit var txtBuyFreePro: RegularTextView
+    private lateinit var txtFreepills: RegularTextView
+    private lateinit var txtQuantityPills: HardBoldTextView
+    private lateinit var txtPrice25and75: HardBoldTextView
+    private lateinit var txtDailyVal: RegularTextView
+    private lateinit var txtDuration: RegularTextView
+    private lateinit var txtPrice3M6m: HardBoldTextView
+    private lateinit var txtFreeprover: RegularTextView
     private var fromSource: String = ""
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
@@ -39,6 +58,12 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         imgBackToolbarMultiColor.setOnClickListener(this)
         constraint2.setOnClickListener(this)
         constraint3.setOnClickListener(this)
+        constraintproStarter.setOnClickListener(this)
+        constraint25.setOnClickListener(this)
+        constraint75.setOnClickListener(this)
+        constrant3M.setOnClickListener(this)
+        constrant6M.setOnClickListener(this)
+        conFreepro.setOnClickListener(this)
 
         initAll()
 
@@ -57,18 +82,18 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         imgCloseUnsuccess.setOnClickListener {
             dialogUnsuccessful.dismiss()
         }
-        dialogPurchase = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
-        dialogPurchase.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialogPurchase.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
-        dialogPurchase.setCancelable(false)
-        dialogPurchase.setContentView(R.layout.dialog_purchase)
-        imgClosePurchase = dialogPurchase.findViewById(R.id.imgClosePurchase)
-        txtBuyDrug = dialogPurchase.findViewById(R.id.txtBuyDrug)
-        imgClosePurchase.setOnClickListener {
-            dialogPurchase.dismiss()
+        dialogProStartPack = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
+        dialogProStartPack.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogProStartPack.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialogProStartPack.setCancelable(false)
+        dialogProStartPack.setContentView(R.layout.dialog_pro_start_pack)
+        imgCloseStartPack = dialogProStartPack.findViewById(R.id.imgCloseStartPack)
+        txtBuyStartPack = dialogProStartPack.findViewById(R.id.txtBuyStartPack)
+        imgCloseStartPack.setOnClickListener {
+            dialogProStartPack.dismiss()
             dialogUnsuccessful.show()
         }
-        txtBuyDrug.setOnClickListener {
+        txtBuyStartPack.setOnClickListener {
             super.onBackPressed()
         }
 
@@ -76,7 +101,7 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         dialogProVer.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogProVer.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
         dialogProVer.setCancelable(false)
-        dialogProVer.setContentView(R.layout.dialog_purchase_proversion)
+        dialogProVer.setContentView(R.layout.dialog_proversion)
         imgCloseProVer = dialogProVer.findViewById(R.id.imgCloseProVer)
         txtBuyProVer = dialogProVer.findViewById(R.id.txtBuyProVer)
         imgCloseProVer.setOnClickListener {
@@ -84,6 +109,73 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialogUnsuccessful.show()
         }
         txtBuyProVer.setOnClickListener {
+            super.onBackPressed()
+        }
+
+        dialogOneK = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
+        dialogOneK.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogOneK.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialogOneK.setCancelable(false)
+        dialogOneK.setContentView(R.layout.dialog_onek_pills)
+        imgClose1k = dialogOneK.findViewById(R.id.imgClose1k)
+        txtBuy1K = dialogOneK.findViewById(R.id.txtBuy1K)
+        imgClose1k.setOnClickListener {
+            dialogOneK.dismiss()
+            dialogUnsuccessful.show()
+        }
+        txtBuy1K.setOnClickListener {
+            super.onBackPressed()
+        }
+        dialogFreeProVer = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
+        dialogFreeProVer.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogFreeProVer.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialogFreeProVer.setCancelable(false)
+        dialogFreeProVer.setContentView(R.layout.dialog_free_pro_ver)
+        imgCloseFreePro = dialogFreeProVer.findViewById(R.id.imgCloseFreePro)
+        txtBuyFreePro = dialogFreeProVer.findViewById(R.id.txtBuyFreePro)
+        txtFreeprover = dialogFreeProVer.findViewById(R.id.txtFreeprover)
+        txtFreeprover.setPaintFlags(txtFreeprover.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
+        imgCloseFreePro.setOnClickListener {
+            dialogFreeProVer.dismiss()
+            dialogUnsuccessful.show()
+        }
+        txtBuyFreePro.setOnClickListener {
+            super.onBackPressed()
+        }
+
+        dialog3m6m = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
+        dialog3m6m.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog3m6m.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialog3m6m.setCancelable(false)
+        dialog3m6m.setContentView(R.layout.dialog_3m6m)
+        imgClose3m6m = dialog3m6m.findViewById(R.id.imgClose3m6m)
+        txtBuy3m6m = dialog3m6m.findViewById(R.id.txtBuy3m6m)
+        txtDailyVal = dialog3m6m.findViewById(R.id.txtDailyVal)
+        txtDuration = dialog3m6m.findViewById(R.id.txtDuration)
+        txtPrice3M6m = dialog3m6m.findViewById(R.id.txtPrice3M6m)
+        imgClose3m6m.setOnClickListener {
+            dialog3m6m.dismiss()
+            dialogUnsuccessful.show()
+        }
+        txtBuy3m6m.setOnClickListener {
+            super.onBackPressed()
+        }
+
+        dialog25and75 = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
+        dialog25and75.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog25and75.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialog25and75.setCancelable(false)
+        dialog25and75.setContentView(R.layout.dialog_25and75_pills)
+        imgClose25and75 = dialog25and75.findViewById(R.id.imgClose25and75)
+        txtBuy25and75 = dialog25and75.findViewById(R.id.txtBuy25and75)
+        txtFreepills = dialog25and75.findViewById(R.id.txtFreepills)
+        txtQuantityPills = dialog25and75.findViewById(R.id.txtQuantityPills)
+        txtPrice25and75 = dialog25and75.findViewById(R.id.txtPrice25and75)
+        imgClose25and75.setOnClickListener {
+            dialog25and75.dismiss()
+            dialogUnsuccessful.show()
+        }
+        txtBuy25and75.setOnClickListener {
             super.onBackPressed()
         }
 
@@ -95,7 +187,37 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialogProVer.show()
         }
         if (v == constraint3) {
-            dialogPurchase.show()
+            dialogOneK.show()
+        }
+        if (v == constraint25) {
+            txtFreepills.text = "500 FREE PILL\nVALUE"
+            txtQuantityPills.text = "2500"
+            txtPrice25and75.text = "$1.99"
+            dialog25and75.show()
+        }
+        if (v == constraint75) {
+            txtFreepills.text = "2500 FREE PILL\nVALUE"
+            txtQuantityPills.text = "7500"
+            txtPrice25and75.text = "$4.99"
+            dialog25and75.show()
+        }
+        if (v == constrant3M) {
+            txtDailyVal.text = "$1.50 Daily Value X 90 Days\n= $135 Total Value"
+            txtDuration.text = "3 Months Subscription"
+            txtPrice3M6m.text = "$9.99"
+            dialog3m6m.show()
+        }
+        if (v == constrant6M) {
+            txtDailyVal.text = "$10 Daily Value X 180 Days\n= $1800 Total Value"
+            txtDuration.text = "6 Months Subscription"
+            txtPrice3M6m.text = "$24.99"
+            dialog3m6m.show()
+        }
+        if (v == conFreepro) {
+            dialogFreeProVer.show()
+        }
+        if (v == constraintproStarter) {
+            dialogProStartPack.show()
         }
         if (v == imgBackToolbarMultiColor) {
             onBackPressed()

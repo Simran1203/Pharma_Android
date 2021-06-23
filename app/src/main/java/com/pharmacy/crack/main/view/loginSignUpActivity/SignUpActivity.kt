@@ -28,6 +28,7 @@ import com.pharmacy.crack.data.model.classificationModels.Getclassification
 import com.pharmacy.crack.data.model.specialityModels.Getspeciality
 import com.pharmacy.crack.data.model.statesModels.State
 import com.pharmacy.crack.main.model.RegisterDataModel
+import com.pharmacy.crack.main.view.PrivacyPolicyActivity
 import com.pharmacy.crack.main.view.TermsConditionActivity
 import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -253,7 +254,7 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
         }
         val clickableSpan2: ClickableSpan = object : ClickableSpan() {
             override fun onClick(textView: View) {
-                startActivity(Intent(this@SignUpActivity, TermsConditionActivity::class.java))
+                startActivity(Intent(this@SignUpActivity, PrivacyPolicyActivity::class.java))
             }
 
             override fun updateDrawState(ds: TextPaint) {
