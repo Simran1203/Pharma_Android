@@ -133,7 +133,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="1800"
+                    android:text="1700"
                     android:textColor="@color/solid_black"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />

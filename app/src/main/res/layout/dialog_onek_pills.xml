@@ -94,7 +94,7 @@
                         android:textSize="@dimen/_20sdp"
                         android:textStyle="bold"
                         android:gravity="center"
-                        android:text="05"
+                        android:text="01"
                         android:layout_toRightOf="@id/imgRemove"/>
 
                     <ImageView

@@ -63,7 +63,7 @@ class SettingActivity : AppCompatActivity(),View.OnClickListener {
         if(v==txtLogout){
             pref.clearData = true
             mGoogleSignInClient?.signOut()
-//            LoginManager.getInstance().logOut()
+            LoginManager.getInstance().logOut()
             showToasts("Logout Successfully")
             startActivity(Intent(this, LoginActivity::class.java))
             finishAffinity()

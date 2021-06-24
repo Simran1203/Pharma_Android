@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:gravity="center"
-            android:text="Your Drug IQ Level Professional"
+            android:text="Your Drug IQ Level\nStudent"
             android:textColor="@color/solid_black"
             android:textSize="@dimen/_20sdp"
             android:textAllCaps="true"

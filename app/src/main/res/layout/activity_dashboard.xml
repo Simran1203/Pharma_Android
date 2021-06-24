@@ -37,7 +37,6 @@
             app:layout_constraintTop_toBottomOf="@id/txtDashboard" />
 
 
-
         <ImageView
             android:id="@+id/imgPowerBarFifty"
             android:layout_width="@dimen/_70sdp"
@@ -49,14 +48,12 @@
             app:layout_constraintBottom_toBottomOf="@id/imgFifty"
             app:layout_constraintTop_toTopOf="@id/imgFifty" />
 
-
-
         <LinearLayout
             android:id="@+id/imgPoweFill"
             app:layout_constraintLeft_toLeftOf="@id/imgPowerBarFifty"
             app:layout_constraintBottom_toBottomOf="@id/imgFifty"
             app:layout_constraintTop_toTopOf="@id/imgFifty"
-            android:layout_width="@dimen/_44sdp"
+            android:layout_width="@dimen/_1sdp"
             android:gravity="start"
             android:layout_height="@dimen/_15sdp">
 
@@ -64,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/power_fill"/>
+
         </LinearLayout>
 
 
@@ -110,7 +108,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="@id/imgClock"
             app:layout_constraintTop_toTopOf="@id/imgClock"
-            android:layout_width="@dimen/_44sdp"
+            android:layout_width="@dimen/_1sdp"
             android:gravity="start"
             android:layout_height="@dimen/_15sdp">
 
@@ -164,7 +162,7 @@
             app:layout_constraintRight_toRightOf="@id/imgPowerBarSpin"
             app:layout_constraintBottom_toBottomOf="@id/imgSpin"
             app:layout_constraintTop_toTopOf="@id/imgSpin"
-            android:layout_width="@dimen/_44sdp"
+            android:layout_width="@dimen/_1sdp"
             android:gravity="end"
             android:layout_height="@dimen/_15sdp">
 
@@ -217,7 +215,7 @@
             app:layout_constraintRight_toRightOf="@id/imgPowerBarLive"
             app:layout_constraintBottom_toBottomOf="@id/imgLive"
             app:layout_constraintTop_toTopOf="@id/imgLive"
-            android:layout_width="@dimen/_44sdp"
+            android:layout_width="@dimen/_1sdp"
             android:gravity="end"
             android:layout_height="@dimen/_15sdp">
 
@@ -232,7 +230,7 @@
             android:id="@+id/txtLive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="7/10"
+            android:text="0/10"
             android:textColor="@color/solid_black"
             android:textSize="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="@id/imgPowerBarLive"

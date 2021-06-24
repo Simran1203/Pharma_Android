@@ -77,9 +77,7 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
                 }else{
                     imgClear.visibility = View.GONE
                 }
-
             }
-
         })
     }
 
@@ -97,7 +95,8 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
             if(selectedOpponent==-1){
                 showToast(this,"Please select your Opponent")
             }else{
-                startActivity(Intent(this,TwoPlayerBattleActivity::class.java))
+                startActivity(Intent(this,TwoPlayerBattleActivity::class.java)
+                    .putExtra("playername",list[selectedOpponent]))
             }
         }
         if(v==txtRandomOpp){

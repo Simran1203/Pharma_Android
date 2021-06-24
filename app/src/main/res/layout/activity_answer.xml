@@ -151,7 +151,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <com.pharmacy.crack.utils.viewUtils.RegularTextView
             android:id="@+id/txtShareQuest"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_70sdp"

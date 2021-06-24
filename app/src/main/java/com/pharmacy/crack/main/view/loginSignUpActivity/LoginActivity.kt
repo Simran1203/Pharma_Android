@@ -21,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.google.gson.Gson
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.main.model.LoginDatamodel
@@ -90,7 +91,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
-//        getKeyhash()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("319985004088-hc8ec1iog2etbrmkvtrvctt2prr1n98c.apps.googleusercontent.com")
             .requestEmail()
@@ -132,11 +132,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 var lname = "" + account.familyName
                 var emal = "" + account.email
 
-
                 pref.showProgress(this)
                 CoroutineScope(IO).launch {
                     try {
-                        hitSocialApi(fname+" "+lname,emal,id.toString(),"g")
+                        hitSocialApi(emal,id.toString(),"G")
                     }catch (e:java.lang.Exception){
                         withContext(Main){
                             pref.hideProgress()
@@ -144,6 +143,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         }
                     }
                 }
+
                 // if we do not get the picture of user then we will use default profile picture
                 val pic_url: String
                 pic_url = if (account.photoUrl != null) {
@@ -162,7 +162,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private suspend fun hitSocialApi(name: String, emal: String, id: String, type: String) {
+    private suspend fun hitSocialApi(emal: String, id: String, type: String) {
         val model = SocialLoginData(emal,id,type)
         val res = RetrofitFactory.api.submitSocialLogin(model)
 
@@ -191,17 +191,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val request = GraphRequest.newMeRequest(
             currentAccessToken
         ) { `object`, _ ->
-            Log.d("TAG", `object`.toString())
+
             val first_name = `object`.optString("first_name")
             val last_name = `object`.optString("last_name")
-            val email = `object`.optString("email")
+            var email = `object`.optString("email")
             val id = `object`.optString("id")
 
-
+            if(email.isNullOrEmpty()){
+                email = first_name+"@fb.com"
+            }
             pref.showProgress(this)
             CoroutineScope(IO).launch {
                 try {
-                    hitSocialApi(first_name+" "+last_name,email,id,"f")
+                    hitSocialApi(email,id,"F")
                 }catch (e:java.lang.Exception){
                     withContext(Main){
                         pref.hideProgress()

@@ -5,6 +5,7 @@ import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
 import com.pharmacy.crack.data.model.forgetpassowrods.ForgetModel
 import com.pharmacy.crack.data.model.loginModels.LoginModel
 import com.pharmacy.crack.data.model.matchhistory.MatchHistoryModel
+import com.pharmacy.crack.data.model.questionModels.QuestionModel
 import com.pharmacy.crack.data.model.signUp.SignUpModel
 import com.pharmacy.crack.data.model.specialityModels.SpecialityModel
 import com.pharmacy.crack.data.model.statesModels.StateModel
@@ -55,4 +56,10 @@ interface MyApi {
 
     @GET("user/matchHistory")
     suspend fun getmatchHistory(@Header("Authorization") token: String) :Response<MatchHistoryModel>
+
+    @GET("user/question")
+    suspend fun getQuestion(@Header("Authorization") token: String,@Query("category_id") id: Int) :Response<QuestionModel>
+
+    @POST("user/reportQuestion")
+    suspend fun submitreportQuestion(@Header("Authorization") token: String,@Body model: ReportQuestionDataModel) :Response<EmailSupportModel>
 }

@@ -91,7 +91,6 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         txtBuyStartPack = dialogProStartPack.findViewById(R.id.txtBuyStartPack)
         imgCloseStartPack.setOnClickListener {
             dialogProStartPack.dismiss()
-            dialogUnsuccessful.show()
         }
         txtBuyStartPack.setOnClickListener {
             super.onBackPressed()
@@ -106,7 +105,6 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         txtBuyProVer = dialogProVer.findViewById(R.id.txtBuyProVer)
         imgCloseProVer.setOnClickListener {
             dialogProVer.dismiss()
-            dialogUnsuccessful.show()
         }
         txtBuyProVer.setOnClickListener {
             super.onBackPressed()
@@ -121,7 +119,6 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         txtBuy1K = dialogOneK.findViewById(R.id.txtBuy1K)
         imgClose1k.setOnClickListener {
             dialogOneK.dismiss()
-            dialogUnsuccessful.show()
         }
         txtBuy1K.setOnClickListener {
             super.onBackPressed()
@@ -137,7 +134,6 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         txtFreeprover.setPaintFlags(txtFreeprover.getPaintFlags() or Paint.UNDERLINE_TEXT_FLAG)
         imgCloseFreePro.setOnClickListener {
             dialogFreeProVer.dismiss()
-            dialogUnsuccessful.show()
         }
         txtBuyFreePro.setOnClickListener {
             super.onBackPressed()
@@ -155,7 +151,6 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         txtPrice3M6m = dialog3m6m.findViewById(R.id.txtPrice3M6m)
         imgClose3m6m.setOnClickListener {
             dialog3m6m.dismiss()
-            dialogUnsuccessful.show()
         }
         txtBuy3m6m.setOnClickListener {
             super.onBackPressed()
@@ -173,7 +168,6 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
         txtPrice25and75 = dialog25and75.findViewById(R.id.txtPrice25and75)
         imgClose25and75.setOnClickListener {
             dialog25and75.dismiss()
-            dialogUnsuccessful.show()
         }
         txtBuy25and75.setOnClickListener {
             super.onBackPressed()

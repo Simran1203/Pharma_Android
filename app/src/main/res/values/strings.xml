@@ -28,9 +28,9 @@
     <string name="new_user">New User</string>
     <string name="full_name">Full Name*</string>
     <string name="rules_objectives">Rules/Objective</string>
-    <string name="game_objective_is_to_achieve_an_overall_drug_iq_of_guru"> Game objective is to achieve an Overall Drug IQ of Guru</string>
-    <string name="answer_3_correct_answers_in_each_category_to_advance_to_the_next_drug_iq_level_in_that_category"> Answer 3 correct answers in each category to advance to the next Drug IQ level in that category</string>
-    <string name="your_overall_drug_iq_is_the_combined_lifetime_score_of_all_categories"> Your Overall Drug IQ is the combined lifetime score of all categories</string>
+    <string name="game_objective_is_to_achieve_an_overall_drug_iq_of_guru"> Game objective is to achieve an Overall Drug IQ of Guru.</string>
+    <string name="answer_3_correct_answers_in_each_category_to_advance_to_the_next_drug_iq_level_in_that_category"> Answer 3 correct answers in each category to advance to the next Drug IQ level in that category.</string>
+    <string name="your_overall_drug_iq_is_the_combined_lifetime_score_of_all_categories"> Your Overall Drug IQ is the combined lifetime score of all categories.</string>
     <string name="the_world_is_under_widespread_disease"><![CDATA[The world is under widespread disease and the existence of humanity is at stake. The evil Dizzy Disease wants to spread sickness to the world.\nA young drug named Casey Capsule has embarked on a quest to rid the world of sickness. Casey wants to cure the world of disease and has decided to travel the world seeking knowledge in all areas of pharmacology.]]></string>
     <string name="settings">Settings</string>
     <string name="children_reaserch_donate">A portion of profit will be donated to\nSt. Jude\'s Children Research Hospital</string>

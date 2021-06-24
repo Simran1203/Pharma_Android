@@ -396,12 +396,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
                             if(pref.mDialog.isShowing){
                                 submitRegisterData(dob)
                             }
-
                         }
                         catch (e: java.lang.Exception) {
                         withContext(Main) {
                             pref.hideProgress()
-                            Log.d("onClick:",e.message.toString())
                             showToast(this@SignUpActivity, "Please check your internet connection and try again.")
                         }
                     }

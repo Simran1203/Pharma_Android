@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyCrack"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.view.PrivacyPolicyActivity"></activity>
+        <activity android:name=".main.view.PrivacyPolicyActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".main.view.loginSignUpActivity.ResetPasswordCodeActivity"
             android:screenOrientation="portrait" />
@@ -148,7 +149,6 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

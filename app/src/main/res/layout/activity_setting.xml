@@ -13,139 +13,167 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/_35sdp">
 
-    <LinearLayout
-        android:id="@+id/layotTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingLeft="@dimen/_15sdp"
-        android:paddingTop="@dimen/_40sdp"
-        android:paddingRight="@dimen/_15sdp">
-
-        <ImageView
-            android:id="@+id/imgBackSetting"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/back_arrow" />
-
-        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+        <LinearLayout
+            android:id="@+id/layotTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/settings"
-            android:textColor="@color/wild_strawberry"
-            android:textSize="@dimen/_30sdp" />
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingTop="@dimen/_40sdp"
+            android:paddingRight="@dimen/_15sdp">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/imgBackSetting"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/back_arrow" />
 
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/settings"
+                android:textColor="@color/wild_strawberry"
+                android:textSize="@dimen/_30sdp" />
 
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-        android:id="@+id/txtChangeProfile"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/btn_yellow"
-        android:gravity="center"
-        android:paddingBottom="@dimen/_10sdp"
-        android:text="Change Profile"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold" />
+        </LinearLayout>
 
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-        android:id="@+id/txtEmaiSupport"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/btn_yellow"
-        android:gravity="center"
-        android:paddingBottom="@dimen/_10sdp"
-        android:text="Email Support"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp">
 
         <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtChangeProfile"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginRight="@dimen/_20sdp"
             android:background="@drawable/btn_yellow"
             android:gravity="center"
             android:paddingBottom="@dimen/_10sdp"
-            android:text="Push Notifications"
+            android:text="Change Profile"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold" />
 
-        <ToggleButton
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginRight="@dimen/_25sdp"
-            android:background="@drawable/toggle_notification"
-            android:checked="false"
-            android:text=""
-            android:textOff=""
-            android:textOn="" />
-    </RelativeLayout>
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtEmaiSupport"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Email Support"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp">
 
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-        android:id="@+id/txtTutorial"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/btn_yellow"
-        android:gravity="center"
-        android:paddingBottom="@dimen/_10sdp"
-        android:text="Tutorial"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold" />
+            <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:background="@drawable/btn_yellow"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="Push Notifications"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
 
-    <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-        android:id="@+id/txtTermsCondition"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/btn_yellow"
-        android:gravity="center"
-        android:paddingBottom="@dimen/_10sdp"
-        android:text="Terms &amp; Conditions"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold" />
+            <ToggleButton
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_25sdp"
+                android:background="@drawable/toggle_notification"
+                android:checked="false"
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
+        </RelativeLayout>
+
 
         <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-        android:id="@+id/txtLogout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/btn_yellow"
-        android:gravity="center"
-        android:paddingBottom="@dimen/_10sdp"
-        android:text="Logout"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold" />
+            android:id="@+id/txtTutorial"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Tutorial"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtTermsCondition"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Terms &amp; Conditions"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:id="@+id/txtLogout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Delete Account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+        <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:background="@drawable/btn_yellow"
+            android:gravity="center"
+            android:paddingBottom="@dimen/_10sdp"
+            android:text="Purchase Restore"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

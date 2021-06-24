@@ -60,7 +60,8 @@ class StartGameActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun onItemClick(pos: Int) {
         PrefHelper(this).gametype = "Battle"
-        startActivity(Intent(this, TwoPlayerBattleActivity::class.java))
+        startActivity(Intent(this, TwoPlayerBattleActivity::class.java)
+            .putExtra("playername",list[pos]))
     }
 
     override fun onClick(v: View?) {

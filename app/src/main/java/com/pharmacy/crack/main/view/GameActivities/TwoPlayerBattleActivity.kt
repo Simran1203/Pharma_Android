@@ -16,6 +16,7 @@ import java.util.*
 
 class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
 
+    var playerName = ""
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullScreen(this)
@@ -26,12 +27,16 @@ class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
     }
 
     private fun initAll() {
-
+        playerName = intent.getStringExtra("playername").toString()
         imgBackToolbar.visibility = View.GONE
         txtToolbar.text = "2 Player Battle"
 //        txtToolbar.text = "2 Player Battle".toUpperCase(Locale.ROOT)
 
         txtStartGame.setOnClickListener(this)
+        if(playerName != ""&& playerName!=null && (playerName != "null")){
+            txtNameSecondPlayer.text = playerName
+        }
+
     }
 
     override fun onClick(v: View?) {

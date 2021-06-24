@@ -61,15 +61,14 @@
 
 
 
-                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_6sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/rules_objectives"
                     android:textColor="@color/solid_black"
-                    android:textSize="@dimen/_20sdp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_20sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,29 +124,86 @@
                         android:textSize="@dimen/_11sdp" />
                 </LinearLayout>
 
-                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_18sdp"
-                    android:text="1st  Question = Your Previous Correct Questions (Memory Retention)."
-                    android:textColor="#605A34"
-                    android:textSize="@dimen/_11sdp" />
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:orientation="horizontal">
 
-                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_18sdp"
-                    android:text="2nd Question = Your Previous Incorrect Questions (Mastery)."
-                    android:textColor="#605A34"
-                    android:textSize="@dimen/_11sdp" />
 
-                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
-                    android:layout_width="wrap_content"
+                    <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:gravity="center_vertical"
+                        android:text="• "
+                        android:textColor="#605A34"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="1st  Question = Your Previous Correct Questions (Memory Retention)."
+                        android:textColor="#605A34"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_18sdp"
-                    android:text="3rd  Question = New Question (New Knowledge)."
-                    android:textColor="#605A34"
-                    android:textSize="@dimen/_11sdp" />
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:gravity="center_vertical"
+                        android:text="• "
+                        android:textColor="#605A34"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="2nd Question = Your Previous Incorrect Questions (Mastery)."
+                        android:textColor="#605A34"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:gravity="center_vertical"
+                        android:text="• "
+                        android:textColor="#605A34"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:text="3rd  Question = New Question (New Knowledge)."
+                        android:textColor="#605A34"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,12 +237,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="Story"
-                    android:textColor="@color/wild_strawberry"
-                    android:textSize="@dimen/_30sdp" />
+                    android:textColor="@color/solid_black"
+                    android:textSize="@dimen/_20sdp" />
 
                 <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/the_world_is_under_widespread_disease"
                     android:textColor="#605A34"
                     android:textSize="@dimen/_11sdp" />

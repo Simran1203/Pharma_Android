@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pharmacy.crack.R
 import kotlinx.android.synthetic.main.row_question.view.*
 
-class QuestionAdapter(private var context : Context, private var list: ArrayList<String>,
+class QuestionAdapter(private var context : Context, private var list: ArrayList<String>,private var arrTwoWrongAns:Array<Int>,
      var onOptionClick: (pos:Int)->Unit) :
     RecyclerView.Adapter<QuestionAdapter.LeaderBoardHolder>(){
 
@@ -20,6 +20,11 @@ class QuestionAdapter(private var context : Context, private var list: ArrayList
 
     override fun onBindViewHolder(holder: LeaderBoardHolder, position: Int) {
         holder.itemView.txtQueOption.text = list[position]
+
+        if(position==arrTwoWrongAns[position]) {
+            holder.itemView.txtQueOption.alpha = 0.5F
+        }
+
 
         holder.itemView.txtQueOption.setOnClickListener {
             onOptionClick(position)

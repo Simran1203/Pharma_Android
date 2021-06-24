@@ -41,7 +41,8 @@ class QuestionActivity : AppCompatActivity() {
     lateinit var txtIncAns: TextView
     var coundInterval: Long = 1000
     var isRunning24Hrs: Boolean = false
-
+    var arrTwoWrongAns = arrayOf(-1,-1,-1,-1)
+    lateinit var adapter: QuestionAdapter
     companion object {
         var wrongAns = 0;
     }
@@ -61,9 +62,10 @@ class QuestionActivity : AppCompatActivity() {
         category = intent.getStringExtra("cat").toString()
         txtCategory.text = category
 
-        rvOption.adapter = QuestionAdapter(this, listOption) { pos ->
+        adapter = QuestionAdapter(this, listOption,arrTwoWrongAns) { pos ->
             onItemClick(pos)
         }
+        rvOption.adapter = adapter
         initAll()
     }
 
@@ -266,7 +268,12 @@ class QuestionActivity : AppCompatActivity() {
         }
 
         rel_fifty.setOnClickListener {
-            rel_fifty.alpha = 0.5F
+            arrTwoWrongAns = arrayOf(-1,-1,2,3)
+            adapter = QuestionAdapter(this, listOption,arrTwoWrongAns) { pos ->
+                onItemClick(pos)
+            }
+            rvOption.adapter = adapter
+//            rel_fifty.alpha = 0.5F
         }
     }
 
@@ -280,6 +287,12 @@ class QuestionActivity : AppCompatActivity() {
         }
         txtToolbar.visibility = View.VISIBLE
         countDownTimer.start()
+
+        arrTwoWrongAns = arrayOf(-1,-1,-1,-1)
+        adapter = QuestionAdapter(this, listOption,arrTwoWrongAns) { pos ->
+            onItemClick(pos)
+        }
+        rvOption.adapter = adapter
     }
 
     override fun onBackPressed() {
