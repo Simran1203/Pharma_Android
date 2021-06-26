@@ -136,7 +136,7 @@
             </LinearLayout>
 
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
                 android:id="@+id/txtFreepills"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

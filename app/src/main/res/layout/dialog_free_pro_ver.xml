@@ -41,7 +41,7 @@
                 android:textStyle="bold" />
 
 
-            <com.pharmacy.crack.utils.viewUtils.RegularTextView
+            <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -81,7 +81,7 @@
                     android:textColor="@color/rose_pink"
                     android:textSize="@dimen/_18sdp" />
 
-                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
@@ -103,7 +103,7 @@
                     android:textColor="@color/rose_pink"
                     android:textSize="@dimen/_18sdp" />
 
-                <com.pharmacy.crack.utils.viewUtils.RegularTextView
+                <com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"

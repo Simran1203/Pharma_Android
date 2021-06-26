@@ -7,7 +7,7 @@ data class UserData(
     val dob: String,
     val email_address: String,
     val fullname: String,
-    val profile_pic: Any,
+    val profile_pic: String,
     val speciality_id: Int,
     val state: String,
     val username: String

@@ -87,7 +87,7 @@
                 android:drawablePadding="@dimen/_10sdp"
                 android:inputType="textEmailAddress"
                 android:theme="@style/MyEditText1"
-                android:maxLength="35" />
+                android:maxLength="100" />
 
             <com.pharmacy.crack.utils.viewUtils.RegularTextView
                 android:layout_width="wrap_content"

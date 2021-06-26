@@ -1,7 +1,7 @@
 package com.pharmacy.crack.data.model.matchhistory
 
 data class MatchHistoryModel(
-    val lossmatch: List<Lossmatch>,
+    val loss: Loss,
     val message: String,
-    val winmatch: List<Winmatch>
+    val win: Win
 )

@@ -102,8 +102,8 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
             res.body()?.let {
                 withContext(Dispatchers.Main) {
                     pref.hideProgress()
-                    txtWinProfile.text = it.winmatch[0].Wins.toString()
-                    txtLoseProfile.text = it.lossmatch[0].Losses.toString()
+                    txtWinProfile.text = it.win.Wins.toString()
+                    txtLoseProfile.text = it.loss.Losses.toString()
                 }
             }
         } else {
@@ -126,11 +126,14 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
         pickit = PickiT(this, this, this)
         askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
 
+        if((!pref.profilePic.isNullOrEmpty())&&(pref.profilePic != "null")){
+            Glide.with(this).load(pref.profilePic).into(imgProfile)
+        }
+
         constarintProfile.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 hideKeyBoard(this)
             }
-
         }
 
         initHistory()
@@ -170,11 +173,9 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
 
     private suspend fun submitUserName() {
         pref.showProgress(this)
-        var currnet_uName = edtCurrentUserName.text.toString()
         var new_uName = editNewUserName.text.toString()
-        val cName: RequestBody = currnet_uName.toRequestBody("text/plain".toMediaTypeOrNull())
         val nName: RequestBody = new_uName.toRequestBody("text/plain".toMediaTypeOrNull())
-        val res = RetrofitFactory.api.submitResetUserName("Bearer "+pref.authToken,cName,nName,
+        val res = RetrofitFactory.api.submitResetUserNameProfile("Bearer "+pref.authToken,nName,
             filePart!!
         )
 

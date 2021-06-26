@@ -57,6 +57,27 @@ class PrefHelper(internal var context: Context) {
             editor.commit()
         }
 
+    var userName: String
+        get() = prefrence.getString("userName", "").toString()
+        set(value) {
+            editor.putString("userName", value)
+            editor.commit()
+        }
+
+    var fullName: String
+        get() = prefrence.getString("fullName", "").toString()
+        set(value) {
+            editor.putString("fullName", value)
+            editor.commit()
+        }
+
+    var opponentName: String
+        get() = prefrence.getString("opponentName", "").toString()
+        set(value) {
+            editor.putString("opponentName", value)
+            editor.commit()
+        }
+
     var clearData: Boolean = false
         set(value) {
             field = value

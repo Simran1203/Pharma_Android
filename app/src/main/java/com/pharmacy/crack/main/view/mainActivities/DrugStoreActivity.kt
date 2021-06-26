@@ -15,6 +15,7 @@ import com.pharmacy.crack.R
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
+import com.pharmacy.crack.utils.viewUtils.SemiBoldTextView
 import kotlinx.android.synthetic.main.activity_drug_store.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
 
@@ -40,11 +41,11 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var txtBuyProVer: RegularTextView
     private lateinit var txtBuy25and75: RegularTextView
     private lateinit var txtBuyFreePro: RegularTextView
-    private lateinit var txtFreepills: RegularTextView
+    private lateinit var txtFreepills: SemiBoldTextView
     private lateinit var txtQuantityPills: HardBoldTextView
     private lateinit var txtPrice25and75: HardBoldTextView
-    private lateinit var txtDailyVal: RegularTextView
-    private lateinit var txtDuration: RegularTextView
+    private lateinit var txtDailyVal: SemiBoldTextView
+    private lateinit var txtDuration: SemiBoldTextView
     private lateinit var txtPrice3M6m: HardBoldTextView
     private lateinit var txtFreeprover: RegularTextView
     private var fromSource: String = ""
@@ -93,7 +94,7 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialogProStartPack.dismiss()
         }
         txtBuyStartPack.setOnClickListener {
-            super.onBackPressed()
+            dialogProStartPack.dismiss()
         }
 
         dialogProVer = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
@@ -107,7 +108,7 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialogProVer.dismiss()
         }
         txtBuyProVer.setOnClickListener {
-            super.onBackPressed()
+            dialogProVer.dismiss()
         }
 
         dialogOneK = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
@@ -121,7 +122,7 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialogOneK.dismiss()
         }
         txtBuy1K.setOnClickListener {
-            super.onBackPressed()
+            dialogOneK.dismiss()
         }
         dialogFreeProVer = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
         dialogFreeProVer.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -136,7 +137,7 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialogFreeProVer.dismiss()
         }
         txtBuyFreePro.setOnClickListener {
-            super.onBackPressed()
+            dialogFreeProVer.dismiss()
         }
 
         dialog3m6m = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
@@ -153,7 +154,7 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialog3m6m.dismiss()
         }
         txtBuy3m6m.setOnClickListener {
-            super.onBackPressed()
+            dialog3m6m.dismiss()
         }
 
         dialog25and75 = Dialog(this@DrugStoreActivity, android.R.style.Theme_Light)
@@ -170,10 +171,8 @@ class DrugStoreActivity : AppCompatActivity(), View.OnClickListener {
             dialog25and75.dismiss()
         }
         txtBuy25and75.setOnClickListener {
-            super.onBackPressed()
+            dialog25and75.dismiss()
         }
-
-
     }
 
     override fun onClick(v: View?) {

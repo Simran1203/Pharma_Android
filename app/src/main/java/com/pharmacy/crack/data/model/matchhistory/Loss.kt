@@ -1,5 +1,5 @@
 package com.pharmacy.crack.data.model.matchhistory
 
-data class Winmatch(
-    val Wins: Int
+data class Loss(
+    val Losses: Int
 )

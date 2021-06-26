@@ -108,8 +108,8 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
 
                 withContext(Dispatchers.Main) {
                     pref.hideProgress()
-                    txtWinStats.text = it.winmatch[0].Wins.toString()
-                    txtLossStats.text = it.lossmatch[0].Losses.toString()
+                    txtWinStats.text = it.win.Wins.toString()
+                    txtLossStats.text = it.loss.Losses.toString()
                 }
             }
         } else {

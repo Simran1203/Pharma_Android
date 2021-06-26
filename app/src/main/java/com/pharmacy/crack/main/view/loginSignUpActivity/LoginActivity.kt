@@ -1,18 +1,23 @@
 package com.pharmacy.crack.main.view.loginSignUpActivity
 
-import android.R.attr
+import android.app.Dialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.facebook.*
-import com.facebook.Profile
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -21,14 +26,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.gson.Gson
 import com.pharmacy.crack.R
 import com.pharmacy.crack.databinding.ActivityLoginBinding
 import com.pharmacy.crack.main.model.LoginDatamodel
 import com.pharmacy.crack.main.model.SocialLoginData
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.*
+import com.pharmacy.crack.utils.viewUtils.RegularEditText
+import com.pharmacy.crack.utils.viewUtils.RegularTextView
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
@@ -37,6 +44,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONException
 import org.json.JSONObject
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import java.util.*
 
 
@@ -48,7 +57,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     var loginButton: LoginButton? = null
     private val RC_GOOGLE_LOGIN = 101
     var mGoogleSignInClient: GoogleSignInClient? = null
-
+    private lateinit var dialogEmailSocial: Dialog
+    lateinit var edtEmailSocial : RegularEditText
+    lateinit var txtSubmitEmailSocial : RegularTextView
+    var socialCredid = ""
+    var socialName = ""
+    var socialType = ""
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,26 +74,18 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         loginButton = findViewById(R.id.login_button)
         listner()
 
-//        val loggedOut = AccessToken.getCurrentAccessToken() == null
-//        if (!loggedOut) {
-//            Log.d("TAG", "Username is: " + Profile.getCurrentProfile().name)
-//
-//            //Using Graph API
-//            getUserProfile(AccessToken.getCurrentAccessToken())
-//        }
-
         binding.loginButton.setReadPermissions(Arrays.asList("email", "public_profile"))
         callbackManager = CallbackManager.Factory.create()
 
+
+        val loggedOut = AccessToken.getCurrentAccessToken() == null
+        if (!loggedOut) {
+            LoginManager.getInstance().logOut()
+        }
+
         binding.loginButton.registerCallback(callbackManager, object : FacebookCallback<LoginResult?> {
             override fun onSuccess(loginResult: LoginResult?) {
-                // App code
-                //loginResult.getAccessToken();
-                //loginResult.getRecentlyDeniedPermissions()
-                //loginResult.getRecentlyGrantedPermissions()
-                val loggedIn = AccessToken.getCurrentAccessToken() == null
-
-                getUserProfile(AccessToken.getCurrentAccessToken())
+                    getUserProfile(AccessToken.getCurrentAccessToken())
             }
 
             override fun onCancel() {
@@ -88,6 +94,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
             override fun onError(exception: FacebookException) {
                 // App code
+                showToast(this@LoginActivity, "Please check your internet connection and try again.")
             }
         })
 
@@ -97,6 +104,33 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
+
+        dialogEmailSocial = Dialog(this, android.R.style.Theme_Light)
+        dialogEmailSocial.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialogEmailSocial.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
+        dialogEmailSocial.setCancelable(false)
+        dialogEmailSocial.setContentView(R.layout.dialog_email_social)
+        edtEmailSocial = dialogEmailSocial.findViewById(R.id.edtEmailSocial)
+        txtSubmitEmailSocial = dialogEmailSocial.findViewById(R.id.txtSubmitEmailSocial)
+
+        txtSubmitEmailSocial.setOnClickListener {
+            if (edtEmailSocial.text.toString().trim().isEmpty()) {
+                Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
+                edtEmailSocial.text?.clear()
+            } else if (!(Patterns.EMAIL_ADDRESS.matcher(edtEmailSocial.getText().toString().trim())
+                    .matches())
+            ) {
+                Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
+            }else{
+                dialogEmailSocial.dismiss()
+
+                startActivity(Intent(this@LoginActivity, SignUpActivity::class.java)
+                    .putExtra("name",socialName)
+                    .putExtra("email",edtEmailSocial.text.toString())
+                    .putExtra("credId",socialCredid)
+                    .putExtra("SocialType",socialType))
+            }
+        }
     }
 
     // TODO google Implimentation
@@ -135,11 +169,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 pref.showProgress(this)
                 CoroutineScope(IO).launch {
                     try {
-                        hitSocialApi(emal,id.toString(),"G")
+                        hitSocialApi(fname+" "+lname,emal,id.toString(),"G")
                     }catch (e:java.lang.Exception){
                         withContext(Main){
                             pref.hideProgress()
-                            showToast(this@LoginActivity, "Please check your internet connection and try again.")
+                            showToast(this@LoginActivity, e.message.toString())
                         }
                     }
                 }
@@ -158,11 +192,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 //  Change_Url_to_base64(id, fname, lname, pic_url, "gmail")
             }
         } catch (e: ApiException) {
-            Log.w("Error message", "signInResult:failed code=" + e.statusCode)
+//            Log.w("Error message", "signInResult:failed code=" + e.statusCode)
         }
     }
 
-    private suspend fun hitSocialApi(emal: String, id: String, type: String) {
+    private suspend fun hitSocialApi(name : String,emal: String, id: String, type: String) {
         val model = SocialLoginData(emal,id,type)
         val res = RetrofitFactory.api.submitSocialLogin(model)
 
@@ -170,7 +204,16 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             res.body()?.let {
                 CoroutineScope(Dispatchers.Main).launch {
                     pref.hideProgress()
-                    pref.authToken = it.userDetails.auth_token
+                    pref.storyCount+=1
+                    pref.authToken = it.user_Details.auth_token
+
+                    if(it.user_Details.user_data.profile_pic!=null){
+                        pref.profilePic = it.user_Details.user_data.profile_pic
+                    }
+                    pref.userName = it.user_Details.user_data.username
+                    pref.fullName = it.user_Details.user_data.fullname
+
+
                     startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
                     finishAffinity()
                 }
@@ -182,6 +225,21 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 try {
                     val jObjError = JSONObject(res.errorBody()?.string())
                     showToasts(jObjError.getString("message"))
+                         if(jObjError.getString("message").contains("Required")){
+                             socialName = name
+                             socialCredid = id
+                             socialType = type
+                             dialogEmailSocial.show()
+                         }
+                         else{
+                             startActivity(Intent(this@LoginActivity, SignUpActivity::class.java)
+                                 .putExtra("name",name)
+                                 .putExtra("email",emal)
+                                 .putExtra("credId",id)
+                                 .putExtra("SocialType",type))
+                         }
+
+
                 } catch (e: Exception) {
                     showToasts(e.message.toString())
                 } } }
@@ -197,13 +255,10 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             var email = `object`.optString("email")
             val id = `object`.optString("id")
 
-            if(email.isNullOrEmpty()){
-                email = first_name+"@fb.com"
-            }
             pref.showProgress(this)
             CoroutineScope(IO).launch {
                 try {
-                    hitSocialApi(email,id,"F")
+                    hitSocialApi(first_name+" "+last_name,email,id,"F")
                 }catch (e:java.lang.Exception){
                     withContext(Main){
                         pref.hideProgress()
@@ -254,10 +309,19 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             startActivity(Intent(this, ForgetPaswordActivity::class.java))
         }
         else if (v === binding.imgFacebook) {
-            binding.loginButton.performClick()
+            if (!isNetworkAvailable(this)) {
+                showToast(this, "Please check your internet connection and try again.")
+            } else {
+                binding.loginButton.performClick()
+            }
+
         }
         else if (v === binding.imgGoogle) {
-            sign_in_with_gmail()
+            if (!isNetworkAvailable(this)) {
+                showToast(this, "Please check your internet connection and try again.")
+            } else {
+                sign_in_with_gmail()
+            }
         } else if (v === binding.txtCreateAccount) {
             if (!isNetworkAvailable(this)) {
                 showToast(this, "Please check your internet connection and try again.")
@@ -294,10 +358,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         }catch (e:java.lang.Exception){
                             withContext(Main){
                                 pref.hideProgress()
-                                showToast(this@LoginActivity, "Please check your internet connection and try again.")
+                                showToast(this@LoginActivity, e.message.toString())
                             }
                         }
-
                     }
                 }
             }
@@ -312,7 +375,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
               res.body()?.let {
                         CoroutineScope(Dispatchers.Main).launch {
                             pref.hideProgress()
-                            pref.authToken = it.userDetails.auth_token
+                            pref.authToken = it.user_Details.auth_token
+                            if(it.user_Details.user_data.profile_pic!=null){
+                                pref.profilePic = it.user_Details.user_data.profile_pic
+                            }
+
+                            pref.userName = it.user_Details.user_data.username
+                            pref.fullName = it.user_Details.user_data.fullname
+
                             if(pref.storyCount==1){
                                 pref.storyCount+=1
                                 startActivity(Intent(this@LoginActivity, StoryActivity::class.java))
@@ -336,6 +406,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     } } }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        val loggedOut = AccessToken.getCurrentAccessToken() == null
+        if (!loggedOut) {
+            LoginManager.getInstance().logOut()
+        }
+        mGoogleSignInClient?.signOut()
+    }
     override fun onBackPressed() {
         hideKeyBoard(this)
         super.onBackPressed()

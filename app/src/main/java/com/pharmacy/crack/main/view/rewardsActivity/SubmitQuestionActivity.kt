@@ -16,6 +16,7 @@ import com.hbb20.CountryCodePicker
 import com.pharmacy.crack.R
 import com.pharmacy.crack.data.model.categoryModels.Category
 import com.pharmacy.crack.main.model.CategoryDataModel
+import com.pharmacy.crack.main.model.QuestionSubmitDataModel
 import com.pharmacy.crack.utils.*
 import com.ybs.countrypicker.CountryPicker
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_submit_question.*
 import kotlinx.android.synthetic.main.toolbar_multicolor.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -33,6 +35,7 @@ class SubmitQuestionActivity : AppCompatActivity(), View.OnClickListener,
     var listCategory: ArrayList<Category> = ArrayList()
     lateinit var pref: PrefHelper
     lateinit var networkConnectivity: NetworkConnectivity
+     var catId: Int =0
 
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -143,6 +146,7 @@ class SubmitQuestionActivity : AppCompatActivity(), View.OnClickListener,
                 view: View, position: Int, id: Long
             ) {
                 (parent.getChildAt(0) as TextView).setTextColor(Color.parseColor("#A2511F"))
+                catId = listCategory[position].id
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -178,12 +182,44 @@ class SubmitQuestionActivity : AppCompatActivity(), View.OnClickListener,
                 edtCorrectAns3.requestFocus()
             } else {
                 hideKeyBoard(this)
-                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                if(isNetworkAvailable(this)){
+                    hitSubmitQuestApi()
+                }else{
+                    showToast(this, "Please check your internet connection and try again.")
+                }
+
             }
         } else if (v == imgBackQuest) {
             super.onBackPressed()
         }
 
+    }
+
+    private fun hitSubmitQuestApi() {
+        CoroutineScope(Main).launch {
+         pref.showProgress(this@SubmitQuestionActivity)
+          val model = QuestionSubmitDataModel("1",edtTypeQue.text.toString(),catId.toString(),
+              edtCorrectAns.text.toString(),edtCorrectAns1.text.toString(),edtCorrectAns2.text.toString(),
+              edtCorrectAns3.text.toString(),"14")
+
+            val res = RetrofitFactory.api.submitQuestion("Bearer "+pref.authToken,model)
+            pref.hideProgress()
+
+            if(res.isSuccessful){
+                res.body()?.let {
+                    showToasts(it.message)
+                    super.onBackPressed()
+                }
+
+            }else{
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts("${jObjError.getString("message")}")
+                } catch (e: Exception) {
+                    Toast.makeText(this@SubmitQuestionActivity, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {

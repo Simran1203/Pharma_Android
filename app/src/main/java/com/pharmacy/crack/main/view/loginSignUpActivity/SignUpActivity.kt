@@ -28,6 +28,7 @@ import com.pharmacy.crack.data.model.classificationModels.Getclassification
 import com.pharmacy.crack.data.model.specialityModels.Getspeciality
 import com.pharmacy.crack.data.model.statesModels.State
 import com.pharmacy.crack.main.model.RegisterDataModel
+import com.pharmacy.crack.main.model.SocialRegisterDataModel
 import com.pharmacy.crack.main.view.PrivacyPolicyActivity
 import com.pharmacy.crack.main.view.TermsConditionActivity
 import com.pharmacy.crack.utils.*
@@ -57,11 +58,16 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     var specialityID: Int = 0
     var dobDay: Int = 0
     var dobMonth: Int = 0
-    var stateName: String=""
+    var stateName: String = ""
     lateinit var pref: PrefHelper
     val myCalendar = Calendar.getInstance();
     lateinit var dpd: DatePickerDialog
-    lateinit var networkConnectivity:NetworkConnectivity
+    lateinit var networkConnectivity: NetworkConnectivity
+
+    var socialEmail = ""
+    var socialCredid = ""
+    var socialName = ""
+    var socialType = ""
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,33 +88,36 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
 
     private fun initSpecialityClassificationState() {
         networkConnectivity = NetworkConnectivity(application)
-        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable->
-            when(isAvailable){
-                true -> if (listClassification.isEmpty()||listSpeciality.isEmpty()){
+        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable ->
+            when (isAvailable) {
+                true -> if (listClassification.isEmpty() || listSpeciality.isEmpty()) {
 
                     Thread.sleep(1_000)
                     CoroutineScope(IO).launch {
-                        try{
+                        try {
                             fetchStateList(countrPickerSignup.selectedCountryNameCode)
-                        }catch (e:Exception){
+                        } catch (e: Exception) {
                             withContext(Main) {
-                                showToast(this@SignUpActivity, "Please check your internet connection and try again.")
+                                showToast(
+                                    this@SignUpActivity,
+                                    "Please check your internet connection and try again."
+                                )
                             }
                         }
                     }
-                    if(listClassification.isEmpty()){
+                    if (listClassification.isEmpty()) {
                         CoroutineScope(IO).launch {
-                            try{
+                            try {
                                 fetchClassification()
-                            }catch (e:Exception){
+                            } catch (e: Exception) {
                             }
                         }
                     }
-                    if(listSpeciality.isEmpty()){
+                    if (listSpeciality.isEmpty()) {
                         CoroutineScope(IO).launch {
-                            try{
+                            try {
                                 fetchSpeciality()
-                            }catch (e:Exception){
+                            } catch (e: Exception) {
                             }
                         }
                     }
@@ -222,6 +231,22 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun initOther() {
+        socialEmail = intent.getStringExtra("email").toString()
+        socialCredid = intent.getStringExtra("credId").toString()
+        socialName = intent.getStringExtra("name").toString()
+        socialType = intent.getStringExtra("SocialType").toString()
+        if ((!socialEmail.isNullOrEmpty()) && (!socialEmail.equals("null"))) {
+            edtName.setText(socialName)
+            editEmail.setText(socialEmail)
+
+            editEmail.isFocusable = false
+            edtConfmPasswordTextInput.visibility = View.GONE
+            edtPasswordTextInput.visibility = View.GONE
+            txtPassword.visibility = View.GONE
+            txtCnfmPassword.visibility = View.GONE
+
+        }
+
         spinnerSpecialty.setOnTouchListener(OnTouchListener { _, _ ->
             hideKeyBoard(this)
             false
@@ -339,74 +364,11 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onClick(v: View?) {
         if (v == txtSignup) {
-
-            hideKeyBoard(this)
-            if (edtName.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "Please enter Name.", Toast.LENGTH_SHORT).show()
-                edtName.text?.clear()
-            } else if (editEmail.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
-                editEmail.text?.clear()
-            } else if (!(Patterns.EMAIL_ADDRESS.matcher(editEmail.getText().toString().trim())
-                    .matches())
-            ) {
-                Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
-            } else if (editPasswordSignUp.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "Please enter Password.", Toast.LENGTH_SHORT).show()
-                editPasswordSignUp.text?.clear()
-            } else if (editPasswordSignUp.getText().toString().trim().length < 6) {
-                Toast.makeText(
-                    this,
-                    "Please enter at least 6 chars long password.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (editCnfmPasswordSignUp.text.toString().trim().isEmpty()) {
-                editCnfmPasswordSignUp.text?.clear()
-                Toast.makeText(this, "Please enter Confirm Password.", Toast.LENGTH_SHORT).show()
-            } else if (!editCnfmPasswordSignUp.text.toString().equals(
-                    editPasswordSignUp.getText().toString()
-                )
-            ) {
-                Toast.makeText(
-                    this,
-                    "Confirm Password should be same as Password.",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-            } else if (editUserName.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()
-                editUserName.text?.clear()
-            } else if ((getAge(dobYear, dobMonth, dobDay)) < 5) {
-                Toast.makeText(this, "You must be at least 5 years old.", Toast.LENGTH_SHORT).show()
-
-            } else if (!termsAndCon) {
-                Toast.makeText(
-                    this,
-                    "Please agree to our Terms and Conditions.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                if ((!isNetworkAvailable(this))||listSpeciality.isEmpty()||listClassification.isEmpty()) {
-                    showToast(this, "Please check your internet connection and try again.")
-                } else {
-                    var dob = "$dobYear-$dobMonth-$dobDay"
-                    pref.showProgress(this)
-                    CoroutineScope(IO).launch {
-                        try {
-                            if(pref.mDialog.isShowing){
-                                submitRegisterData(dob)
-                            }
-                        }
-                        catch (e: java.lang.Exception) {
-                        withContext(Main) {
-                            pref.hideProgress()
-                            showToast(this@SignUpActivity, "Please check your internet connection and try again.")
-                        }
-                    }
-                    }
-                }
+            if ((socialEmail.isNullOrEmpty()) || (socialEmail.equals("null"))) {
+                validationsigup()
+            }else{
+                validationSocialsigup()
             }
-
         } else if (v == relDate) {
             hideKeyBoard(this)
             dpd.show()
@@ -420,6 +382,133 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
             super.onBackPressed()
         }
     }
+
+    private fun validationSocialsigup() {
+
+        hideKeyBoard(this)
+        if (edtName.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Name.", Toast.LENGTH_SHORT).show()
+            edtName.text?.clear()
+        } else if (editEmail.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
+            editEmail.text?.clear()
+        } else if (!(Patterns.EMAIL_ADDRESS.matcher(editEmail.getText().toString().trim())
+                .matches())
+        ) {
+            Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
+        } else if (editUserName.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()
+            editUserName.text?.clear()
+        } else if ((getAge(dobYear, dobMonth, dobDay)) < 5) {
+            Toast.makeText(this, "You must be at least 5 years old.", Toast.LENGTH_SHORT).show()
+
+        } else if (!termsAndCon) {
+            Toast.makeText(
+                this,
+                "Please agree to our Terms and Conditions and Privacy Policy.",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            if ((!isNetworkAvailable(this)) || listSpeciality.isEmpty() || listClassification.isEmpty()) {
+                showToast(this, "Please check your internet connection and try again.")
+            } else {
+                var dob = "$dobYear-$dobMonth-$dobDay"
+                pref.showProgress(this)
+                CoroutineScope(IO).launch {
+                    try {
+                        if (pref.mDialog.isShowing) {
+                            submitRegisterSocialData(dob)
+                        }
+                    } catch (e: java.lang.Exception) {
+                        withContext(Main) {
+                            pref.hideProgress()
+                            showToast(
+                                this@SignUpActivity,
+                                "Please check your internet connection and try again."
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    private fun validationsigup() {
+
+        hideKeyBoard(this)
+        if (edtName.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Name.", Toast.LENGTH_SHORT).show()
+            edtName.text?.clear()
+        } else if (editEmail.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Email Address.", Toast.LENGTH_SHORT).show()
+            editEmail.text?.clear()
+        } else if (!(Patterns.EMAIL_ADDRESS.matcher(editEmail.getText().toString().trim())
+                .matches())
+        ) {
+            Toast.makeText(this, "Please enter valid Email Address.", Toast.LENGTH_SHORT).show()
+        }
+        else if (editPasswordSignUp.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Password.", Toast.LENGTH_SHORT).show()
+            editPasswordSignUp.text?.clear()
+        } else if (editPasswordSignUp.getText().toString().trim().length < 6) {
+            Toast.makeText(
+                this,
+                "Please enter at least 6 chars long password.",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else if (editCnfmPasswordSignUp.text.toString().trim().isEmpty()) {
+            editCnfmPasswordSignUp.text?.clear()
+            Toast.makeText(this, "Please enter Confirm Password.", Toast.LENGTH_SHORT)
+                .show()
+        } else if (!editCnfmPasswordSignUp.text.toString().equals(
+                editPasswordSignUp.getText().toString()
+            )
+        ) {
+            Toast.makeText(
+                this,
+                "Confirm Password should be same as Password.",
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        } else if (editUserName.text.toString().trim().isEmpty()) {
+            Toast.makeText(this, "Please enter Username.", Toast.LENGTH_SHORT).show()
+            editUserName.text?.clear()
+        } else if ((getAge(dobYear, dobMonth, dobDay)) < 5) {
+            Toast.makeText(this, "You must be at least 5 years old.", Toast.LENGTH_SHORT).show()
+
+        } else if (!termsAndCon) {
+            Toast.makeText(
+                this,
+                "Please agree to our Terms and Conditions and Privacy Policy.",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            if ((!isNetworkAvailable(this)) || listSpeciality.isEmpty() || listClassification.isEmpty()) {
+                showToast(this, "Please check your internet connection and try again.")
+            } else {
+                var dob = "$dobYear-$dobMonth-$dobDay"
+                pref.showProgress(this)
+                CoroutineScope(IO).launch {
+                    try {
+                        if (pref.mDialog.isShowing) {
+                                submitRegisterData(dob)
+                        }
+                    } catch (e: java.lang.Exception) {
+                        withContext(Main) {
+                            pref.hideProgress()
+                            showToast(
+                                this@SignUpActivity,
+                                "Please check your internet connection and try again."
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 
     private fun initDatePicker() {
         val c = Calendar.getInstance()
@@ -473,7 +562,56 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener,
             res.body()?.let {
                 CoroutineScope(Main).launch {
                     pref.hideProgress()
-                    pref.authToken = it.userDetails.auth_token
+                    pref.authToken = it.user_Details.auth_token
+                    pref.storyCount = 1
+                    if (it.user_Details.user_data.profile_pic != null) {
+                        pref.profilePic = it.user_Details.user_data.profile_pic
+                    }
+                    pref.userName = it.user_Details.user_data.username
+                    pref.fullName = it.user_Details.user_data.fullname
+                    startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
+                    finishAffinity()
+                }
+            }
+        } else {
+            CoroutineScope(Main).launch {
+                pref.hideProgress()
+                try {
+                    val jObjError = JSONObject(res.errorBody()?.string())
+                    showToasts("${jObjError.getString("message")}")
+                } catch (e: Exception) {
+                    Toast.makeText(this@SignUpActivity, e.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private suspend fun submitRegisterSocialData(dob: String) {
+
+        val model = SocialRegisterDataModel(
+            edtName.text.toString(),
+            editEmail.text.toString(),
+            editUserName.text.toString(),
+            dob,
+            txtCountry.text.toString(),
+            stateName,
+            classificationID,
+            specialityID,
+            editCollege.text.toString(),
+            socialCredid,
+            socialType
+        )
+
+
+        val res = RetrofitFactory.api.submitSignUpSocial(model)
+        if (res.isSuccessful) {
+            res.body()?.let {
+                CoroutineScope(Main).launch {
+                    pref.hideProgress()
+                    pref.authToken = it.user_Details.auth_token
+                    pref.userName = it.user_Details.user_data.username
+                    pref.fullName = it.user_Details.user_data.fullname
+
                     pref.storyCount = 1
                     startActivity(Intent(this@SignUpActivity, StoryActivity::class.java))
                     finishAffinity()
