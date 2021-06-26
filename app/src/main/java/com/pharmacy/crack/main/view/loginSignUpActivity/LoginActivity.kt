@@ -124,11 +124,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }else{
                 dialogEmailSocial.dismiss()
 
-                startActivity(Intent(this@LoginActivity, SignUpActivity::class.java)
-                    .putExtra("name",socialName)
-                    .putExtra("email",edtEmailSocial.text.toString())
-                    .putExtra("credId",socialCredid)
-                    .putExtra("SocialType",socialType))
+                pref.showProgress(this)
+                CoroutineScope(IO).launch {
+                    try {
+                        hitSocialApi(socialName,edtEmailSocial.text.toString(),socialCredid,socialType)
+                    }catch (e:java.lang.Exception){
+                        withContext(Main){
+                            pref.hideProgress()
+                            showToast(this@LoginActivity, "Please check your internet connection and try again.")
+                        }
+                    }
+                }
             }
         }
     }
