@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.CategorySpinActivity
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
+import kotlinx.android.synthetic.main.activity_change_profile.*
 import kotlinx.android.synthetic.main.activity_two_player_battle.*
 import kotlinx.android.synthetic.main.toolbar.*
 import java.util.*
@@ -41,6 +43,9 @@ class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
             txtNameSecondPlayer.text = playerName
         }
         txtNameFirstPlayer.text = pref.fullName
+        if((!pref.profilePic.isNullOrEmpty())&&(pref.profilePic != "null")){
+            Glide.with(this).load(pref.profilePic).placeholder(R.drawable.profile_img).into(imgFirstPlayer)
+        }
     }
 
     override fun onClick(v: View?) {

@@ -108,6 +108,7 @@
                android:layout_width="match_parent"
                android:layout_height="@dimen/_50sdp"
                android:singleLine="true"
+               android:focusable="false"
                android:textCursorDrawable="@drawable/cursor_edit"
                android:textColor="@color/desert" />
        </com.google.android.material.textfield.TextInputLayout>

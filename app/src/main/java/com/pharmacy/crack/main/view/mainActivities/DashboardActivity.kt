@@ -13,12 +13,15 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.TermsConditionActivity
+import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.showToast
 import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
+import kotlinx.android.synthetic.main.activity_change_profile.*
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 
@@ -29,12 +32,13 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var imgDescDashTutorial: RegularTextView
     private lateinit var consDasDialog: ConstraintLayout
     private var doubleBackToExitPressedOnce = false
-
+    lateinit var pref: PrefHelper
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_dashboard)
+        pref = PrefHelper(this)
 
         imgSetting.setOnClickListener(this)
         txtFreeRewards.setOnClickListener(this)
@@ -67,7 +71,9 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
 //        hideStatusBarForDialod()
 
-
+        if((!pref.profilePic.isNullOrEmpty())&&(pref.profilePic != "null")){
+            Glide.with(this).load(pref.profilePic).placeholder(R.drawable.profile_img).into(imgPhoto)
+        }
     }
 
     private fun hideStatusBarForDialod() {

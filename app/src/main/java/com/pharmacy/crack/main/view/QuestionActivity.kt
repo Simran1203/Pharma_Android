@@ -273,7 +273,6 @@ class QuestionActivity : AppCompatActivity() {
                 onItemClick(pos)
             }
             rvOption.adapter = adapter
-//            rel_fifty.alpha = 0.5F
         }
     }
 

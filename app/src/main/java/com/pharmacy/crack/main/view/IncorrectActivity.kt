@@ -49,12 +49,16 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
         dialogBuyPillLife.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogBuyPillLife.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
         dialogBuyPillLife.setContentView(R.layout.dialog_buy_now)
+        dialogBuyPillLife.setCancelable(false)
+        dialogBuyPillLife.setCanceledOnTouchOutside(false)
         imgCloseBuy = dialogBuyPillLife.findViewById(R.id.imgCloseBuy)
 
         dialogResume = Dialog(this, android.R.style.Theme_Light)
         dialogResume.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogResume.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
         dialogResume.setContentView(R.layout.dialog_resume)
+        dialogResume.setCancelable(false)
+        dialogResume.setCanceledOnTouchOutside(false)
         imgCloseResume = dialogResume.findViewById(R.id.imgCloseResume)
         btnResumeIn = dialogResume.findViewById(R.id.btnResumeIn)
 
@@ -70,7 +74,7 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
         btnResumeIn.setOnClickListener(this)
 
 
-        dialogBack()
+//        dialogBack()
 
     }
 

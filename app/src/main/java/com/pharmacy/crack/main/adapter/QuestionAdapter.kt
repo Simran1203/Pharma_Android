@@ -27,7 +27,12 @@ class QuestionAdapter(private var context : Context, private var list: ArrayList
 
 
         holder.itemView.txtQueOption.setOnClickListener {
-            onOptionClick(position)
+            if(position==arrTwoWrongAns[position]) {
+                holder.itemView.isFocusable = false
+            }else{
+                onOptionClick(position)
+            }
+
         }
     }
 

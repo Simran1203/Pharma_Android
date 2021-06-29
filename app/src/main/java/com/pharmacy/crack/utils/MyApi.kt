@@ -5,6 +5,7 @@ import com.pharmacy.crack.data.model.categoryModels.CategoryModel
 import com.pharmacy.crack.data.model.classificationModels.ClassificationModel
 import com.pharmacy.crack.data.model.forgetpassowrods.ForgetModel
 import com.pharmacy.crack.data.model.loginModels.LoginModel
+import com.pharmacy.crack.data.model.masterBonus.DailyBonusModel
 import com.pharmacy.crack.data.model.matchhistory.MatchHistoryModel
 import com.pharmacy.crack.data.model.questionModels.QuestionModel
 import com.pharmacy.crack.data.model.signUp.SignUpModel
@@ -73,7 +74,7 @@ interface MyApi {
     @POST("user/profile")
     suspend fun submitResetUserName(
         @Header("Authorization") token: String,
-        @Part("new_username") new_username: RequestBody,
+        @Field("new_username") new_username: String,
     ): Response<EmailSupportModel>
 
     @POST("user/socialLogin")
@@ -99,4 +100,8 @@ interface MyApi {
         @Header("Authorization") token: String,
         @Body model: QuestionSubmitDataModel
     ): Response<EmailSupportModel>
+
+    @GET("masterBonus")
+    suspend fun getBonus(@Header("Authorization") token: String): Response<DailyBonusModel>
+
 }

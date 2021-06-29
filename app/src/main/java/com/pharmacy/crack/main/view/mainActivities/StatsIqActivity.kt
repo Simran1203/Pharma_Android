@@ -8,10 +8,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.AccuracyStatsAdapter
 import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_change_profile.*
+import kotlinx.android.synthetic.main.activity_game_result.*
 import kotlinx.android.synthetic.main.activity_stats_iq.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.CoroutineScope
@@ -74,6 +76,12 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
 
 
         rvStats.adapter = AccuracyStatsAdapter(this, listPercent, listImage)
+
+        txtStatsPlayername.text = pref.fullName
+
+        if((!pref.profilePic.isNullOrEmpty())&&(pref.profilePic != "null")){
+            Glide.with(this).load(pref.profilePic).placeholder(R.drawable.profile_img).into(imgPlayerStats)
+        }
 
         initHistory()
     }

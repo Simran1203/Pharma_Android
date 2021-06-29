@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.GameActivities.SelectOpponentActivity
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.main.view.mainActivities.StartGameActivity
 import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_game_result.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -34,6 +36,10 @@ class GameResultActivity : AppCompatActivity(),View.OnClickListener {
 
         txtFirstPlyrName.text = pref.fullName
         txtsecondPlyrName.text = pref.opponentName
+
+        if((!pref.profilePic.isNullOrEmpty())&&(pref.profilePic != "null")){
+            Glide.with(this).load(pref.profilePic).placeholder(R.drawable.profile_img).into(imgFirstPlyr)
+        }
     }
 
     override fun onClick(v: View?) {

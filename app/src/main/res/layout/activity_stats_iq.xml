@@ -29,14 +29,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-            <ImageView
-                android:id="@+id/imgPlayer"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgPlayerStats"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:src="@drawable/profile_img"/>
 
             <com.pharmacy.crack.utils.viewUtils.HardBoldTextView
-                android:id="@+id/txtSolo"
+                android:id="@+id/txtStatsPlayername"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:paddingBottom="@dimen/_10sdp"

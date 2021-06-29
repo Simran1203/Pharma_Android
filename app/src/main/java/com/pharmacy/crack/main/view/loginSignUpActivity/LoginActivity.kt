@@ -210,7 +210,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             res.body()?.let {
                 CoroutineScope(Dispatchers.Main).launch {
                     pref.hideProgress()
-                    pref.storyCount+=1
                     pref.authToken = it.user_Details.auth_token
 
                     if(it.user_Details.user_data.profile_pic!=null){
@@ -220,8 +219,15 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     pref.fullName = it.user_Details.user_data.fullname
 
 
-                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                    finishAffinity()
+                    if(pref.storyCount==1){
+                        pref.storyCount+=1
+                        startActivity(Intent(this@LoginActivity, StoryActivity::class.java))
+                        finishAffinity()
+                    }else{
+                        startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                        finishAffinity()
+                    }
+
                 }
 
             }

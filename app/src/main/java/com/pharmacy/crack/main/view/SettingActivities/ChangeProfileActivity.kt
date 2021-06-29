@@ -127,7 +127,7 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
         askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
 
         if((!pref.profilePic.isNullOrEmpty())&&(pref.profilePic != "null")){
-            Glide.with(this).load(pref.profilePic).into(imgProfile)
+            Glide.with(this).load(pref.profilePic).placeholder(R.drawable.profile_img).into(imgProfile)
         }
 
         constarintProfile.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
@@ -136,6 +136,7 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
             }
         }
 
+        edtCurrentUserName.setText(pref.userName)
         initHistory()
     }
 
@@ -153,25 +154,28 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
                 askForPermissioncamera(Manifest.permission.CAMERA, MediaRecorder.VideoSource.CAMERA)
             }
         } else if (v == txtSaveProfile) {
-            if (edtCurrentUserName.text.toString().trim().isEmpty()) {
-                showToasts("Please enter current Username.")
-            } else if (editNewUserName.text.toString().trim().isEmpty()) {
-                showToasts("Please enter new Username.")
-            } else {
                 if (!isNetworkAvailable(this)) {
                     showToast(this, "Please check your internet connection and try again.")
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
-                        submitUserName()
+                        if(filePart!=null&&(!editNewUserName.text.toString().isNullOrEmpty())){
+                            submitUserNameProfile()
+                        }else if(filePart==null&&(!editNewUserName.text.toString().isNullOrEmpty())){
+                            submitUserName()
+                        }
+                        else if(filePart!=null&&(editNewUserName.text.toString().isNullOrEmpty())){
+                            submitProfile()
+                        }else{
+                            showToasts("Please select Profile Picture or enter New userNmae.")
+                        }
                     }
-                }
             }
         } else if (v == imgBackToolbar) {
             super.onBackPressed()
         }
     }
 
-    private suspend fun submitUserName() {
+    private suspend fun submitUserNameProfile() {
         pref.showProgress(this)
         var new_uName = editNewUserName.text.toString()
         val nName: RequestBody = new_uName.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -183,8 +187,51 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
         if (res.isSuccessful) {
             res.body()?.let {
                 showToasts(it.message)
-                edtCurrentUserName.text?.clear()
+                pref.userName = editNewUserName.text.toString()
+                edtCurrentUserName.text = editNewUserName.text
                 editNewUserName.text?.clear()
+            }
+        }
+        else{
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            } catch (e: Exception) {
+                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    private suspend fun submitProfile() {
+        pref.showProgress(this)
+
+        val res = RetrofitFactory.api.submitResetUserProfile("Bearer "+pref.authToken, filePart!!)
+        pref.hideProgress()
+        if (res.isSuccessful) {
+            res.body()?.let {
+                showToasts(it.message)
+            }
+        }
+        else{
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            } catch (e: Exception) {
+                Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    private suspend fun submitUserName() {
+        pref.showProgress(this)
+        var new_uName = editNewUserName.text.toString()
+        val res = RetrofitFactory.api.submitResetUserName("Bearer "+pref.authToken,new_uName)
+        pref.hideProgress()
+        if (res.isSuccessful) {
+            res.body()?.let {
+                showToasts(it.message)
+                pref.userName = editNewUserName.text.toString()
+                edtCurrentUserName.text = editNewUserName.text
+                editNewUserName.text?.clear()
+
             }
         }
         else{
@@ -342,8 +389,6 @@ class ChangeProfileActivity : AppCompatActivity(), View.OnClickListener, PickiTC
             filePart = MultipartBody.Part.createFormData("profile_pic", file!!.name, requestBody)
         }
 
-
-        Log.d("PickiTonCompleteLis",filePart.toString())
     }
 
     fun getMimeType(url: String): String? {
