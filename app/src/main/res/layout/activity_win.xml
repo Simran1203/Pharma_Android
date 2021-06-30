@@ -37,7 +37,7 @@
             app:layout_constraintBottom_toTopOf="@id/imgBackWin"
             app:layout_constraintTop_toTopOf="@id/imgBackWin" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgPlayerWin"
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_150sdp"

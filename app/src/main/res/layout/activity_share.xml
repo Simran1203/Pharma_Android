@@ -27,6 +27,7 @@
         android:textSize="@dimen/_30sdp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardMessagss"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -54,6 +55,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardInstagram"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -80,6 +82,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardMessenger"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -107,6 +110,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardSnapchat"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
@@ -134,6 +138,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardTwitter"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
