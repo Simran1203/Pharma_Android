@@ -97,11 +97,9 @@ class CategorySpinActivity : AppCompatActivity() {
                             pref.showProgress(this@CategorySpinActivity)
                             fetchcategory()
                         } catch (e: Exception) {
-
                             if(pref.mDialog.isShowing){
                                 pref.hideProgress()
                             }
-
                             showToast(
                                 this@CategorySpinActivity,
                                 "Please check your internet connection and try again."
@@ -115,9 +113,10 @@ class CategorySpinActivity : AppCompatActivity() {
                 )
             }
         })
-
     }
+
     private suspend fun fetchcategory() {
+
         val res = RetrofitFactory.api.getcategory("Bearer " + pref.authToken)
 
         pref.hideProgress()
@@ -172,7 +171,6 @@ class CategorySpinActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        countDownTimer.cancel()
-        super.onBackPressed()
+
     }
 }

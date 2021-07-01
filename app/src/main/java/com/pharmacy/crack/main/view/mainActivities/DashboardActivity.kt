@@ -16,9 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.TermsConditionActivity
-import com.pharmacy.crack.utils.PrefHelper
-import com.pharmacy.crack.utils.setFullScreen
-import com.pharmacy.crack.utils.showToast
+import com.pharmacy.crack.utils.*
 import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
 import kotlinx.android.synthetic.main.activity_change_profile.*
@@ -104,7 +102,12 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
                 .putExtra("fromSource","Dashboard"))
         }
         if (v == txtStatsIq) {
-            startActivity(Intent(this, StatsIqActivity::class.java))
+            if(!isNetworkAvailable(this)){
+                showToast(this, "Please check your internet connection and try again.")
+            }else{
+                startActivity(Intent(this, StatsIqActivity::class.java))
+            }
+
         }
         if (v == txtIqMap) {
             startActivity(Intent(this, IQMapActivity::class.java))
@@ -160,4 +163,5 @@ class DashboardActivity : AppCompatActivity(), View.OnClickListener {
 
         Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
     }
+
 }

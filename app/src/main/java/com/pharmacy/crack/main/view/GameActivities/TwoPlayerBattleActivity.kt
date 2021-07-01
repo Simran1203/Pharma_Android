@@ -12,7 +12,9 @@ import com.pharmacy.crack.R
 import com.pharmacy.crack.main.view.CategorySpinActivity
 import com.pharmacy.crack.main.view.mainActivities.DashboardActivity
 import com.pharmacy.crack.utils.PrefHelper
+import com.pharmacy.crack.utils.isNetworkAvailable
 import com.pharmacy.crack.utils.setFullScreen
+import com.pharmacy.crack.utils.showToast
 import kotlinx.android.synthetic.main.activity_change_profile.*
 import kotlinx.android.synthetic.main.activity_two_player_battle.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -50,8 +52,12 @@ class TwoPlayerBattleActivity : AppCompatActivity(),View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==txtStartGame){
-            pref.opponentName = txtNameSecondPlayer.text.toString()
-            startActivity(Intent(this,CategorySpinActivity::class.java))
+            if(!isNetworkAvailable(this)){
+                showToast(this, "Please check your internet connection and try again.")
+            }else{
+                pref.opponentName = txtNameSecondPlayer.text.toString()
+                startActivity(Intent(this,CategorySpinActivity::class.java))
+            }
         }
     }
 

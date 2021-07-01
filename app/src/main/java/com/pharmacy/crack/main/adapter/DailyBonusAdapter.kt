@@ -15,6 +15,7 @@ import com.pharmacy.crack.R
 import com.pharmacy.crack.data.model.masterBonus.Getbonu
 import com.pharmacy.crack.main.view.GameActivities.SelectOpponentActivity
 import com.pharmacy.crack.main.view.rewardsActivity.DailyBonusActivity
+import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
 import com.pharmacy.crack.utils.viewUtils.RegularTextView
 import kotlinx.android.synthetic.main.row_daily_bonus.view.*
 import kotlinx.android.synthetic.main.row_friends.view.*
@@ -60,6 +61,30 @@ class DailyBonusAdapter(
                 dialogBonus.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
                 dialogBonus.setContentView(R.layout.dialog_collect_bonus)
                 dialogBonus.setCancelable(false)
+                var imgCollectBonus : ImageView = dialogBonus.findViewById(R.id.imgCollectBonus)
+                var txtBonusDay4 : HardBoldTextView = dialogBonus.findViewById(R.id.txtBonusDay4)
+                when (position) {
+                    0 -> imgCollectBonus.setImageResource(R.drawable.pills)
+                    1 -> imgCollectBonus.setImageResource(R.drawable.mystery)
+                    2 -> imgCollectBonus.setImageResource(R.drawable.stopwatch)
+                    3 -> imgCollectBonus.setImageResource(R.drawable.mystery)
+                    4 -> imgCollectBonus.setImageResource(R.drawable.fifty_fifty)
+                    5 -> imgCollectBonus.setImageResource(R.drawable.mystery)
+                    6 -> imgCollectBonus.setImageResource(R.drawable.mystery)
+                    7 -> imgCollectBonus.setImageResource(R.drawable.pills)
+                    8 -> imgCollectBonus.setImageResource(R.drawable.pills)
+                }
+                when (position) {
+                    0 -> txtBonusDay4.text = "250"
+                    1 -> txtBonusDay4.text = "Mystery"
+                    2 -> txtBonusDay4.text = "3"
+                    3 -> txtBonusDay4.text = "Mystery"
+                    4 -> txtBonusDay4.text = "5"
+                    5 -> txtBonusDay4.text = "Mystery"
+                    6 -> txtBonusDay4.text = ""
+                    7 -> txtBonusDay4.text = "2000"
+                    8 -> txtBonusDay4.text = ""
+                }
                 dialogBonus.show()
                 var txtCollectBonus: RegularTextView = dialogBonus.findViewById(R.id.txtCollectBonus)
                 txtCollectBonus.setOnClickListener(View.OnClickListener {

@@ -10,14 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.pharmacy.crack.R
+import com.pharmacy.crack.data.model.categoryModels.Category
 import com.pharmacy.crack.main.adapter.AccuracyStatsAdapter
+import com.pharmacy.crack.main.adapter.LandedCaseyCapsulAdapter
 import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_change_profile.*
 import kotlinx.android.synthetic.main.activity_game_result.*
+import kotlinx.android.synthetic.main.activity_landed_cassey_capsule.*
 import kotlinx.android.synthetic.main.activity_stats_iq.*
 import kotlinx.android.synthetic.main.toolbar.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -26,7 +30,9 @@ import org.json.JSONObject
 class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
     lateinit var listImage: ArrayList<Int>
     lateinit var listPercent: ArrayList<Int>
+    var listCategory: ArrayList<Category> = ArrayList()
     private lateinit var networkConnectivity: NetworkConnectivity
+    private lateinit var networkConnectivity1: NetworkConnectivity
     private lateinit var pref: PrefHelper
     private var historyApiCalled: Boolean = false
     @RequiresApi(Build.VERSION_CODES.O_MR1)
@@ -75,7 +81,7 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
         listImage.add(R.drawable.oncology_misc)
 
 
-        rvStats.adapter = AccuracyStatsAdapter(this, listPercent, listImage)
+
 
         txtStatsPlayername.text = pref.fullName
 
@@ -83,6 +89,7 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
             Glide.with(this).load(pref.profilePic).placeholder(R.drawable.profile_img).into(imgPlayerStats)
         }
 
+        initCategory()
         initHistory()
     }
     private fun initHistory() {
@@ -105,6 +112,47 @@ class StatsIqActivity : AppCompatActivity(),View.OnClickListener {
             }
         })
     }
+    private fun initCategory() {
+        networkConnectivity1 = NetworkConnectivity(application)
+        networkConnectivity1.observe(this, androidx.lifecycle.Observer { isAvailable->
+            when(isAvailable){
+                true -> if (listCategory.isEmpty()){
+                    Thread.sleep(1_000)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try{
+                            fetchcategory()
+                        }catch (e:Exception){
+                                showToast(this@StatsIqActivity, "Please check your internet connection and try again.")
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    private suspend fun fetchcategory() {
+
+        val res = RetrofitFactory.api.getcategory("Bearer " + pref.authToken)
+
+        if (res.isSuccessful) {
+            res.body()?.let {
+                listCategory = it.category
+                if (!listCategory.isNullOrEmpty()) {
+
+                    rvStats.adapter = AccuracyStatsAdapter(this, listPercent, listCategory)
+                }
+            }
+        } else {
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            }
+            catch (e: Exception) {
+                showToasts(e.message.toString())
+            }
+        }
+    }
+
 
     private suspend fun fetchHistory() {
 

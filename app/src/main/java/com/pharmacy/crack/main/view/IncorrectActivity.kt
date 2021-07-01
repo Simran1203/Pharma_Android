@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.KeyEvent
 import android.view.View
 import android.view.Window
@@ -23,6 +24,8 @@ import com.pharmacy.crack.utils.PrefHelper
 import com.pharmacy.crack.utils.setFullScreen
 import com.pharmacy.crack.utils.viewUtils.HardBoldTextView
 import kotlinx.android.synthetic.main.activity_incorrect.*
+import kotlinx.android.synthetic.main.activity_question.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 
 class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
@@ -32,6 +35,8 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var imgCloseBuy: ImageView
     lateinit var imgCloseResume: ImageView
     lateinit var btnResumeIn: HardBoldTextView
+    lateinit var countDownTimer: CountDownTimer
+
     @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +49,6 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
     private fun initAll() {
         overridePendingTransition(R.anim.zoom_in, R.anim.zoom_in);
 
-        txtTimeIncorrect.text = intent.getStringExtra("time")
         dialogBuyPillLife = Dialog(this, android.R.style.Theme_Light)
         dialogBuyPillLife.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialogBuyPillLife.window?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#99000000")))
@@ -74,10 +78,32 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
         btnResumeIn.setOnClickListener(this)
 
 
+        countDownTimer = object : CountDownTimer(21000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                txtTimeIncorrect.text = String.format(
+                    "%02d:%02d",
+                    ((millisUntilFinished / 1000) % 3600) / 60, ((millisUntilFinished / 1000) % 60)
+                );
+//                txtTimeIncorrect.text = intent.getStringExtra("time")
+            }
+
+            override fun onFinish() {
+                countDownTimer.cancel()
+                    wrongAns = 0
+                    startActivity(Intent(this@IncorrectActivity, LoseActivity::class.java))
+
+            }
+        }
+        countDownTimer.start()
+
 //        dialogBack()
 
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        countDownTimer.start()
+    }
     private fun dialogBack() {
         dialogBuyPillLife.setOnKeyListener(DialogInterface.OnKeyListener { _, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -139,4 +165,8 @@ class IncorrectActivity : AppCompatActivity(), View.OnClickListener {
 //        super.onBackPressed()
     }
 
+    override fun onPause() {
+        countDownTimer.cancel()
+        super.onPause()
+    }
 }

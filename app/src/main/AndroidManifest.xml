@@ -20,7 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PharmacyCrack"
         android:usesCleartextTraffic="true">
-        <activity android:name=".main.view.mainActivities.DrugStore2Activity"></activity>
+        <activity android:name=".main.view.mainActivities.DrugStore2Activity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".main.view.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />

@@ -295,9 +295,14 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        wrongAns = 0
-        countDownTimer.cancel()
-        super.onBackPressed()
+//        wrongAns = 0
+//        countDownTimer.cancel()
+//        super.onBackPressed()
     }
 
+    override fun onPause() {
+        countDownTimer.cancel()
+        countDownTimer24Hour.cancel()
+        super.onPause()
+    }
 }

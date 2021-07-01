@@ -55,8 +55,14 @@ class ShareActivity : AppCompatActivity(), View.OnClickListener {
 //            shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             shareIntent.putExtra(Intent.EXTRA_TEXT, "Hello from Pharma\nhttps://www.agicent.com/")
             shareIntent.setPackage("com.instagram.android")
-            startActivity(shareIntent)
-//            return shareIntent
+
+            try {
+                startActivity(shareIntent)
+            } catch (ex: ActivityNotFoundException) {
+                Toast.makeText(this, "Please Install Instagram", Toast.LENGTH_LONG)
+                    .show()
+            }
+
         }
         else if(v==cardMessenger){
             val sendIntent = Intent()
@@ -78,7 +84,13 @@ class ShareActivity : AppCompatActivity(), View.OnClickListener {
             intent.type = "text/plain"
 //            intent.type = "*/*"
             intent.setPackage("com.snapchat.android")
-            startActivity(Intent.createChooser(intent, "Open Snapchat"))
+            try {
+                startActivity(Intent.createChooser(intent, "Open Snapchat"))
+            } catch (ex: ActivityNotFoundException) {
+                Toast.makeText(this, "Please Install Snapchat", Toast.LENGTH_LONG)
+                    .show()
+            }
+
         }
         else if(v==cardTwitter){
             val tweetUrl = String.format(

@@ -36,7 +36,6 @@ class DailyBonusActivity : AppCompatActivity(),View.OnClickListener {
 
         setTopLayout()
 
-
     }
 
     @SuppressLint("SetTextI18n")
@@ -112,14 +111,12 @@ class DailyBonusActivity : AppCompatActivity(),View.OnClickListener {
             } catch (e: Exception) {
                 showToasts(e.message.toString())
             }
-
         }
     }
 
 
     private fun clickListener() {
         imgBackToolbar.setOnClickListener(this)
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

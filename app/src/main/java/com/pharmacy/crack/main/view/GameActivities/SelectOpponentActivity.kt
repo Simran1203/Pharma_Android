@@ -1,11 +1,13 @@
 package com. pharmacy.crack.main.view.GameActivities
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import com.pharmacy.crack.R
 import com.pharmacy.crack.main.adapter.FriendsAdapter
@@ -26,6 +28,7 @@ class SelectOpponentActivity : AppCompatActivity(),View.OnClickListener {
     companion object{
         var selectedOpponent:Int = -1
     }
+    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setFullScreen(this)

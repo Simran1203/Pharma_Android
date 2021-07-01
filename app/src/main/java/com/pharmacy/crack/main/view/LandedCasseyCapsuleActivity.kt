@@ -5,24 +5,28 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import com.pharmacy.crack.R
+import com.pharmacy.crack.data.model.categoryModels.Category
 import com.pharmacy.crack.main.adapter.CategorySpinAdapter
 import com.pharmacy.crack.main.adapter.LandedCaseyCapsulAdapter
-import com.pharmacy.crack.utils.setFullScreen
-import com.pharmacy.crack.utils.showToast
+import com.pharmacy.crack.utils.*
 import kotlinx.android.synthetic.main.activity_category_spin.*
 import kotlinx.android.synthetic.main.activity_category_spin.rvCatSpin
 import kotlinx.android.synthetic.main.activity_landed_cassey_capsule.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.util.ArrayList
 
 class LandedCasseyCapsuleActivity : AppCompatActivity(),View.OnClickListener {
-    lateinit var listCat : ArrayList<String>
+    lateinit var networkConnectivity: NetworkConnectivity
+    var listCategory: ArrayList<Category> = ArrayList()
+    lateinit var pref: PrefHelper
     lateinit var adapter: LandedCaseyCapsulAdapter
-    var catName = arrayOf("Oncology & misc","Women & Pediatrics","Endocrinology & Toxicology","Infectious Disease & Immunology",
-        "Casey","Abused Substances","Cardiology & Hematology","Law","OTC & Herbal","Fun Facts",
-        "Neurology & Psychology","New Rx")
 
     companion object{
         var selectionLandedcasey:Int = 4
@@ -32,21 +36,73 @@ class LandedCasseyCapsuleActivity : AppCompatActivity(),View.OnClickListener {
         super.onCreate(savedInstanceState)
         setFullScreen(this)
         setContentView(R.layout.activity_landed_cassey_capsule)
-
-        listCat = ArrayList()
-
-        for(i in 0..11){
-            listCat.add(catName[i])
-        }
-
-        adapter = LandedCaseyCapsulAdapter(this, listCat){ pos->
-            onItemClick(pos)
-        }
-
-        rvCatLand.adapter = adapter
+        pref = PrefHelper(this)
 
         txtStartGameLanded.setOnClickListener(this)
+
+        initfetchcategory()
     }
+
+    private fun initfetchcategory() {
+
+        networkConnectivity = NetworkConnectivity(application)
+        networkConnectivity.observe(this, androidx.lifecycle.Observer { isAvailable ->
+            when (isAvailable) {
+                true -> if (listCategory.isEmpty()) {
+                    Thread.sleep(1_000)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try {
+                            pref.showProgress(this@LandedCasseyCapsuleActivity)
+                            fetchcategory()
+                        } catch (e: Exception) {
+
+                            if(pref.mDialog.isShowing){
+                                pref.hideProgress()
+                            }
+                            Log.d("initfetchcategory:",e.message.toString())
+                            showToast(
+                                this@LandedCasseyCapsuleActivity,
+                                "Please check your internet connection and try again."
+                            )
+                        }
+                    }
+                }
+                false -> showToast(
+                    this@LandedCasseyCapsuleActivity,
+                    "Please check your internet connection and try again."
+                )
+            }
+        })
+
+    }
+
+    private suspend fun fetchcategory() {
+        val res = RetrofitFactory.api.getcategory("Bearer " + pref.authToken)
+
+        pref.hideProgress()
+        if (res.isSuccessful) {
+            res.body()?.let {
+                listCategory = it.category
+                if (!listCategory.isNullOrEmpty()) {
+                    val modelCasey = Category("",-1,"Casey")
+                    listCategory.add(4,modelCasey)
+                    adapter = LandedCaseyCapsulAdapter(this, listCategory){ pos->
+                        onItemClick(pos)
+                    }
+                    rvCatLand.adapter = adapter
+                }
+            }
+        } else {
+            try {
+                val jObjError = JSONObject(res.errorBody()?.string())
+                showToasts("${jObjError.getString("message")}")
+            } catch (e: Exception) {
+                showToasts(e.message.toString())
+            }
+
+        }
+    }
+
 
     private fun onItemClick(pos: Int) {
         selectionLandedcasey = pos
@@ -59,7 +115,7 @@ class LandedCasseyCapsuleActivity : AppCompatActivity(),View.OnClickListener {
                 showToast(this,"Please select category.")
             }else{
                 startActivity(Intent(this,QuestionActivity::class.java)
-                    .putExtra("cat",listCat.get(selectionLandedcasey)))
+                    .putExtra("cat", listCategory[selectionLandedcasey].name))
             }
 
         }

@@ -713,6 +713,7 @@
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_110sdp"
                 android:layout_marginBottom="@dimen/_160sdp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@id/const4Lvl"
                 app:layout_constraintEnd_toEndOf="@id/const4Lvl"
                 app:layout_constraintHorizontal_bias=".15"
@@ -902,6 +903,36 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_marginBottom="@dimen/_160sdp"
+                app:layout_constraintBottom_toBottomOf="@id/const3Lvl"
+                app:layout_constraintEnd_toEndOf="@id/const3Lvl"
+                app:layout_constraintHorizontal_bias=".15"
+                app:layout_constraintStart_toStartOf="@id/const3Lvl"
+                app:layout_constraintTop_toTopOf="@id/const3Lvl">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/map_marker"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userImagelevel3"
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/user_img"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/const2Lvl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1062,6 +1093,35 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:visibility="gone"
+                android:layout_marginBottom="@dimen/_160sdp"
+                app:layout_constraintBottom_toBottomOf="@id/const2Lvl"
+                app:layout_constraintEnd_toEndOf="@id/const2Lvl"
+                app:layout_constraintHorizontal_bias=".15"
+                app:layout_constraintStart_toStartOf="@id/const2Lvl"
+                app:layout_constraintTop_toTopOf="@id/const2Lvl">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/map_marker"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="@dimen/_65sdp"
+                    android:layout_height="@dimen/_65sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/user_img"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
